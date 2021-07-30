@@ -1,5 +1,4 @@
 
-
 :root {
     --grid-xsmall: 357px;
     --grid-small: 767px;
@@ -8,8 +7,13 @@
     --grid-xlarge:  1681px;
     --grid-widescreen: 2000px;
 
-    --xsmall: '(min-width: 0)';
-    --small: '(max-width: var(--grid-xsmall) - 1})';
+    --xsmall: min-width: 0;
+    --small: max-width: 356px;
    
 }
 
+
+@media screen and (var(--small)) {
+    background-color: pink !important;
+
+}

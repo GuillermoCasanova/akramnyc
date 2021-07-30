@@ -24,7 +24,7 @@
 
     {% render 'meta-tags' %}
 
-    <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    <script type="module" s src="{{ 'global.js' | asset_url }}" defer="defer"></script>
     {{ content_for_header }}
 
     {%- liquid

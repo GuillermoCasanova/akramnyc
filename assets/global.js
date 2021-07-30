@@ -626,3 +626,17 @@ class VariantRadios extends VariantSelects {
 }
 
 customElements.define('variant-radios', VariantRadios);
+
+
+
+import LoadingScreen from './cs-loading-screen.js'
+import World from './cs-world.js'; 
+
+
+
+let starWorld = new World();
+starWorld.init(); 
+
+new LoadingScreen().init({skip: false, world:  starWorld}); 
+
+
