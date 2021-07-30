@@ -1,9 +1,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js" integrity="sha512-1dalHDkG9EtcOmCnoCjiwQ/HEB5SDNqw8d4G2MKoNwjiwMNeBAkudsBCmSlMnXdsH8Bm0mOd3tl/6nL5y0bMaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 {{ 'component-cs-loading-screen.css' | asset_url | stylesheet_tag }}
+{{ 'base-forms.css' | asset_url | stylesheet_tag }}
+{{ 'component-cs-pages.css' | asset_url | stylesheet_tag }}
+{{ 'component-cs-scene.css' | asset_url | stylesheet_tag }}
+
+<script type="module" src="{{ 'cs-coming-soon.js' | asset_url }}" defer="defer"></script>
+<script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RSpZfU"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet" />
 
 
-<div class="loading-screen" data-loading-screen>
+<div id="concept-1" data-concept>
+
+  <div class="loading-screen" data-loading-screen>
     <div class="loading-screen__progress" data-loading-progress>
       <span class="loading-screen__progress__dot" data-loading-dot>
         <span class="loading-screen__progress__dot__progress" data-dot-progress>
@@ -45,6 +54,7 @@
     </div>
   </div>
 
+  
   <nav class="navigation">
     <div class="navigation__links">
       <button data-nav-button data-button-id="about">
@@ -79,6 +89,86 @@
     <div class="scene" style="z-index: -1;"></div>
 
   </nav>
+
+  <div class="modal" data-pages>
+    <div class="modal__inner">
+      <div class="page about-page" data-page data-page-id="about">
+        <div class="page__inner">
+          <h1 class="screen-readers-only">About Akram</h1>
+          <div data-type-writer class="about-page__bio">
+            <p
+              data-text="_ Join us as we explore the AKRAM universe is created in Los Angeles and made in Lahore, Pakistan. This brand is shaped by the daily inspirations I see. Combining my duality and unique upbringing. The aim is to bring complex brand that uses its platform to highlight artisans thats coming out of Pakistan while ensuring that we’re creating sustainable and environmental friendly clothes.">
+              _
+            </p>
+          </div>
+
+          <button class="page__back" type="button" tab-index="2" aria-label="Close current page opened"
+            data-close-page>
+            <img src="assets/akram-logo.png" alt="Akram" />
+            <span hidden>Close current opened page</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="page" data-page data-page-id="newsletter">
+        <div class="newsletter-sign-up" data-newsletter-sign-up>
+          <div class="newsletter-sign-up__header">
+            <h1 class="newsletter-sign-up__headline">
+              Learn about the upcoming launch:
+            </h1>
+          </div>
+          <div class="klaviyo-form-TVGUCE"></div>
+        </div>
+
+        <button class="page__back" type="button" tab-index="2" aria-label="Close currently opened page"
+          data-close-page>
+          <img src="assets/akram-logo.png" alt="Akram" />
+          <span hidden>Close/span>
+        </button>
+      </div>
+      <div class="page" data-page data-page-id="social">
+        <ul class="communication-links">
+          <li class="communication-links__item">
+            <a href="mailto:name@email.com" class="communication-links__link">
+              <img src="assets/arrow.png" alt="Arrow Icon Pointing Right" class="communication-links__link__arrow" />
+              Email
+            </a>
+          </li>
+          <li class="communication-links__item">
+            <a href="https://www.instagram.com/guillermocasanova/" class="communication-links__link">
+              <img src="assets/arrow.png" alt="Arrow Icon Pointing Right" class="communication-links__link__arrow" />
+              Instagram
+            </a>
+          </li>
+        </ul>
+
+        <button class="page__back" type="button" tab-index="2" aria-label="Close current page opened" data-close-page>
+          <img src="assets/akram-logo.png" alt="Akram" />
+          <span hidden>Close current opened page</span>
+        </button>
+      </div>
+      <div class="page" data-page data-page-id="current-time">
+        <div class="current-user-time">
+          <p class="stat" data-current-date>
+
+          </p>
+          <p class="stat" data-current-time>
+
+          </p>
+          <p class="stat" data-current-timezone>
+
+          </p>
+        </div>
+        <button class="page__back" type="button" tab-index="2" aria-label="Close current page opened" data-close-page>
+          <img src="./assets/akram-logo.png" alt="" />
+        </button>
+      </div>
+    </div>
+    <div class="modal__overlay"></div>
+  </div>
+
+</div>
+
 
 
 {% schema %}

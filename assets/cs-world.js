@@ -1,9 +1,9 @@
 import * as THREE from './three.module.js';
 import FirstPersonControls  from './cs-first-person-controls-custom.js';
 
-let glow = './glow.png';
-let starSprite = './glow_small.png';
-let starmap = './stars.png';
+let glow = './assets/glow.png';
+let starSprite = './assets/glow_small.png';
+let starmap = './assets/stars.png';
 
 export default class World {
 

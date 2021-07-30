@@ -1,6 +1,8 @@
 
 /* Color custom properties */
 
+
+
 :root,
 .color-background-1 {
   --color-foreground: var(--color-base-text);
@@ -2088,3 +2090,119 @@ details-disclosure > details {
 
 
 
+
+/*------------------------------------*\
+    #Reset
+\*------------------------------------*/
+
+
+dl, dt, dd, ul, ol, li,
+h1, h2, h3, h4, h5, h6,
+pre, form, p, blockquote, th, td { 
+  margin: 0;
+  padding: 0;
+}
+
+li, 
+ul {
+  list-style: none; 
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+fieldset, img {
+  border: 0;
+}
+address, caption, cite, dfn, th, var {
+  font-style: normal;
+  font-weight: normal;
+}
+caption, th {
+  text-align: left; 
+}
+
+q:before, q:after {
+  content: '';
+}
+abbr, acronym {
+  border: 0;
+}
+
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+
+@font-face {
+  font-family: 'telegrafregular';
+  src: url('./telegraf-regular-webfont.woff2') format('woff2'),
+       url('./telegraf-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+
+    --primary-font-family: 'Space Mono', 'Courier New', Courier, monospace;
+    --secondary-font-family: 'telegrafregular',  'Helvetica',sans-serif;
+}
+
+
+/*------------------------------------*\
+    #Root Typography Resizing
+\*------------------------------------*/
+
+:root {
+  font-size: .8rem;
+}
+
+
+/*X-SMALL*/
+@media screen and (max-width: 356px) {
+  :root {
+    font-size: .9rem;
+  }
+}
+
+/*SMALL-UP*/
+@media screen and (min-width: 357px) {
+  :root {
+    font-size: .9rem;
+  }
+}
+
+/*MEDIUM-UP*/
+@media screen and (min-width: 768px) {
+  :root {
+    font-size: .9rem;
+  }
+}
+
+
+/*LARGE-UP*/
+@media screen and (min-width: 1000px) {
+  :root {
+    font-size: .95rem;
+  }
+}
+
+
+/*X-LARGE-UP*/
+@media screen and (min-width: 1681px) {
+  :root {
+    font-size: 1rem;
+  }
+}
+
+
+/*WIDESCREEN-UP*/
+@media screen and (min-width: 2000px) {
+  :root {
+    font-size: 1rem;
+  }
+}
