@@ -7,6 +7,9 @@ export default class LoadingScreen  {
         this.camera = null; 
         this.cameraControls = null; 
         this.audio = new Audio(); 
+
+        console.log('loading screen');
+        
     }   
 
     playLoadingAnimation() {
