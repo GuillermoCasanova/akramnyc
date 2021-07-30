@@ -1,0 +1,15 @@
+
+
+:root {
+    --grid-xsmall: 357px;
+    --grid-small: 767px;
+    --grid-medium: 768px;
+    --grid-large:  1000px;
+    --grid-xlarge:  1681px;
+    --grid-widescreen: 2000px;
+
+    --xsmall: '(min-width: 0)';
+    --small: '(max-width: var(--grid-xsmall) - 1})';
+   
+}
+

@@ -1,3 +1,6 @@
+
+@import url('breakpoints.css');
+
 /* Color custom properties */
 
 :root,
@@ -2084,3 +2087,6 @@ details-disclosure > details {
     overflow: auto;
   }
 }
+
+
+
