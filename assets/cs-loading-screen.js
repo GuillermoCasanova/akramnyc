@@ -6,7 +6,7 @@ export default class LoadingScreen  {
         this.loadingScreen = document.querySelector('[data-loading-screen]'); 
         this.camera = null; 
         this.cameraControls = null; 
-        this.audio = new Audio(); 
+       // this.audio = new Audio(); 
 
         console.log('loading screen');
         
@@ -100,8 +100,8 @@ export default class LoadingScreen  {
         let camera = this.camera; 
         let cameraControls = this.cameraControls;
 
-        function setupDots() {
-            dots.forEach((element, index) => {
+        function setupDots(pDots) {
+            pDots.forEach((element, index) => {
 
                 switch (index) {
                     case 0:
@@ -125,38 +125,50 @@ export default class LoadingScreen  {
             })
         }
 
-        function showPageAnimation() {
+            
+        function showPageAnimation(pDots) {
             let animation = gsap.timeline({onComplete: function() {
                 that.announceIntroAnimDone();
             }}); 
-            let dots = loadingScreen.querySelectorAll('[data-loading-dot]'); 
+            let dots = pDots; 
+            console.log(dots[0].dataset.destY);
+
+
             animation
-            .to(dots[0], {left: dots[0].dataset.destX + "%", top: dots[0].dataset.destY + "%", duration: 1,   ease: 'power2.inOut'})
-            .to(dots[1], {left: dots[1].dataset.destX + "%", bottom: dots[1].dataset.destY + "%", duration: 1,   ease: 'power2.inOut'}, '-=1')
-            .to(dots[2], {right: dots[2].dataset.destX + "%", top: dots[2].dataset.destY + "%", duration: 1,   ease: 'power2.inOut'}, '-=1')
-            .to(dots[3], {right: dots[3].dataset.destX + "%", bottom: dots[3].dataset.destY + "%", duration: 1,   ease: 'power2.inOut'}, '-=1')
+            .to(dots[0], {left: dots[0].dataset.destX + "%", top: dots[0].dataset.destY + "%", duration: 1,   ease: 'power2.inOut', strictUnits:true})
+            .to(dots[1], {left: dots[1].dataset.destX + "%", bottom: dots[1].dataset.destY + "%", duration: 1,   ease: 'power2.inOut', strictUnits:true}, '-=1')
+            .to(dots[2], {right: dots[2].dataset.destX + "%", top: dots[2].dataset.destY + "%", duration: 1,   ease: 'power2.inOut', strictUnits:true}, '-=1')
+            .to(dots[3], {right: dots[3].dataset.destX + "%", bottom: dots[3].dataset.destY + "%", duration: 1,   ease: 'power2.inOut', strictUnits:true}, '-=1')
             .to(cameraControls.object.position, {z: 100, duration: 1.5,   ease: 'power2.inOut', onComplete: function() {
                 cameraControls.enableDrag(); 
             }}, '-=.7')
             .to(loadingScreen, {backgroundColor: 'rgba(0,0,0,0)', duration: 1, ease: 'circ.out'}, '-=1');
         }
 
-        function resetDots(element) {
-            let dot = element; 
-            let audio = that.audio; 
+        function resetDots(pDots) {
+           // let audio = that.audio; 
             let animation = gsap.timeline({onComplete: function() {
-                showPageAnimation(); 
+                showPageAnimation(dots); 
                 //audio.init();
             }}); 
-            animation.to(dot, {x: 0, y: 0, duration: .7,   ease: 'power2.out'})
-                     .to(dot.querySelector('[data-dot-progress]'), {opacity: 0, duration: .2,   ease: 'power2.out'}, '-=0.3'); 
+
+            console.log('reset dots');
+
+            let dots = pDots;
+
+            animation.to(dots[0], {x:0, y: 0, duration: .7,   ease: 'power2.out'})
+            .to(dots[0].querySelector('[data-dot-progress]'), {opacity: 0, duration: .2,   ease: 'power2.out'}, '-=0.3')
+            animation.to(dots[1], {x: 0, y: 0, duration: .7,  ease: 'power2.out'}, '-=0.7')
+            .to(dots[1].querySelector('[data-dot-progress]'), {opacity: 0, duration: .2,   ease: 'power2.out'}, '-=0.3')
+            animation.to(dots[2], {x: 0, y: 0, duration: .7,  ease: 'power2.out'}, '-=0.7')
+            .to(dots[2].querySelector('[data-dot-progress]'), {opacity: 0, duration: .2,   ease: 'power2.out'}, '-=0.3')
+            animation.to(dots[3], {x: 0, y: 0, duration: .7,  ease: 'power2.out'}, '-=0.7')
+            .to(dots[3].querySelector('[data-dot-progress]'), {opacity: 0, duration: .2,   ease: 'power2.out'}, '-=0.3')
+
         }   
 
-        setupDots(); 
-
-        dots.forEach((element) => {
-            resetDots(element)
-        })
+        setupDots(dots); 
+        resetDots(dots)
 
 
     }
