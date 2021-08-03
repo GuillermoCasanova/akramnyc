@@ -113,63 +113,6 @@
   
 
 
-function activateInputs() {
-
-  if(document.querySelectorAll('input').length > 0) {
-
-    let textFields = document.querySelectorAll('[class*="TextInput__StyledInputContainer"]');
-
-    textFields.forEach(function(element) {
-        let textFieldWrapper  = element; 
-        element.querySelector('input').addEventListener('change', function(event) {
-            let input = event.currentTarget; 
-
-            if(input.value.length > 0) {
-                textFieldWrapper.classList.add('is-active'); 
-            } else {
-                textFieldWrapper.classList.remove('is-active'); 
-            }
-
-        }); 
-      
-      let changeEvent = new Event("change"); 
-      
-      element.querySelector('input').dispatchEvent(changeEvent); 
-      
-      element.querySelector('input').addEventListener('focus', function() {
-             textFieldWrapper.classList.add('is-active'); 
-      }); 
-      
-      
-       element.querySelector('input').addEventListener('blur', function(event) {
-           let input = event.currentTarget; 
-            if(input.value.length > 0) {
-                textFieldWrapper.classList.add('is-active'); 
-            } else {
-                textFieldWrapper.classList.remove('is-active'); 
-            }
-       }); 
-      
-   
-    }); 
-
-  }
-
-}
-  
-
-
-window.addEventListener("klaviyoForms", function (e) {
-  if (e.detail.type == 'submit') {
-    document.querySelector('[data-newsletter-sign-up]').classList.add('is-submitted');
-    return
-  }
-
-  setTimeout(function() {
-    activateInputs()
-  }, 2000);
-});
-
 
 
     </script>

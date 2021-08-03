@@ -11,11 +11,9 @@ starWorld.init();
 
 document.addEventListener('loading-animation-done', function() {
     new Navigation().init({world:  starWorld}); 
-    // typewriter();
-    // new LocalTime().init(); 
   }, {once: true})
 
 
-new LoadingScreen().init({skip: false, world:  starWorld}); 
+new LoadingScreen().init({skip: true, world:  starWorld}); 
 
 

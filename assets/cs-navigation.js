@@ -1,5 +1,7 @@
 
+    //new LocalTime().init(); 
 
+import {TypeWriter} from './cs-typewriter.js'
 
 export default class Navigation  {
 
@@ -14,6 +16,7 @@ export default class Navigation  {
         this.camera = options.world.getCamera(); 
         this.cameraControls = options.world.getControls();
         this.animateNavigation();
+        this.TypeWriter = TypeWriter(); 
     }
 
     animateNavigation() {
@@ -148,6 +151,12 @@ export default class Navigation  {
 
     
 
+    initPageBehavior(pPageId) {
+      console.log(pPageId); 
+
+   
+    }
+
    setUpNavigation(pCamera, pControls) {
     let controls = document.querySelectorAll('[data-nav-button]');
     let pages = document.querySelectorAll('[data-page]');
@@ -162,7 +171,12 @@ export default class Navigation  {
     let cameraControls = this.cameraControls;
 
     let pageLoaded = function (pPageId) {
-      document.dispatchEvent(new CustomEvent('page-loaded',{'detail':  {"pageId": pPageId}}));
+      document.dispatchEvent(new CustomEvent('page-loaded', {'detail':  {"pageId": pPageId}}));
+      if(pPageId === 'about') {
+        setTimeout(function() {
+          that.TypeWriter.type();
+        }, 1000); 
+      }
     };
 
     let pageClosed = function (pPageId) {
@@ -171,17 +185,20 @@ export default class Navigation  {
     };
 
     let getCameraPos = this.getCameraPosition; 
-    
     let showingPage = false;
     let activePage = null;
 
     let closePage = function (pPageId) {
+
       pagesContainer.classList.add('is-hidden');
       pagesContainer.classList.remove('is-visible');
 
       let showSplashAnimation = new gsap.timeline({
         onComplete: function () {
           isAnimating = false;
+          if(pPageId === 'about') {
+            that.TypeWriter.type(true);
+          }
           scene.classList.remove('no-pointer');
         }});
 
@@ -198,8 +215,6 @@ export default class Navigation  {
               duration: 1.9,  
               ease: 'power2.inOut',
               onStart: function() {
-               //scene.classList.remove('no-pointer');
- 
               },
             })
             .to(cameraControls.object.rotation, {
@@ -210,7 +225,6 @@ export default class Navigation  {
               ease: 'power2.inOut',
               onComplete: function() {
                 cameraControls.lookAt(cameraNewPlace.rotation.x, cameraNewPlace.rotation.y, cameraNewPlace.rotation.z);
-                //cameraControls.enableDrag()
               }
             }, '-=1.9')
             .fromTo(
@@ -246,6 +260,7 @@ export default class Navigation  {
         onComplete: function (pPageId) {
           isAnimating = false;
           pageLoaded(pPageId);
+
         },
         onCompleteParams: [pPageId]
       });
@@ -271,6 +286,8 @@ export default class Navigation  {
           element.classList.add('is-visible');
           element.classList.remove('is-hidden');
           let cameraNewPlace = getCameraPos(pPageId); 
+
+          that.initPageBehavior(pPageId);
 
           if (!showingPage) {
 

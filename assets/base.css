@@ -66,7 +66,7 @@ abbr, acronym {
 
 :root {
     --primary-font-family: 'Space Mono', 'Courier New', Courier, monospace;
-    --secondary-font-family: 'telegrafregular',  'Helvetica',sans-serif;
+    --secondary-font-family: 'telegrafregular',  'Space Mono';
 }
   
   

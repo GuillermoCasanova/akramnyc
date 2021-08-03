@@ -31,10 +31,12 @@
 
 .page.is-hidden {
     pointer-events: none;
+    z-index: -10;
 }
 
 .page.is-visible {
     pointer-events: all;
+    z-index: 2;
 }
 
 .page.is-forced-visible {
@@ -118,7 +120,30 @@
     letter-spacing: 1px;
     bottom: -2rem;
     position: relative;
-    font-family: $secondary-font-family; 
+    font-family: var(--secondary-font-family);
+}
+
+.about-page__bio.is-typing .ticker {
+    animation: none;
+}
+
+
+.about-page__bio .ticker {
+    margin: 0;
+    padding: 0;
+    left: -.35rem;
+    position: relative;
+    animation: flicker 1.2s step-end infinite;
+}
+
+@keyframes flicker {
+    from, to {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1; 
+    }
 }
 
 
@@ -199,11 +224,9 @@
     padding-bottom: 0 !important;
 }
 
-.newsletter-sign-up  div[class*="TextInput__StyledInputContainer"].is-active {
-    label {
-        opacity: 0;
-        transform: translateY(-6px);
-    }
+.newsletter-sign-up  div[class*="TextInput__StyledInputContainer"].is-active  label {
+    opacity: 0;
+    transform: translateY(-6px);
 }
 
 .newsletter-sign-up  div[class*="TextInput__StyledInputContainer"] input {
@@ -225,6 +248,12 @@
 
 div[class*='Row__FormRow-']{
     display: block !important;
+  }
+  
+
+  div[class*='TextInput__StyledInputContainer'] {
+    position: relative; 
+    margin-bottom: 1.125rem; 
   }
   
   div[class*='TextInput__StyledInputContainer']   label {
@@ -332,12 +361,6 @@ div[class*='Row__FormRow-']{
   div[class*='TextInput__StyledInputContainer']  textarea:active {
     outline: 0 !important; 
     background-color: transparent
-  }
-  
-  
-  div[class*='TextInput__StyledInputContainer'] {
-    position: relative; 
-    margin-bottom: 1.25rem; 
   }
   
   

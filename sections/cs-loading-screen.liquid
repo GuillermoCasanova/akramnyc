@@ -12,6 +12,67 @@
 <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RSpZfU"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet" />
 
+<script async>
+
+
+  function activateInputs() {
+
+    if(document.querySelectorAll('input').length > 0) {
+  
+      let textFields = document.querySelectorAll('[class*="TextInput__StyledInputContainer"]');
+  
+      textFields.forEach(function(element) {
+          let textFieldWrapper  = element; 
+          element.querySelector('input').addEventListener('change', function(event) {
+              let input = event.currentTarget; 
+  
+              if(input.value.length > 0) {
+                  textFieldWrapper.classList.add('is-active'); 
+              } else {
+                  textFieldWrapper.classList.remove('is-active'); 
+              }
+  
+          }); 
+        
+        let changeEvent = new Event("change"); 
+        
+        element.querySelector('input').dispatchEvent(changeEvent); 
+        
+        element.querySelector('input').addEventListener('focus', function() {
+               textFieldWrapper.classList.add('is-active'); 
+        }); 
+        
+        
+         element.querySelector('input').addEventListener('blur', function(event) {
+             let input = event.currentTarget; 
+              if(input.value.length > 0) {
+                  textFieldWrapper.classList.add('is-active'); 
+              } else {
+                  textFieldWrapper.classList.remove('is-active'); 
+              }
+         }); 
+        
+     
+      }); 
+  
+    }
+  
+  }
+    
+  
+  
+  window.addEventListener("klaviyoForms", function (e) {
+    if (e.detail.type == 'submit') {
+      document.querySelector('[data-newsletter-sign-up]').classList.add('is-submitted');
+      return
+    }
+  
+    setTimeout(function() {
+      console.log('activate inputs!!');
+      activateInputs()
+    }, 2000);
+  });
+</script>
 
 <div id="concept-1" data-concept class="coming-soon-container">
 
@@ -100,8 +161,9 @@
           <h1 class="screen-readers-only">About Akram</h1>
           <div data-type-writer class="about-page__bio">
             <p
-              data-text="_ Join us as we explore the AKRAM universe is created in Los Angeles and made in Lahore, Pakistan. This brand is shaped by the daily inspirations I see. Combining my duality and unique upbringing. The aim is to bring complex brand that uses its platform to highlight artisans thats coming out of Pakistan while ensuring that we’re creating sustainable and environmental friendly clothes.">
-              _
+              data-text="Join us as we explore the AKRAM universe is created in Los Angeles and made in Lahore, Pakistan. This brand is shaped by the daily inspirations I see. Combining my duality and unique upbringing. The aim is to bring complex brand that uses its platform to highlight artisans thats coming out of Pakistan while ensuring that we’re creating sustainable and environmental friendly clothes.">
+              <span data-text-container></span>
+              <span class="ticker">_</span>
             </p>
           </div>
 
