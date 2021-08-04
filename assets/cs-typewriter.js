@@ -1,35 +1,38 @@
 
 
-export function TypeWriter(pElement) {
 
-    let textContainer = document.querySelector('[data-type-writer]').querySelector('[data-text-container]');
-    let i = 0; 
-    let text =  document.querySelector('[data-type-writer]').querySelector('p').dataset.text; 
-    let speed = 60; 
-    let writingFunction = null;
 
-    textContainer.textContent = ""; 
+class TypeWriter extends HTMLElement {
 
-    return {
-        type:  function type(pStop) {
-
-            if(pStop) {
-                i = 0;
-                textContainer.textContent = "";
-                clearTimeout(writingFunction);
-                document.querySelector('[data-type-writer]').classList.remove('is-typing');
-                return 
-            }
-            if(i < text.length) {
-                document.querySelector('[data-type-writer]').classList.add('is-typing');
-                textContainer.textContent += text.charAt(i);
-                i++
-                writingFunction = setTimeout(type, speed)
-            } else {
-                document.querySelector('[data-type-writer]').classList.remove('is-typing');
-            }
-        }
-
+    constructor() {
+        super(); 
+        this.textContainer = this.querySelector('[data-text-container]');
     }
 
+    type(pStop) {
+
+        if(pStop) {
+            i = 0;
+            textContainer.textContent = "";
+            clearTimeout(writingFunction);
+            this.classList.remove('is-typing');
+            return 
+        }
+        if(i < text.length) {
+            this.classList.add('is-typing');
+            textContainer.textContent += text.charAt(i);
+            i++
+            writingFunction = setTimeout(type, speed)
+        } else {
+            this.classList.remove('is-typing');
+        }
+    }
+    init() {
+        this.i = 0; 
+        this.text =  this.querySelector('p').dataset.text; 
+        this.speed = 60; 
+        this.writingFunction = null;
+    }
 }
+
+customElements.define('type-writer', TypeWriter);

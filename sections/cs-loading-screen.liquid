@@ -8,12 +8,12 @@
 {{ 'component-cs-pages.css' | asset_url | stylesheet_tag }}
 {{ 'component-cs-scene.css' | asset_url | stylesheet_tag }}
 
-
-<script type="module" src="{{ 'cs-loading-screen.js' | asset_url }}"></script>
+<script src="{{ 'cs-loading-screen.js' | asset_url }}"></script>
 <script type="module" src="{{ 'cs-world.js' | asset_url }}"></script>
-<script type="module" src="{{ 'cs-navigation.js' | asset_url }}"></script>
+<script src="{{ 'cs-navigation.js' | asset_url }}"></script>
+<script src="{{ 'cs-local-time.js' | asset_url }}"></script>
+<script src="{{ 'cs-typewriter.js' | asset_url }}"></script>
 
-<script type="module" src="{{ 'cs-coming-soon.js' | asset_url }}"></script>
 <script defer type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RSpZfU"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet" />
 
@@ -80,7 +80,7 @@
 
 <div id="concept-1" data-concept class="coming-soon-container">
 
-  <div class="loading-screen" data-loading-screen>
+  <coming-soon-loading-screen class="loading-screen" data-loading-screen>
     <div class="loading-screen__progress" data-loading-progress>
       <span class="loading-screen__progress__dot" data-loading-dot>
         <span class="loading-screen__progress__dot__progress" data-dot-progress>
@@ -120,56 +120,57 @@
 
       </span>
     </div>
-  </div>
+  </coming-soon-loading-screen>
 
-  
-  <nav class="navigation">
-    <div class="navigation__links">
-      <button data-nav-button data-button-id="about">
-        <span class="name">About</span>
-      </button>
-      <button data-nav-button data-button-id="newsletter">
-        <span class="name">Learn More</span>
-      </button>
-      <button data-nav-button data-button-id="current-time">
-        <span class="name">Local</span>
-      </button>
-      <button data-nav-button data-button-id="social">
-        <span class="name">Contact</span>
-      </button>
-    </div>
+  <coming-soon-nav>
+    <nav class="navigation">
+      <div class="navigation__links">
+        <button data-nav-button data-button-id="about">
+          <span class="name">About</span>
+        </button>
+        <button data-nav-button data-button-id="newsletter">
+          <span class="name">Learn More</span>
+        </button>
+        <button data-nav-button data-button-id="current-time">
+          <span class="name">Local</span>
+        </button>
+        <button data-nav-button data-button-id="social">
+          <span class="name">Contact</span>
+        </button>
+      </div>
 
-    <div class="hero-splash" data-page-splash>
-      <h1 class="hero-splash__logo">
-        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" x="0" y="0" version="1.1" viewBox="0 0 673.9 320.7"
-          xml:space="preserve">
-          <title>Akram</title>
-          <path
-            d="M130.1 247V70.1c0-28.6-4.6-53.8-14.5-69.5h63.5c-9.9 15.6-14.5 40.9-14.5 69.5v177c0 23.3 4.6 57.8 14.5 73.5h-63.5c9.9-15.8 14.5-50.3 14.5-73.6zM264.1 55.7l.5 205.5c-.4 14-3.2 40.1-10.2 59.5h56.3s-11.8-24.6-11.8-60.3l.1-203.3c.3-26.8.8-36.4.8-36.4 2.1-14.8 29.1-13.8 29.4.2v.4l.7 123.3c0 5-.5 9.9-10.1 10-14 .1-13.8 14.9-13.8 14.9s-1.6 15.2 15.1 14.9c1.4 0 14.4-1.1 14.3 10.1 0 0 3.5 45.8-7.3 104.2 0 0-2.6 13.3-7.9 22.2 1 0 2.9 0 3.7-.1h.6s60.1.1 60.1 0c-6.4-9.3-8-21.3-8-21.3-6.3-43-6.1-111.5-6.1-111.5 0-15.2-16.7-14.2-16.7-14.2l-32.8-.2c-1 0-.8-.2-1.5-.4-3.6-1.4-4-6.2-.6-8 .8-.4 2.9-.7 4.3-.7 0 0 22.9-.8 24.8-.8 19 0 17.7-8.9 17.5-24.4l-.6-113.2C364.9-1.7 338.2.7 338.2.7h-84.3c.2-.2 10.2 19.3 10.2 55z"
-            style="fill: #fff;" />
-          <path
-            d="M186.9.6h62.7s-9.2 17.7-16.4 36.4L219 77.5c-6.9 23.1-14.2 42.9-19.4 61-6.3 21.9-11.5 43.8-17.7 65.7 0 0-.1.2-.1.4-.3 1.2.3 2.8 1.5 2.9 1.1.1 2-1 2-1 .8-1.2 1.1-2.2 1.7-3.9 8.4-23.1 12.4-32.4 19.1-52.6 1.4-4.2 3.3-8.2 6.1-11.8 4-5.2 10.4-7.2 16.2-5.5 5.1 1.6 7.5 5.7 8 10.5.6 6.2.7 12.5.4 18.7l-1.1 33.3s-4.5 61 6.1 105.3c0 0 2.6 11.8 6.8 20h-63c10.6-19.7 14.8-66.5 14.8-66.5l4.7-55.4.1-3.5v-.1c0-1.9-2.6-2.5-3.5-.8-.5.9-.8 1.6-.8 1.6l-8.5 16.8s-3.8 9.5-13.4 7c-10.3-2.7-9.6-9.2-8.3-14.4 1.9-7.6 3.4-15 4.9-22.7 3.7-18.3 7.9-36.7 11.2-55.1 8.1-45.4 8.8-74.5 8.7-82.9-.4-26.6-8.6-44-8.6-43.9M535.1 32s-.7-14.8 5.2-14.8c5.3 0 5.4 3.9 5.4 12.3l6.5 265.2c.3 6.7 1.3 12 3.2 15.7 1.9 3.8 4.9 6.4 8.9 8 4 1.5 9.3 2.3 15.7 2.3 6.3 0 13-.4 16.9-2.4 11-5.6 10.2-25.1 10.2-25.1l.8-261.8s-.6-14.2 7-14.2c5.6 0 6.7 6 6.7 13.9l-.2 183.8c0 23.7-.3 42.3-1 55.9 0 0-.3 37.2-10.9 49.8h64.4c-11.3-17.6-13.7-49-13.7-49-1.4-13.4-2.7-34.8-3.9-57l-9.3-186c-.5-7.5-3-16.8-6.9-21.2-5.2-6-12-7.1-23.4-7-6.7.1-12.2 2.9-15.2 6.2-3 3.4-5.7 10.1-5.9 20.2l-3 271.1c0 4.8-1.3 7.5-2.6 9.1-1.7 2-4.7 2.5-7 1.2-2.9-1.7-3.4-5.8-3.6-10l-6.3-263.1c-.3-9.7-1.7-17-4.2-21.8-2.6-4.9-5.8-8.2-9.6-10-3.8-1.8-9.9-2.7-14.2-2.7-4.3 0-10 .3-13.4 2.6 0 0-5 2.8-6.8 7.7-1.3 3.4-2 7.4-2.1 12.1l-7.7 199.2c-.7 20.7-.7 38.3-2 50.8 0 0-1.5 27.9-8.9 47.7h42.2c-9.5-19.2-11.1-48.9-11.1-48.9-.9-12-1.3-31.2-1.3-49.6l.8-190.8M77.3 24.4C73.9-3.4 49 .1 49 .1 37.4.5 31 5.7 29.2 13.2c-1.9 8-1.9 16.3-2.7 24.6-1.1 11.3-1.5 23.6-2.3 34.9-.8 11.6-1.6 31.3-2.3 42.9-.7 11.4-1.4 22.8-2.2 34.2-.9 14-1.9 28.1-2.8 42.1-.9 13.5-1.6 26.9-2.7 40.4-1.1 13.6-2.4 27.2-3.8 40.8 0 0-3.1 28.2-10.4 47.7h40.4c-7.1-18.7-8-67-8-67s28.1 0 28.1.1c0 0-2.9 44.9-10.7 66.9h60.9c-12.3-20.8-18.8-116-18.8-116L77.3 24.4zM58.8 193.8l1.7 42.7H32.6l2.2-70.5c.6-20.3 1.1-40.6 1.7-60.9.6-22.4 2.1-52.2 2.9-75.7.3-5.6.8-12.2 6-12.2 3.8 0 5.4 2 6.1 5.4.2 1.2.3 2.6.3 4.1l7 167.1zM466.9 24.4C463.5-3.4 438.6.1 438.6.1c-11.5.4-18 5.6-19.8 13.1-1.9 8-1.9 16.3-2.7 24.6-1.1 11.3-1.5 23.6-2.3 34.9-.8 11.6-1.6 31.3-2.3 42.9-.7 11.4-1.4 22.8-2.2 34.2-.9 14-1.9 28.1-2.8 42.1-.9 13.5-1.6 26.9-2.7 40.4-1.1 13.6-2.4 27.2-3.8 40.8 0 0-3.1 28.2-10.4 47.7H430c-7.1-18.7-8-67-8-67s28.1 0 28.1.1c0 0-2.9 44.9-10.7 66.9h60.9c-12.3-20.8-18.8-116-18.8-116L466.9 24.4zm-18.6 169.4l1.7 42.6h-27.9l2.2-70.4c.6-20.3 1.1-40.6 1.7-60.9.6-22.4 2.1-52.2 2.9-75.7.3-5.6.8-12.2 6-12.2 3.8 0 5.4 2 6.1 5.4.2 1.2.3 2.6.3 4.1l7 167.1z"
-            style="fill: #fff;" />
-        </svg>
-      </h1>
-    </div>
+      <div class="hero-splash" data-page-splash>
+        <h1 class="hero-splash__logo">
+          <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" x="0" y="0" version="1.1" viewBox="0 0 673.9 320.7"
+            xml:space="preserve">
+            <title>Akram</title>
+            <path
+              d="M130.1 247V70.1c0-28.6-4.6-53.8-14.5-69.5h63.5c-9.9 15.6-14.5 40.9-14.5 69.5v177c0 23.3 4.6 57.8 14.5 73.5h-63.5c9.9-15.8 14.5-50.3 14.5-73.6zM264.1 55.7l.5 205.5c-.4 14-3.2 40.1-10.2 59.5h56.3s-11.8-24.6-11.8-60.3l.1-203.3c.3-26.8.8-36.4.8-36.4 2.1-14.8 29.1-13.8 29.4.2v.4l.7 123.3c0 5-.5 9.9-10.1 10-14 .1-13.8 14.9-13.8 14.9s-1.6 15.2 15.1 14.9c1.4 0 14.4-1.1 14.3 10.1 0 0 3.5 45.8-7.3 104.2 0 0-2.6 13.3-7.9 22.2 1 0 2.9 0 3.7-.1h.6s60.1.1 60.1 0c-6.4-9.3-8-21.3-8-21.3-6.3-43-6.1-111.5-6.1-111.5 0-15.2-16.7-14.2-16.7-14.2l-32.8-.2c-1 0-.8-.2-1.5-.4-3.6-1.4-4-6.2-.6-8 .8-.4 2.9-.7 4.3-.7 0 0 22.9-.8 24.8-.8 19 0 17.7-8.9 17.5-24.4l-.6-113.2C364.9-1.7 338.2.7 338.2.7h-84.3c.2-.2 10.2 19.3 10.2 55z"
+              style="fill: #fff;" />
+            <path
+              d="M186.9.6h62.7s-9.2 17.7-16.4 36.4L219 77.5c-6.9 23.1-14.2 42.9-19.4 61-6.3 21.9-11.5 43.8-17.7 65.7 0 0-.1.2-.1.4-.3 1.2.3 2.8 1.5 2.9 1.1.1 2-1 2-1 .8-1.2 1.1-2.2 1.7-3.9 8.4-23.1 12.4-32.4 19.1-52.6 1.4-4.2 3.3-8.2 6.1-11.8 4-5.2 10.4-7.2 16.2-5.5 5.1 1.6 7.5 5.7 8 10.5.6 6.2.7 12.5.4 18.7l-1.1 33.3s-4.5 61 6.1 105.3c0 0 2.6 11.8 6.8 20h-63c10.6-19.7 14.8-66.5 14.8-66.5l4.7-55.4.1-3.5v-.1c0-1.9-2.6-2.5-3.5-.8-.5.9-.8 1.6-.8 1.6l-8.5 16.8s-3.8 9.5-13.4 7c-10.3-2.7-9.6-9.2-8.3-14.4 1.9-7.6 3.4-15 4.9-22.7 3.7-18.3 7.9-36.7 11.2-55.1 8.1-45.4 8.8-74.5 8.7-82.9-.4-26.6-8.6-44-8.6-43.9M535.1 32s-.7-14.8 5.2-14.8c5.3 0 5.4 3.9 5.4 12.3l6.5 265.2c.3 6.7 1.3 12 3.2 15.7 1.9 3.8 4.9 6.4 8.9 8 4 1.5 9.3 2.3 15.7 2.3 6.3 0 13-.4 16.9-2.4 11-5.6 10.2-25.1 10.2-25.1l.8-261.8s-.6-14.2 7-14.2c5.6 0 6.7 6 6.7 13.9l-.2 183.8c0 23.7-.3 42.3-1 55.9 0 0-.3 37.2-10.9 49.8h64.4c-11.3-17.6-13.7-49-13.7-49-1.4-13.4-2.7-34.8-3.9-57l-9.3-186c-.5-7.5-3-16.8-6.9-21.2-5.2-6-12-7.1-23.4-7-6.7.1-12.2 2.9-15.2 6.2-3 3.4-5.7 10.1-5.9 20.2l-3 271.1c0 4.8-1.3 7.5-2.6 9.1-1.7 2-4.7 2.5-7 1.2-2.9-1.7-3.4-5.8-3.6-10l-6.3-263.1c-.3-9.7-1.7-17-4.2-21.8-2.6-4.9-5.8-8.2-9.6-10-3.8-1.8-9.9-2.7-14.2-2.7-4.3 0-10 .3-13.4 2.6 0 0-5 2.8-6.8 7.7-1.3 3.4-2 7.4-2.1 12.1l-7.7 199.2c-.7 20.7-.7 38.3-2 50.8 0 0-1.5 27.9-8.9 47.7h42.2c-9.5-19.2-11.1-48.9-11.1-48.9-.9-12-1.3-31.2-1.3-49.6l.8-190.8M77.3 24.4C73.9-3.4 49 .1 49 .1 37.4.5 31 5.7 29.2 13.2c-1.9 8-1.9 16.3-2.7 24.6-1.1 11.3-1.5 23.6-2.3 34.9-.8 11.6-1.6 31.3-2.3 42.9-.7 11.4-1.4 22.8-2.2 34.2-.9 14-1.9 28.1-2.8 42.1-.9 13.5-1.6 26.9-2.7 40.4-1.1 13.6-2.4 27.2-3.8 40.8 0 0-3.1 28.2-10.4 47.7h40.4c-7.1-18.7-8-67-8-67s28.1 0 28.1.1c0 0-2.9 44.9-10.7 66.9h60.9c-12.3-20.8-18.8-116-18.8-116L77.3 24.4zM58.8 193.8l1.7 42.7H32.6l2.2-70.5c.6-20.3 1.1-40.6 1.7-60.9.6-22.4 2.1-52.2 2.9-75.7.3-5.6.8-12.2 6-12.2 3.8 0 5.4 2 6.1 5.4.2 1.2.3 2.6.3 4.1l7 167.1zM466.9 24.4C463.5-3.4 438.6.1 438.6.1c-11.5.4-18 5.6-19.8 13.1-1.9 8-1.9 16.3-2.7 24.6-1.1 11.3-1.5 23.6-2.3 34.9-.8 11.6-1.6 31.3-2.3 42.9-.7 11.4-1.4 22.8-2.2 34.2-.9 14-1.9 28.1-2.8 42.1-.9 13.5-1.6 26.9-2.7 40.4-1.1 13.6-2.4 27.2-3.8 40.8 0 0-3.1 28.2-10.4 47.7H430c-7.1-18.7-8-67-8-67s28.1 0 28.1.1c0 0-2.9 44.9-10.7 66.9h60.9c-12.3-20.8-18.8-116-18.8-116L466.9 24.4zm-18.6 169.4l1.7 42.6h-27.9l2.2-70.4c.6-20.3 1.1-40.6 1.7-60.9.6-22.4 2.1-52.2 2.9-75.7.3-5.6.8-12.2 6-12.2 3.8 0 5.4 2 6.1 5.4.2 1.2.3 2.6.3 4.1l7 167.1z"
+              style="fill: #fff;" />
+          </svg>
+        </h1>
+      </div>
 
-    <div class="scene" data-starSprite="" data-starmap="" data-gloww="" style="z-index: -1;"></div>
+      <world-scene class="scene" data-starSprite="" data-starmap="" data-gloww="" style="z-index: -1;"></world-scene>
 
-  </nav>
+    </nav>
+  </coming-soon-nav>
 
   <div class="modal" data-pages>
     <div class="modal__inner">
       <div class="page about-page" data-page data-page-id="about">
         <div class="page__inner">
           <h1 class="screen-readers-only">About Akram</h1>
-          <div data-type-writer class="about-page__bio">
+          <type-writer class="about-page__bio">
             <p
               data-text="Join us as we explore the AKRAM universe is created in Los Angeles and made in Lahore, Pakistan. This brand is shaped by the daily inspirations I see. Combining my duality and unique upbringing. The aim is to bring complex brand that uses its platform to highlight artisans thats coming out of Pakistan while ensuring that we’re creating sustainable and environmental friendly clothes.">
               <span data-text-container></span>
               <span class="ticker">_</span>
             </p>
-          </div>
+          </type-writer>
 
           <button class="page__back" type="button" tab-index="2" aria-label="Close current page opened"
             data-close-page>
@@ -217,7 +218,7 @@
         </button>
       </div>
       <div class="page" data-page data-page-id="current-time">
-        <div class="current-user-time">
+        <local-time class="current-user-time">
           <p class="stat" data-current-date>
 
           </p>
@@ -227,7 +228,7 @@
           <p class="stat" data-current-timezone>
 
           </p>
-        </div>
+        </local-time>
         <button class="page__back" type="button" tab-index="2" aria-label="Close current page opened" data-close-page>
           <img src="{{'akram-logo.png' | asset_url}}" alt="Close Page"   loading="lazy"/>
         </button>

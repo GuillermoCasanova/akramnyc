@@ -5,10 +5,10 @@ let glow = './assets/glow.png';
 let starSprite = './assets/glow_small.png';
 let starmap = './assets/stars.png';
 
-
-export default class World {
+class World extends HTMLElement {
 
     constructor() {
+        super();
         this.perspectiveCamera = null; 
         this.orthographicCamera = null; 
         this.controls = null; 
@@ -16,6 +16,7 @@ export default class World {
         this.renderer = null; 
         this.stats = null; 
         this.loadingAnimDone = false; 
+        this.init();
     }
 
 
@@ -254,6 +255,9 @@ export default class World {
           return Math.floor(Math.random() * (max - min + 1) + min);
         }
         
+        
+        document.dispatchEvent(new CustomEvent('world-created',  {"detail": WorldClass}))
+        
     }
 
     getCamera() {
@@ -273,3 +277,6 @@ export default class World {
     }
 
 }
+
+
+customElements.define('world-scene', World);

@@ -1,24 +1,22 @@
 
 
-import {TypeWriter} from './cs-typewriter.js'
-import LocalTime from './cs-local-time.js'
-
-export default class Navigation  {
+class ComingSoonNav extends HTMLElement {
 
     constructor() {
-        this.navButtons = document.querySelectorAll('[data-nav-button]');
-        this.splashLogo = document.querySelector('[data-page-splash]')
+      super();
         this.camera = null; 
+        let ComingSoonNavClass = this; 
+        document.addEventListener('loading-animation-done', function(event) {
+          ComingSoonNavClass.init({world: event.detail});
+        }, {once: true})
     }
     init(options) {
         let that  = this; 
         this.camera = options.world.getCamera(); 
         this.cameraControls = options.world.getControls();
+        this.navButtons = this.querySelectorAll('[data-nav-button]');
+        this.splashLogo = this.querySelector('[data-page-splash]');
         this.animateNavigation();
-        this.TypeWriter = TypeWriter(); 
-        console.log(TypeWriter());
-        console.log("nav init!!");
-        this.LocalTime = new LocalTime().init(); 
     }
 
     animateNavigation() {
@@ -151,20 +149,13 @@ export default class Navigation  {
       return camera; 
     }
 
-    
-
-    initPageBehavior(pPageId) {
-      console.log(pPageId); 
-
-   
-    }
-
    setUpNavigation(pCamera, pControls) {
     let controls = document.querySelectorAll('[data-nav-button]');
     let pages = document.querySelectorAll('[data-page]');
     let pagesContainer = document.querySelector('[data-pages]');
     let closeToggles = document.querySelectorAll('[data-close-page]');
     let heroSplash = document.querySelector('[data-page-splash]');
+    console.log(heroSplash);
     let scene = document.querySelector('.scene');
     let isAnimating = false;
     let that = this; 
@@ -176,7 +167,8 @@ export default class Navigation  {
       document.dispatchEvent(new CustomEvent('page-loaded', {'detail':  {"pageId": pPageId}}));
       if(pPageId === 'about') {
         setTimeout(function() {
-          that.TypeWriter.type();
+          document.querySelector('type-writer').init();
+          document.querySelector('type-writer').type();
         }, 1000); 
       }
     };
@@ -199,7 +191,8 @@ export default class Navigation  {
         onComplete: function () {
           isAnimating = false;
           if(pPageId === 'about') {
-            that.TypeWriter.type(true);
+            document.querySelector('type-writer').init();
+            document.querySelector('type-writer').type(true);
           }
           scene.classList.remove('no-pointer');
         }});
@@ -255,6 +248,9 @@ export default class Navigation  {
       scene.classList.add('no-pointer');
       cameraControls.setLookAtSpeed(0.001);
 
+      if(pPageId === 'current-time') {
+        document.querySelector('local-time').init(); 
+      }
 
       let showPageAnimation = new gsap.timeline({
         onStart: function() {
@@ -288,9 +284,6 @@ export default class Navigation  {
           element.classList.add('is-visible');
           element.classList.remove('is-hidden');
           let cameraNewPlace = getCameraPos(pPageId); 
-
-          that.initPageBehavior(pPageId);
-
           if (!showingPage) {
 
             showPageAnimation
@@ -372,5 +365,8 @@ export default class Navigation  {
     });
     }
 }
+
+
+customElements.define('coming-soon-nav', ComingSoonNav);
 
 //   setUpNavigation(perspectiveCamera);

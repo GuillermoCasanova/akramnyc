@@ -1,27 +1,23 @@
 
 
 
-export default class LocalTime {
+
+class LocalTime extends HTMLElement {
 
     constructor() {
-        this.dateElement = document.querySelector('[data-current-date]'); 
-        this.timeElement = document.querySelector('[data-current-time]'); 
-        this.timeZoneElement = document.querySelector('[data-current-timezone]'); 
-        this.coordinatesElement = document.querySelector('[data-current-coordinates]'); 
+        super(); 
         this.coordinates = {}; 
     }
 
     startTime() {
-        console.log('start');
-
         let that = this; 
         let currentDate = new Date().toLocaleDateString(); 
         let curentTime = new Date().toLocaleTimeString("en", {timeStyle: "medium"}); 
         let timeZone = Intl.DateTimeFormat('en', {timeZoneName: 'short'}).format(new Date()).split(" ");
     
-        that.dateElement.textContent = currentDate;
-        that.timeElement.textContent = curentTime;
-        that.timeZoneElement.textContent = timeZone[timeZone.length - 1];  
+        this.dateElement.textContent = currentDate;
+        this.timeElement.textContent = curentTime;
+        this.timeZoneElement.textContent = timeZone[timeZone.length - 1];  
 
         this.timeRunning = setInterval(function() {
             that.timeElement.textContent  = new Date().toLocaleTimeString("en", {timeStyle: "medium"}); 
@@ -34,7 +30,13 @@ export default class LocalTime {
     }
 
     init() {
-        let that = this; 
-        that.startTime(); 
+        this.dateElement = document.querySelector('[data-current-date]'); 
+        this.timeElement = document.querySelector('[data-current-time]'); 
+        this.timeZoneElement = document.querySelector('[data-current-timezone]'); 
+        this.coordinatesElement = document.querySelector('[data-current-coordinates]'); 
+        this.startTime(); 
     }
 }
+
+
+customElements.define('local-time', LocalTime);

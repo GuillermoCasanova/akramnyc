@@ -1,11 +1,16 @@
 
 
-export default class LoadingScreen  {
+class LoadingScreen  extends HTMLElement{
 
     constructor() {
+        super(); 
         this.loadingScreen = document.querySelector('[data-loading-screen]'); 
         this.camera = null; 
         this.cameraControls = null; 
+        let LoadingScreenClass = this;
+        document.addEventListener('world-created', function(event) {
+            LoadingScreenClass.init({world: event.detail })
+        }); 
     }   
 
     playLoadingAnimation() {
@@ -13,7 +18,7 @@ export default class LoadingScreen  {
         var loadingTween =  gsap.timeline({delay: 1, onComplete: function() {
            that.playDotsAnimation();
         }});
-        var loadingScreen = this.loadingScreen; 
+        var loadingScreen = this; 
         
         loadingTween
         .from(loadingScreen.querySelector('[data-loading-progress]'), {
@@ -83,14 +88,16 @@ export default class LoadingScreen  {
 
     }
 
-    announceIntroAnimDone() {
-        document.dispatchEvent(new Event('loading-animation-done')); 
+    announceIntroAnimDone() {   
+        let world  = this.world; 
+        console.log(world);
+        document.dispatchEvent(new CustomEvent('loading-animation-done', {"detail": world})); 
     }
 
     playDotsAnimation() {
         let windowWidth = window.innerWidth; 
         let windowHeight = window.innerHeight;
-        let loadingScreen = this.loadingScreen; 
+        let loadingScreen = this; 
         let that = this; 
         let dots = loadingScreen.querySelectorAll('[data-loading-dot]');
         let camera = this.camera; 
@@ -169,6 +176,7 @@ export default class LoadingScreen  {
         this.cameraControls = pOptions.world.getControls();
         let cameraControls = this.cameraControls; 
         this.cameraControls.disableDrag();
+        this.world = pOptions.world; 
 
         if(pOptions.skip  === true) {
                 this.announceIntroAnimDone(); 
@@ -185,3 +193,6 @@ export default class LoadingScreen  {
 
     }
 }
+
+
+customElements.define('coming-soon-loading-screen', LoadingScreen);
