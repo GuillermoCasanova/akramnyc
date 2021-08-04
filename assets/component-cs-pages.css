@@ -518,6 +518,7 @@ div[class*='Row__FormRow-']{
     color: black;
     padding-left: 1.75rem;
     margin-left: -.25rem;
+    background-color: white;
 }
 .communication-links__link:hover .communication-links__link__arrow, 
 .communication-links__link:focus .communication-links__link__arrow {
@@ -544,16 +545,18 @@ div[class*='Row__FormRow-']{
     flex-direction: column;
     justify-content: center;
     font-size: 1.1rem;
-/* 
-    @media screen and (min-width: 768px) {
-        margin-bottom: -3rem;
-        @include  h4();
-    }
-
-    .stat {
-        position: relative;
-    } */
 }
+
+@media screen and (min-width: 768px) {
+    .current-user-time {
+        margin-bottom: -3rem;
+    }
+}
+
+    
+.current-user-time .stat {
+    position: relative;
+} 
 
 
 

@@ -165,3 +165,16 @@ body {
   letter-spacing: .2px;
   margin-bottom: rem-calc($level3); 
 }
+
+
+
+
+/*------------------------------------*\
+    #Paragraphs
+\*------------------------------------*/
+
+p {
+  margin-bottom: 1.5rem;
+}
+
+

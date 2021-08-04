@@ -1,7 +1,7 @@
 
-    //new LocalTime().init(); 
 
 import {TypeWriter} from './cs-typewriter.js'
+import LocalTime from './cs-local-time.js'
 
 export default class Navigation  {
 
@@ -17,6 +17,7 @@ export default class Navigation  {
         this.cameraControls = options.world.getControls();
         this.animateNavigation();
         this.TypeWriter = TypeWriter(); 
+        this.LocalTime = new LocalTime().init(); 
     }
 
     animateNavigation() {
