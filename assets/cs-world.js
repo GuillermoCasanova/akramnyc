@@ -9,7 +9,6 @@ let starmap = './assets/stars.png';
 export default class World {
 
     constructor() {
-        //let perspectiveCamera, orthographicCamera, controls, scene, renderer, stats;
         this.perspectiveCamera = null; 
         this.orthographicCamera = null; 
         this.controls = null; 

@@ -14,6 +14,6 @@ document.addEventListener('loading-animation-done', function() {
   }, {once: true})
 
 
-new LoadingScreen().init({skip: true, world:  starWorld}); 
+new LoadingScreen().init({skip: false, world:  starWorld}); 
 
 
