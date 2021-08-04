@@ -16,6 +16,8 @@ export default class Navigation  {
         this.cameraControls = options.world.getControls();
         this.animateNavigation();
         this.TypeWriter = TypeWriter(); 
+        console.log(TypeWriter());
+        console.log("nav init!!");
         this.LocalTime = new LocalTime().init(); 
     }
 
