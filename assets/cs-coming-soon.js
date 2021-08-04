@@ -3,7 +3,7 @@
 
 import LoadingScreen from './cs-loading-screen.js'
 import World from './cs-world.js'; 
-import Navigation from './cs-navigation.js';
+import Navigation from  './cs-navigation.js';
 
 let starWorld = new World();
 starWorld.init(); 

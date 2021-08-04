@@ -8,6 +8,11 @@
 {{ 'component-cs-pages.css' | asset_url | stylesheet_tag }}
 {{ 'component-cs-scene.css' | asset_url | stylesheet_tag }}
 
+
+<script type="module" src="{{ 'cs-loading-screen.js' | asset_url }}"></script>
+<script type="module" src="{{ 'cs-world.js' | asset_url }}"></script>
+<script type="module" src="{{ 'cs-navigation.js' | asset_url }}"></script>
+
 <script type="module" src="{{ 'cs-coming-soon.js' | asset_url }}"></script>
 <script defer type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RSpZfU"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet" />
@@ -194,20 +199,20 @@
         <ul class="communication-links">
           <li class="communication-links__item">
             <a href="mailto:name@email.com" class="communication-links__link">
-              <img src="{{'arrow.png' | asset_url}}" alt="Arrow Icon Pointing Right" class="communication-links__link__arrow" />
+              <img src="{{'arrow.png' | asset_url}}" alt="Arrow Icon Pointing Right" class="communication-links__link__arrow"  loading="lazy"  />
               Email
             </a>
           </li>
           <li class="communication-links__item">
             <a href="https://www.instagram.com/guillermocasanova/" class="communication-links__link">
-              <img src="{{'arrow.png' | asset_url}}" alt="Arrow Icon Pointing Right" class="communication-links__link__arrow" />
+              <img src="{{'arrow.png' | asset_url}}" alt="Arrow Icon Pointing Right" class="communication-links__link__arrow" loading="lazy"  />
               Instagram
             </a>
           </li>
         </ul>
 
         <button class="page__back" type="button" tab-index="2" aria-label="Close current page opened" data-close-page>
-          <img src="{{'akram-logo.png' | asset_url}}" alt="Akram" />
+          <img src="{{'akram-logo.png' | asset_url}}" alt="Akram" loading="lazy" />
           <span hidden>Close current opened page</span>
         </button>
       </div>
