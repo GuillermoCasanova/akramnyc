@@ -6,7 +6,6 @@ import LocalTime from './cs-local-time.js'
 export default class Navigation  {
 
     constructor() {
-        console.log(this); 
         this.navButtons = document.querySelectorAll('[data-nav-button]');
         this.splashLogo = document.querySelector('[data-page-splash]')
         this.camera = null; 
@@ -17,6 +16,7 @@ export default class Navigation  {
         this.cameraControls = options.world.getControls();
         this.animateNavigation();
         this.TypeWriter = TypeWriter(); 
+        console.log(TypeWriter());
         this.LocalTime = new LocalTime().init(); 
     }
 

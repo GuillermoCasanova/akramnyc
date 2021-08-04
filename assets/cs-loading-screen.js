@@ -6,10 +6,6 @@ export default class LoadingScreen  {
         this.loadingScreen = document.querySelector('[data-loading-screen]'); 
         this.camera = null; 
         this.cameraControls = null; 
-       // this.audio = new Audio(); 
-
-        console.log('loading screen');
-        
     }   
 
     playLoadingAnimation() {
@@ -131,14 +127,11 @@ export default class LoadingScreen  {
                 that.announceIntroAnimDone();
             }}); 
             let dots = pDots; 
-            console.log(dots[0].dataset.destY);
-
-
             animation
-            .to(dots[0], {left: dots[0].dataset.destX + "%", top: dots[0].dataset.destY + "%", duration: 1,   ease: 'power2.inOut', strictUnits:true})
-            .to(dots[1], {left: dots[1].dataset.destX + "%", bottom: dots[1].dataset.destY + "%", duration: 1,   ease: 'power2.inOut', strictUnits:true}, '-=1')
-            .to(dots[2], {right: dots[2].dataset.destX + "%", top: dots[2].dataset.destY + "%", duration: 1,   ease: 'power2.inOut', strictUnits:true}, '-=1')
-            .to(dots[3], {right: dots[3].dataset.destX + "%", bottom: dots[3].dataset.destY + "%", duration: 1,   ease: 'power2.inOut', strictUnits:true}, '-=1')
+            .to(dots[0], {left: dots[0].dataset.destX + "%", top: dots[0].dataset.destY + "%", duration: 1,   ease: 'power2.inOut'})
+            .to(dots[1], {left: dots[1].dataset.destX + "%", bottom: dots[1].dataset.destY + "%", duration: 1,   ease: 'power2.inOut'}, '-=1')
+            .to(dots[2], {right: dots[2].dataset.destX + "%", top: dots[2].dataset.destY + "%", duration: 1,   ease: 'power2.inOut'}, '-=1')
+            .to(dots[3], {right: dots[3].dataset.destX + "%", bottom: dots[3].dataset.destY + "%", duration: 1,   ease: 'power2.inOut'}, '-=1')
             .to(cameraControls.object.position, {z: 100, duration: 1.5,   ease: 'power2.inOut', onComplete: function() {
                 cameraControls.enableDrag(); 
             }}, '-=.7')
@@ -151,8 +144,6 @@ export default class LoadingScreen  {
                 showPageAnimation(dots); 
                 //audio.init();
             }}); 
-
-            console.log('reset dots');
 
             let dots = pDots;
 

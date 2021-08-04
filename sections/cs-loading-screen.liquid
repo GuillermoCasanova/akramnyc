@@ -8,8 +8,8 @@
 {{ 'component-cs-pages.css' | asset_url | stylesheet_tag }}
 {{ 'component-cs-scene.css' | asset_url | stylesheet_tag }}
 
-<script type="module" src="{{ 'cs-coming-soon.js' | asset_url }}" defer="defer"></script>
-<script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RSpZfU"></script>
+<script type="module" src="{{ 'cs-coming-soon.js' | asset_url }}"></script>
+<script defer type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RSpZfU"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet" />
 
 <script async>
@@ -68,7 +68,6 @@
     }
   
     setTimeout(function() {
-      console.log('activate inputs!!');
       activateInputs()
     }, 2000);
   });
@@ -150,7 +149,7 @@
       </h1>
     </div>
 
-    <div class="scene" style="z-index: -1;"></div>
+    <div class="scene" data-starSprite="" data-starmap="" data-gloww="" style="z-index: -1;"></div>
 
   </nav>
 
@@ -169,7 +168,7 @@
 
           <button class="page__back" type="button" tab-index="2" aria-label="Close current page opened"
             data-close-page>
-            <img src="assets/akram-logo.png" alt="Akram" loading="lazy" />
+            <img src="{{'akram-logo.png' | asset_url}}" alt="Akram" loading="lazy" />
             <span hidden>Close current opened page</span>
           </button>
         </div>
@@ -195,20 +194,20 @@
         <ul class="communication-links">
           <li class="communication-links__item">
             <a href="mailto:name@email.com" class="communication-links__link">
-              <img src="./assets/arrow.png" alt="Arrow Icon Pointing Right" class="communication-links__link__arrow" />
+              <img src="{{'arrow.png' | asset_url}}" alt="Arrow Icon Pointing Right" class="communication-links__link__arrow" />
               Email
             </a>
           </li>
           <li class="communication-links__item">
             <a href="https://www.instagram.com/guillermocasanova/" class="communication-links__link">
-              <img src="./assets/arrow.png" alt="Arrow Icon Pointing Right" class="communication-links__link__arrow" />
+              <img src="{{'arrow.png' | asset_url}}" alt="Arrow Icon Pointing Right" class="communication-links__link__arrow" />
               Instagram
             </a>
           </li>
         </ul>
 
         <button class="page__back" type="button" tab-index="2" aria-label="Close current page opened" data-close-page>
-          <img src="assets/akram-logo.png" alt="Akram" />
+          <img src="{{'akram-logo.png' | asset_url}}" alt="Akram" />
           <span hidden>Close current opened page</span>
         </button>
       </div>
@@ -225,7 +224,7 @@
           </p>
         </div>
         <button class="page__back" type="button" tab-index="2" aria-label="Close current page opened" data-close-page>
-          <img src="./assets/akram-logo.png" alt="Close Page"   loading="lazy"/>
+          <img src="{{'akram-logo.png' | asset_url}}" alt="Close Page"   loading="lazy"/>
         </button>
       </div>
     </div>
