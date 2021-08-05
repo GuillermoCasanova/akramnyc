@@ -200,6 +200,7 @@ class ComingSoonNav extends HTMLElement {
       scene.classList.add('no-pointer');
 
       resetActiveButton(activePage); 
+      activePage = null; 
 
       pages.forEach((element) => {
         if (pPageId === element.dataset.pageId) {
@@ -215,14 +216,14 @@ class ComingSoonNav extends HTMLElement {
       scene.classList.add('no-pointer');
       cameraControls.setLookAtSpeed(0.001);
 
-      // if(pPageId === 'current-time') {
-      //   document.querySelector('local-time').init(); 
-      // }
+      if(pPageId === 'current-time') {
+        document.querySelector('local-time').init(); 
+      }
 
       console.log(activePage); 
 
       if(activePage !== null && pPageId === activePage.dataset.pageId) {
-        console.log('COSE THE PAGE');
+        console.log('ummm this is the same page, so lets go back to SPLASH')
         closePage(pPageId); 
         return
       }
@@ -249,18 +250,17 @@ class ComingSoonNav extends HTMLElement {
 
 
     function resetActiveButton(pActivePage) {
-      // if(pActivePage !== null) {
-      //   console.log(pActivePage); 
-      //   let activePageId = pActivePage.dataset.pageId; 
-      //   controls.forEach((element) => {
-      //     let name = element.dataset.buttonId;
-      //     if(name === activePageId) {
-      //       console.log('REMOVE');
-      //       console.log(element); 
-      //       element.classList.remove('is-active');
-      //     }
-      //   });
-      // }
+      if(pActivePage !== null) {
+        let activePageId = pActivePage.dataset.pageId; 
+        controls.forEach((element) => {
+          let name = element.dataset.buttonId;
+          if(name === activePageId) {
+            element.blur(); 
+            console.log(element);
+            element.classList.remove('is-active');
+          }
+        });
+      }
     }
 
 
@@ -271,6 +271,7 @@ class ComingSoonNav extends HTMLElement {
           activePage = pPageElem
         },
         onComplete: function (pPage) {
+          activeAnimation = null; 
           pageLoaded(pPage);
         },
         onCompleteParams: [that.getPageById(pPageElem.dataset.pageId)]
@@ -281,6 +282,8 @@ class ComingSoonNav extends HTMLElement {
 
 
       if (activePage === null) {
+
+        console.log('there is no page opened, so open the one u say')
 
         showPageAnimation
          .to(
@@ -308,7 +311,14 @@ class ComingSoonNav extends HTMLElement {
 
       } else {
 
+
+        console.log('there is a page opened, so close it and open a new one')
+
         resetActiveButton(activePage); 
+
+        if(pPageElem.dataset.pageId === 'about') {
+          document.querySelector('type-writer').stopWriting();
+        }
 
         showPageAnimation
           .fromTo(
@@ -347,25 +357,23 @@ class ComingSoonNav extends HTMLElement {
     function closePageAnimation(pPageElem) {
 
       let element = pPageElem; 
-      activePage = null; 
   
       let showSplashAnimation = new gsap.timeline({
+        paused: true,
+        onStart: function() {
+          activePage = null
+        },
         onComplete: function () {
           scene.classList.remove('no-pointer');
           activeAnimation = null; 
-          //resetActiveButton(activePage);         
-          // if(pPageId === 'about') {
-          //   document.querySelector('type-writer').stopWriting();
-          // }
+          activePage = null; 
         }});
 
-
-      if(activeAnimation) {
-        activeAnimation.pause();
+      if(pPageElem.dataset.pageId === 'about') {
+        document.querySelector('type-writer').stopWriting();
       }
-
-      activeAnimation = showSplashAnimation; 
-  
+      
+      resetActiveButton(activePage);         
       element.classList.remove('is-visible');
       element.classList.add('is-hidden');
       
@@ -402,13 +410,24 @@ class ComingSoonNav extends HTMLElement {
             heroSplash,
             { opacity: 1, duration: .8, ease: 'power2.out' }, '-=0.2'
         );
+
+
+        if(activeAnimation) {
+          activeAnimation.pause();
+        }
+        
+        activeAnimation = showSplashAnimation;
+        activeAnimation.play(); 
+
+        console.log('THE CLOSING PAGE ANIMATION ENEDED: ' + activePage)
+  
       }
 
       
     controls.forEach((element) => {
       element.addEventListener('click', function (event) {
         let name = this.dataset.buttonId;
-        //this.classList.add('is-active');
+        this.classList.add('is-active');
         showPage(name);
       });
     });
