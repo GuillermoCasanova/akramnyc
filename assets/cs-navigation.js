@@ -220,10 +220,8 @@ class ComingSoonNav extends HTMLElement {
         document.querySelector('local-time').init(); 
       }
 
-      console.log(activePage); 
 
       if(activePage !== null && pPageId === activePage.dataset.pageId) {
-        console.log('ummm this is the same page, so lets go back to SPLASH')
         closePage(pPageId); 
         return
       }
@@ -256,7 +254,6 @@ class ComingSoonNav extends HTMLElement {
           let name = element.dataset.buttonId;
           if(name === activePageId) {
             element.blur(); 
-            console.log(element);
             element.classList.remove('is-active');
           }
         });
@@ -280,10 +277,12 @@ class ComingSoonNav extends HTMLElement {
       let cameraNewPlace = pCameraPosition; 
       let element = pPageElem;
 
+      if(activeAnimation) {
+        activeAnimation.pause();
+      }
 
       if (activePage === null) {
 
-        console.log('there is no page opened, so open the one u say')
 
         showPageAnimation
          .to(
@@ -312,18 +311,16 @@ class ComingSoonNav extends HTMLElement {
       } else {
 
 
-        console.log('there is a page opened, so close it and open a new one')
-
         resetActiveButton(activePage); 
 
         if(pPageElem.dataset.pageId === 'about') {
           document.querySelector('type-writer').stopWriting();
         }
 
+
         showPageAnimation
-          .fromTo(
+          .to(
             activePage,
-            { opacity: 1 },
             { opacity: 0, duration: 0.2, ease: 'power2.out' }
           ).to(cameraControls.object.position, {
             x: cameraControls.object.position.x + cameraNewPlace.pos.x,
@@ -343,10 +340,6 @@ class ComingSoonNav extends HTMLElement {
             { opacity: 0 },
             { opacity: 1, duration: 1.2, ease: 'power2.out' }, '-=0.2'
           )
-      }
-      
-      if(activeAnimation) {
-        activeAnimation.pause();
       }
       
       activeAnimation = showPageAnimation;
@@ -373,12 +366,21 @@ class ComingSoonNav extends HTMLElement {
         document.querySelector('type-writer').stopWriting();
       }
       
-      resetActiveButton(activePage);         
+      resetActiveButton(activePage);    
+           
       element.classList.remove('is-visible');
       element.classList.add('is-hidden');
+    
+      if(activeAnimation) {
+        activeAnimation.pause();
+      }
       
       let cameraNewPlace = getCameraPos('splash');
         showSplashAnimation
+        .to(
+          '[data-page]',
+          { opacity: 0, duration: 1.2, ease: 'power2.out' }
+        )
         .to(cameraControls.object.position, {
           x: cameraNewPlace.pos.x,
           y: cameraNewPlace.pos.y,
@@ -387,7 +389,7 @@ class ComingSoonNav extends HTMLElement {
           ease: 'power2.inOut',
           onStart: function() {
           },
-        })
+        }, '-=1.2')
         .to(cameraControls.object.rotation, {
           y: cameraNewPlace.rotation.y,
           x: cameraNewPlace.rotation.x,
@@ -411,15 +413,9 @@ class ComingSoonNav extends HTMLElement {
             { opacity: 1, duration: .8, ease: 'power2.out' }, '-=0.2'
         );
 
-
-        if(activeAnimation) {
-          activeAnimation.pause();
-        }
-        
         activeAnimation = showSplashAnimation;
         activeAnimation.play(); 
 
-        console.log('THE CLOSING PAGE ANIMATION ENEDED: ' + activePage)
   
       }
 

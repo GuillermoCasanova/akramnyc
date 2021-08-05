@@ -20,6 +20,9 @@ class TypeWriter extends HTMLElement {
     }
 
     stopWriting() {
+        if(this.textContainer == undefined) {
+            return 
+        }
         this.i = 0;
         this.textContainer.textContent = "";
         clearTimeout(this.writingFunction);
