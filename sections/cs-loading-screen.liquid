@@ -8,11 +8,11 @@
 {{ 'component-cs-pages.css' | asset_url | stylesheet_tag }}
 {{ 'component-cs-scene.css' | asset_url | stylesheet_tag }}
 
-<script src="{{ 'cs-loading-screen.js' | asset_url }}"></script>
-<script type="module" src="{{ 'cs-world.js' | asset_url }}"></script>
-<script src="{{ 'cs-navigation.js' | asset_url }}"></script>
-<script src="{{ 'cs-local-time.js' | asset_url }}"></script>
-<script src="{{ 'cs-typewriter.js' | asset_url }}"></script>
+<script src="{{ 'cs-loading-screen.js' | asset_url }}" async></script>
+<script type="module" src="{{ 'cs-world.js' | asset_url }}" async></script>
+<script src="{{ 'cs-navigation.js' | asset_url }}" async></script>
+<script src="{{ 'cs-local-time.js' | asset_url }}" defer></script>
+<script src="{{ 'cs-typewriter.js' | asset_url }}" defer></script>
 
 <script defer type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RSpZfU"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet" />

@@ -41,28 +41,28 @@ class ComingSoonNav extends HTMLElement {
         }, '-=0.2').to(navButtons[0], {
             backgroundColor: 'transparent', 
             boxShadow: '0 0 5px rgba(255, 255, 255, 0)'
-        }, '+=0.2').to(navButtons[1], {
+        }, '+=0.1').to(navButtons[1], {
             backgroundColor: '#ffffff', 
             boxShadow: '0 0 12px #fff, 0 0 2px #fff, 0 0 1.5px #fff, 0 0 20px #ffffff, 0 0 4px #f8f8f8, 0 0 4px #ffffff, 0 0 15px #ffffff',
             duration: .1
         }).to(navButtons[1], {
             backgroundColor: 'transparent', 
             boxShadow: '0 0 5px rgba(255, 255, 255, 0)'
-        }, '+=0.2').to(navButtons[2], {
+        }, '+=0.1').to(navButtons[2], {
             backgroundColor: '#ffffff', 
             boxShadow: '0 0 12px #fff, 0 0 2px #fff, 0 0 1.5px #fff, 0 0 20px #ffffff, 0 0 4px #f8f8f8, 0 0 4px #ffffff, 0 0 15px #ffffff',
             duration: .1
         }).to(navButtons[2], {
             backgroundColor: 'transparent', 
             boxShadow: '0 0 5px rgba(255, 255, 255, 0)'
-        }, '+=0.2').to(navButtons[3], {
+        }, '+=0.1').to(navButtons[3], {
             backgroundColor: '#ffffff', 
             boxShadow: '0 0 12px #fff, 0 0 2px #fff, 0 0 1.5px #fff, 0 0 20px #ffffff, 0 0 4px #f8f8f8, 0 0 4px #ffffff, 0 0 15px #ffffff',
             duration: .1
         }).to(navButtons[3], {
             backgroundColor: 'transparent', 
             boxShadow: '0 0 5px rgba(255, 255, 255, 0)'
-        }, '+=0.2')
+        }, '+=0.1')
 
     }
 
@@ -149,27 +149,42 @@ class ComingSoonNav extends HTMLElement {
       return camera; 
     }
 
+   getPageById(pPageId) {
+    let pages = document.querySelectorAll('[data-page]');
+    let page = null; 
+
+     pages.forEach((element) => {
+      if (pPageId === element.dataset.pageId) {
+        page = element
+      }
+    });
+    
+    return page;
+   }
+
+
    setUpNavigation(pCamera, pControls) {
     let controls = document.querySelectorAll('[data-nav-button]');
     let pages = document.querySelectorAll('[data-page]');
     let pagesContainer = document.querySelector('[data-pages]');
     let closeToggles = document.querySelectorAll('[data-close-page]');
     let heroSplash = document.querySelector('[data-page-splash]');
-    console.log(heroSplash);
     let scene = document.querySelector('.scene');
     let isAnimating = false;
+    let cameraControls = this.cameraControls;
+    let getCameraPos = this.getCameraPosition; 
+    let activePage = null;
+    let activeAnimation = null; 
     let that = this; 
 
-    let camera = pCamera; 
-    let cameraControls = this.cameraControls;
-
-    let pageLoaded = function (pPageId) {
-      document.dispatchEvent(new CustomEvent('page-loaded', {'detail':  {"pageId": pPageId}}));
-      if(pPageId === 'about') {
+    let pageLoaded = function (pPage) {
+      activePage = pPage;
+      document.dispatchEvent(new CustomEvent('page-loaded', {'detail':  {"pageId": pPage.dataset.pageId}}));
+      if(pPage.dataset.pageId === 'about') {
         setTimeout(function() {
           document.querySelector('type-writer').init();
-          document.querySelector('type-writer').type();
-        }, 1000); 
+          document.querySelector('type-writer').typeWrite();
+        }, 500); 
       }
     };
 
@@ -178,66 +193,18 @@ class ComingSoonNav extends HTMLElement {
       cameraControls.setLookAtSpeed(0.06);
     };
 
-    let getCameraPos = this.getCameraPosition; 
-    let showingPage = false;
-    let activePage = null;
 
     let closePage = function (pPageId) {
-
       pagesContainer.classList.add('is-hidden');
       pagesContainer.classList.remove('is-visible');
+      scene.classList.add('no-pointer');
 
-      let showSplashAnimation = new gsap.timeline({
-        onComplete: function () {
-          isAnimating = false;
-          if(pPageId === 'about') {
-            document.querySelector('type-writer').init();
-            document.querySelector('type-writer').type(true);
-          }
-          scene.classList.remove('no-pointer');
-        }});
+      resetActiveButton(activePage); 
 
       pages.forEach((element) => {
         if (pPageId === element.dataset.pageId) {
-          element.classList.remove('is-visible');
-          element.classList.add('is-hidden');
-          let cameraNewPlace = getCameraPos('splash');
-            showSplashAnimation
-            .to(cameraControls.object.position, {
-              x: cameraNewPlace.pos.x,
-              y: cameraNewPlace.pos.y,
-              z:  cameraNewPlace.pos.z,
-              duration: 1.9,  
-              ease: 'power2.inOut',
-              onStart: function() {
-              },
-            })
-            .to(cameraControls.object.rotation, {
-              y: cameraNewPlace.rotation.y,
-              x: cameraNewPlace.rotation.x,
-              z: cameraNewPlace.rotation.z,
-              duration: 2,  
-              ease: 'power2.inOut',
-              onComplete: function() {
-                cameraControls.lookAt(cameraNewPlace.rotation.x, cameraNewPlace.rotation.y, cameraNewPlace.rotation.z);
-              }
-            }, '-=1.9')
-            .fromTo(
-              element,
-              { opacity: 1 },
-              {
-                opacity: 0,
-                duration: 0.2,
-                ease: 'power2.out',
-                onComplete: pageClosed,
-              }).to(
-                heroSplash,
-                { opacity: 1, duration: .8, ease: 'power2.out' }, '-=0.2'
-            );
+          closePageAnimation(element); 
         }
-
-        showingPage = false;
-        activePage = null;
       });
     };
 
@@ -248,33 +215,22 @@ class ComingSoonNav extends HTMLElement {
       scene.classList.add('no-pointer');
       cameraControls.setLookAtSpeed(0.001);
 
-      if(pPageId === 'current-time') {
-        document.querySelector('local-time').init(); 
-      }
+      // if(pPageId === 'current-time') {
+      //   document.querySelector('local-time').init(); 
+      // }
 
-      let showPageAnimation = new gsap.timeline({
-        onStart: function() {
-        },
-        onComplete: function (pPageId) {
-          isAnimating = false;
-          pageLoaded(pPageId);
+      console.log(activePage); 
 
-        },
-        onCompleteParams: [pPageId]
-      });
-      
-
-      if (isAnimating) {
-        return;
-      }
-
-      
       if(activePage !== null && pPageId === activePage.dataset.pageId) {
+        console.log('COSE THE PAGE');
         closePage(pPageId); 
         return
       }
 
-      isAnimating = true;
+      if(activeAnimation) {
+        activeAnimation.pause(); 
+        activeAnimation = null; 
+      }
 
       pages.forEach((element) => {
         element.classList.add('is-hidden');
@@ -284,61 +240,7 @@ class ComingSoonNav extends HTMLElement {
           element.classList.add('is-visible');
           element.classList.remove('is-hidden');
           let cameraNewPlace = getCameraPos(pPageId); 
-          if (!showingPage) {
-
-            showPageAnimation
-             .to(
-                heroSplash,
-                { opacity: 0, duration: .4, ease: 'power2.out' }
-              )
-              .to(cameraControls.object.position, {
-                x: cameraControls.object.position.x + cameraNewPlace.pos.x,
-                y: cameraControls.object.position.y + cameraNewPlace.pos.y,
-                z: cameraControls.object.position.z + cameraNewPlace.pos.z,
-                duration: 2.2,  
-                ease: 'power2.inOut',
-              }, '-=0.2')
-              .to(cameraControls.object.rotation, {
-                y: cameraNewPlace.rotation.y,
-                x: cameraNewPlace.rotation.x,
-                duration: 2.2,  
-                ease: 'power2.inOut',
-              }, '-=2')
-              .fromTo(
-                element,
-                { opacity: 0 },
-                { opacity: 1, duration: 1.2, ease: 'power2.out' }, '-=0.2'
-              );
-
-          } else {
-            showPageAnimation
-              .fromTo(
-                activePage,
-                { opacity: 1 },
-                { opacity: 0, duration: 0.2, ease: 'power2.out' }
-              ).to(cameraControls.object.position, {
-                x: cameraControls.object.position.x + cameraNewPlace.pos.x,
-                y: cameraControls.object.position.y + cameraNewPlace.pos.y,
-                z: cameraControls.object.position.z + cameraNewPlace.pos.z,
-                duration: 2.2,  
-                ease: 'power2.inOut',
-              }, '-=0.2')
-              .to(cameraControls.object.rotation, {
-                y: cameraNewPlace.rotation.y,
-                x: cameraNewPlace.rotation.x,
-                duration: 2.2,  
-                ease: 'power2.inOut',
-              }, '-=2')
-              .fromTo(
-                element,
-                { opacity: 0 },
-                { opacity: 1, duration: 1.2, ease: 'power2.out' }, '-=0.2'
-              );
-              
-          }
-
-          showingPage = true;
-          activePage = element;
+          openPageAnimation(element, cameraNewPlace); 
         }
       });
 
@@ -346,10 +248,167 @@ class ComingSoonNav extends HTMLElement {
 
 
 
+    function resetActiveButton(pActivePage) {
+      // if(pActivePage !== null) {
+      //   console.log(pActivePage); 
+      //   let activePageId = pActivePage.dataset.pageId; 
+      //   controls.forEach((element) => {
+      //     let name = element.dataset.buttonId;
+      //     if(name === activePageId) {
+      //       console.log('REMOVE');
+      //       console.log(element); 
+      //       element.classList.remove('is-active');
+      //     }
+      //   });
+      // }
+    }
+
+
+    function openPageAnimation(pPageElem, pCameraPosition) {
+
+      let showPageAnimation = new gsap.timeline({paused: true,
+        onStart: function() {
+          activePage = pPageElem
+        },
+        onComplete: function (pPage) {
+          pageLoaded(pPage);
+        },
+        onCompleteParams: [that.getPageById(pPageElem.dataset.pageId)]
+      });
+      
+      let cameraNewPlace = pCameraPosition; 
+      let element = pPageElem;
+
+
+      if (activePage === null) {
+
+        showPageAnimation
+         .to(
+            heroSplash,
+            { opacity: 0, duration: .4, ease: 'power2.out' }
+          )
+          .to(cameraControls.object.position, {
+            x: cameraControls.object.position.x + cameraNewPlace.pos.x,
+            y: cameraControls.object.position.y + cameraNewPlace.pos.y,
+            z: cameraControls.object.position.z + cameraNewPlace.pos.z,
+            duration: 2.2,  
+            ease: 'power2.inOut',
+          }, '-=0.2')
+          .to(cameraControls.object.rotation, {
+            y: cameraNewPlace.rotation.y,
+            x: cameraNewPlace.rotation.x,
+            duration: 2.2,  
+            ease: 'power2.inOut',
+          }, '-=2')
+          .fromTo(
+            element,
+            { opacity: 0 },
+            { opacity: 1, duration: 1.2, ease: 'power2.out' }, '-=0.2'
+          );
+
+      } else {
+
+        resetActiveButton(activePage); 
+
+        showPageAnimation
+          .fromTo(
+            activePage,
+            { opacity: 1 },
+            { opacity: 0, duration: 0.2, ease: 'power2.out' }
+          ).to(cameraControls.object.position, {
+            x: cameraControls.object.position.x + cameraNewPlace.pos.x,
+            y: cameraControls.object.position.y + cameraNewPlace.pos.y,
+            z: cameraControls.object.position.z + cameraNewPlace.pos.z,
+            duration: 2.2,  
+            ease: 'power2.inOut',
+          }, '-=0.2')
+          .to(cameraControls.object.rotation, {
+            y: cameraNewPlace.rotation.y,
+            x: cameraNewPlace.rotation.x,
+            duration: 2.2,  
+            ease: 'power2.inOut',
+          }, '-=2')
+          .fromTo(
+            element,
+            { opacity: 0 },
+            { opacity: 1, duration: 1.2, ease: 'power2.out' }, '-=0.2'
+          )
+      }
+      
+      if(activeAnimation) {
+        activeAnimation.pause();
+      }
+      
+      activeAnimation = showPageAnimation;
+      activeAnimation.play(); 
+
+    }
+
+    function closePageAnimation(pPageElem) {
+
+      let element = pPageElem; 
+      activePage = null; 
+  
+      let showSplashAnimation = new gsap.timeline({
+        onComplete: function () {
+          scene.classList.remove('no-pointer');
+          activeAnimation = null; 
+          //resetActiveButton(activePage);         
+          // if(pPageId === 'about') {
+          //   document.querySelector('type-writer').stopWriting();
+          // }
+        }});
+
+
+      if(activeAnimation) {
+        activeAnimation.pause();
+      }
+
+      activeAnimation = showSplashAnimation; 
+  
+      element.classList.remove('is-visible');
+      element.classList.add('is-hidden');
+      
+      let cameraNewPlace = getCameraPos('splash');
+        showSplashAnimation
+        .to(cameraControls.object.position, {
+          x: cameraNewPlace.pos.x,
+          y: cameraNewPlace.pos.y,
+          z:  cameraNewPlace.pos.z,
+          duration: 1.9,  
+          ease: 'power2.inOut',
+          onStart: function() {
+          },
+        })
+        .to(cameraControls.object.rotation, {
+          y: cameraNewPlace.rotation.y,
+          x: cameraNewPlace.rotation.x,
+          z: cameraNewPlace.rotation.z,
+          duration: 2,  
+          ease: 'power2.inOut',
+          onComplete: function() {
+            cameraControls.lookAt(cameraNewPlace.rotation.x, cameraNewPlace.rotation.y, cameraNewPlace.rotation.z);
+          }
+        }, '-=1.9')
+        .fromTo(
+          element,
+          { opacity: 1 },
+          {
+            opacity: 0,
+            duration: 0.2,
+            ease: 'power2.out',
+            onComplete: pageClosed,
+          }).to(
+            heroSplash,
+            { opacity: 1, duration: .8, ease: 'power2.out' }, '-=0.2'
+        );
+      }
+
+      
     controls.forEach((element) => {
-      element.addEventListener('click', function () {
+      element.addEventListener('click', function (event) {
         let name = this.dataset.buttonId;
-        this.classList.add('is-active');
+        //this.classList.add('is-active');
         showPage(name);
       });
     });

@@ -121,9 +121,18 @@
     bottom: -2rem;
     position: relative;
     font-family: var(--secondary-font-family);
+    display: block; ;
+    position: relative;
+}
+
+@media screen and (min-width: 768px) {
+    .about-page__bio {
+        min-height: 220px;
+    }
 }
 
 .about-page__bio.is-typing .ticker {
+    text-shadow: none; 
     animation: none;
 }
 
@@ -131,9 +140,13 @@
 .about-page__bio .ticker {
     margin: 0;
     padding: 0;
-    left: -.35rem;
+    bottom: .05rem;
+    left: -.30rem;
     position: relative;
     animation: flicker 1.2s step-end infinite;
+    font-size: 1.75rem;
+    line-height: 0;
+    text-shadow: 0 0 5px rgba(255, 255, 255, .8);
 }
 
 @keyframes flicker {
@@ -459,7 +472,10 @@ div[class*='Row__FormRow-']{
   
 
 
-
+.newsletter-sign-up .iLauD.iLauD {
+      background-color: transparent !important;
+      margin-bottom: 6rem;
+  }
 
 /*------------------------------------*\
     #Contact page

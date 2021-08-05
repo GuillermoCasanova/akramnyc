@@ -288,19 +288,42 @@ body {
     font-family: var(--primary-font-family);
 }
 
-
-.navigation__links  button:hover, 
-.navigation__links  button:focus {
+.navigation__links  button:active {
     cursor: pointer; 
     background-color: #fff !important;
 } 
 
-
-.navigation__links  button:hover .name, 
-.navigation__links  button:focus  .name{
+/* 
+.navigation__links  button:active  .name {
     opacity: 1;
+} */
+
+.navigation__links  button.is-active{
+    cursor: pointer; 
+    background-color: #fff !important;
+} 
+
+.navigation__links  button.is-active .name {
+    opacity: 1;
+} 
+
+
+
+@media (hover: hover) {
+    .navigation__links  button:hover, 
+    .navigation__links  button:focus {
+        cursor: pointer; 
+        background-color: #fff !important;
+    } 
+    
+    
+    .navigation__links  button:hover .name, 
+    .navigation__links  button:focus  .name{
+        opacity: 1;
+    }
+     
 }
- 
+
 
 @media screen and (min-width: 768px) {
     .navigation__links  button {

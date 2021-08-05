@@ -178,7 +178,7 @@ class LoadingScreen  extends HTMLElement{
         this.cameraControls.disableDrag();
         this.world = pOptions.world; 
 
-        if(pOptions.skip  === true) {
+        //if(pOptions.skip  === true) {
                 this.announceIntroAnimDone(); 
                 this.loadingScreen.style.display = 'none';
                 let animation = gsap.timeline({onComplete: function() {
@@ -187,9 +187,9 @@ class LoadingScreen  extends HTMLElement{
                 animation
                 .to(cameraControls.object.position, {z: 100, duration: 1.5,   ease: 'power2.inOut'}, '-=.7')
                 return
-        }
+       // }
 
-        this.playLoadingAnimation();
+       // this.playLoadingAnimation();
 
     }
 }

@@ -82,14 +82,14 @@ abbr, acronym {
 
 
 /*X-SMALL*/
-@media screen and (max-width: 356px) {
+@media screen and (max-width: 350px) {
   :root {
-    font-size: .9rem;
+    font-size: .8rem;
   }
 }
 
 /*SMALL-UP*/
-@media screen and (min-width: 357px) {
+@media screen and (min-width: 380px) {
   :root {
     font-size: .9rem;
   }
@@ -124,6 +124,24 @@ abbr, acronym {
   :root {
     font-size: 1rem;
   }
+}
+
+
+
+/*------------------------------------*\
+    #Default Text Selection Color 
+\*------------------------------------*/
+
+
+::selection {
+  background-color: white; 
+  color: black; 
+}
+
+::-moz-selection {
+
+    background-color: white; 
+    color: black; 
 }
 
 

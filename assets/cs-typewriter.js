@@ -1,37 +1,40 @@
 
-
-
-
 class TypeWriter extends HTMLElement {
 
     constructor() {
         super(); 
-        this.textContainer = this.querySelector('[data-text-container]');
     }
 
-    type(pStop) {
+    typeWrite(pStop) {
+        let speed = this.speed; 
 
-        if(pStop) {
-            i = 0;
-            textContainer.textContent = "";
-            clearTimeout(writingFunction);
-            this.classList.remove('is-typing');
-            return 
-        }
-        if(i < text.length) {
+        if(this.i < this.text.length) {
             this.classList.add('is-typing');
-            textContainer.textContent += text.charAt(i);
-            i++
-            writingFunction = setTimeout(type, speed)
+            this.textContainer.textContent += this.text.charAt(this.i);
+            this.i++
+            this.writingFunction = setTimeout(this.typeWrite.bind(this), speed)
         } else {
             this.classList.remove('is-typing');
         }
+
     }
+
+    stopWriting() {
+        this.i = 0;
+        this.textContainer.textContent = "";
+        clearTimeout(this.writingFunction);
+        this.classList.remove('is-typing');
+        return 
+    }
+
     init() {
         this.i = 0; 
         this.text =  this.querySelector('p').dataset.text; 
         this.speed = 60; 
         this.writingFunction = null;
+        this.textContainer = this.querySelector('[data-text-container]');
+
+        console.log(this.text); 
     }
 }
 
