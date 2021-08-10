@@ -1,9 +1,7 @@
 import * as THREE from './three.module.js';
 import FirstPersonControls  from './cs-first-person-controls-custom.js';
 
-let glow = './assets/glow.png';
-let starSprite = './assets/glow_small.png';
-let starmap = './assets/stars.png';
+
 
 class World extends HTMLElement {
 
@@ -36,6 +34,11 @@ class World extends HTMLElement {
         let numberOfClusters = 6; 
         let spaceBetweenStars = 200; 
         let clock = new THREE.Clock(); 
+
+
+        let glow = this.dataset.glow;
+        let starSprite = this.dataset.starsprite;
+        let starmap = this.dataset.starmap;
 
 
         //positions
