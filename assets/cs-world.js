@@ -1,6 +1,5 @@
-import * as THREE from './three.module.js';
-import FirstPersonControls  from './cs-first-person-controls-custom.js';
 
+import FirstPersonControls  from './cs-first-person-controls-custom.js';
 
 
 class World extends HTMLElement {
@@ -14,13 +13,12 @@ class World extends HTMLElement {
         this.renderer = null; 
         this.stats = null; 
         this.loadingAnimDone = false; 
-        this.init();
     }
 
 
-    createWorld() {
+    createWorld(pThree) {
         let WorldClass = this; 
-
+        let THREE = pThree; 
 
         WorldClass.scene = new THREE.Scene();
         const aspect = window.innerWidth / window.innerHeight;
@@ -257,8 +255,7 @@ class World extends HTMLElement {
           // min and max included
           return Math.floor(Math.random() * (max - min + 1) + min);
         }
-        
-        
+
         document.dispatchEvent(new CustomEvent('world-created',  {"detail": WorldClass}))
         
     }
@@ -275,8 +272,14 @@ class World extends HTMLElement {
        let that = this; 
         document.addEventListener('loading-animation-done', function() {
           that.loadingAnimDone = true; 
-        });
-        this.createWorld(); 
+        }); 
+
+
+        import('./three.module.js')
+        .then(function(module) {      
+          console.log(module);
+          that.createWorld(module);
+        })
     }
 
 }

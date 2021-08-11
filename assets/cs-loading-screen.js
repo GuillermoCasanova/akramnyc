@@ -7,20 +7,29 @@ class LoadingScreen  extends HTMLElement{
         this.loadingScreen = document.querySelector('[data-loading-screen]'); 
         this.camera = null; 
         this.cameraControls = null; 
-        let LoadingScreenClass = this;
-        document.addEventListener('world-created', function(event) {
-            LoadingScreenClass.init({world: event.detail })
-        }); 
+        this.world = null; 
+        this.init({});
     }   
 
+
     playLoadingAnimation() {
+
         let that = this; 
-        var loadingTween =  gsap.timeline({delay: 1, onComplete: function() {
-           that.playDotsAnimation();
+
+        let loadingTween =  gsap.timeline({delay: 1, onComplete: function() {
+            setTimeout(function() {
+                that.playDotsAnimation();
+            }, 100); 
         }});
-        var loadingScreen = this; 
+
+        let initWorld = function() {
+            document.querySelector('world-scene').init();
+        }
+
+        let loadingScreen = this; 
         
         loadingTween
+        .call(initWorld,[], 0)
         .from(loadingScreen.querySelector('[data-loading-progress]'), {
             opacity: 0, 
             duration: .8,
@@ -70,7 +79,8 @@ class LoadingScreen  extends HTMLElement{
             opacity: 1,
             duration: .5, 
             ease: 'power2.out'
-        }).to(loadingScreen.querySelectorAll('[data-loading-dot]')[1].querySelector('[data-dot-progress]'), {
+        })
+        .to(loadingScreen.querySelectorAll('[data-loading-dot]')[1].querySelector('[data-dot-progress]'), {
             opacity: 1,
             duration: .5, 
             ease: 'power2.out'
@@ -86,23 +96,21 @@ class LoadingScreen  extends HTMLElement{
             ease: 'power2.out'
         });
 
+
+
     }
 
     announceIntroAnimDone() {   
-        let world  = this.world; 
-        console.log(world);
-        document.dispatchEvent(new CustomEvent('loading-animation-done', {"detail": world})); 
+        document.dispatchEvent(new CustomEvent('loading-animation-done', {"detail": this.world})); 
     }
 
     playDotsAnimation() {
-        let windowWidth = window.innerWidth; 
-        let windowHeight = window.innerHeight;
+
         let loadingScreen = this; 
         let that = this; 
         let dots = loadingScreen.querySelectorAll('[data-loading-dot]');
-        let camera = this.camera; 
         let cameraControls = this.cameraControls;
-
+        
         function setupDots(pDots) {
             pDots.forEach((element, index) => {
 
@@ -134,6 +142,7 @@ class LoadingScreen  extends HTMLElement{
                 that.announceIntroAnimDone();
             }}); 
             let dots = pDots; 
+
             animation
             .to(dots[0], {left: dots[0].dataset.destX + "%", top: dots[0].dataset.destY + "%", duration: 1,   ease: 'power2.inOut'})
             .to(dots[1], {left: dots[1].dataset.destX + "%", bottom: dots[1].dataset.destY + "%", duration: 1,   ease: 'power2.inOut'}, '-=1')
@@ -143,6 +152,7 @@ class LoadingScreen  extends HTMLElement{
                 cameraControls.enableDrag(); 
             }}, '-=.7')
             .to(loadingScreen, {backgroundColor: 'rgba(0,0,0,0)', duration: 1, ease: 'circ.out'}, '-=1');
+        
         }
 
         function resetDots(pDots) {
@@ -168,15 +178,16 @@ class LoadingScreen  extends HTMLElement{
         setupDots(dots); 
         resetDots(dots)
 
-
     }
 
     init(pOptions) {
-
-        this.cameraControls = pOptions.world.getControls();
-        let cameraControls = this.cameraControls; 
-        this.cameraControls.disableDrag();
-        this.world = pOptions.world; 
+       let that = this; 
+                
+        document.addEventListener('world-created', function(event) {
+            that.cameraControls = event.detail.getControls();
+            that.cameraControls.disableDrag();
+            that.world = event.detail; 
+        }); 
 
         if(pOptions.skip  === true) {
                 this.announceIntroAnimDone(); 
@@ -189,7 +200,9 @@ class LoadingScreen  extends HTMLElement{
                 return
        }
 
-       this.playLoadingAnimation();
+       setTimeout(function() {
+        that.playLoadingAnimation();
+       }, 100);
 
     }
 }
