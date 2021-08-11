@@ -11,6 +11,33 @@ class LoadingScreen  extends HTMLElement{
         this.init({});
     }   
 
+    loadGSAP(src, async = true, type="text/javascript") {
+        return new Promise((resolve, reject) => {
+            try {
+                const el = document.createElement("script");
+                const container = document.head || document.body;
+    
+                el.type = type;
+                el.async = async;
+                el.src = src;
+    
+                el.addEventListener("load", () => {
+                    resolve({ status: true });
+                });
+    
+                el.addEventListener("error", () => {
+                    reject({
+                        status: false,
+                        message: `Failed to load the script ${src}`
+                    });
+                });
+    
+                container.appendChild(el);
+            } catch (err) {
+                reject(err);
+            }
+        });
+    }
 
     playLoadingAnimation() {
 
@@ -201,7 +228,13 @@ class LoadingScreen  extends HTMLElement{
        }
 
        setTimeout(function() {
-        that.playLoadingAnimation();
+        that.loadGSAP("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js")
+            .then((data) => {
+                 that.playLoadingAnimation();
+            })
+            .catch((err) => {
+                console.error(err);
+            });
        }, 100);
 
     }
