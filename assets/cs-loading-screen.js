@@ -56,12 +56,6 @@ class LoadingScreen  extends HTMLElement{
         let loadingScreen = this; 
         
         loadingTween
-        .call(initWorld,[], 0)
-        .from(loadingScreen.querySelector('[data-loading-progress]'), {
-            opacity: 0, 
-            duration: .8,
-            ease: 'power2.out'
-        })
         .fromTo(loadingScreen.querySelectorAll('[data-loading-dot]')[0], {
             x: '-4.5rem',
             opacity: 0, 
@@ -72,6 +66,7 @@ class LoadingScreen  extends HTMLElement{
             duration: .9,  
             ease: 'power2.inOut'
         }, '-=0.9')
+        .call(initWorld,[], 0)
         .fromTo(loadingScreen.querySelectorAll('[data-loading-dot]')[1], {
             x: '-1.5rem',
             opacity: 0, 
