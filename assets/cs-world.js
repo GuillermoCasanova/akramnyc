@@ -1,7 +1,4 @@
 
-import FirstPersonControls  from './cs-first-person-controls-custom.js';
-
-
 class World extends HTMLElement {
 
     constructor() {
@@ -16,9 +13,10 @@ class World extends HTMLElement {
     }
 
 
-    createWorld(pThree) {
+    createWorld(pThree, pFirstPersonControls) {
         let WorldClass = this; 
         let THREE = pThree; 
+        const {default: FirstPersonControls  }= pFirstPersonControls;
 
         WorldClass.scene = new THREE.Scene();
         const aspect = window.innerWidth / window.innerHeight;
@@ -276,9 +274,11 @@ class World extends HTMLElement {
 
 
         import('./three.module.js')
-        .then(function(module) {      
-          console.log(module);
-          that.createWorld(module);
+        .then(function(pThree) {      
+          import('./cs-first-person-controls-custom.js')
+          .then(function(pFirstPersonControls) {
+            that.createWorld(pThree, pFirstPersonControls);
+          })
         })
     }
 
