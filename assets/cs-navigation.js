@@ -28,12 +28,7 @@ class ComingSoonNav extends HTMLElement {
 
         let navigationAnimation = gsap.timeline({onComplete: function() {
             that.setUpNavigation(camera); 
-            that.loadScript("https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RSpZfU")
-            .then((data) => {
-            })
-            .catch((err) => {
-                console.error(err);
-            });
+
         }}); 
 
         navigationAnimation.fromTo('.navigation__links', {
@@ -254,6 +249,15 @@ class ComingSoonNav extends HTMLElement {
         document.querySelector('local-time').init(); 
       }
 
+
+      if(pPageId === 'newsletter') {
+        that.loadScript("https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RSpZfU")
+        .then((data) => {
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+      }
 
       if(activePage !== null && pPageId === activePage.dataset.pageId) {
         closePage(pPageId); 
