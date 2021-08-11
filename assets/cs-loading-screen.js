@@ -49,59 +49,22 @@ class LoadingScreen  extends HTMLElement{
             }, 100); 
         }});
 
+        
         let initWorld = function() {
-            document.querySelector('world-scene').init();
+            setTimeout(function() {
+                document.querySelector('world-scene').init();
+            });
         }
 
         let loadingScreen = this; 
         
         loadingTween
-        .fromTo(loadingScreen.querySelectorAll('[data-loading-dot]')[0], {
-            x: '-4.5rem',
-            opacity: 0, 
-            ease: 'power2.inOut'
-        }, {
-            x: '-4.5rem',
-            opacity: 1, 
-            duration: .9,  
-            ease: 'power2.inOut'
-        }, '-=0.9')
-        .call(initWorld,[], 0)
-        .fromTo(loadingScreen.querySelectorAll('[data-loading-dot]')[1], {
-            x: '-1.5rem',
-            opacity: 0, 
-            ease: 'power2.inOut'
-        }, {
-            x: '-1.5rem',
-            opacity: 1, 
-            duration: .9, 
-            ease: 'power2.inOut'
-        }, '-=0.9')
-        .fromTo(loadingScreen.querySelectorAll('[data-loading-dot]')[2],  {
-            x: '1.5rem',
-            opacity: 0, 
-            ease: 'power2.inOut'
-        },  {
-            x: '1.5rem',
-            opacity: 1, 
-            duration: .9, 
-            ease: 'power2.inOut'
-        }, '-=0.9')
-        .fromTo(loadingScreen.querySelectorAll('[data-loading-dot]')[3], {
-            x: '4.5rem',
-            opacity: 0,
-            ease: 'power2.inOut'
-        }, {
-            x: '4.5rem',
-            opacity: 1, 
-            duration: .9, 
-            ease: 'power2.inOut'
-        }, '-=0.9')
         .to(loadingScreen.querySelectorAll('[data-loading-dot]')[0].querySelector('[data-dot-progress]'), {
             opacity: 1,
             duration: .5, 
             ease: 'power2.out'
         })
+        .call(initWorld,[], 0)
         .to(loadingScreen.querySelectorAll('[data-loading-dot]')[1].querySelector('[data-dot-progress]'), {
             opacity: 1,
             duration: .5, 
@@ -230,7 +193,7 @@ class LoadingScreen  extends HTMLElement{
             .catch((err) => {
                 console.error(err);
             });
-       }, 100);
+       }, 400);
 
     }
 }
