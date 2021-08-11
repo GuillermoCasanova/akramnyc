@@ -193,7 +193,7 @@ class LoadingScreen  extends HTMLElement{
             .catch((err) => {
                 console.error(err);
             });
-       }, 400);
+       }, 600);
 
     }
 }
