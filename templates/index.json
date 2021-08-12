@@ -2,7 +2,6 @@
   "sections": {
     "image_banner": {
       "type": "image-banner",
-      "disabled": true,
       "blocks": {
         "heading": {
           "type": "heading",
@@ -35,7 +34,6 @@
     },
     "featured_products": {
       "type": "featured-collection",
-      "disabled": true,
       "settings": {
         "title": "Featured products",
         "collection": "",
@@ -50,7 +48,6 @@
     },
     "image_text": {
       "type": "image-with-text",
-      "disabled": true,
       "blocks": {
         "heading": {
           "type": "heading",
@@ -85,6 +82,7 @@
     },
     "16276692835a6426f3": {
       "type": "cs-loading-screen",
+      "disabled": true,
       "settings": {
       }
     }
