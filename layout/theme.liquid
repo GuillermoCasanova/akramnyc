@@ -35,17 +35,6 @@
 
     {% style %}
 
-
-      html {
-        cursor: url({{'cursor-main.png' | asset_url}}) 10 15, auto !important; 
-      }
-
-
-      html button:hover ,
-      html a:hover  {
-          cursor: url({{'cursor-main.png' | asset_url}}) 10 15, auto !important; 
-      }
-
       {{ settings.type_body_font | font_face: font_display: 'swap' }}
       {{ body_font_bold | font_face: font_display: 'swap' }}
       {{ body_font_italic | font_face: font_display: 'swap' }}
@@ -94,13 +83,13 @@
     </a>
 
     {% comment %} {% section 'announcement-bar' %}
-    {% section 'header' %} {% endcomment %}
+    {% section 'header' %}  {% endcomment %}
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
 
-    {% comment %} {% section 'footer' %} {% endcomment %}
+   {% section 'footer' %} 
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>

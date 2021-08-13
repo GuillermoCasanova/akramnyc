@@ -10,8 +10,30 @@
 
 <style>
 
+  /* section-header */
+#shopify-section-header {
+  z-index: 3;
+  will-change: transform;
+  position: absolute;
+}
+
+.shopify-section-header-sticky {
+  position: sticky;
+  top: 0;
+}
+
+.shopify-section-header-hidden {
+  transform: translateY(-100%);
+}
+
+#shopify-section-header.animate {
+  transition: transform 0.15s ease-out;
+}
+
+
   header {
     background-color: red !important;
+    display: none;
   }
 
   header-drawer {

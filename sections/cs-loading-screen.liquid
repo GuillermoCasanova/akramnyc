@@ -1,6 +1,19 @@
 
 
 
+{%style%}
+
+      html {
+        cursor: url({{'cursor-main.png' | asset_url}}) 10 15, auto !important; 
+      }
+
+
+      html button:hover ,
+      html a:hover  {
+          cursor: url({{'cursor-main.png' | asset_url}}) 10 15, auto !important; 
+      }
+
+{%endstyle%}
 
 {{ 'component-cs-loading-screen.css' | asset_url | stylesheet_tag }}
 {{ 'base-forms.css' | asset_url | stylesheet_tag }}
