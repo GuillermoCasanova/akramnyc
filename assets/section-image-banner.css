@@ -1,11 +1,15 @@
 
+/*------------------------------------*\
+    #Image Banner  
+\*------------------------------------*/
+
 
 .image-banner {
   position: relative;
   width: 100%;
-  padding-bottom: 104.6%;
+  padding-bottom: 90.6%;
+  margin-bottom: var(--level7);
 }
-
 
 @media screen and (min-width: 768px) {
   .image-banner {
@@ -13,10 +17,9 @@
   }
 }
 
-
 @media screen and (min-width: 1000px) {
   .image-banner {
-    padding-bottom: 54.6%;
+    padding-bottom: 50%;
   }
 }
 
@@ -45,6 +48,7 @@
   bottom: var(--level4);
   left: var(--level4); 
   font-size: .9rem;
+  text-shadow: 1px 1px 8px rgba(0,0,0, .8);
 }
 
 
