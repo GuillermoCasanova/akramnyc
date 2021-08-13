@@ -43,19 +43,14 @@
         - div.price__availability: Displayed when the product is sold out
     {%- endcomment -%}
     <div class="price__regular">
-      <dt>
-        <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
-      </dt>
       <dd {% if show_badges == false %}class="price__last"{% endif %}>
         <span class="price-item price-item--regular">
           {{ money_price }}
         </span>
       </dd>
     </div>
+    
     <div class="price__sale">
-      <dt class="price__compare">
-        <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
-      </dt>
       <dd class="price__compare">
         <s class="price-item price-item--regular">
           {% if settings.currency_code_enabled %}
@@ -66,30 +61,12 @@
         </s>
       </dd>
       <dt>
-        <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
+        <span class="screen-readers-only">{{ 'products.product.price.sale_price' | t }}</span>
       </dt>
-      <dd {% if show_badges == false %}class="price__last"{% endif %}>
-        <span class="price-item price-item--sale">
-          {{ money_price }}
-        </span>
-      </dd>
+   
     </div>
-    <small class="unit-price caption{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">
-      <dt class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</dt>
-      <dd {% if show_badges == false %}class="price__last"{% endif %}>
-        <span>{{- product.selected_or_first_available_variant.unit_price | money -}}</span>
-        <span aria-hidden="true">/</span>
-        <span class="visually-hidden">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
-        <span>
-          {%- if product.selected_or_first_available_variant.unit_price_measurement.reference_value != 1 -%}
-            {{- product.selected_or_first_available_variant.unit_price_measurement.reference_value -}}
-          {%- endif -%}
-          {{ product.selected_or_first_available_variant.unit_price_measurement.reference_unit }}
-        </span>
-      </dd>
-    </small>
   </dl>
-  {%- if show_badges -%}
+  {% comment %} {%- if show_badges -%}
     <span class="badge price__badge-sale color-{{ settings.sale_badge_color_scheme }}" aria-hidden="true">
       {{ 'products.product.on_sale' | t }}
     </span>
@@ -97,5 +74,5 @@
     <span class="badge price__badge-sold-out color-{{ settings.sold_out_badge_color_scheme }}" aria-hidden="true">
       {{ 'products.product.sold_out' | t }}
     </span>
-  {%- endif -%}
+  {%- endif -%} {% endcomment %}
 </div>

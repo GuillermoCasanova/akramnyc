@@ -2,13 +2,13 @@
 {{ 'component-featured-products.css' | asset_url | stylesheet_tag }}
 
 <div class="featured-products-container">
-    <h2>
+    <h2 class="screen-readers-only">
     {{section.settings.title}}
     </h2>
 
     <ul class="featured-products__list">
         {%- for product in section.blocks -%}
-        <li class="featured-products__item">
+        <li class="featured-products__list__item">
             {% render 'product-thumb',
                 product_card_product: product.settings.information,
                 art_shot_as_lead: section.settings.art_shot_as_lead

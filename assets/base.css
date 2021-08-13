@@ -231,3 +231,9 @@ p {
 }
 
 
+.screen-readers-only {
+  opacity: 0;
+  z-index: -100;
+  left: -999;
+  position: fixed;
+}

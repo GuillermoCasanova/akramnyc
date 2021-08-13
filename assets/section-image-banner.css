@@ -8,7 +8,7 @@
   position: relative;
   width: 100%;
   padding-bottom: 90.6%;
-  margin-bottom: var(--level7);
+  margin-bottom: var(--level5);
 }
 
 @media screen and (min-width: 768px) {
@@ -20,6 +20,7 @@
 @media screen and (min-width: 1000px) {
   .image-banner {
     padding-bottom: 50%;
+    margin-bottom: var(--level7);
   }
 }
 
