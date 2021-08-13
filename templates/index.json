@@ -7,9 +7,63 @@
         "cta-url": "shopify:\/\/collections",
         "cta-url-text": "Shop Collection One"
       }
+    },
+    "1628891408499f670a": {
+      "type": "featured-products",
+      "blocks": {
+        "0307442d-23f2-4e02-999a-c836f736d25a": {
+          "type": "featured-product",
+          "settings": {
+            "information": "short-sleeve-t-shirt"
+          }
+        },
+        "5bed6961-10d4-4227-bb6d-4f9af1632962": {
+          "type": "featured-product",
+          "settings": {
+            "information": "test-product-100"
+          }
+        },
+        "69e76864-93cc-4e6c-ab27-71cbed963125": {
+          "type": "featured-product",
+          "settings": {
+            "information": "test-product-23"
+          }
+        },
+        "54307067-e898-4cd5-a435-77d1577647db": {
+          "type": "featured-product",
+          "settings": {
+            "information": "test-product-55"
+          }
+        },
+        "fdedf172-e120-4588-8db7-138d0183c05e": {
+          "type": "featured-product",
+          "settings": {
+            "information": "test-product-in-green"
+          }
+        },
+        "34b50a39-a6ec-40ba-ade8-bdd0bbce0b3c": {
+          "type": "featured-product",
+          "settings": {
+            "information": "test-product-moon-shot"
+          }
+        }
+      },
+      "block_order": [
+        "0307442d-23f2-4e02-999a-c836f736d25a",
+        "5bed6961-10d4-4227-bb6d-4f9af1632962",
+        "69e76864-93cc-4e6c-ab27-71cbed963125",
+        "54307067-e898-4cd5-a435-77d1577647db",
+        "fdedf172-e120-4588-8db7-138d0183c05e",
+        "34b50a39-a6ec-40ba-ade8-bdd0bbce0b3c"
+      ],
+      "settings": {
+        "title": "Featured Products",
+        "art_shot_as_lead": true
+      }
     }
   },
   "order": [
-    "image_banner"
+    "image_banner",
+    "1628891408499f670a"
   ]
 }
