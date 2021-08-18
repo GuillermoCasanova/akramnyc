@@ -1,7 +1,6 @@
 
 
 import * as THREE from './three.module.js';
-//import Hammer from 'hammerjs'; 
 
 
 const _lookDirection = new THREE.Vector3();
@@ -13,6 +12,7 @@ const _target = new THREE.Vector3();
 export default class FirstPersonControls {
 
 	constructor( object, domElement ) {
+
 
 		if ( domElement === undefined ) {
 
@@ -307,44 +307,53 @@ export default class FirstPersonControls {
 		};
 
 		this.setUpTouchEvents = function(pDomElement) {
-			// this.manager = new Hammer.Manager(pDomElement); 
-			// const Pan = new Hammer.Pan(); 
-			// const that = this; 
-			// const friction = -0.03;
 
-			// function applyVelocity(v,dir) {
-			// 	var dist = v*16;
+			this.manager = null; 
+			const that  = this; 
+			const friction = -0.03;
 
-			// 	if(dir=== 16) {
-			// 		dist*=-1;
-			// 	} 
-				
-			// 	if(v>0) {
-			// 		v+=friction;
-			// 		 that.object.translateZ( (dist * 0.0025) *  ( that.actualMoveSpeed + that.autoSpeedFactor ) )
-			// 		window.requestAnimationFrame(function(){
-			// 			applyVelocity(v,dir);
-			// 		});
-			// 	}
-			// }
+			import( './hammer.min.js')
+			.then(module =>  {
 
-			// this.manager.add(Pan); 
+				that.manager = new Hammer.Manager(pDomElement); 
+				const Pan = new Hammer.Pan(); 
 
-			// this.manager.on('panstart', function(e) {
+				function applyVelocity(v,dir) {
+					var dist = v*16;
 
-			// 	that.deltaY = that.deltaY + e.deltaY;
-			// 	var direction = e.offsetDirection;
+					if(dir=== 16) {
+						dist*=-1;
+					} 
+					
+					if(v>0) {
+						v+=friction;
+						that.object.translateZ( (dist * 0.0025) *  ( that.actualMoveSpeed + that.autoSpeedFactor ) )
+						window.requestAnimationFrame(function(){
+							applyVelocity(v,dir);
+						});
+					}
+				}
 
-			// 	if (direction === 16 || direction === 8) {
-			// 		that.object.translateZ( (-1 * e.deltaY * 0.0025) *  ( that.actualMoveSpeed + that.autoSpeedFactor ) )
-			// 	}
+				that.manager.add(Pan); 
 
-			//   });
 
-			//   this.manager.on('panend', function(event) {
-			// 	  let velocity = Math.abs(event.velocityY); 
-			// 	  applyVelocity(velocity, event.direction)
-			//   })
+				that.manager.on('panstart', function(e) {
+					that.deltaY = that.deltaY + e.deltaY;
+					var direction = e.offsetDirection;
+
+					if (direction === 16 || direction === 8) {
+						that.object.translateZ( (-1 * e.deltaY * 0.0025) *  ( that.actualMoveSpeed + that.autoSpeedFactor ) )
+					}
+
+				});
+
+				that.manager.on('panend', function(event) {
+					let velocity = Math.abs(event.velocityY); 
+					applyVelocity(velocity, event.direction)
+				})
+
+			}); 
+
 
 		}
 
@@ -362,7 +371,9 @@ export default class FirstPersonControls {
 				this.domElement.addEventListener( 'mouseup', _onMouseUp );
 				this.domElement.addEventListener( 'wheel', _onMouseWheel, { passive: false } );
 			} else {
-				this.setUpTouchEvents(this.domElement); 
+				document.addEventListener('touchstart', () => {
+					this.setUpTouchEvents(this.domElement); 
+				}, {once: true});
 			}
 	
 		}
