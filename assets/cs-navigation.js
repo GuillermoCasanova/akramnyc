@@ -352,7 +352,9 @@ class ComingSoonNav extends HTMLElement {
         resetActiveButton(activePage); 
 
         if(pPageElem.dataset.pageId === 'about') {
-          document.querySelector('type-writer').stopWriting();
+          if(document.querySelectorAll('type-writer').length > 0) {
+            document.querySelector('type-writer').stopWriting();
+          }
         }
 
 
@@ -401,7 +403,9 @@ class ComingSoonNav extends HTMLElement {
         }});
 
       if(pPageElem.dataset.pageId === 'about') {
-        document.querySelector('type-writer').stopWriting();
+        if(document.querySelectorAll('type-writer').length > 0) {
+          document.querySelector('type-writer').stopWriting();
+        }
       }
       
       resetActiveButton(activePage);    
