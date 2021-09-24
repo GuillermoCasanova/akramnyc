@@ -98,9 +98,19 @@
               style="fill: #fff;" />
           </svg>
         </h1>
+        <div class="gesture-notifier">
+          <div class="gesture-notifier__graphic">
+            <div class="gesture-notifier__circle"></div>
+            <div class="gesture-notifier__arrow"></div>
+            <div class="gesture-notifier__arrow"></div>
+          </div>
+          <p class="gesture-notifider__text">
+            Scroll To Move 
+          </p>
+        </div>
       </div>
   
-      <world-scene class="scene" data-starsprite="{{'glow_small.png' | asset_url}}" data-starmap="{{'stars.png' | asset_url}}" data-glow="{{'glow.png' | asset_url}}" style="z-index: -1;"></world-scene>
+      <world-scene class="scene" style="opacity: 0;" data-starsprite="{{'glow_small.png' | asset_url}}" data-starmap="{{'stars.png' | asset_url}}" data-glow="{{'glow.png' | asset_url}}" style="z-index: -1;"></world-scene>
 
     </nav>
   </coming-soon-nav>

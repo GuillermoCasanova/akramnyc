@@ -168,32 +168,57 @@ class LoadingScreen  extends HTMLElement{
     init(pOptions) {
        let that = this; 
                 
-        document.addEventListener('world-created', function(event) {
-            that.cameraControls = event.detail.getControls();
-            that.cameraControls.disableDrag();
-            that.world = event.detail; 
-        }); 
 
-        if(pOptions.skip  === true) {
-                this.announceIntroAnimDone(); 
-                this.loadingScreen.style.display = 'none';
-                let animation = gsap.timeline({onComplete: function() {
-                    cameraControls.enableDrag(); 
-                }}); 
-                animation
-                .to(cameraControls.object.position, {z: 100, duration: 1.5,   ease: 'power2.inOut'}, '-=.7')
-                return
-       }
+            // setTimeout(function() {
+            //     that.loadGSAP("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js")
+            //             .then((data) => {
+                            
+            //                 setTimeout(function() {
+            //                     document.querySelector('world-scene').init();
 
-       setTimeout(function() {
-        that.loadGSAP("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js")
-            .then((data) => {
-                 that.playLoadingAnimation();
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-       }, 600);
+            //                     document.addEventListener('world-created', function(event) {
+            //                         that.cameraControls = event.detail.getControls();
+            //                         that.cameraControls.enableDrag();
+            //                         that.world = event.detail; 
+            //                         that.announceIntroAnimDone(); 
+            //                         console.log('world created');
+            //                         that.loadingScreen.style.display = 'none';
+            //                     }); 
+            //                 });
+                
+            //                 // let animation = gsap.timeline({onComplete: function() {
+            //                 //     that.cameraControls.enableDrag(); 
+            //                 // }}); 
+            //                 // animation
+            //                 // .to(that.cameraControls.object.position, {z: 100, duration: 1.5,   ease: 'power2.inOut'}, '-=.7')
+            //             })
+            //             .catch((err) => {
+            //                 console.error(err);
+            //             });
+            //             return
+             
+            //  }, 0);
+
+
+
+             document.addEventListener('world-created', function(event) {
+                that.cameraControls = event.detail.getControls();
+                that.cameraControls.disableDrag();
+                that.world = event.detail; 
+            }); 
+
+            
+        setTimeout(function() {
+            that.loadGSAP("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js")
+                .then((data) => {
+                     that.playLoadingAnimation();
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+           }, 250);
+
+
 
     }
 }
