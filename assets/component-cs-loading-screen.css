@@ -443,7 +443,33 @@ body {
     font-family: var(--secondary-font-family); 
     letter-spacing: 2px;
     font-size: .7rem;
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
+
+
+@media (hover: hover) {
+    .gesture-notifider__text--swipe {
+        display: none;
+    }
+    .gesture-notifider__text--scroll {
+        display: block;
+    }
+}
+
+
+@media (hover: none) {
+    .gesture-notifider__text--swipe {
+        display: block;
+    }
+    .gesture-notifider__text--scroll {
+        display: none;
+    }
+}
+
+
 
 
 .gesture-notifier__circle {
