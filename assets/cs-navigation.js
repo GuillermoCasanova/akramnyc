@@ -35,11 +35,15 @@ class ComingSoonNav extends HTMLElement {
           opacity: 0
         }, {opacity: 1, duration: .9}, '+=0.2').fromTo(splash, {
             opacity: 0
-        }, {opacity: 1, duration: .9}, '-=1').to(navButtons[0], {
+        }, {opacity: 1, duration: .9}, '-=1')
+        .fromTo(document.querySelector('[data-gesture-signifier]'), {
+          opacity: 0
+        }, {opacity: 1, duration: 1}, '+=.2')
+        .to(navButtons[0], {
             backgroundColor: '#ffffff', 
             boxShadow: '0 0 12px #fff, 0 0 2px #fff, 0 0 1.5px #fff, 0 0 20px #ffffff, 0 0 4px #f8f8f8, 0 0 4px #ffffff, 0 0 15px #ffffff',
             duration: .1
-        }, '-=0.2').to(navButtons[0], {
+        }, '-=0.5').to(navButtons[0], {
             backgroundColor: 'transparent', 
             boxShadow: '0 0 5px rgba(255, 255, 255, 0)'
         }, '+=0.1').to(navButtons[1], {
@@ -49,14 +53,22 @@ class ComingSoonNav extends HTMLElement {
         }).to(navButtons[1], {
             backgroundColor: 'transparent', 
             boxShadow: '0 0 5px rgba(255, 255, 255, 0)'
-        }, '+=0.1').to(navButtons[2], {
+        }, '+=0.1')
+
+        .to(navButtons[2], {
             backgroundColor: '#ffffff', 
             boxShadow: '0 0 12px #fff, 0 0 2px #fff, 0 0 1.5px #fff, 0 0 20px #ffffff, 0 0 4px #f8f8f8, 0 0 4px #ffffff, 0 0 15px #ffffff',
             duration: .1
-        }).to(navButtons[2], {
+        })
+        .to(document.querySelector('[data-gesture-signifier]'), {
+          opacity: 0
+        }, '-=0.2')
+        .to(navButtons[2], {
             backgroundColor: 'transparent', 
             boxShadow: '0 0 5px rgba(255, 255, 255, 0)'
-        }, '+=0.1').to(navButtons[3], {
+        }, '+=0.1')
+
+        .to(navButtons[3], {
             backgroundColor: '#ffffff', 
             boxShadow: '0 0 12px #fff, 0 0 2px #fff, 0 0 1.5px #fff, 0 0 20px #ffffff, 0 0 4px #f8f8f8, 0 0 4px #ffffff, 0 0 15px #ffffff',
             duration: .1

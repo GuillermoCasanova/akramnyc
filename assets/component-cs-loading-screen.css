@@ -422,7 +422,6 @@ body {
 .gesture-notifier {
     position: absolute;
     top: 11rem;
-    animation: hide-loader 1s forwards ease-in 5s 1; 
 }
 
 
@@ -436,8 +435,6 @@ body {
     align-items: center;
     justify-content: center;
     top: 1.5rem;
-    opacity: 0;
-    animation: show-loader-elem 1.2s forwards ease-in 3s; 
 
 }
 
@@ -446,8 +443,6 @@ body {
     font-family: var(--secondary-font-family); 
     letter-spacing: 2px;
     font-size: .7rem;
-    opacity: 0;
-    animation: show-loader-elem 1.2s forwards ease-in 3.1s; 
 }
 
 
@@ -478,7 +473,7 @@ body {
     display: block;
     opacity: 1;
     border-radius: 100%;
-    animation: circle-fill 1s ease-in 0s 6;
+    animation: circle-fill 1s ease-in 0s infinite;
 }
 
 
@@ -500,13 +495,13 @@ body {
 } */
 
 .gesture-notifier__graphic .gesture-notifier__arrow:nth-child(2) {
-    animation: arrow-down 1s ease-in .1s 6;
+    animation: arrow-down 1s ease-in .1s infinite;
 }
 
 
 .gesture-notifier__graphic .gesture-notifier__arrow:nth-child(3) {
     bottom: 2rem; 
-    animation: arrow-down 1s ease-in .2s 6;
+    animation: arrow-down 1s ease-in .2s infinite;
 }
 
 @keyframes arrow-down {
@@ -544,24 +539,24 @@ body {
     }
 }
 
-@keyframes hide-loader{
+/* @keyframes hide-loader{
     0% {
          opacity: 1;
     }
     100% {
       opacity: 0;
     }
-}
+} */
 
 
-@keyframes show-loader-elem{
+/* @keyframes show-loader-elem{
     0% {
          opacity: 0;
     }
     100% {
       opacity: 1;
     }
-}
+} */
 
 
 
