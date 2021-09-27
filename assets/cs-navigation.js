@@ -26,12 +26,12 @@ class ComingSoonNav extends HTMLElement {
         let splash = this.splashLogo; 
         let camera  = this.camera; 
 
-        let navigationAnimation = gsap.timeline({onComplete: function() {
-            that.setUpNavigation(camera); 
+
+        this.navigationAnimation = gsap.timeline({onComplete: function() {
 
         }}); 
 
-        navigationAnimation.fromTo('.navigation__links', {
+        this.navigationAnimation.fromTo('.navigation__links', {
           opacity: 0
         }, {opacity: 1, duration: .9}, '+=0.2').fromTo(splash, {
             opacity: 0
@@ -76,6 +76,10 @@ class ComingSoonNav extends HTMLElement {
             backgroundColor: 'transparent', 
             boxShadow: '0 0 5px rgba(255, 255, 255, 0)'
         }, '+=0.1')
+
+        setTimeout(function() {
+          that.setUpNavigation(camera); 
+        }, 100);
 
     }
 
@@ -256,6 +260,11 @@ class ComingSoonNav extends HTMLElement {
       pagesContainer.classList.add('is-visible');
       scene.classList.add('no-pointer');
       cameraControls.setLookAtSpeed(0.001);
+
+      if(that.navigationAnimation) {
+        that.navigationAnimation.seek(0);
+        that.navigationAnimation.kill();
+      }
 
       if(pPageId === 'current-time') {
         document.querySelector('local-time').init(); 
