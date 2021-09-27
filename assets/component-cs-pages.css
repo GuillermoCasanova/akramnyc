@@ -477,6 +477,16 @@ div[class*='Row__FormRow-']{
       margin-bottom: 6rem;
   }
 
+.newsletter-sign-up .ql-editor p {
+    color: #fff !important; 
+    margin-bottom: .5rem !important; 
+    font-family: var(--secondary-font-family) !important;
+}
+
+
+
+
+
 /*------------------------------------*\
     #Contact page
 \*------------------------------------*/

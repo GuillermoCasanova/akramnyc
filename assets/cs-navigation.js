@@ -262,7 +262,8 @@ class ComingSoonNav extends HTMLElement {
       cameraControls.setLookAtSpeed(0.001);
 
       if(that.navigationAnimation) {
-        that.navigationAnimation.seek(0);
+        that.navigationAnimation.seek(1);
+        that.navigationAnimation.clear();
         that.navigationAnimation.kill();
       }
 
