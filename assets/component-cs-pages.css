@@ -486,7 +486,17 @@ div[class*='Row__FormRow-']{
 }
 
 
+.newsletter-sign-up .CymaC.CymaC {
+    color: #fff !important; 
+    margin-bottom: .5rem !important; 
+    font-family: var(--primary-font-family) !important;
+    font-size: 1.375rem !important;
+    line-height: 1.25 !important;
+}
 
+.newsletter-sign-up .brnlVF.brnlVF {
+    width: 90% !important;
+}
 
 
 /*------------------------------------*\
