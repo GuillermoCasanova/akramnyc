@@ -17,6 +17,7 @@ main {
     z-index: 3;
     will-change: transform;
     position: fixed;
+    width: 100%;
   }
   
   .shopify-section-header-sticky {
@@ -49,17 +50,20 @@ main {
     grid-template-columns: 1fr 2fr 1fr;
     align-items: center;
     background-color: rgb(var(--color-background));
-    padding-top: 1rem;
+    padding-top: .5rem;
     padding-bottom: 1rem;
     background: linear-gradient(to top, transparent 0%, black 37%);
     padding-bottom: 1rem;
     height: 8rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
   
   @media screen and (min-width: 990px) {
     .header {
-      padding-top: 2rem;
+      padding-top: 1rem;
       padding-bottom: 2rem;
+      background: linear-gradient(to top, transparent 0%, #000000eb 78%, #000000 12%);
     }
   
     .header--has-menu:not(.header--middle-left) {
@@ -94,6 +98,14 @@ main {
     }
   }
   
+  .header__logo {
+      width: 1.5rem;
+      height: 4.25rem;
+      filter: drop-shadow(2px 4px 10px rgba(0,0,0, .1));
+  }
+
+
+
   .header *[tabindex='-1']:focus {
     outline: none;
   }
@@ -453,3 +465,11 @@ main {
   }
   
   
+
+  .list-menu__item link,
+  .header__menu-item {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 1rem;
+      cursor: pointer;
+  }

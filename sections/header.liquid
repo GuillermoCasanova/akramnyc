@@ -85,6 +85,9 @@
   <symbol id="icon-close" class="icon icon-close" fill="none" viewBox="0 0 18 17">
     <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
   </symbol>
+
+  <symbol xmlns="http://www.w3.org/2000/svg" id="akram-badge" x="0" y="0" version="1.1" viewBox="0 0 22.6 65.4" xml:space="preserve"><defs/><path fill="#fff" d="M15.8 5C15.1-.7 10 0 10 0 7.6.1 6.3 1.2 6 2.7c-.4 1.6-.4 3.3-.6 5-.2 2.3-.3 4.8-.5 7.1-.2 2.4-.3 6.4-.5 8.7-.2 2.3-.3 4.6-.4 7-.2 2.9-.4 5.7-.6 8.6-.2 2.7-.3 5.5-.6 8.2-.2 2.8-.5 5.5-.8 8.3 0 0-.6 5.7-2.1 9.7h8.3c-1.5-3.8-1.6-13.7-1.6-13.7h5.7s-.6 9.2-2.2 13.6h12.4C20 61 18.7 41.6 18.7 41.6L15.8 5zM12 39.5l.4 8.7H6.7l.4-14.4c.1-4.1.2-8.3.3-12.4.2-4.5.5-10.6.6-15.4.1-1.2.2-2.5 1.2-2.5.8 0 1.1.4 1.2 1.1 0 .2.1.5.1.8L12 39.5z"/>
+  </symbol>
 </svg>
 
 
@@ -253,7 +256,7 @@
     {%- endif -%}
 
     {%- if section.settings.logo_position == 'top-center' or section.settings.menu == blank -%}
-      <details-modal class="header__search">
+      {% comment %} <details-modal class="header__search">
         <details>
           <summary class="header__icon header__icon--search header__icon--summary link link--text focus-inset modal__toggle" aria-haspopup="dialog" aria-label="{{ 'general.search.search' | t }}">
             <span>
@@ -287,7 +290,7 @@
             </div>
           </div>
         </details>
-      </details-modal>
+      </details-modal> {% endcomment %}
     {%- endif -%}
 
     {%- if request.page_type == 'index' -%}
@@ -305,7 +308,10 @@
               alt="{{ section.settings.logo.alt | default: shop.name | escape }}"
             >
           {%- else -%}
-            <span class="h2">{{ shop.name }}</span>
+          <span class="h2  visually-hidden">{{ shop.name }}</span>
+          <svg class="header__logo" aria-hidden="true" focusable="false" role="presentation">
+            <use href="#akram-badge">
+          </svg>
           {%- endif -%}
         </a>
     {%- if request.page_type == 'index' -%}
@@ -365,7 +371,7 @@
     {%- endif -%}
 
     <div class="header__icons">
-      <details-modal class="header__search">
+      {% comment %} <details-modal class="header__search">
         <details>
           <summary class="header__icon header__icon--search header__icon--summary link link--text focus-inset modal__toggle" aria-haspopup="dialog" aria-label="{{ 'general.search.search' | t }}">
             <span>
@@ -399,7 +405,7 @@
             </div>
           </div>
         </details>
-      </details-modal>
+      </details-modal> {% endcomment %}
 
       {%- if shop.customer_accounts_enabled -%}
         <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon header__icon--account link link--text focus-inset">
