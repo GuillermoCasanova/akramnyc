@@ -14,9 +14,6 @@
 
 </style>
 
-<script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
-{% comment %} <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script> {% endcomment %}
-<script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
 
 <svg xmlns="http://www.w3.org/2000/svg" class="hidden">
   <symbol id="icon-search" viewbox="0 0 18 19" fill="none">
@@ -197,7 +194,7 @@
     {%- endif -%}
 
     {%- if section.settings.logo_position == 'top-center' or section.settings.menu == blank -%}
-      {% comment %} <details-modal class="header__search">
+     <details-modal class="header__search">
         <details>
           <summary class="header__icon header__icon--search header__icon--summary  focus-inset modal__toggle" aria-haspopup="dialog" aria-label="{{ 'general.search.search' | t }}">
             <span>
@@ -231,7 +228,7 @@
             </div>
           </div>
         </details>
-      </details-modal> {% endcomment %}
+      </details-modal> 
     {%- endif -%}
 
     {%- if request.page_type == 'index' -%}
@@ -312,7 +309,7 @@
     {%- endif -%}
 
     <div class="header__icons">
-      {% comment %} <details-modal class="header__search">
+    <details-modal class="header__search">
         <details>
           <summary class="header__icon header__icon--search header__icon--summary  focus-inset modal__toggle" aria-haspopup="dialog" aria-label="{{ 'general.search.search' | t }}">
             <span>
@@ -346,7 +343,7 @@
             </div>
           </div>
         </details>
-      </details-modal> {% endcomment %}
+      </details-modal>
 
       {%- if shop.customer_accounts_enabled -%}
         <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon header__icon--account  focus-inset">
@@ -366,12 +363,18 @@
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart  focus-inset" id="cart-icon-bubble">
         {%- liquid
           if cart == empty
-            render 'icon-cart-empty'
+            render 'icon-cart'
           else
             render 'icon-cart'
           endif
         -%}
         <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+          {%- if cart == empty -%}
+           <div class="cart-count-bubble">
+              <span aria-hidden="true">{{ cart.item_count }}</span>
+            </div>
+          {%-endif-%}
+
         {%- if cart != empty -%}
           <div class="cart-count-bubble">
             {%- if cart.item_count < 100 -%}
@@ -388,6 +391,12 @@
 {%- if request.page_type != 'cart' -%}
   {%- render 'cart-notification' -%}
 {%- endif -%}
+
+
+
+<script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script> 
+<script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
 
 {% javascript %}
   class StickyHeader extends HTMLElement {
