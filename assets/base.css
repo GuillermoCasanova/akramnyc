@@ -48,6 +48,31 @@ abbr, acronym {
     box-sizing: border-box;
 }
 
+summary::-webkit-details-marker {
+  display: none;
+  list-style-type: none;
+}
+summary::before {
+  display: none;
+}
+
+
+summary::-webkit-details-marker {
+  display: none;
+  list-style-type: none;
+}
+summary::before {
+  display: none;
+
+}
+
+
+.visually-hidden {
+  z-index: -9999;
+  pointer-events: none;
+  
+}
+
 
 
 
