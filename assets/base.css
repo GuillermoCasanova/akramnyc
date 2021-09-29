@@ -262,3 +262,18 @@ p {
   left: -999;
   position: fixed;
 }
+
+
+
+
+/*------------------------------------*\
+    #PaddingAndMarginsLevels
+\*------------------------------------*/
+
+.button--primary {
+  font-size: 1.1rem;
+}
+
+.button--primary:hover {
+  cursor: pointer;
+}
