@@ -19,7 +19,7 @@
 
 @media screen and (min-width: 1000px) {
   .image-banner {
-    padding-bottom: 50%;
+    padding-bottom: 55%;
     margin-bottom: var(--level7);
   }
 }
@@ -27,7 +27,7 @@
 
 @media screen and (min-width: 1400px) {
   .image-banner {
-    padding-bottom: 52.5%;
+    padding-bottom: 60.5%;
     margin-bottom: var(--level7);
   }
 }

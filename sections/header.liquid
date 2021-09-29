@@ -270,7 +270,7 @@
                       <span {%- if link.child_active %} class="header__active-menu-item"{% endif %}>{{ link.title | escape }}</span>
                       {% render 'icon-caret' %}
                     </summary>
-                    <ul class="header__submenu list-menu list-menu--disclosure caption-large motion-reduce" role="list" tabindex="-1">
+                    <ul class="header__submenu list-menu caption-large motion-reduce" role="list" tabindex="-1">
                       {%- for childlink in link.links -%}
                         <li>
                           {%- if childlink.links == blank -%}
@@ -398,16 +398,51 @@
       this.header = document.getElementById('shopify-section-header');
       this.headerBounds = {};
       this.currentScrollTop = 0;
+      const that = this; 
 
       this.onScrollHandler = this.onScroll.bind(this);
 
       window.addEventListener('scroll', this.onScrollHandler, false);
 
       this.createObserver();
+
+
+      let activeDropDown = null; 
+
+      function checkIfOpen() {
+        that.header.querySelectorAll('details[open]').forEach(function() {
+          console.log('is open!');
+          return true
+        })
+      }
+
+      document.querySelectorAll('details-disclosure').forEach(function(elem) {
+
+
+        elem.querySelector('details').addEventListener("toggle", event => {
+          if(elem.querySelector('details').open) {
+            console.log(activeDropDown); 
+
+            if(activeDropDown !== elem.querySelector('span').textContent) {
+              console.log('TRANSFORM');
+            }
+
+            activeDropDown = elem.querySelector('span').textContent; 
+            console.log(activeDropDown); 
+
+          } else if(!checkIfOpen()) {
+            that.header.classList.remove('has-dropdown-open');
+          }
+        });
+      });
     }
 
     disconnectedCallback() {
       window.removeEventListener('scroll', this.onScrollHandler);
+    }
+
+    onKeyUp(event) {
+      console.log(event); 
     }
 
     createObserver() {
