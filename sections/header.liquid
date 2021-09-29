@@ -511,11 +511,17 @@
           console.log('is open');
         } else  {
       
-          fetch(`${routes.cart_add_url}`, { ...fetchConfig('javascript') })
+          fetch('/cart.js', { 
+            method: 'GET',
+            headers: {
+            'Content-Type': 'application/json'
+            }
+            })
             .then((response) => response.json())
             .then((parsedState) => {
+              console.log(parsedState);
               that.cartNotification.renderContents(parsedState);
-              event.currentTarget.classList.add('is-open'); 
+           
             })
             .catch((e) => {
               console.error(e);
