@@ -10,7 +10,8 @@ class CartNotification extends HTMLElement {
     this.notification = document.getElementById('cart-notification');
     this.header = document.querySelector('sticky-header');
     this.onBodyClick = this.handleBodyClick.bind(this);
-    
+    this.productsContainer = this.querySelector('.cart-notification-product');
+
     this.notification.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
     this.querySelectorAll('button[type="button"]').forEach((closeButton) =>
       closeButton.addEventListener('click', this.close.bind(this))
@@ -26,14 +27,16 @@ class CartNotification extends HTMLElement {
     }, { once: true });
 
     document.body.addEventListener('click', this.onBodyClick);
+    document.body.classList.add('overflow-hidden-tablet');
   }
 
   close() {
     this.notification.classList.remove('active');
 
     document.body.removeEventListener('click', this.onBodyClick);
-
+    document.body.classList.remove('overflow-hidden-tablet');
     removeTrapFocus(this.activeElement);
+
   }
 
   renderContents(parsedState) {
@@ -51,10 +54,9 @@ class CartNotification extends HTMLElement {
     
     document.querySelector('.cart-notification-product').innerHTML = ""; 
 
+    let allProducts = []; 
+
     cartContents.items.forEach(function(element, index) { 
-      let html = `
-        <h1> hello</h1>
-      `;
 
       let cartItem = element; 
       let item = null; 
@@ -111,31 +113,9 @@ class CartNotification extends HTMLElement {
        vendor: cartItem.vendor
      };
 
-     console.log(item); 
-     
-      document.querySelector('.cart-notification-product').insertAdjacentHTML('beforeend', `
-      <li>
-          <div class="product-line-item">
 
-            <a href="${item.url}" class="product-line-item__inner">
-            
-              <img src="${item.img}" class="product-line-item__image"/>
+     allProducts.push(item); 
 
-              <div cass="product-line-item__info">
-                <h3>
-                  ${item.name}
-                <h3>
-                <div>
-                  <p>
-                      $100
-                  </p>
-                </div>
-
-              </div>
-            </a>
-          </div>
-      <li>
-      `); 
 
     }); 
 
@@ -144,6 +124,50 @@ class CartNotification extends HTMLElement {
       //   document.getElementById(section.id).innerHTML =
       //     this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);
       // }));
+      
+
+    console.log(allProducts); 
+
+     let products =  allProducts.reduce((prevValue, currentVal) => prevValue + productTemplate(currentVal), "");
+
+     let productList = `
+      <ul class="cart-notification-products__inner">
+          ${products}
+      </ul>
+      `;
+
+      this.productsContainer.innerHTML = productList; 
+
+      function productTemplate(pProduct) {
+        return  `
+        <li>
+            <div class="cart-notification__product">
+  
+              <a href="${pProduct.url}" class="cart-notification__product__inner">
+                <div class="cart-notification__product__image-container">
+                  <div class="cart-notification__product__image">
+                    <img src="${pProduct.img}" />
+                  </div>
+                </div>
+  
+                <div class="cart-notification__product__info">
+                  <h3 class="cart-notification__product__info__title">
+                    ${pProduct.name}
+                  </h3>
+                  <p class="cart-notification__product__info__variant"> 
+                    Size: M
+                  </p>
+                    <p class="cart-notification__product__info__price">
+                        $100
+                    </p>
+                </div>
+              </a>
+            </div>
+        </li>
+        `; 
+      }
+
+
 
       this.header?.reveal();
       this.open();
