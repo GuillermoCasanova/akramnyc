@@ -16,6 +16,7 @@ class CartNotification extends HTMLElement {
     this.querySelectorAll('button[type="button"]').forEach((closeButton) =>
       closeButton.addEventListener('click', this.close.bind(this))
     );
+
   }
 
   open() {
@@ -99,12 +100,12 @@ class CartNotification extends HTMLElement {
        itemAdd: cartItem.quantity + 1,
        itemMinus: cartItem.quantity - 1,
        itemQty: cartItem.quantity,
-      //  price: new Currency().formatMoney(cartItem.price,window.moneyFormat),
-      //  subtotal: new Currency().formatMoney(cartItem.final_line_price,window.moneyFormat),
-      //  discountedPrice: new Currency().formatMoney(
-      //    cartItem.price - cartItem.total_discount / cartItem.quantity,
-      //   window.moneyFormat
-      //  ),
+       price: new Shopify.currency().formatMoney(cartItem.price,window.moneyFormat),
+       subtotal: new Shopify.currency().formatMoney(cartItem.final_line_price,window.moneyFormat),
+       discountedPrice: new Shopify.currency().formatMoney(
+         cartItem.price - cartItem.total_discount / cartItem.quantity,
+        window.moneyFormat
+       ),
        discounts: cartItem.discounts,
        discountsApplied:
          cartItem.price === cartItem.price - cartItem.total_discount
@@ -158,7 +159,7 @@ class CartNotification extends HTMLElement {
                     Size: M
                   </p>
                     <p class="cart-notification__product__info__price">
-                        $100
+                       ${pProduct.subtotal}
                     </p>
                 </div>
               </a>

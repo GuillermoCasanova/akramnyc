@@ -6,9 +6,28 @@ class CartRemoveButton extends HTMLElement {
       this.closest('cart-items').updateQuantity(this.dataset.index, 0);
     });
   }
+
 }
 
+
+
 customElements.define('cart-remove-button', CartRemoveButton);
+
+
+class QuantitySelect extends HTMLElement {
+    constructor() {
+      super();
+      this.querySelector('select').addEventListener('change', (event) => {
+        console.log( parseInt(event.currentTarget.value)); 
+        console.log(parseInt(this.dataset.index)); 
+        this.closest('cart-items').updateQuantity(this.dataset.index, parseInt(event.currentTarget.value));
+      }); 
+    }
+}
+
+customElements.define('quantity-select', QuantitySelect);
+
+
 
 class CartItems extends HTMLElement {
   constructor() {
@@ -59,6 +78,7 @@ class CartItems extends HTMLElement {
   }
 
   updateQuantity(line, quantity, name) {
+    console.log(line); 
     this.enableLoading(line);
 
     const body = JSON.stringify({
@@ -73,26 +93,303 @@ class CartItems extends HTMLElement {
         return response.text();
       })
       .then((state) => {
+
+
         const parsedState = JSON.parse(state);
+
+        console.log(parsedState); 
+
         this.classList.toggle('is-empty', parsedState.item_count === 0);
         document.getElementById('main-cart-footer')?.classList.toggle('is-empty', parsedState.item_count === 0);
 
-        this.getSectionsToRender().forEach((section => {
-          const elementToReplace =
-            document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
 
-          elementToReplace.innerHTML =
-            this.getSectionInnerHTML(parsedState.sections[section.section], section.selector);
-        }));
+        this.renderCart(parsedState);
 
-        this.updateLiveRegions(line, parsedState.item_count);
-        document.getElementById(`CartItem-${line}`)?.querySelector(`[name="${name}"]`)?.focus();
-        this.disableLoading();
-      }).catch(() => {
+        // this.getSectionsToRender().forEach((section => {
+
+        //   console.log(section); 
+
+        //   // const elementToReplace =
+        //   //   document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
+
+        //   //   console.log(parsedState); 
+
+        //   // elementToReplace.innerHTML =  this.getSectionInnerHTML(parsedState.sections[section.section], section.selector);
+        // }));
+
+        // this.updateLiveRegions(line, parsedState.item_count);
+        // document.getElementById(`CartItem-${line}`)?.querySelector(`[name="${name}"]`)?.focus();
+        // this.disableLoading();
+
+      }).catch((err) => {
+        console.log(err); 
         this.querySelectorAll('.loading-overlay').forEach((overlay) => overlay.classList.add('hidden'));
         document.getElementById('cart-errors').textContent = window.cartStrings.error;
         this.disableLoading();
       });
+  }
+
+  renderCart(pCart) {
+
+    
+    let productsHTML = ""; 
+
+
+    function priceTemplate(pItem) {
+
+      let priceTemplate = ''; 
+
+      if(pItem.discountsApplied) {
+
+        let discountActive = `
+            <dl class="cart-item__discounted-prices">
+            <dt class="visually-hidden">
+              ${pItem.price}
+            </dt>
+            <dd>
+              <s class="cart-item__old-price price price--end">
+                ${pItem.price}
+              </s>
+            </dd>
+            <dt class="visually-hidden">
+              ${pItem.discountedPrice}
+            </dt>
+            <dd class="price price--end">
+              ${pItem.subtotal}
+            </dd>
+          </dl>
+        `; 
+
+        priceTemplate = priceTemplate + discountActive; 
+         
+      } else {
+        priceTemplate = `
+         <span class="price price--end">
+          ${pItem.price}
+         </span>
+        ` 
+      }
+      return priceTemplate;
+    }
+
+    function variantTemplate(pItem) {
+
+    let product_contents = pItem; 
+    let template = ''; 
+
+      if(pItem.originalObject.has_only_default_variant == false || pItem.originalObject.properties.size != 0 || pItem.originalObject.selling_plan_allocation !== nil ) {
+
+        function getOptionHtml() {
+           if(pItem.originalObject.product_has_only_default_variant == false) {
+
+             let productOptionTemplate ='';
+              pItem.originalObject.options_with_values.forEach(function(element) {
+                let template = `
+                  <div class="product-option">
+                    <dt>${element.name}: </dt>
+                    <dd>${element.value}</dd>
+                  </div>
+                `;
+                productOptionTemplate =  productOptionTemplate + template; 
+              }); 
+
+              if( Object.keys(pItem.originalObject.properties).legth > 0) {
+                  pItem.originalObject.properties.forEach(function(element) {
+                    let property_first_char = element.first.slide(0, 1); 
+                    if(element.last !== '' && property_first_char !== "_") {
+                      let template = `
+                      <div class="product-option">
+                      <dt>${element.first}: </dt>
+                      <dd>
+                          ${element.last}
+                      </dd>
+                    </div>
+                      
+                      `;
+                    }
+                    productOptionTemplate = productOptionTemplate + template; 
+                  }); 
+              }
+              return productOptionTemplate; 
+            } else {
+              return 'nothing? '
+            }
+        }
+
+        return getOptionHtml(); 
+
+      } else {
+        return ""
+      }
+    }
+
+    function productTemplate(pProduct, pProductIndex) {
+      let productIndex =  1 + 1; 
+      let prod_contents = pProduct; 
+
+      return  `
+      <tr class="cart-item" id="CartItem-${productIndex}">
+        <td class="cart-item__media">
+            <img class="cart-item__image"
+              src="${prod_contents.img}"
+              alt="${prod_contents.name}"
+              loading="lazy"
+            >
+        </td>
+
+        <td class="cart-item__details">
+          <a href="${prod_contents.url}" class="cart-item__name break">${prod_contents.name}</a>
+        </td>
+      
+        <td class="cart-item__prices right">
+          <div class="cart-item__price-wrapper">
+            ${priceTemplate(prod_contents)}
+          </div>
+        </td>
+
+        <td>
+            ${variantTemplate(prod_contents)}
+        </td>
+
+        <td class="cart-item__quantity">
+          <quantity-select data-index="${productIndex}">
+                <span aria-label="Quantity">
+                Qty.
+                </span>
+                <select  
+                  class="quantity__input"
+                  name="updates[]"
+                  data-quantity-update
+                  value="${prod_contents.itemQty}"
+                  aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}    
+                  id="Quantity-${productIndex}" tabindex="-1"   data-index="${productIndex}">
+                  {% for currency in shop.enabled_currencies %}
+                    <option value="0" ${prod_contents.itemQty === 0 ? 'selected' : '' }>
+                        0
+                    </option>
+                    <option value="1"  ${prod_contents.itemQty === 1? 'selected' : '' }>
+                        1
+                    </option>
+                    <option value="2"  ${prod_contents.itemQty === 2 ? 'selected' : '' }>
+                        2
+                    </option>
+                    <option value="3"  ${prod_contents.itemQty === 3 ? 'selected' : '' }>
+                        3
+                    </option>
+                    <option value="4"  ${prod_contents.itemQty === 0 ? 'selected' : '' }>
+                        4
+                    </option>
+                    <option value="5"  ${prod_contents.itemQty === 0 ? 'selected' : '' }>
+                      5
+                    </option>
+                    <option value="6"  ${prod_contents.itemQty === 0 ? 'selected' : '' }>
+                      6
+                    </option>
+                    <option value="7"  ${prod_contents.itemQty === 0 ? 'selected' : '' }>
+                      7
+                    </option>
+                    <option value="8"  ${prod_contents.itemQty === 0 ? 'selected' : '' }>
+                      8
+                    </option>
+                    <option value="9"  ${prod_contents.itemQty === 0 ? 'selected' : '' }>
+                      9
+                    </option>
+                  {% endfor %}
+                </select>
+          </quantity-select>
+     
+          <cart-remove-button id="Remove-${productIndex}" data-index="${productIndex}">
+          <a href="${pProduct.url}" class="button button--tertiary" aria-label="Remove ${prod_contents.title}">
+            Remove
+          </a>
+        </cart-remove-button>
+      </td>
+     </tr>`; 
+    }
+
+
+    let allProducts = []; 
+
+    pCart.items.forEach(function(element, index) { 
+
+      let cartItem = element; 
+      let item = null; 
+
+     /* Hack to get product image thumbnail
+       *   - If image is not null
+       *     - Remove file extension, add _small, and re-add extension
+       *     - Create server relative link
+       *   - A hard-coded url of no-image
+      */
+     var prodImg;
+     if (cartItem.image !== null) {
+       prodImg = cartItem.image
+         .replace(/(\.[^.]*)$/, '_small$1')
+         .replace('http:', '');
+     } else {
+       prodImg =
+         '//cdn.shopify.com/s/assets/admin/no-image-medium-cc9732cb976dd349a0df1d39816fbcc7.gif';
+     }
+
+    //  if (cartItem.properties !== null) {
+    //    $.each(cartItem.properties, function(key, value) {
+    //      if (key.charAt(0) === '_' || !value) {
+    //        delete cartItem.properties[key];
+    //      }
+    //    });
+    //  }
+
+
+     // Create item's data object and add to 'items' array
+     item = {
+       originalObject: cartItem, 
+       key: cartItem.key,
+       line: index + 1, // Shopify uses a 1+ index in the API
+       url: cartItem.url,
+       img: prodImg,
+       name: cartItem.product_title,
+       options: cartItem.options_with_values,
+       variation: cartItem.variant_title,
+       properties: cartItem.properties,
+       itemAdd: cartItem.quantity + 1,
+       itemMinus: cartItem.quantity - 1,
+       itemQty: cartItem.quantity,
+       original_price: cartItem.original_price,
+       final_price: cartItem.final_price,
+       variant: cartItem.variant,
+       price: new Shopify.currency().formatMoney(cartItem.price,window.moneyFormat),
+       subtotal: new Shopify.currency().formatMoney(cartItem.final_line_price,window.moneyFormat),
+       discountedPrice: new Shopify.currency().formatMoney(
+         cartItem.price - cartItem.total_discount / cartItem.quantity,
+        window.moneyFormat
+       ),
+       discounts: cartItem.discounts,
+       discountsApplied:
+         cartItem.price === cartItem.price - cartItem.total_discount
+           ? false
+           : true,
+       vendor: cartItem.vendor
+     };
+
+     console.log(item); 
+
+     allProducts.push(item); 
+
+
+    }); 
+
+
+    let products =  allProducts.reduce((prevValue, currentVal) => prevValue + productTemplate(currentVal), "");
+
+    productsHTML = `
+     <ul class="cart-notification-products__inner">
+         ${products}
+     </ul>
+     `;
+
+     document.querySelector('[data-products-container]').innerHTML = productsHTML; 
+
+
   }
 
   updateLiveRegions(line, itemCount) {
@@ -123,8 +420,8 @@ class CartItems extends HTMLElement {
   }
 
   enableLoading(line) {
-    document.getElementById('main-cart-items').classList.add('cart__items--disabled');
-    this.querySelectorAll('.loading-overlay')[line - 1].classList.remove('hidden');
+   // document.getElementById('main-cart-items').classList.add('cart__items--disabled');
+    //this.querySelectorAll('.loading-overlay')[line - 1].classList.remove('hidden');
     document.activeElement.blur();
     this.lineItemStatusElement.setAttribute('aria-hidden', false);
   }

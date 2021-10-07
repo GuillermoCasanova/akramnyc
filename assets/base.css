@@ -82,13 +82,13 @@ summary::before {
 \*------------------------------------*/
 
 :root {
-  --level1: .25rem; 
-  --level2: .5rem; 
-  --level3: 1rem; 
-  --level4: 1.5rem; 
-  --level5: 2rem; 
-  --level6: 2.5rem; 
-  --level7: 3rem; 
+  --level1: .20rem; 
+  --level2: .45rem; 
+  --level3: .95rem; 
+  --level4: 1.45rem; 
+  --level5: 1.95rem; 
+  --level6: 2.45rem; 
+  --level7: 2.95rem; 
 }
 
 
@@ -124,6 +124,16 @@ summary::before {
     --tertiary-font-family: 'telegrafbold',  'Space Mono', 'Courier New', Courier, monospace;
     --letter-spacing-1: 1.5px; 
     --letter-spacing-3: 3px; 
+    --kilo: 3.002rem;
+    --h1: 2.436rem;
+    --h2: 1.903rem;
+    --h3: 1.513rem;
+    --h4: 1.20rem;
+    --h5: 1rem;
+    --h6: 1rem;
+    --normal: .95em;
+    --micro: .85rem;
+    --line-height: 1;
 }
   
   
@@ -134,7 +144,7 @@ summary::before {
 \*------------------------------------*/
 
 :root {
-  font-size: .8rem;
+  font-size: .9rem;
 }
 
 
@@ -146,9 +156,9 @@ summary::before {
 }
 
 /*SMALL-UP*/
-@media screen and (min-width: 380px) {
+@media screen and (min-width: 370px) {
   :root {
-    font-size: .9rem;
+    font-size: 1rem;
   }
 }
 
