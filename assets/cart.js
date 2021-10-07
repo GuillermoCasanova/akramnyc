@@ -20,7 +20,7 @@ class QuantitySelect extends HTMLElement {
       this.querySelector('select').addEventListener('change', (event) => {
         console.log( parseInt(event.currentTarget.value)); 
         console.log(parseInt(this.dataset.index)); 
-        this.closest('cart-items').updateQuantity(this.dataset.index, parseInt(event.currentTarget.value));
+        //this.closest('cart-items').updateQuantity(this.dataset.index, parseInt(event.currentTarget.value));
       }); 
     }
 }
@@ -33,8 +33,6 @@ class CartItems extends HTMLElement {
   constructor() {
 
     super();
-    console.log('hello');
-
 
     this.lineItemStatusElement = document.getElementById('shopping-cart-line-item-status');
 
@@ -78,7 +76,6 @@ class CartItems extends HTMLElement {
   }
 
   updateQuantity(line, quantity, name) {
-    console.log(line); 
     this.enableLoading(line);
 
     const body = JSON.stringify({
@@ -93,16 +90,9 @@ class CartItems extends HTMLElement {
         return response.text();
       })
       .then((state) => {
-
-
         const parsedState = JSON.parse(state);
-
-        console.log(parsedState); 
-
         this.classList.toggle('is-empty', parsedState.item_count === 0);
         document.getElementById('main-cart-footer')?.classList.toggle('is-empty', parsedState.item_count === 0);
-
-
         this.renderCart(parsedState);
 
         // this.getSectionsToRender().forEach((section => {
@@ -130,6 +120,8 @@ class CartItems extends HTMLElement {
   }
 
   renderCart(pCart) {
+
+    console.log('render CART!');
 
     
     let productsHTML = ""; 
@@ -224,7 +216,7 @@ class CartItems extends HTMLElement {
     }
 
     function productTemplate(pProduct, pProductIndex) {
-      let productIndex =  1 + 1; 
+      let productIndex =  pProduct.line; 
       let prod_contents = pProduct; 
 
       return  `
@@ -253,8 +245,8 @@ class CartItems extends HTMLElement {
 
         <td class="cart-item__quantity">
           <quantity-select data-index="${productIndex}">
-                <span aria-label="Quantity">
-                Qty.
+                <span >
+                Quantity: 
                 </span>
                 <select  
                   class="quantity__input"
@@ -371,10 +363,9 @@ class CartItems extends HTMLElement {
        vendor: cartItem.vendor
      };
 
-     console.log(item); 
-
      allProducts.push(item); 
 
+     console.log(allProducts); 
 
     }); 
 
