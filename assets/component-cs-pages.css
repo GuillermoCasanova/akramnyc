@@ -173,24 +173,32 @@
     width: 100%;
     margin-right: auto; 
     margin-left: auto;
-    margin-bottom: -6rem;
+    margin-bottom: -3rem;
 }
 
 @media screen and (min-width: 768px) {
     .newsletter-sign-up {
-        margin-bottom: -4rem;
+        margin-bottom: -2rem;
     }
 }
 
 
 .newsletter-sign-up__header {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
     
+
+@media screen and (min-width: 768px) {
+    .newsletter-sign-up__header {
+            margin-bottom: 2rem;
+    }
+}
+
+
 .newsletter-sign-up__headline {
     text-transform: none;
     font-weight: normal;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-family: var(--primary-font-family);
 }
 
@@ -233,7 +241,7 @@
 
 
 .newsletter-sign-up  label[class*='Label__StyledLabel'] {
-    font-size: 1.1rem !important; 
+    font-size: 1rem !important; 
     line-height: 1.5 !important;
     padding-bottom: 0 !important;
 }
@@ -254,10 +262,15 @@
 }
 
 .newsletter-sign-up  button[class*='needsclick Button__FormStyledButton'] {
-    font-size: 1.1rem !important;
+    font-size: 1rem !important;
     line-height: 1.5 !important;
 }
 
+
+.newsletter-sign-up div[class*='FormComponent__StyledFormComponentWrapper'], 
+.newsletter-sign-up  .button, div[class*='FormComponent__StyledFormComponentWrapper'] button {
+    margin-top: 0; 
+}
 
 
 div[class*='Row__FormRow-']{
@@ -428,7 +441,6 @@ div[class*='Row__FormRow-']{
 
   div[class*='FormComponent__StyledFormComponentWrapper'] .button,
   div[class*='FormComponent__StyledFormComponentWrapper'] button {
-    margin-top: 1rem;
     width: 100% !important;
     color: #fff !important;
     text-transform: uppercase !important;
