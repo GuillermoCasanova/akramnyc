@@ -22,7 +22,7 @@
             
                 typeWrite(pStop) {
                     if(this.i < this.str.length) {
-
+                        console.log('typing');
                         this.classList.add('is-typing');
                         let speed = this.speed; 
                         this.text = this.str.slice(0, ++this.i);
@@ -37,6 +37,7 @@
                         if (this.isTag) return this.typeWrite();
                         this.writingFunction  = setTimeout(this.typeWrite.bind(this), speed);
                     } else {
+                        console.log('DONE');
                         this.classList.remove('is-typing');
                     }
                 }

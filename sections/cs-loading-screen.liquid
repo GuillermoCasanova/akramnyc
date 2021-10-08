@@ -125,10 +125,7 @@
           <h1 class="screen-readers-only">About Akram</h1>
            <type-writer class="about-page__bio">
             <p
-              data-text="Akram Collection 1 will go live October 2021. 
-                <br><br>
-                Intricate embroidery, striking designs, and the finest materials – these pieces are intended to be distinct and enjoyed for a lifetime. 
-              ">
+              data-text="{{section.settings.about}}">
               <span data-text-container></span>
               <span class="ticker">_</span>
             </p>
@@ -317,6 +314,11 @@
     {
       "type": "header",
       "content": "Coming Soon Loading Screen"
+    },
+    {
+      "type": "html",
+      "id": "about",
+      "label": "about"
     }
   ],
   "presets": [
