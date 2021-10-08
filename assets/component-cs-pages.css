@@ -121,7 +121,8 @@
     bottom: -2rem;
     position: relative;
     font-family: var(--secondary-font-family);
-    display: block; ;
+    display: block;
+    text-align: center;
     position: relative;
 }
 
