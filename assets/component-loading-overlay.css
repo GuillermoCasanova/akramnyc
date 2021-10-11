@@ -2,6 +2,7 @@
   position: absolute;
   z-index: 1;
   width: 3rem;
+  background-color: black;
 }
 
 @media screen and (max-width: 749px) {

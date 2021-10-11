@@ -534,7 +534,7 @@ div[class*='Row__FormRow-']{
     text-transform: capitalize;
     position: relative;
     transition: all .2s ease-in-out; 
-    padding-left: 1.5rem;
+    padding-left: 1.25rem;
     padding-right: .25rem;
 }
 
@@ -554,9 +554,9 @@ div[class*='Row__FormRow-']{
 }
 
 .communication-links__link__arrow {
-    width: 1rem;
+    width: .9rem;
     position: absolute;
-    left: .25rem;
+    left: .3rem;
     top: 0;
     bottom: 0;
     opacity: 0;
@@ -567,7 +567,7 @@ div[class*='Row__FormRow-']{
 .communication-links__link:hover, 
 .communication-links__link:focus {
     color: black;
-    padding-left: 1.75rem;
+    padding-left: 1.5rem;
     margin-left: -.25rem;
     background-color: white;
 }

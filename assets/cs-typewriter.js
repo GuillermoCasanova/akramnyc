@@ -26,7 +26,10 @@
                         this.classList.add('is-typing');
                         let speed = this.speed; 
                         this.text = this.str.slice(0, ++this.i);
-                        if (this.text === this.str) return;
+                        if (this.text === this.str) {
+                            this.classList.remove('is-typing');
+                            return;
+                        }
                     
                         this.textContainer.innerHTML = this.text;
                     
@@ -37,7 +40,6 @@
                         if (this.isTag) return this.typeWrite();
                         this.writingFunction  = setTimeout(this.typeWrite.bind(this), speed);
                     } else {
-                        console.log('DONE');
                         this.classList.remove('is-typing');
                     }
                 }
