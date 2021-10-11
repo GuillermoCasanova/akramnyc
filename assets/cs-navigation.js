@@ -273,7 +273,7 @@ class ComingSoonNav extends HTMLElement {
 
 
       if(pPageId === 'newsletter') {
-        that.loadScript("https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=WzNJKZ")
+        that.loadScript("https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RSpZfU")
         .then((data) => {
         })
         .catch((err) => {
