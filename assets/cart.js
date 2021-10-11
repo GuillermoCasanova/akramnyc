@@ -20,7 +20,6 @@ class QuantitySelect extends HTMLElement {
       this.querySelector('select').addEventListener('change', (event) => {
         console.log( parseInt(event.currentTarget.value)); 
         console.log(parseInt(this.dataset.index)); 
-        //this.closest('cart-items').updateQuantity(this.dataset.index, parseInt(event.currentTarget.value));
       }); 
     }
 }
@@ -94,6 +93,7 @@ class CartItems extends HTMLElement {
         this.classList.toggle('is-empty', parsedState.item_count === 0);
         document.getElementById('main-cart-footer')?.classList.toggle('is-empty', parsedState.item_count === 0);
         this.renderCart(parsedState);
+        this.updateLiveRegions(line, parsedState.item_count);
 
         // this.getSectionsToRender().forEach((section => {
 
@@ -107,7 +107,6 @@ class CartItems extends HTMLElement {
         //   // elementToReplace.innerHTML =  this.getSectionInnerHTML(parsedState.sections[section.section], section.selector);
         // }));
 
-        // this.updateLiveRegions(line, parsedState.item_count);
         // document.getElementById(`CartItem-${line}`)?.querySelector(`[name="${name}"]`)?.focus();
         // this.disableLoading();
 
@@ -215,9 +214,10 @@ class CartItems extends HTMLElement {
       }
     }
 
-    function productTemplate(pProduct, pProductIndex) {
+    function productTemplate(pProduct, pProductIndex, pCart) {
       let productIndex =  pProduct.line; 
       let prod_contents = pProduct; 
+      let that = this; 
 
       return  `
       <tr class="cart-item" id="CartItem-${productIndex}">
@@ -231,6 +231,16 @@ class CartItems extends HTMLElement {
 
         <td class="cart-item__details">
           <a href="${prod_contents.url}" class="cart-item__name break">${prod_contents.name}</a>
+            <p class="cart-item__error" id="Line-item-error-${productIndex}">
+              <span class="cart-item__error-text">
+              </span>
+              <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
+                <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+                <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+                <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+                <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+              </svg>
+            </p>
         </td>
       
         <td class="cart-item__prices right">
@@ -253,7 +263,7 @@ class CartItems extends HTMLElement {
                   name="updates[]"
                   data-quantity-update
                   value="${prod_contents.itemQty}"
-                  aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}    
+                  aria-label="Quantity: ${prod_contents.title}"   
                   id="Quantity-${productIndex}" tabindex="-1"   data-index="${productIndex}">
                   {% for currency in shop.enabled_currencies %}
                     <option value="0" ${prod_contents.itemQty === 0 ? 'selected' : '' }>
@@ -289,12 +299,22 @@ class CartItems extends HTMLElement {
                   {% endfor %}
                 </select>
           </quantity-select>
-     
+      
+
           <cart-remove-button id="Remove-${productIndex}" data-index="${productIndex}">
-          <a href="${pProduct.url}" class="button button--tertiary" aria-label="Remove ${prod_contents.title}">
-            Remove
-          </a>
-        </cart-remove-button>
+            <a href="${pProduct.url}" class="button button--tertiary" aria-label="Remove ${prod_contents.title}">
+              Remove
+            </a>
+          </cart-remove-button>
+          
+          <div class="loading-overlay">
+            <div class="loading-overlay__spinner">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
+          </div>
+          
       </td>
      </tr>`; 
     }
@@ -365,8 +385,6 @@ class CartItems extends HTMLElement {
 
      allProducts.push(item); 
 
-     console.log(allProducts); 
-
     }); 
 
 
@@ -380,29 +398,31 @@ class CartItems extends HTMLElement {
 
      document.querySelector('[data-products-container]').innerHTML = productsHTML; 
 
-
   }
 
-  updateLiveRegions(line, itemCount) {
-    if (this.currentItemCount === itemCount) {
-      document.getElementById(`Line-item-error-${line}`)
-        .querySelector('.cart-item__error-text')
-        .innerHTML = window.cartStrings.quantityError.replace(
-          '[quantity]',
-          document.getElementById(`Quantity-${line}`).value
-        );
-    }
+   updateLiveRegions(line, itemCount) {
+     console.log(line)
+      if (this.currentItemCount === itemCount) {
+        document.getElementById(`Line-item-error-${line}`)
+          .querySelector('.cart-item__error-text')
+          .innerHTML = window.cartStrings.quantityError.replace(
+            '[quantity]',
+            document.getElementById(`Quantity-${line}`).value
+          );
+        
+          document.getElementById(`Line-item-error-${line}`).classList.add('is-visible');
+      }
 
-    this.currentItemCount = itemCount;
-    this.lineItemStatusElement.setAttribute('aria-hidden', true);
+      this.currentItemCount = itemCount;
+      this.lineItemStatusElement.setAttribute('aria-hidden', true);
 
-    const cartStatus = document.getElementById('cart-live-region-text');
-    cartStatus.setAttribute('aria-hidden', false);
+      const cartStatus = document.getElementById('cart-live-region-text');
+      cartStatus.setAttribute('aria-hidden', false);
 
-    setTimeout(() => {
-      cartStatus.setAttribute('aria-hidden', true);
-    }, 1000);
-  }
+      setTimeout(() => {
+        cartStatus.setAttribute('aria-hidden', true);
+      }, 1000);
+   }
 
   getSectionInnerHTML(html, selector) {
     return new DOMParser()
@@ -411,8 +431,8 @@ class CartItems extends HTMLElement {
   }
 
   enableLoading(line) {
-   // document.getElementById('main-cart-items').classList.add('cart__items--disabled');
-    //this.querySelectorAll('.loading-overlay')[line - 1].classList.remove('hidden');
+    //document.getElementById('main-cart-items').classList.add('cart__items--disabled');
+    this.querySelectorAll('.loading-overlay')[line - 1].classList.remove('hidden');
     document.activeElement.blur();
     this.lineItemStatusElement.setAttribute('aria-hidden', false);
   }
