@@ -1,5 +1,4 @@
 
-   
 
 
 
@@ -7,11 +6,13 @@ class CartNotification extends HTMLElement {
   constructor() {
     super();
 
+    this.headerDrawer = document.querySelector('header-drawer');
     this.notification = document.getElementById('cart-notification');
     this.header = document.querySelector('sticky-header');
     this.onBodyClick = this.handleBodyClick.bind(this);
     this.productsContainer = this.querySelector('.cart-notification-product');
-
+    this.totals = this.querySelector('[data-cart-notification-totals]');
+    this.overlay = this.querySelector('[data-cart-nofication-overlay]');
     this.notification.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
     this.querySelectorAll('button[type="button"]').forEach((closeButton) =>
       closeButton.addEventListener('click', this.close.bind(this))
@@ -20,7 +21,9 @@ class CartNotification extends HTMLElement {
   }
 
   open() {
-    this.notification.classList.add('animate', 'active');
+    this.notification.classList.remove('is-hidden');
+    this.notification.classList.add('is-active');
+    this.headerDrawer.switchToCartToggle(); 
 
     this.notification.addEventListener('transitionend', () => {
       this.notification.focus();
@@ -29,16 +32,70 @@ class CartNotification extends HTMLElement {
 
     document.body.addEventListener('click', this.onBodyClick);
     document.body.classList.add('overflow-hidden-tablet');
+    document.querySelector('header').classList.add('menu-is-open'); 
+    this.overlay.classList.add('is-visible');
   }
 
   close() {
-    this.notification.classList.remove('active');
+    this.notification.classList.remove('is-active');
+    this.notification.classList.add('is-hidden');
 
+    this.notification.addEventListener('transitionend', () => {
+      removeTrapFocus(this.activeElement);
+    }, { once: true });
+  
     document.body.removeEventListener('click', this.onBodyClick);
     document.body.classList.remove('overflow-hidden-tablet');
-    removeTrapFocus(this.activeElement);
-
+    this.headerDrawer.close(); 
+    document.querySelector('header').classList.remove('menu-is-open'); 
+    this.overlay.classList.remove('is-visible');
   }
+
+  showLatestCart() {
+    this.open(); 
+    fetch(`${routes.cart_get_url}`)
+    .then((response) => {
+      return response.text();
+    })
+    .then((state) => {
+      console.log('show cart');
+      const parsedState = JSON.parse(state);
+      this.renderContents(parsedState);
+    })
+    .catch((err) => {
+      console.log(err);
+    }); 
+  }
+
+  updateQuantity(line, quantity, name) {
+    this.enableLoading(line);
+
+    const body = JSON.stringify({
+      line,
+      quantity,
+      sections: this.getSectionsToRender().map((section) => section.section),
+      sections_url: window.location.pathname
+    });
+
+    fetch(`${routes.cart_change_url}`, {...fetchConfig(), ...{ body }})
+      .then((response) => {
+        return response.text();
+      })
+      .then((state) => {
+          const parsedState = JSON.parse(state);
+          // this.classList.toggle('is-empty', parsedState.item_count === 0);
+          // document.getElementById('main-cart-footer')?.classList.toggle('is-empty', parsedState.item_count === 0);
+          this.renderContents(parsedState);
+          //this.disableLoading();
+
+      }).catch((err) => {
+        console.log(err); 
+        // this.querySelectorAll('.loading-overlay').forEach((overlay) => overlay.classList.add('hidden'));
+        // document.getElementById('cart-errors').textContent = window.cartStrings.error;
+        // this.disableLoading();
+      });
+  }
+
 
   renderContents(parsedState) {
 
@@ -71,7 +128,7 @@ class CartNotification extends HTMLElement {
      var prodImg;
      if (cartItem.image !== null) {
        prodImg = cartItem.image
-         .replace(/(\.[^.]*)$/, '_small$1')
+         .replace(/(\.[^.]*)$/, '_medium$1')
          .replace('http:', '');
      } else {
        prodImg =
@@ -87,33 +144,37 @@ class CartNotification extends HTMLElement {
     //  }
 
 
-     // Create item's data object and add to 'items' array
-     item = {
-       key: cartItem.key,
-       line: index + 1, // Shopify uses a 1+ index in the API
-       url: cartItem.url,
-       img: prodImg,
-       name: cartItem.product_title,
-       options: cartItem.options_with_values,
-       variation: cartItem.variant_title,
-       properties: cartItem.properties,
-       itemAdd: cartItem.quantity + 1,
-       itemMinus: cartItem.quantity - 1,
-       itemQty: cartItem.quantity,
-       price: new Shopify.currency().formatMoney(cartItem.price,window.moneyFormat),
-       subtotal: new Shopify.currency().formatMoney(cartItem.final_line_price,window.moneyFormat),
-       discountedPrice: new Shopify.currency().formatMoney(
-         cartItem.price - cartItem.total_discount / cartItem.quantity,
-        window.moneyFormat
-       ),
-       discounts: cartItem.discounts,
-       discountsApplied:
-         cartItem.price === cartItem.price - cartItem.total_discount
-           ? false
-           : true,
-       vendor: cartItem.vendor
-     };
-
+    // Create item's data object and add to 'items' array
+    item = {
+      originalObject: cartItem, 
+      key: cartItem.key,
+      line: index + 1, // Shopify uses a 1+ index in the API
+      url: cartItem.url,
+      img: prodImg,
+      name: cartItem.product_title,
+      options: cartItem.options_with_values,
+      variation: cartItem.variant_title,
+      properties: cartItem.properties,
+      itemAdd: cartItem.quantity + 1,
+      itemMinus: cartItem.quantity - 1,
+      itemQty: cartItem.quantity,
+      original_price: cartItem.original_price,
+      final_price: new Shopify.currency().formatMoney(cartItem.final_price,window.moneyFormat),
+      variant: cartItem.variant,
+      regular_price: new Shopify.currency().formatMoney(cartItem.price.regular_price,window.moneyFormat), 
+      price: new Shopify.currency().formatMoney(cartItem.price,window.moneyFormat),
+      subtotal: new Shopify.currency().formatMoney(cartItem.final_line_price,window.moneyFormat),
+      discountedPrice: new Shopify.currency().formatMoney(
+        cartItem.price - cartItem.total_discount / cartItem.quantity,
+       window.moneyFormat
+      ),
+      discounts: cartItem.discounts,
+      discountsApplied:
+        cartItem.price === cartItem.price - cartItem.total_discount
+          ? false
+          : true,
+      vendor: cartItem.vendor
+    };
 
      allProducts.push(item); 
 
@@ -127,8 +188,6 @@ class CartNotification extends HTMLElement {
       // }));
       
 
-    console.log(allProducts); 
-
      let products =  allProducts.reduce((prevValue, currentVal) => prevValue + productTemplate(currentVal), "");
 
      let productList = `
@@ -137,18 +196,26 @@ class CartNotification extends HTMLElement {
       </ul>
       `;
 
+      this.totals.querySelector('[data-cart-subtotal]').textContent = new Shopify.currency().formatMoney(parsedState.total_price) + parsedState.currency; 
+
+      
+
       this.productsContainer.innerHTML = productList; 
 
-      function productTemplate(pProduct) {
+      function productTemplate(pProduct, pProductIndex, pCart) {
+
+        let productIndex =  pProduct.line; 
+        let prod_contents = pProduct; 
+        
         return  `
         <li>
             <div class="cart-notification__product">
   
-              <a href="${pProduct.url}" class="cart-notification__product__inner">
+              <div class="cart-notification__product__inner">
                 <div class="cart-notification__product__image-container">
-                  <div class="cart-notification__product__image">
+                  <a  href="${pProduct.url}" title="Go to ${pProduct.name}" class="cart-notification__product__image">
                     <img src="${pProduct.img}" />
-                  </div>
+                  </a>
                 </div>
   
                 <div class="cart-notification__product__info">
@@ -162,7 +229,24 @@ class CartNotification extends HTMLElement {
                        ${pProduct.subtotal}
                     </p>
                 </div>
-              </a>
+
+                <div class="cart-notification__remove-btn"> 
+                  <cart-remove-button id="Remove-${productIndex}" data-index="${productIndex}">
+                    <a href="${pProduct.url}" class="button button--tertiary" aria-label="Remove ${prod_contents.title}">
+                      Remove
+                    </a>
+                  </cart-remove-button>
+                </div>
+              </div>
+
+              <div class="loading-overlay  hidden">
+                <div class="loading-overlay__spinner">
+                  <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                  </svg>
+                </div>
+              </div>
+            
             </div>
         </li>
         `; 
@@ -171,8 +255,16 @@ class CartNotification extends HTMLElement {
 
 
       this.header?.reveal();
-      this.open();
   }
+
+
+  enableLoading(line) {
+    //document.getElementById('main-cart-items').classList.add('cart__items--disabled');
+    this.querySelectorAll('.loading-overlay')[line - 1].classList.remove('hidden');
+    document.activeElement.blur();
+   // this.lineItemStatusElement.setAttribute('aria-hidden', false);
+  }
+
 
   getSectionsToRender() {
     return [
@@ -196,12 +288,12 @@ class CartNotification extends HTMLElement {
   }
 
   handleBodyClick(evt) {
-    const target = evt.target;
-    if (target !== this.notification && !target.closest('cart-notification')) {
-      const disclosure = target.closest('details-disclosure');
-      this.activeElement = disclosure ? disclosure.querySelector('summary') : null;
-      this.close();
-    }
+    // const target = evt.target;
+    // if (target !== this.notification && !target.closest('cart-notification')) {
+    //   const disclosure = target.closest('details-disclosure');
+    //   this.activeElement = disclosure ? disclosure.querySelector('summary') : null;
+    //   this.close();
+    // }
   }
 
   setActiveElement(element) {

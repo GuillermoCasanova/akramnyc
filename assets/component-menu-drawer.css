@@ -47,8 +47,6 @@ menu-drawer > details[open] > summary::before {
 
 .menu-drawer {
   position: absolute;
-  transform: translateX(-100%);
-  visibility: hidden;
   background-color: black;
   width: 100%;
   z-index: 3;
@@ -60,6 +58,15 @@ menu-drawer > details[open] > summary::before {
   top: 0; 
   height: 100vh;
   z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--duration-long) ease;
+}
+
+
+.menu-drawer.is-open {
+  opacity: 1;
+  pointer-events: all;
 }
 
 .js .menu-drawer {
@@ -68,7 +75,7 @@ menu-drawer > details[open] > summary::before {
     var(--viewport-height, 100vh) - (var(--header-bottom-position, 100%))
   ); */
 }
-
+/* 
 .js details[open] > .menu-drawer,
 .js details[open] > .menu-drawer__submenu {
   transition: transform var(--duration-default) ease,
@@ -84,7 +91,7 @@ details[open].menu-opening > .menu-drawer__submenu {
 
 details[open].menu-opening > .menu-drawer__submenu {
   position: relative;
-}
+} */
 
 
 

@@ -1,17 +1,3 @@
-class CartRemoveButton extends HTMLElement {
-  constructor() {
-    super();
-    this.addEventListener('click', (event) => {
-      event.preventDefault();
-      this.closest('cart-items').updateQuantity(this.dataset.index, 0);
-    });
-  }
-
-}
-
-
-
-customElements.define('cart-remove-button', CartRemoveButton);
 
 
 class QuantitySelect extends HTMLElement {
@@ -95,6 +81,9 @@ class CartItems extends HTMLElement {
         this.renderCart(parsedState);
         this.updateLiveRegions(line, parsedState.item_count);
 
+           // document.getElementById(`CartItem-${line}`)?.querySelector(`[name="${name}"]`)?.focus();
+           this.disableLoading();
+
         // this.getSectionsToRender().forEach((section => {
 
         //   console.log(section); 
@@ -107,8 +96,7 @@ class CartItems extends HTMLElement {
         //   // elementToReplace.innerHTML =  this.getSectionInnerHTML(parsedState.sections[section.section], section.selector);
         // }));
 
-        // document.getElementById(`CartItem-${line}`)?.querySelector(`[name="${name}"]`)?.focus();
-        // this.disableLoading();
+     
 
       }).catch((err) => {
         console.log(err); 
@@ -120,11 +108,9 @@ class CartItems extends HTMLElement {
 
   renderCart(pCart) {
 
-    console.log('render CART!');
-
-    
     let productsHTML = ""; 
 
+    console.log(pCart)
 
     function priceTemplate(pItem) {
 
@@ -135,7 +121,7 @@ class CartItems extends HTMLElement {
         let discountActive = `
             <dl class="cart-item__discounted-prices">
             <dt class="visually-hidden">
-              ${pItem.price}
+              ${pItem.regular_price}
             </dt>
             <dd>
               <s class="cart-item__old-price price price--end">
@@ -146,7 +132,7 @@ class CartItems extends HTMLElement {
               ${pItem.discountedPrice}
             </dt>
             <dd class="price price--end">
-              ${pItem.subtotal}
+              ${pItem.final_price}
             </dd>
           </dl>
         `; 
@@ -168,7 +154,7 @@ class CartItems extends HTMLElement {
     let product_contents = pItem; 
     let template = ''; 
 
-      if(pItem.originalObject.has_only_default_variant == false || pItem.originalObject.properties.size != 0 || pItem.originalObject.selling_plan_allocation !== nil ) {
+      if(product_contents.originalObject.has_only_default_variant == false || product_contents.originalObject.properties.size != 0 || pItem.originalObject.selling_plan_allocation !== nil ) {
 
         function getOptionHtml() {
            if(pItem.originalObject.product_has_only_default_variant == false) {
@@ -192,6 +178,15 @@ class CartItems extends HTMLElement {
                       <div class="product-option">
                       <dt>${element.first}: </dt>
                       <dd>
+
+                            {%- if property.last contains '/uploads/' -%}
+                            <a href="{{ property.last }}" target="_blank">
+                              {{ property.last | split: '/' | last }}
+                            </a>
+                          {%- else -%}
+                            {{ property.last }}
+                          {%- endif -%}
+                          
                           ${element.last}
                       </dd>
                     </div>
@@ -201,9 +196,33 @@ class CartItems extends HTMLElement {
                     productOptionTemplate = productOptionTemplate + template; 
                   }); 
               }
+              
+              console.log(product_contents); 
+
+              if(product_contents.discounts.length > 0 ) {
+
+                let discounts = `
+                  <ul class="discounts list-unstyled" role="list" aria-label="Discount">
+                    ${(() => {
+                      
+                        let discounts = ''; 
+
+                        product_contents.discounts.forEach(function(discount) {
+                          discounts = discounts + `<li>${discount.title}</li>`; 
+                          console.log(discounts); 
+                        }); 
+                        
+                        return discounts;
+                      })()}
+                  </ul>
+                `;
+                productOptionTemplate = productOptionTemplate + discounts; 
+              }
+
               return productOptionTemplate; 
+              
             } else {
-              return 'nothing? '
+              return ' '
             }
         }
 
@@ -307,7 +326,7 @@ class CartItems extends HTMLElement {
             </a>
           </cart-remove-button>
           
-          <div class="loading-overlay">
+          <div class="loading-overlay  hidden">
             <div class="loading-overlay__spinner">
               <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
                 <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
@@ -319,6 +338,10 @@ class CartItems extends HTMLElement {
      </tr>`; 
     }
 
+    function updatedSubtotal(pCart) {
+      let subTotal = document.querySelector('[data-cart-subtotal]'); 
+      subTotal.textContent = new Shopify.currency().formatMoney(pCart.total_price) + pCart.currency; 
+    }
 
     let allProducts = []; 
 
@@ -367,8 +390,9 @@ class CartItems extends HTMLElement {
        itemMinus: cartItem.quantity - 1,
        itemQty: cartItem.quantity,
        original_price: cartItem.original_price,
-       final_price: cartItem.final_price,
+       final_price: new Shopify.currency().formatMoney(cartItem.final_price,window.moneyFormat),
        variant: cartItem.variant,
+       regular_price: new Shopify.currency().formatMoney(cartItem.price.regular_price,window.moneyFormat), 
        price: new Shopify.currency().formatMoney(cartItem.price,window.moneyFormat),
        subtotal: new Shopify.currency().formatMoney(cartItem.final_line_price,window.moneyFormat),
        discountedPrice: new Shopify.currency().formatMoney(
@@ -397,7 +421,7 @@ class CartItems extends HTMLElement {
      `;
 
      document.querySelector('[data-products-container]').innerHTML = productsHTML; 
-
+     updatedSubtotal(pCart); 
   }
 
    updateLiveRegions(line, itemCount) {
@@ -431,8 +455,10 @@ class CartItems extends HTMLElement {
   }
 
   enableLoading(line) {
-    //document.getElementById('main-cart-items').classList.add('cart__items--disabled');
+    document.getElementById('main-cart-items').classList.add('cart__items--disabled');
+    console.log( this.querySelectorAll('.loading-overlay')[line - 1]); 
     this.querySelectorAll('.loading-overlay')[line - 1].classList.remove('hidden');
+
     document.activeElement.blur();
     this.lineItemStatusElement.setAttribute('aria-hidden', false);
   }
