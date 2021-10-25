@@ -275,6 +275,58 @@ class ComingSoonNav extends HTMLElement {
       if(pPageId === 'newsletter') {
         that.loadScript("https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RSpZfU")
         .then((data) => {
+        
+
+          function activateInputs() {
+
+            if(document.querySelectorAll('input').length > 0) {
+          
+              let textFields = document.querySelectorAll('[data-testid="form-component"]');
+              
+              textFields.forEach(function(element) {
+                  let textFieldWrapper  = element; 
+
+                  if(element.querySelector('div input') !== null) {
+
+                      element.querySelector('div input').addEventListener('change', function(event) {
+                          let input = event.currentTarget; 
+              
+                          if(input.value.length > 0) {
+                              textFieldWrapper.classList.add('is-active'); 
+                          } else {
+                              textFieldWrapper.classList.remove('is-active'); 
+                          }
+              
+                      }); 
+                    
+                    let changeEvent = new Event("change"); 
+                    
+                    element.querySelector('div input').dispatchEvent(changeEvent); 
+                    
+                    element.querySelector('div input').addEventListener('focus', function() {
+                          textFieldWrapper.classList.add('is-active'); 
+                    }); 
+                    
+                    
+                    element.querySelector('div input').addEventListener('blur', function(event) {
+                        let input = event.currentTarget; 
+                          if(input.value.length > 0) {
+                              textFieldWrapper.classList.add('is-active'); 
+                          } else {
+                              textFieldWrapper.classList.remove('is-active'); 
+                          }
+                    }); 
+                }
+                  
+            
+              }); 
+          
+            }
+          
+          }
+
+          activateInputs(); 
+            
         })
         .catch((err) => {
             console.error(err);

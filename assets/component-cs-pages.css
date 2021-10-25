@@ -221,15 +221,19 @@
     margin: 0; 
 }
 
-.newsletter-sign-up   div[class*='needsclick FormComponent_'] {
-    padding: 0; 
+.newsletter-sign-up   div[data-testid="form-component"] {
+    padding: 0 !important;
+    display: block !important; 
+    position: relative; 
+    margin-bottom: 1.125rem; 
+    flex: none !important;
 }
 
 .newsletter-sign-up  div[class*='RichText__StyledQuillContainer'] p,
 .newsletter-sign-up  div[class*='RichText__StyledQuillContainer'] span,
 .newsletter-sign-up  div[class*='RichText__StyledQuillContainer'] strong {
     color: #fff !important;
-    font-family: $primary-font-family !important;
+    font-family: var(--primary-font-family) !important;
     font-size: 1.1rem !important;
     margin-bottom: 1rem !important;
     
@@ -240,97 +244,93 @@
 }
 
 
-.newsletter-sign-up  label[class*='Label__StyledLabel'] {
+.newsletter-sign-up   div[data-testid="form-component"] label {
     font-size: 1rem !important; 
     line-height: 1.5 !important;
     padding-bottom: 0 !important;
-}
-
-.newsletter-sign-up  div[class*="TextInput__StyledInputContainer"].is-active  label {
-    opacity: 0;
-    transform: translateY(-6px);
-}
-
-.newsletter-sign-up  div[class*="TextInput__StyledInputContainer"] input {
-    font-size: 1.1rem !important;
-    line-height: 1.5 !important;
-}
-
-.newsletter-sign-up  div[class*="TextInput__StyledInputContainer"] label {
     pointer-events: none;
     transition: all .4s cubic-bezier(0.22, 1, 0.36, 1); 
 }
 
-.newsletter-sign-up  button[class*='needsclick Button__FormStyledButton'] {
-    font-size: 1rem !important;
+.newsletter-sign-up  div[data-testid="form-component"].is-active  label {
+    opacity: 0;
+    transform: translateY(-6px);
+}
+
+.newsletter-sign-up  div[data-testid="form-component"] input {
+    font-size: 1.1rem !important;
     line-height: 1.5 !important;
 }
 
 
-.newsletter-sign-up div[class*='FormComponent__StyledFormComponentWrapper'], 
-.newsletter-sign-up  .button, div[class*='FormComponent__StyledFormComponentWrapper'] button {
+.newsletter-sign-up  div[data-testid="form-component"]  button {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+    width: 100% !important;
     margin-top: 0; 
 }
 
-
-div[class*='Row__FormRow-']{
-    display: block !important;
-  }
+.newsletter-sign-up div[data-testid="form-row"] {
+    display: flex !important;
+    flex-direction: column !important;
+}
   
-
-  div[class*='TextInput__StyledInputContainer'] {
-    position: relative; 
-    margin-bottom: 1.125rem; 
-  }
-  
-  div[class*='TextInput__StyledInputContainer']   label {
+  div[data-testid='form-component']   label {
       font-family: var(--primary-font-family) !important;
       letter-spacing: 1px !important;
       color: #fff !important; 
   }
   
-  div[class*='TextInput__StyledInputContainer']  input {
+  div[data-testid='form-component']  input {
       height: 3.25rem !important;
       padding-right: .75rem !important;
       padding-left: .75rem !important;
   }
   
-  div[class*='TextInput__StyledInputContainer']  input:active,
-  div[class*='TextInput__StyledInputContainer']  input:focus{
+  div[data-testid='form-component']  input:active,
+  div[data-testid='form-component']  input:focus{
+    border-color: #fff !important;
+    background-color: #fff !important;
+  }
+
+  div[data-testid='form-component']  input:hover, 
+  div[data-testid='form-component']  input:focus  {
+    border-bottom: 2px dotted #fff !important;
+    border-color: #ffffff !important;
+  }
+  
+
+  
+  
+  div[data-testid='form-component']  input:active,
+  div[data-testid='form-component']  input:focus{
     border-color: #fff !important;
     background-color: #fff !important;
   }
   
-  
-  div[class*='TextInput__StyledInputContainer']  input:active,
-  div[class*='TextInput__StyledInputContainer']  input:focus{
-    border-color: #fff !important;
-    background-color: #fff !important;
-  }
-  
-  div[class*='TextInput__StyledInputContainer']  input:active + label ,
-  div[class*='TextInput__StyledInputContainer']  input:focus + label {
+  div[data-testid='form-component']  input:active + label ,
+  div[data-testid='form-component']  input:focus + label {
       color: #fff 
   }
   
   
   
-    div[class*='TextInput__StyledInputContainer']  input[type="text"], 
-    div[class*='TextInput__StyledInputContainer']  input[type="password"], 
-    div[class*='TextInput__StyledInputContainer']  input[type="date"], 
-    div[class*='TextInput__StyledInputContainer']  input[type="datetime"], 
-    div[class*='TextInput__StyledInputContainer']  input[type="datetime-local"], 
-    div[class*='TextInput__StyledInputContainer']  input[type="month"], 
-    div[class*='TextInput__StyledInputContainer']  input[type="week"], 
-    div[class*='TextInput__StyledInputContainer']  input[type="email"], 
-    div[class*='TextInput__StyledInputContainer']  input[type="number"], 
-    div[class*='TextInput__StyledInputContainer']  input[type="search"], 
-    div[class*='TextInput__StyledInputContainer']  input[type="tel"], 
-    div[class*='TextInput__StyledInputContainer']  input[type="time"], 
-    div[class*='TextInput__StyledInputContainer']  input[type="url"], 
-    div[class*='TextInput__StyledInputContainer']  input[type="color"],
-    div[class*='TextInput__StyledInputContainer']  input, 
-    div[class*='TextInput__StyledInputContainer']  textarea {
+    div[data-testid='form-component']  input[type="text"], 
+    div[data-testid='form-component']  input[type="password"], 
+    div[data-testid='form-component']  input[type="date"], 
+    div[data-testid='form-component']  input[type="datetime"], 
+    div[data-testid='form-component']  input[type="datetime-local"], 
+    div[data-testid='form-component']  input[type="month"], 
+    div[data-testid='form-component']  input[type="week"], 
+    div[data-testid='form-component']  input[type="email"], 
+    div[data-testid='form-component']  input[type="number"], 
+    div[data-testid='form-component']  input[type="search"], 
+    div[data-testid='form-component']  input[type="tel"], 
+    div[data-testid='form-component']  input[type="time"], 
+    div[data-testid='form-component']  input[type="url"], 
+    div[data-testid='form-component']  input[type="color"],
+    div[data-testid='form-component']  input, 
+    div[data-testid='form-component']  textarea {
       color: #ffff !important;
       border: 0 !important; 
       background-color: transparent !important;
@@ -346,53 +346,54 @@ div[class*='Row__FormRow-']{
       letter-spacing: 1px !important;
       font-family: var(--primary-fony-family) !important;
       letter-spacing: 1px !important;
+      position: relative;
   }
   
-  div[class*='TextInput__StyledInputContainer']  input[type="text"]:focus, 
-  div[class*='TextInput__StyledInputContainer']  input[type="password"]:focus, 
-  div[class*='TextInput__StyledInputContainer']  input[type="date"]:focus, 
-  div[class*='TextInput__StyledInputContainer']  input[type="datetime"]:focus, 
-  div[class*='TextInput__StyledInputContainer']  input[type="datetime-local"]:focus, 
-  div[class*='TextInput__StyledInputContainer']  input[type="month"]:focus, 
-  div[class*='TextInput__StyledInputContainer']  input[type="week"]:focus, 
-  div[class*='TextInput__StyledInputContainer']  input[type="email"]:focus, 
-  div[class*='TextInput__StyledInputContainer']  input[type="number"]:focus, 
-  div[class*='TextInput__StyledInputContainer']  input[type="search"]:focus, 
-  div[class*='TextInput__StyledInputContainer']  input[type="tel"]:focus, 
-  div[class*='TextInput__StyledInputContainer']  input[type="time"]:focus, 
-  div[class*='TextInput__StyledInputContainer']  input[type="url"]:focus, 
-  div[class*='TextInput__StyledInputContainer']  input[type="color"]:focus,
-  div[class*='TextInput__StyledInputContainer']  input:focus,
-  div[class*='TextInput__StyledInputContainer']  textarea:focus {
+  div[data-testid='form-component']  input[type="text"]:focus, 
+  div[data-testid='form-component']  input[type="password"]:focus, 
+  div[data-testid='form-component']  input[type="date"]:focus, 
+  div[data-testid='form-component']  input[type="datetime"]:focus, 
+  div[data-testid='form-component']  input[type="datetime-local"]:focus, 
+  div[data-testid='form-component']  input[type="month"]:focus, 
+  div[data-testid='form-component']  input[type="week"]:focus, 
+  div[data-testid='form-component']  input[type="email"]:focus, 
+  div[data-testid='form-component']  input[type="number"]:focus, 
+  div[data-testid='form-component']  input[type="search"]:focus, 
+  div[data-testid='form-component']  input[type="tel"]:focus, 
+  div[data-testid='form-component']  input[type="time"]:focus, 
+  div[data-testid='form-component']  input[type="url"]:focus, 
+  div[data-testid='form-component']  input[type="color"]:focus,
+  div[data-testid='form-component']  input:focus,
+  div[data-testid='form-component']  textarea:focus {
     outline: 0 !important; 
     background-color: transparent
   }
   
   
   
-  div[class*='TextInput__StyledInputContainer']  input[type="text"]:active, 
-  div[class*='TextInput__StyledInputContainer']  input[type="password"]:active, 
-  div[class*='TextInput__StyledInputContainer']  input[type="date"]:active, 
-  div[class*='TextInput__StyledInputContainer']  input[type="datetime"]:active, 
-  div[class*='TextInput__StyledInputContainer']  input[type="datetime-local"]:active, 
-  div[class*='TextInput__StyledInputContainer']  input[type="month"]:active, 
-  div[class*='TextInput__StyledInputContainer']  input[type="week"]:active, 
-  div[class*='TextInput__StyledInputContainer']  input[type="email"]:active, 
-  div[class*='TextInput__StyledInputContainer']  input[type="number"]:active, 
-  div[class*='TextInput__StyledInputContainer']  input[type="search"]:active, 
-  div[class*='TextInput__StyledInputContainer']  input[type="tel"]:active, 
-  div[class*='TextInput__StyledInputContainer']  input[type="time"]:active, 
-  div[class*='TextInput__StyledInputContainer']  input[type="url"]:active, 
-  div[class*='TextInput__StyledInputContainer']  input[type="color"]:active,
-  div[class*='TextInput__StyledInputContainer']  input:active,
-  div[class*='TextInput__StyledInputContainer']  textarea:active {
+  div[data-testid='form-component']  input[type="text"]:active, 
+  div[data-testid='form-component']  input[type="password"]:active, 
+  div[data-testid='form-component']  input[type="date"]:active, 
+  div[data-testid='form-component']  input[type="datetime"]:active, 
+  div[data-testid='form-component']  input[type="datetime-local"]:active, 
+  div[data-testid='form-component']  input[type="month"]:active, 
+  div[data-testid='form-component']  input[type="week"]:active, 
+  div[data-testid='form-component']  input[type="email"]:active, 
+  div[data-testid='form-component']  input[type="number"]:active, 
+  div[data-testid='form-component']  input[type="search"]:active, 
+  div[data-testid='form-component']  input[type="tel"]:active, 
+  div[data-testid='form-component']  input[type="time"]:active, 
+  div[data-testid='form-component']  input[type="url"]:active, 
+  div[data-testid='form-component']  input[type="color"]:active,
+  div[data-testid='form-component']  input:active,
+  div[data-testid='form-component']  textarea:active {
     outline: 0 !important; 
     background-color: transparent
   }
   
   
   
-  div[class*='TextInput__StyledInputContainer'] alert {
+  div[data-testid='form-component'] alert {
       width: 100%;
       background-color: red;
       height: auto;
@@ -409,11 +410,11 @@ div[class*='Row__FormRow-']{
   
     }
   
-    div[class*='TextInput__StyledInputContainer'] textarea {
+    div[data-testid='form-component'] textarea {
       margin-bottom: -7px; 
     }
   
-    div[class*='TextInput__StyledInputContainer'] label {
+    div[data-testid='form-component'] label {
       position: absolute; 
       left: 0; 
       font-family: var(--primary-font-family);
@@ -427,7 +428,7 @@ div[class*='Row__FormRow-']{
     }
   
     @media screen and (min-width: 768px) {
-      div[class*='TextInput__StyledInputContainer'] label {
+      div[data-testid='form-component'] label {
         top: -12px; 
       }
     }  
@@ -435,12 +436,12 @@ div[class*='Row__FormRow-']{
   
   
   
-  div[class*='FormComponent__StyledFormComponentWrapper'] {
+  div[data-testid="form-component"] {
     margin-bottom: .5rem;
   }
 
-  div[class*='FormComponent__StyledFormComponentWrapper'] .button,
-  div[class*='FormComponent__StyledFormComponentWrapper'] button {
+  div[data-testid="form-component"] .button,
+  div[data-testid="form-component"] button {
     width: 100% !important;
     color: #fff !important;
     text-transform: uppercase !important;
@@ -463,31 +464,31 @@ div[class*='Row__FormRow-']{
     font-size: .8rem;
   }
 
-  div[class*='FormComponent__StyledFormComponentWrapper'] .button:hover,
-  div[class*='FormComponent__StyledFormComponentWrapper'] button:hover {
+  div[data-testid="form-component"] .button:hover,
+  div[data-testid="form-component"] button:hover {
     background-color: #fff !important;
     color: black !important;
   }
   
-  div[class*='FormComponent__StyledFormComponentWrapper'] .button:focus,
-  div[class*='FormComponent__StyledFormComponentWrapper'] button:focus {
+  div[data-testid="form-component"] .button:focus,
+  div[data-testid="form-component"] button:focus {
     background-color: #fff !important;
     color: black !important;
   }
 
     
-  @media screen and (min-width: 768px) {
-    div[class*='FormComponent__StyledFormComponentWrapper'] .button,
-    div[class*='FormComponent__StyledFormComponentWrapper'] button {
+  @media screen and (min-width: 768px) {    
+    div[data-testid="form-component"] .button,
+    div[data-testid="form-component"] button {
         font-size: 1.1rem;
     }
   }
   
 
-
-.newsletter-sign-up .iLauD.iLauD {
+.newsletter-sign-up div[class*='kl-private-reset'] {
+      background: transparent !important;
       background-color: transparent !important;
-      margin-bottom: 6rem;
+      margin-bottom: 2rem;
   }
 
 .newsletter-sign-up .ql-editor p {
