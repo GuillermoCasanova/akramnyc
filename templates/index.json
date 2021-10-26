@@ -17,6 +17,18 @@
             "information": "short-sleeve-t-shirt"
           }
         },
+        "24d116ca-3d8b-4de5-b93c-4a7595dec641": {
+          "type": "featured-product",
+          "settings": {
+            "information": "leaves-short-sleeve-tee-2"
+          }
+        },
+        "f36eb351-06fd-4fc6-a66e-b3fb407847dd": {
+          "type": "featured-product",
+          "settings": {
+            "information": "leaves-hoodie-2"
+          }
+        },
         "5bed6961-10d4-4227-bb6d-4f9af1632962": {
           "type": "featured-product",
           "settings": {
@@ -34,27 +46,15 @@
           "settings": {
             "information": "test-product-55"
           }
-        },
-        "fdedf172-e120-4588-8db7-138d0183c05e": {
-          "type": "featured-product",
-          "settings": {
-            "information": "test-product-in-green"
-          }
-        },
-        "34b50a39-a6ec-40ba-ade8-bdd0bbce0b3c": {
-          "type": "featured-product",
-          "settings": {
-            "information": "test-product-moon-shot"
-          }
         }
       },
       "block_order": [
         "0307442d-23f2-4e02-999a-c836f736d25a",
+        "24d116ca-3d8b-4de5-b93c-4a7595dec641",
+        "f36eb351-06fd-4fc6-a66e-b3fb407847dd",
         "5bed6961-10d4-4227-bb6d-4f9af1632962",
         "69e76864-93cc-4e6c-ab27-71cbed963125",
-        "54307067-e898-4cd5-a435-77d1577647db",
-        "fdedf172-e120-4588-8db7-138d0183c05e",
-        "34b50a39-a6ec-40ba-ade8-bdd0bbce0b3c"
+        "54307067-e898-4cd5-a435-77d1577647db"
       ],
       "settings": {
         "title": "Featured Products",
