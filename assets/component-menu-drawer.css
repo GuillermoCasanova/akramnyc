@@ -61,6 +61,7 @@ menu-drawer > details[open] > summary::before {
   opacity: 0;
   pointer-events: none;
   transition: all var(--duration-long) ease;
+  opacity: 0;
 }
 
 

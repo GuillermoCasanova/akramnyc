@@ -11,14 +11,14 @@
   flex-direction: column; 
 }
 
-@media screen and (min-width: 975px) {
+@media screen and (min-width: 990px) {
   .product {
     flex-direction: row; 
   }
 }
 
 
-@media screen and (min-width: 975px) {
+@media screen and (min-width: 990px) {
   .product__media-wrapper {
     width: 60vw; 
   }
@@ -73,7 +73,7 @@
   display: block;
 }
 
-@media only screen and (min-width:975px) {
+@media only screen and (min-width:990px) {
   .product-images--mobile {
     display: none;
   }
@@ -128,7 +128,7 @@
   display: none;
 }
 
-@media only screen and (min-width:975px) {
+@media only screen and (min-width:990px) {
   .product-images--desktop {
     display: block;
   }
@@ -163,17 +163,25 @@
   margin-bottom: var(--level5);
 }
 
-@media screen and (min-width: 975px) {
+@media screen and (min-width: 990px) {
   .price {
     font-size: var(--h5);
   }
 }
 
 .product__info-container {
-  max-width: 390px;
   margin-left: auto;
   margin-right: auto;
+  width: 100%; 
 }
+
+
+@media screen and (min-width: 990px) {
+  .product__info-container {
+    width: 22vw; 
+  }
+}
+
 
 
 .product__info-container .product-form,
@@ -182,7 +190,7 @@
   margin-bottom: var(--level4);
 }
 
-@media screen and (min-width: 975px) {
+@media screen and (min-width: 990px) {
   .product__info-container .product-form,
   .product__info-container .product__description,
   .product__info-container .share-button {
@@ -236,15 +244,28 @@
 }
 
 
-/* Form Elements */
 .product-form__input {
   flex: 0 0 100%;
   padding: 0;
-  margin: 0 0 1.2rem 0;
-  max-width: 37rem;
+  width: 100%;
   min-width: fit-content;
-  border: none;
+  border-width: 13px 0 0 0;
+  border-style: dotted;
+  border-color: transparent;
+  border-image-source: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' xml:space='preserve' id='Layer_1' x='0' y='0' version='1.1' viewBox='0 0 23.1 23.1'%3E%3Cstyle%3E.st0,.st1%7Bfill:none;stroke:%23fff;stroke-width:.4858;stroke-linecap:round;stroke-linejoin:round%7D.st1%7Bstroke-dasharray:0,1.9766%7D%3C/style%3E%3Cpath d='M22.5 22.4h0' class='st0'/%3E%3Cpath d='M20.5 22.4H1.7' class='st1'/%3E%3Cpath d='M.7 22.4h0' class='st0'/%3E%3Cpath d='M.7 20.4V1.6' class='st1'/%3E%3Cpath d='M.7.6h0' class='st0'/%3E%3Cpath d='M2.7.6h18.8' class='st1'/%3E%3Cpath d='M22.5.6h0' class='st0'/%3E%3Cpath d='M22.5 2.6v18.8' class='st1'/%3E%3C/svg%3E");
+  border-image-slice: 12.5% 20%;
+  border-image-repeat: round;
+  padding-top: var(--level3);
+  margin-bottom: var(--level4);
 }
+
+@media only screen and (min-width: 990px) {
+  .product-form__input {
+    padding-top: var(--level3);
+    margin-bottom: var(--level5);
+  }
+}
+
 
 variant-radios,
 variant-selects {
@@ -278,7 +299,6 @@ fieldset.product-form__input .form__label {
   color: rgb(var(--color-foreground));
   display: inline-block;
   margin: 0.7rem 0.5rem 0.2rem 0;
-  padding: 1rem 2rem;
   font-size: 1.4rem;
   letter-spacing: 0.1rem;
   line-height: 1;
@@ -354,6 +374,145 @@ fieldset.product-form__input .form__label {
   font-size: 1.5rem;
   letter-spacing: .1rem;
 }
+
+
+
+/*------------------------------------*\
+    #Product Custom Color Picker
+\*------------------------------------*/
+
+.custom-color-picker {
+  position: relative;
+  width: 100%; 
+  border-width: 13px 0 0 0;
+  border-style: dotted;
+  border-color: transparent;
+  border-image-source: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' xml:space='preserve' id='Layer_1' x='0' y='0' version='1.1' viewBox='0 0 23.1 23.1'%3E%3Cstyle%3E.st0,.st1%7Bfill:none;stroke:%23fff;stroke-width:.4858;stroke-linecap:round;stroke-linejoin:round%7D.st1%7Bstroke-dasharray:0,1.9766%7D%3C/style%3E%3Cpath d='M22.5 22.4h0' class='st0'/%3E%3Cpath d='M20.5 22.4H1.7' class='st1'/%3E%3Cpath d='M.7 22.4h0' class='st0'/%3E%3Cpath d='M.7 20.4V1.6' class='st1'/%3E%3Cpath d='M.7.6h0' class='st0'/%3E%3Cpath d='M2.7.6h18.8' class='st1'/%3E%3Cpath d='M22.5.6h0' class='st0'/%3E%3Cpath d='M22.5 2.6v18.8' class='st1'/%3E%3C/svg%3E");
+  border-image-slice: 12.5% 20%;
+  border-image-repeat: round;
+  padding-bottom: var(--level2);
+  margin-bottom: var(--level4);
+}
+
+
+@media only screen and (min-width: 990px) {
+  .custom-color-picker {
+    padding-top: var(--level3);
+    margin-bottom: var(--level4);
+  }
+}
+
+.custom-color-picker__current-color {
+  top: 0; 
+  white-space: nowrap;
+  width: 100%;
+  top: -2rem;
+  margin-bottom: var(--level3);
+  font-family: var(--secondary-font-family);
+  letter-spacing: var(--letter-spacing-1);
+  text-transform: capitalize;
+}
+
+
+.custom-color-picker__current-color__label {
+    font-family: var(--tertiary-font-family);
+    margin-right: var(--level2);
+}
+
+
+
+.custom-color-picker__colors {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.custom-color-picker__label {
+  position: relative;
+  display: flex;
+  margin-right: var(--level3);
+  transition: all var(--duration-default) ease; 
+  outline: none !important;  
+  border: none !important; 
+  width: 1.45rem;
+  height: 1.45rem;
+  border-radius: 100%;
+}
+
+.custom-color-picker__label__swatch {
+  object-fit: cover;
+  transition: all var(--duration-default) ease; 
+  border-radius: 100%;
+  clip-path: circle(50%);
+  background-color:white;
+}
+
+.custom-color-picker__label__swatch img {
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover;
+  clip-path: circle(42%);
+  transition: all var(--duration-default) ease; 
+  z-index: 1; 
+}
+
+.custom-color-picker__label__ring {
+  position: absolute;
+  display: block;
+  width: 100%; 
+  height: 100%; 
+  opacity: 0;
+  clip-path: circle(50%);
+  z-index: -1;
+}
+
+
+.custom-color-picker__label:hover .custom-color-picker__label__swatch img, 
+.custom-color-picker__label:focus  .custom-color-picker__label__swatch img{
+  clip-path: circle(40%);
+}
+
+.custom-color-picker__label:hover .custom-color-picker__label__swatch, 
+.custom-color-picker__label:focus  .custom-color-picker__label__swatch {
+  clip-path: circle(55%);
+  background-color: black;
+}
+
+.custom-color-picker__label:hover .custom-color-picker__label__ring, 
+.custom-color-picker__label:focus  .custom-color-picker__label__ring {
+  opacity: 1;
+  transform: scale(1.2);
+  clip-path: circle(48%);
+}
+
+
+
+/* 
+.custom-color-picker__label__ring {
+  width: 100%; 
+  height: 100%; 
+  display: block;
+  border-radius: 100%;
+  position: absolute;
+  overflow: hidden;
+} */
+
+
+
+.custom-color-picker__label:hover .custom-color-picker__label__ring, 
+.custom-color-picker__label:focus .custom-color-picker__label__ring {
+  /* width: 160%;
+  height: 160%;
+  display: block;
+  border-radius: 100%;
+  position: absolute;
+  z-index: -1;
+  border-width: 2px; 
+  border-style: solid; 
+  border-image-width: 20px; */
+}
+
+ */
 
 
 
