@@ -148,8 +148,16 @@
             {%- unless product.has_only_default_variant -%}
                 <variant-radios class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
                   {%- for option in product.options_with_values -%}
-                      <fieldset class="js product-form__input">
-                        <legend class="form__label">{{ option.name }}</legend>
+                    <div class="js product-form__input">
+                      <fieldset >
+                        <legend class="form__label">
+                          <span class="form__label__text">
+                            {{ option.name }}: 
+                          </span>
+                         <span class="form__current-option-label" role="presentation" data-current-option>
+                            Medium
+                        </span>
+                      </legend>
                         {%- for value in option.values -%}
                           <input type="radio" id="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}"
                                 name="{{ option.name }}"
@@ -162,6 +170,7 @@
                           </label>
                         {%- endfor -%}
                       </fieldset>
+                    </div>
                   {%- endfor -%}
                   <script type="application/json">
                     {{ product.variants | json }}
@@ -196,7 +205,7 @@
                   {%assign activeProduct = product%}
 
                   {%if product.title == collection.title%}
-                  <div class="custom-color-picker">
+                  <div class="custom-color-picker  product-form__input">
                     <div  class="custom-color-picker__current-color">
                       <span class="custom-color-picker__current-color__label">Color:</span>
                         <span  data-color-container>

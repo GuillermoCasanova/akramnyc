@@ -142,7 +142,7 @@ summary::before {
     --h2: 1.903rem;
     --h3: 1.513rem;
     --h4: 1.20rem;
-    --h5: 1rem;
+    --h5: 1.10rem;
     --h6: 1rem;
     --normal: .95em;
     --micro: .85rem;
@@ -172,14 +172,14 @@ summary::before {
 /*SMALL-UP*/
 @media screen and (min-width: 370px) {
   :root {
-    font-size: .9rem;
+    font-size: .85rem;
   }
 }
 
 /*MEDIUM-UP*/
 @media screen and (min-width: 700px) {
   :root {
-    font-size: .9rem;
+    font-size: .85rem;
   }
 }
 
@@ -187,7 +187,14 @@ summary::before {
 /*LARGE-UP*/
 @media screen and (min-width: 1000px) {
   :root {
-    font-size: .9rem;
+    font-size: .85rem;
+  }
+}
+
+/*X-LARGE-UP*/
+@media screen and (min-width: 1300px) {
+  :root {
+    font-size: .8rem;
   }
 }
 
@@ -195,7 +202,7 @@ summary::before {
 /*X-LARGE-UP*/
 @media screen and (min-width: 1681px) {
   :root {
-    font-size: .95rem;
+    font-size: .9rem;
   }
 }
 
