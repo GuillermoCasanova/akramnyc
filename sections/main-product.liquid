@@ -11,8 +11,6 @@
 <link rel="stylesheet" href="{{ 'component-deferred-media.css' | asset_url }}" media="print" onload="this.media='all'">
 
 
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-
 <a class="skip-to-content-link button visually-hidden" href="#ProductInfo-{{ section.id }}">
   {{ "accessibility.skip_to_product_info" | t }}
 </a>
@@ -228,6 +226,37 @@
                         {%for image in product.images%}
                           {%if image.alt contains 'swatch'%}
                               <li class="custom-color-picker__color {%if product.handle == activeProduct.handle%}is-selected{%endif%}">
+
+                              
+                                <input type="radio" 
+                                   id="{{image.alt | remove: 'swatch_' | replace: '-', ' ' | capitalize}}"
+                                  name="color" 
+                                  value="{{ value | escape }}"
+                                  title="View: {{product.title}}" 
+                                  data-color-option
+                                  data-product="{{product  | json   | escape }}"
+                                  data-color-name="{{image.alt | remove: 'swatch_' | replace: '-', ' ' | capitalize}}" 
+                                  data-product-title="{{product.title}}" 
+                                  data-handle="{{product.handle}}"
+                                  data-product-description="{{product.description | escape}}"
+                                  data-product-url="{{product.url}}"
+                                  data-product-id="{{product.id}}"
+                                  data-product-first-variant="{{product.selected_variant.id}}"
+                                  data-swatch="{{image.src  | img_url}}"
+                                  >
+                                  <label class="custom-color-picker__label" for="{{image.alt | remove: 'swatch_' | replace: '-', ' ' | capitalize}}" >
+                                    <span class="visually-hidden">
+                                      {{image.alt | remove: 'swatch_' | replace: '-', ' ' | capitalize}}
+                                    </span>
+                                    <span class="custom-color-picker__label__swatch">
+                                        <img src="{{image.src  | img_url}}" alt="" role="presentation">
+                                    </span>
+                                    <span class="custom-color-picker__label__ring" style="background-image: url({{image.src  | img_url}});">
+                                      
+                                    </span>
+                                  </label>
+
+{% comment %}                                   
                                   <a class="custom-color-picker__label" 
                                     title="View: {{product.title}}" 
                                     href="{{product.url  | within: masterCollection}}" 
@@ -245,7 +274,7 @@
                                   <span class="custom-color-picker__label__ring" style="background-image: url({{image.src  | img_url}});">
                                     
                                   </span>
-                                  </a>
+                                  </a> {% endcomment %}
                               </li>
                             {%endif%}
                           {%endfor%}
@@ -261,7 +290,7 @@
             <div {{ block.shopify_attributes }}>
               <product-form class="product-form">
                 {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" >
                   <div class="product-form__buttons">
                     <button
                       type="submit"
@@ -276,7 +305,6 @@
                         {%- render 'icon-cart' -%}
                       </span>
                       {%- else -%}
-                      ''
                       {%- endif -%}
 
                       <span class="product-form__submit__text">
@@ -341,6 +369,8 @@
 </section>
 
 <script type="module" src="{{ 'product-images.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'custom-color-picker.js' | asset_url }}" defer="defer"></script>
 
 
 {% schema %}

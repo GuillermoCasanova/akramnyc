@@ -624,6 +624,7 @@ class VariantSelects extends HTMLElement {
   onVariantChange() {
     this.updateOptions();
     this.updateMasterId();
+    console.log(this.currentVariant); 
     this.toggleAddButton(true, '', false);
     this.updatePickupAvailability();
 
@@ -748,6 +749,7 @@ class VariantRadios extends VariantSelects {
 }
 
 customElements.define('variant-radios', VariantRadios);
+
 
 
 class CartRemoveButton extends HTMLElement {
