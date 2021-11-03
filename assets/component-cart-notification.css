@@ -369,10 +369,35 @@
   font-size: var(--normal);
 }
 
+
+.product-option {
+    display: flex;
+}
+
+.product-option .option-name {
+   margin-right: var(--level4);
+}
+
+
 .cart-notification__product__info__price {
   position: absolute;
   bottom: 0; 
   font-family: var(--tertiary-font-family);
+}
+
+.cart-notification__product__info__quantity-select {
+  bottom: .7rem;
+  left: 8rem;
+  margin-bottom: 0;
+  top: auto;
+  position: absolute;
+}
+.cart-notification__product__info__quantity-select select {
+  opacity: 0;
+  z-index: 1;
+  width: 100%;
+  position: absolute;
+  left: 0; 
 }
 
 .cart-notification__remove-btn {

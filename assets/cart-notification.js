@@ -18,6 +18,16 @@ class CartNotification extends HTMLElement {
       closeButton.addEventListener('click', this.close.bind(this))
     );
 
+
+    this.currentItemCount = Array.from(this.querySelectorAll('[name="updates[]"]'))
+    .reduce((total, quantityInput) => total + parseInt(quantityInput.value), 0);
+
+    this.debouncedOnChange = debounce((event) => {
+      this.onChange(event);
+    }, 300);
+
+    this.addEventListener('change', this.debouncedOnChange.bind(this));
+
   }
 
   open() {
@@ -51,6 +61,11 @@ class CartNotification extends HTMLElement {
     this.overlay.classList.remove('is-visible');
   }
 
+  onChange(event) {
+    this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
+
+  }
+
   showLatestCart() {
     this.open(); 
     fetch(`${routes.cart_get_url}`)
@@ -69,6 +84,9 @@ class CartNotification extends HTMLElement {
   updateQuantity(line, quantity, name) {
     this.enableLoading(line);
 
+    console.log(line); 
+    console.log(quantity);
+
     const body = JSON.stringify({
       line,
       quantity,
@@ -82,6 +100,7 @@ class CartNotification extends HTMLElement {
       })
       .then((state) => {
           const parsedState = JSON.parse(state);
+          console.log(parsedState); 
           // this.classList.toggle('is-empty', parsedState.item_count === 0);
           // document.getElementById('main-cart-footer')?.classList.toggle('is-empty', parsedState.item_count === 0);
           this.renderContents(parsedState);
@@ -199,6 +218,174 @@ class CartNotification extends HTMLElement {
 
       this.productsContainer.innerHTML = productList; 
 
+      function variantTemplate(pItem) {
+
+        let product_contents = pItem; 
+        let template = ''; 
+    
+          if(product_contents.originalObject.has_only_default_variant == false || product_contents.originalObject.properties.size != 0 || pItem.originalObject.selling_plan_allocation !== nil ) {
+    
+            function getOptionHtml() {
+               if(pItem.originalObject.product_has_only_default_variant == false) {
+    
+                 let productOptionTemplate ='';
+                  pItem.originalObject.options_with_values.forEach(function(element) {
+                    let template = `
+                      <div class="product-option">
+                        <dt>${element.name}: </dt>
+                        <dd>${element.value}</dd>
+                      </div>
+                    `;
+                    productOptionTemplate =  productOptionTemplate + template; 
+                  }); 
+    
+                  if( Object.keys(pItem.originalObject.properties).legth > 0) {
+                      pItem.originalObject.properties.forEach(function(element) {
+                        let property_first_char = element.first.slide(0, 1); 
+                        if(element.last !== '' && property_first_char !== "_") {
+                          let template = `
+                          <div class="product-option">
+                          <dt>${element.first}: </dt>
+                          <dd>
+    
+                                {%- if property.last contains '/uploads/' -%}
+                                <a href="{{ property.last }}" target="_blank">
+                                  {{ property.last | split: '/' | last }}
+                                </a>
+                              {%- else -%}
+                                {{ property.last }}
+                              {%- endif -%}
+                              
+                              ${element.last}
+                          </dd>
+                        </div>
+                          
+                          `;
+                        }
+                        productOptionTemplate = productOptionTemplate + template; 
+                      }); 
+                  }
+                  
+                  console.log(product_contents); 
+    
+                  if(product_contents.discounts.length > 0 ) {
+    
+                    let discounts = `
+                      <ul class="discounts list-unstyled" role="list" aria-label="Discount">
+                        ${(() => {
+                          
+                            let discounts = ''; 
+    
+                            product_contents.discounts.forEach(function(discount) {
+                              discounts = discounts + `<li>${discount.title}</li>`; 
+                              console.log(discounts); 
+                            }); 
+                            
+                            return discounts;
+                          })()}
+                      </ul>
+                    `;
+                    productOptionTemplate = productOptionTemplate + discounts; 
+                  }
+    
+                  return productOptionTemplate; 
+                  
+                } else {
+                  return ' '
+                }
+            }
+    
+            return getOptionHtml(); 
+    
+          } else {
+            return ""
+          }
+        }
+
+      
+      function variantTemplate(pItem) {
+
+        let product_contents = pItem; 
+        let template = ''; 
+
+          if(product_contents.originalObject.has_only_default_variant == false   || product_contents.originalObject.properties.size != 0 || product_contents.originalObject.selling_plan_allocation !== nil) {
+    
+            function getOptionHtml() {
+                if(pItem.originalObject.product_has_only_default_variant == false) {
+    
+                  let productOptionTemplate ='';
+                  pItem.originalObject.options_with_values.forEach(function(element) {
+                    let template = `
+                      <div class="product-option">
+                        <span class="option-name">${element.name}: </span>
+                        <span class="option-value">${element.value}</span>
+                      </div>
+                    `;
+                    productOptionTemplate =  productOptionTemplate + template; 
+                  }); 
+    
+                  if( Object.keys(pItem.originalObject.properties).legth > 0) {
+                      pItem.originalObject.properties.forEach(function(element) {
+                        let property_first_char = element.first.slide(0, 1); 
+                        if(element.last !== '' && property_first_char !== "_") {
+                          let template = `
+                          <div class="product-option">
+                          <dt>${element.first}: </dt>
+                          <dd>
+    
+                                {%- if property.last contains '/uploads/' -%}
+                                <a href="{{ property.last }}" target="_blank">
+                                  {{ property.last | split: '/' | last }}
+                                </a>
+                              {%- else -%}
+                                {{ property.last }}
+                              {%- endif -%}
+                              
+                              ${element.last}
+                          </dd>
+                        </div>
+                          
+                          `;
+                        }
+                        productOptionTemplate = productOptionTemplate + template; 
+                      }); 
+                  }
+                  
+                  console.log(product_contents); 
+    
+                  if(product_contents.discounts.length > 0 ) {
+    
+                    let discounts = `
+                      <ul class="discounts list-unstyled" role="list" aria-label="Discount">
+                        ${(() => {
+                          
+                            let discounts = ''; 
+    
+                            product_contents.discounts.forEach(function(discount) {
+                              discounts = discounts + `<li>${discount.title}</li>`; 
+                              console.log(discounts); 
+                            }); 
+                            
+                            return discounts;
+                          })()}
+                      </ul>
+                    `;
+                    productOptionTemplate = productOptionTemplate + discounts; 
+                  }
+    
+                  return productOptionTemplate; 
+                  
+                } else {
+                  return ' '
+                }
+            }
+    
+            return getOptionHtml(); 
+    
+          } else {
+          }
+        }
+      
       function productTemplate(pProduct, pProductIndex, pCart) {
 
         let productIndex =  pProduct.line; 
@@ -220,10 +407,60 @@ class CartNotification extends HTMLElement {
                     ${pProduct.name}
                   </h3>
                   <p class="cart-notification__product__info__variant"> 
-                    Size: M
+                    ${variantTemplate(prod_contents)}
                   </p>
                     <p class="cart-notification__product__info__price">
                        ${pProduct.subtotal}
+                    </p>
+
+                    <p class="cart-notification__product__info__quantity-select">
+                    <quantity-select data-index="${productIndex}">
+                    <span class="option-name">
+                    Qty: 
+                    </span>
+                    <label class="option-name">
+                      ${prod_contents.itemQty}
+                    </label>
+                    <select  
+                      class="quantity__input"
+                      name="updates[]"
+                      data-quantity-update
+                      value="${prod_contents.itemQty}"
+                      aria-label="Quantity: ${prod_contents.title}"   
+                      id="Quantity-${productIndex}" tabindex="-1"   data-index="${productIndex}">
+                        <option value="0" ${prod_contents.itemQty === 0 ? 'selected' : '' }>
+                            0
+                        </option>
+                        <option value="1"  ${prod_contents.itemQty === 1 ? 'selected' : '' }>
+                            1
+                        </option>
+                        <option value="2"  ${prod_contents.itemQty === 2 ? 'selected' : '' }>
+                            2
+                        </option>
+                        <option value="3"  ${prod_contents.itemQty === 3 ? 'selected' : '' }>
+                            3
+                        </option>
+                        <option value="4"  ${prod_contents.itemQty === 4 ? 'selected' : '' }>
+                            4
+                        </option>
+                        <option value="5"  ${prod_contents.itemQty === 5 ? 'selected' : '' }>
+                          5
+                        </option>
+                        <option value="6"  ${prod_contents.itemQty === 6 ? 'selected' : '' }>
+                          6
+                        </option>
+                        <option value="7"  ${prod_contents.itemQty === 7 ? 'selected' : '' }>
+                          7
+                        </option>
+                        <option value="8"  ${prod_contents.itemQty === 8 ? 'selected' : '' }>
+                          8
+                        </option>
+                        <option value="9"  ${prod_contents.itemQty === 9 ? 'selected' : '' }>
+                          9
+                        </option>
+                    </select>
+              </quantity-select>
+          
                     </p>
                 </div>
 
@@ -299,3 +536,4 @@ class CartNotification extends HTMLElement {
 }
 
 customElements.define('cart-notification', CartNotification);
+

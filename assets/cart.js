@@ -154,6 +154,8 @@ class CartItems extends HTMLElement {
     let product_contents = pItem; 
     let template = ''; 
 
+    console.log(product_contents); 
+
       if(product_contents.originalObject.has_only_default_variant == false || product_contents.originalObject.properties.size != 0 || pItem.originalObject.selling_plan_allocation !== nil ) {
 
         function getOptionHtml() {

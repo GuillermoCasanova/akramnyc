@@ -172,7 +172,7 @@ summary::before {
 /*SMALL-UP*/
 @media screen and (min-width: 370px) {
   :root {
-    font-size: .85rem;
+    font-size: .9rem;
   }
 }
 
