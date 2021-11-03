@@ -624,7 +624,8 @@ class VariantSelects extends HTMLElement {
   onVariantChange() {
     this.updateOptions();
     this.updateMasterId();
-    this.toggleAddButton(true, '', false);
+    this.updateCurrentOption();
+    //this.toggleAddButton(true, '', false);
      // this.updatePickupAvailability();
 
     if (!this.currentVariant) {
@@ -642,11 +643,12 @@ class VariantSelects extends HTMLElement {
     this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
   }
 
+  updateCurrentOption() {
+    this.querySelector('[data-current-option]').textContent = this.currentVariant.title;
+  }
+
   updateMasterId() {
     this.currentVariant = this.getVariantData().find((variant) => {
-
-      console.log(this.options);
-      console.log(variant); 
 
       return !variant.options.map((option, index) => {
         return this.options[index] === option;
@@ -743,6 +745,33 @@ class VariantRadios extends VariantSelects {
     super();
   }
 
+  setUpEvents() {
+
+        let currentOption = this.querySelector("[data-current-option").textContent; 
+
+
+        function showOption(pColor) {
+            let colorContainer = document.querySelector('[data-current-option]'); 
+            colorContainer.textContent = pColor; 
+        }
+    
+        this.querySelectorAll('[data-option-label]').forEach(function(element) {
+            element.addEventListener('mouseenter', function(event) {
+                let name = this.dataset.optionName; 
+                showOption(name)
+            })
+            element.addEventListener('click', function(event) {
+              let name = this.dataset.optionName; 
+              currentOption = name;
+              console.log(name); 
+              showOption(name)
+           })
+            element.addEventListener('mouseleave', function(event) {
+                showOption(currentOption)
+            })
+        }); 
+  }
+
   updateOptions() {
     const fieldsets = Array.from(this.querySelectorAll('fieldset'));
     this.options = fieldsets.map((fieldset) => {
@@ -752,7 +781,9 @@ class VariantRadios extends VariantSelects {
 }
 
 customElements.define('variant-radios', VariantRadios);
-
+window.addEventListener('DOMContentLoaded', function() {
+  document.querySelector('variant-radios').setUpEvents(); 
+}); 
 
 
 class CartRemoveButton extends HTMLElement {

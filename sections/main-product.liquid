@@ -153,7 +153,7 @@
                             {{ option.name }}: 
                           </span>
                          <span class="form__current-option-label" role="presentation" data-current-option>
-                            Medium
+                            {{option.selected_value}}
                         </span>
                       </legend>
                         {%- for value in option.values -%}
@@ -163,7 +163,7 @@
                                 form="product-form-{{ section.id }}"
                                 {% if option.selected_value == value %}checked{% endif %}
                           >
-                          <label for="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}">
+                          <label for="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}" data-option-label data-option-name="{{ value | escape }}">
                             {{ value }}
                           </label>
                         {%- endfor -%}
@@ -245,7 +245,7 @@
                                   data-swatch="{{image.src  | img_url}}"
                                   class="custom-color-picker__input"
                                   >
-                                  <label class="custom-color-picker__label" for="{{image.alt | remove: 'swatch_' | replace: '-', ' ' | capitalize}}" >
+                                  <label class="custom-color-picker__label" for="{{image.alt | remove: 'swatch_' | replace: '-', ' ' | capitalize}}" data-color-label data-color-name="{{image.alt | remove: 'swatch_' | replace: '-', ' ' | capitalize}}">
                                     <span class="visually-hidden">
                                       {{image.alt | remove: 'swatch_' | replace: '-', ' ' | capitalize}}
                                     </span>

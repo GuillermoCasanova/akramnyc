@@ -40,12 +40,9 @@ class CustomColorPicker extends HTMLElement {
     }; 
 
     updateProductId() {
-        console.log( JSON.parse(this.currentColor.dataset.product)); 
-       
-       
         document.querySelector('[data-active-product-id]').value = JSON.parse(this.currentColor.dataset.product).variants[0].id; 
 
-       document.querySelectorAll('variant-radios').forEach((elem) => {
+        document.querySelectorAll('variant-radios').forEach((elem) => {
         elem.dataset.url = this.getSelectedColor().dataset.productUrl;
 
         if( elem.querySelector('[type="application/json"]')) {
@@ -90,7 +87,6 @@ class CustomColorPicker extends HTMLElement {
 
             document.querySelectorAll('[data-product-images-slideshow-wrapper]').forEach((element) => {
                 element.insertAdjacentHTML("beforeend", imageTemplate);
-                //return imageTemplate;
             });
 
          }
@@ -112,20 +108,21 @@ class CustomColorPicker extends HTMLElement {
     }
 
     setUpEvents() {
-        if(document.querySelectorAll("[data-color-container]").length > 0) {
-            let currentColor = document.querySelector("[data-color-container]").textContent; 
+        if(this.querySelectorAll("[data-color-container]").length > 0) {
+            let colorContainer = this.querySelector('[data-color-container]');
+            let currentColor = this.querySelector("[data-color-container]").textContent; 
     
             function showColor(pColor) {
-                let colorContainer = document.querySelector('[data-color-container]'); 
                 colorContainer.textContent = pColor; 
             }
         
-            document.querySelectorAll('[data-swatch]').forEach(function(element) {
+            this.querySelectorAll('[data-color-label]').forEach((element) => {
                 element.addEventListener('mouseenter', function(event) {
+                    console.log('hello');
                     let name = this.dataset.colorName; 
                     showColor(name)
                 })
-                element.addEventListener('mouseleave', function(event) {
+                element.addEventListener('mouseleave', (event) => {
                     showColor(currentColor)
                 })
             }); 
