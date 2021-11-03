@@ -58,8 +58,7 @@ class CustomColorPicker extends HTMLElement {
         newScript.innerHTML  = ` ` + JSON.stringify(JSON.parse(this.currentColor.dataset.product).variants);  
         newScript.type = "application/json";
         elem.appendChild(newScript); 
-        elem.updateOptions();
-        elem.updateMasterId();
+        elem.onVariantChange();
     }); 
 
 

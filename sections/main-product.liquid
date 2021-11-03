@@ -203,7 +203,7 @@
                   {%assign activeProduct = product%}
 
                   {%if product.title == collection.title%}
-                  <div class="custom-color-picker  product-form__input">
+                  <div class="custom-color-picker  x-product-form__input">
                     <div  class="custom-color-picker__current-color">
                       <span class="custom-color-picker__current-color__label">Color:</span>
                         <span  data-color-container>
@@ -243,6 +243,7 @@
                                   data-product-id="{{product.id}}"
                                   data-product-first-variant="{{product.selected_variant.id}}"
                                   data-swatch="{{image.src  | img_url}}"
+                                  class="custom-color-picker__input"
                                   >
                                   <label class="custom-color-picker__label" for="{{image.alt | remove: 'swatch_' | replace: '-', ' ' | capitalize}}" >
                                     <span class="visually-hidden">
