@@ -58,7 +58,6 @@ class CartNotification extends HTMLElement {
       return response.text();
     })
     .then((state) => {
-      console.log('show cart');
       const parsedState = JSON.parse(state);
       this.renderContents(parsedState);
     })
@@ -98,8 +97,6 @@ class CartNotification extends HTMLElement {
 
 
   renderContents(parsedState) {
-
-    console.log(parsedState); 
 
     let cartContents = {
       items: parsedState.items, 

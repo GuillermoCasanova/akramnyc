@@ -14,6 +14,7 @@ class CustomColorPicker extends HTMLElement {
         this.getSelectedColor(); 
         this.updateURL(); 
         this.updateImages();
+        this.updateProductId(); 
     }
 
     updateURL() {
@@ -38,6 +39,28 @@ class CustomColorPicker extends HTMLElement {
         //   });
     }; 
 
+    updateProductId() {
+        console.log( JSON.parse(this.currentColor.dataset.product)); 
+       
+       
+        document.querySelector('[data-active-product-id]').value = JSON.parse(this.currentColor.dataset.product).variants[0].id; 
+
+       document.querySelectorAll('variant-radios').forEach((elem) => {
+        elem.dataset.url = this.getSelectedColor().dataset.productUrl;
+
+        if( elem.querySelector('[type="application/json"]')) {
+            let e = elem.querySelector('[type="application/json"]');
+            e.parentElement.removeChild(e); 
+        }
+
+
+        let newScript = document.createElement('script');
+        newScript.innerHTML  = ` ` + JSON.stringify(JSON.parse(this.currentColor.dataset.product).variants);  
+        newScript.type = "application/json";
+        elem.appendChild(newScript); 
+       }); 
+
+    }
 
     updateImages() {
         let productObj = JSON.parse(this.currentColor.dataset.product); 
@@ -64,8 +87,6 @@ class CustomColorPicker extends HTMLElement {
             `; 
 
             document.querySelectorAll('[data-product-images-slideshow-wrapper]').forEach((element) => {
-                console.log(imageTemplate);
-                console.log(element);
                 element.insertAdjacentHTML("beforeend", imageTemplate);
                 //return imageTemplate;
             });
@@ -81,7 +102,6 @@ class CustomColorPicker extends HTMLElement {
         clearImages() 
 
         images.forEach((image)=> {
-            console.log(image); 
             if(image.alt === null || image.alt.indexOf('swatch_') == -1) {
                 createImageObj(image.src, '');
             }
