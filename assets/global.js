@@ -624,7 +624,6 @@ class VariantSelects extends HTMLElement {
   onVariantChange() {
     this.updateOptions();
     this.updateMasterId();
-    console.log(this.currentVariant); 
     this.toggleAddButton(true, '', false);
     this.updatePickupAvailability();
 
@@ -645,6 +644,10 @@ class VariantSelects extends HTMLElement {
 
   updateMasterId() {
     this.currentVariant = this.getVariantData().find((variant) => {
+
+      console.log(this.options);
+      console.log(variant); 
+
       return !variant.options.map((option, index) => {
         return this.options[index] === option;
       }).includes(false);
@@ -728,7 +731,7 @@ class VariantSelects extends HTMLElement {
   }
 
   getVariantData() {
-    this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
+    this.variantData = JSON.parse(this.querySelector('[type="application/json"]').textContent);
     return this.variantData;
   }
 }
