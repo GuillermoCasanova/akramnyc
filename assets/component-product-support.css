@@ -1,0 +1,102 @@
+
+
+.product-support {
+    position: relative;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.product-support div {
+    overflow: hidden;
+    overflow: clip; 
+}
+
+
+.product-support button {
+    transform: translateX(0);
+    background-color: transparent;
+    color: #fff;
+    outline: 0;
+    border: 0; 
+    margin-bottom: var(--level3);
+    text-transform: uppercase;
+  }
+
+  .product-support button {
+    cursor: pointer;
+  }
+
+
+  .product-support aside {
+    height: 100vh;
+    width: 40vw;
+    background-color: black;
+    right: 0; 
+    bottom: 0; 
+    position: fixed;
+    transform: translateX(100%);
+    transition: all var(--duration-long) ease;
+  }
+
+  .product-support aside.is-visible {
+    transform: translateX(0); 
+  }
+
+@media screen and (min-width: 990px) {
+    .product-support {
+        position: absolute;
+        bottom: var(--level3); 
+        padding-bottom: var(--level3); 
+        right:  var(--level1); 
+    }
+  }
+
+/* 
+
+
+
+@media screen and (min-width: 990px) {
+  .product-support details div  {
+    position: fixed;
+    top: 0; 
+    right: 0; 
+    width: 45vw;
+    background-color: black;
+    height: 100vh;
+    z-index: 10;
+    opacity: 1;
+    transform: translateX(100%);
+    transition: all 10s ease-in-out;
+  }
+}
+
+.product-help  details > *:not(summary) {
+    animation: details-show 2s ease-in-out;
+
+}
+
+.product-help  details:not([open]) > *:not(summary) {
+    animation: details-hide 2s ease-in-out;
+
+  }
+
+.product-help[open] > summary:before {
+    transform: rotate(90deg);
+    transition: 0.45s transform ease;
+  } */
+
+
+@keyframes details-show {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes details-hide {
+    to {
+      opacity: 0;
+    }
+  }

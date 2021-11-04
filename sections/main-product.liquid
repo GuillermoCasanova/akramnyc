@@ -5,6 +5,7 @@
 {{ 'component-rte.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'vendor-swiper.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-support.css' | asset_url | stylesheet_tag }}
 
 
 <link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -269,25 +270,7 @@
                                     </span>
                                   </label>
 
-{% comment %}                                   
-                                  <a class="custom-color-picker__label" 
-                                    title="View: {{product.title}}" 
-                                    href="{{product.url  | within: masterCollection}}" 
-                                    data-color-name="{{image.alt | remove: 'swatch_' | replace: '-', ' ' | capitalize}}" 
-                                    data-product-title="{{product.title}}" 
-                                    data-handle="{{product.handle}}"
-                                    data-product-description="{{product.description | escape}}"
-                                    data-swatch="{{image.src  | img_url}}">
-                                  <span class="visually-hidden">
-                                    {{image.alt | remove: 'swatch_' | replace: '-', ' ' | capitalize}}
-                                  </span>
-                                  <span class="custom-color-picker__label__swatch">
-                                      <img src="{{image.src  | img_url}}" alt="" role="presentation">
-                                  </span>
-                                  <span class="custom-color-picker__label__ring" style="background-image: url({{image.src  | img_url}});">
-                                    
-                                  </span>
-                                  </a> {% endcomment %}
+
                               </li>
                             {%endif%}
                           {%endfor%}
@@ -339,8 +322,37 @@
             </div>
 
             <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
+
+
           {%- endcase -%}
         {%- endfor -%}
+
+    
+      </div>
+
+      <product-help>
+          <div class="product-support">
+              <button data-help-toggle  data-id="delivery-returns">
+                Our Materials
+              </button>
+              <button data-help-toggle  data-id="delivery-returns">
+                Delivery & Returns
+              </button>
+              <aside data-help-modal data-id="delivery-returns">
+
+                <div class="product-support-modal__header">
+                  <button data-help-close>
+                    Close
+                  </button>
+                </div>
+                  <p>
+
+                    GOGOGO
+                  </p>
+
+              </aside>
+          </div>
+        </product-help>
       </div>
     </div>
   </div>
@@ -360,11 +372,14 @@
       </div>
     </modal-dialog>
   {%- endfor -%}
+
+
 </section>
 
 <script type="module" src="{{ 'product-images.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'custom-color-picker.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-help.js' | asset_url }}" defer="defer"></script>
 
 
 {% schema %}
