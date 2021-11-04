@@ -29,22 +29,22 @@
             "information": "leaves-hoodie-black"
           }
         },
-        "5bed6961-10d4-4227-bb6d-4f9af1632962": {
+        "fbf47da1-5589-4d14-bd9a-83c6c853cc04": {
           "type": "featured-product",
           "settings": {
-            "information": "test-product-100"
+            "information": "leaves-hoodie-pale-iris"
           }
         },
-        "69e76864-93cc-4e6c-ab27-71cbed963125": {
+        "5211f07d-637a-4d77-aa76-8b3ce2721520": {
           "type": "featured-product",
           "settings": {
-            "information": "test-product-23"
+            "information": "leaves-short-sleeve-tee-1"
           }
         },
-        "54307067-e898-4cd5-a435-77d1577647db": {
+        "2bd4cf7b-96d6-4d02-b204-7e19dcbdef06": {
           "type": "featured-product",
           "settings": {
-            "information": "test-product-55"
+            "information": "leaves-hoodie-white"
           }
         }
       },
@@ -52,9 +52,9 @@
         "0307442d-23f2-4e02-999a-c836f736d25a",
         "24d116ca-3d8b-4de5-b93c-4a7595dec641",
         "f36eb351-06fd-4fc6-a66e-b3fb407847dd",
-        "5bed6961-10d4-4227-bb6d-4f9af1632962",
-        "69e76864-93cc-4e6c-ab27-71cbed963125",
-        "54307067-e898-4cd5-a435-77d1577647db"
+        "fbf47da1-5589-4d14-bd9a-83c6c853cc04",
+        "5211f07d-637a-4d77-aa76-8b3ce2721520",
+        "2bd4cf7b-96d6-4d02-b204-7e19dcbdef06"
       ],
       "settings": {
         "title": "Featured Products",
