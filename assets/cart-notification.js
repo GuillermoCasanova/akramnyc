@@ -102,6 +102,7 @@ class CartNotification extends HTMLElement {
           // document.getElementById('main-cart-footer')?.classList.toggle('is-empty', parsedState.item_count === 0);
      
           this.renderContents(parsedState);
+          document.querySelector('cart-toggle').updateToggleTotal(parsedState); 
           //this.disableLoading();
 
       }).catch((err) => {
@@ -225,8 +226,8 @@ class CartNotification extends HTMLElement {
 
       if(products.length <= 0) {
         this.showEmptyCartState();
-        return 
       } else {
+
         this.resetCartState();
         this.productsContainer.innerHTML = productList; 
       }
