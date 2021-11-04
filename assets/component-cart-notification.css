@@ -37,6 +37,38 @@
   pointer-events: none;
 }
 
+
+.cart-notification.is-empty .cart-notification__footer  {
+    opacity: 0;
+}
+
+.cart-notification__empty-state {
+  text-align: center;
+  position: absolute;
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  z-index: 1; 
+  top: 0; 
+  display: flex;
+  height: 20%;
+  width: 100%; 
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  margin: auto;
+  pointer-events: none;
+}
+
+
+.cart-notification.is-empty .cart-notification__empty-state {
+  opacity: 1;
+  z-index: 10;
+  pointer-events: all;
+  font-size: var(--h5);
+}
+
+
 @media screen and (min-width: 750px) {
   .cart-notification {
     border-width: 0 0.1rem 0.1rem;

@@ -44,6 +44,7 @@ class CartNotification extends HTMLElement {
     document.body.classList.add('overflow-hidden-tablet');
     document.querySelector('header').classList.add('menu-is-open'); 
     this.overlay.classList.add('is-visible');
+    this.showLatestCart();
   }
 
   close() {
@@ -67,7 +68,7 @@ class CartNotification extends HTMLElement {
   }
 
   showLatestCart() {
-    this.open(); 
+
     fetch(`${routes.cart_get_url}`)
     .then((response) => {
       return response.text();
@@ -84,9 +85,6 @@ class CartNotification extends HTMLElement {
   updateQuantity(line, quantity, name) {
     this.enableLoading(line);
 
-    console.log(line); 
-    console.log(quantity);
-
     const body = JSON.stringify({
       line,
       quantity,
@@ -100,9 +98,9 @@ class CartNotification extends HTMLElement {
       })
       .then((state) => {
           const parsedState = JSON.parse(state);
-          console.log(parsedState); 
           // this.classList.toggle('is-empty', parsedState.item_count === 0);
           // document.getElementById('main-cart-footer')?.classList.toggle('is-empty', parsedState.item_count === 0);
+     
           this.renderContents(parsedState);
           //this.disableLoading();
 
@@ -112,6 +110,15 @@ class CartNotification extends HTMLElement {
         // document.getElementById('cart-errors').textContent = window.cartStrings.error;
         // this.disableLoading();
       });
+  }
+
+  showEmptyCartState() {
+    this.querySelector('[data-cart]').classList.add('is-empty'); 
+  }
+
+
+  resetCartState() {
+    this.querySelector('[data-cart]').classList.remove('is-empty'); 
   }
 
 
@@ -216,7 +223,17 @@ class CartNotification extends HTMLElement {
 
       
 
-      this.productsContainer.innerHTML = productList; 
+      if(products.length <= 0) {
+        this.showEmptyCartState();
+        return 
+      } else {
+        this.resetCartState();
+        this.productsContainer.innerHTML = productList; 
+      }
+
+      this.header?.reveal();
+
+
 
       function variantTemplate(pItem) {
 
@@ -493,7 +510,6 @@ class CartNotification extends HTMLElement {
 
 
 
-      this.header?.reveal();
   }
 
 

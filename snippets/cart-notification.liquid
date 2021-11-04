@@ -6,7 +6,7 @@
 
          <div class="cart-notification__inner">
         
-          <div class="cart-notification__header">
+          <div class="cart-notification__header" data-cart-header>
             <h2 class="cart-notification__heading caption-large">
               Your Bag
             </h2>
@@ -23,9 +23,8 @@
           </div>
 
           <div id="cart-notification-product" class="cart-notification-product"></div>
-        </div>
 
-        <div class="cart-notification__footer">
+            <div class="cart-notification__footer" data-cart-footer >
               <div data-cart-notification-totals class="cart-nofication__totals">
                   <h3 class="cart-nofication__totals__subtotal">Subtotal</h3>
                   <p class="cart-nofication__totals__subtotal-value" data-cart-subtotal>
@@ -38,9 +37,14 @@
                 <button class="button button--primary button--full-width" name="checkout" form="cart">{{ 'sections.cart.checkout' | t }}</button>
               </form>
               {% comment %} <button type="button" class="link button-label">{{ 'general.continue_shopping' | t }}</button> {% endcomment %}
-            </div>
           </div>
-        </div>
+      </div>
+
+      <div class="cart-notification__empty-state">
+        <p>
+          Your Bag is Empty
+        </p>
+      </div>
 
   </aside>
 
