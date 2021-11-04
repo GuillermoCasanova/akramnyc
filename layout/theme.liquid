@@ -69,6 +69,29 @@
       }
 
 
+      .fade-out {
+        position: fixed;
+        width: 100vw; 
+        height: 100vh;
+        background-color: black;
+        z-index: 10;
+        pointer-events: none;
+        opacity: 1;
+        animation: fade-away var(--duration-long) ease forwards; 
+      }
+
+      @keyframes fade-away {
+        0% {
+          opacity: 1;
+        }
+
+        100% {
+          opacity: 0;
+        }
+      }
+
+
+
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
@@ -103,6 +126,10 @@
   </head>
 
   <body>
+
+    <div class="fade-out">
+
+    </div>
 
     <script  src="{{ 'global.js' | asset_url }}"></script>
 
