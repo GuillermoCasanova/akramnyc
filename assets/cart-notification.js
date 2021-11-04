@@ -308,13 +308,18 @@ class CartNotification extends HTMLElement {
         let product_contents = pItem; 
         let template = ''; 
 
-          if(product_contents.originalObject.has_only_default_variant == false   || product_contents.originalObject.properties.size != 0 || product_contents.originalObject.selling_plan_allocation !== nil) {
-    
+
+          if(product_contents.originalObject.product_has_only_default_variant == false) {
+            
+            
             function getOptionHtml() {
-                if(pItem.originalObject.product_has_only_default_variant == false) {
+                if(product_contents.originalObject.product_has_only_default_variant == false) {
     
                   let productOptionTemplate ='';
-                  pItem.originalObject.options_with_values.forEach(function(element) {
+                  
+                  console.log(product_contents);
+
+                  product_contents.originalObject.options_with_values.forEach(function(element) {
                     let template = `
                       <div class="product-option">
                         <span class="option-name">${element.name}: </span>
@@ -324,32 +329,32 @@ class CartNotification extends HTMLElement {
                     productOptionTemplate =  productOptionTemplate + template; 
                   }); 
     
-                  if( Object.keys(pItem.originalObject.properties).legth > 0) {
-                      pItem.originalObject.properties.forEach(function(element) {
-                        let property_first_char = element.first.slide(0, 1); 
-                        if(element.last !== '' && property_first_char !== "_") {
-                          let template = `
-                          <div class="product-option">
-                          <dt>${element.first}: </dt>
-                          <dd>
+                  // if( Object.keys(pItem.originalObject.properties).legth > 0) {
+                  //     pItem.originalObject.properties.forEach(function(element) {
+                  //       let property_first_char = element.first.slide(0, 1); 
+                  //       if(element.last !== '' && property_first_char !== "_") {
+                  //         let template = `
+                  //         <div class="product-option">
+                  //         <dt>${element.first}: </dt>
+                  //         <dd>
     
-                                {%- if property.last contains '/uploads/' -%}
-                                <a href="{{ property.last }}" target="_blank">
-                                  {{ property.last | split: '/' | last }}
-                                </a>
-                              {%- else -%}
-                                {{ property.last }}
-                              {%- endif -%}
+                  //               {%- if property.last contains '/uploads/' -%}
+                  //               <a href="{{ property.last }}" target="_blank">
+                  //                 {{ property.last | split: '/' | last }}
+                  //               </a>
+                  //             {%- else -%}
+                  //               {{ property.last }}
+                  //             {%- endif -%}
                               
-                              ${element.last}
-                          </dd>
-                        </div>
+                  //             ${element.last}
+                  //         </dd>
+                  //       </div>
                           
-                          `;
-                        }
-                        productOptionTemplate = productOptionTemplate + template; 
-                      }); 
-                  }
+                  //         `;
+                  //       }
+                  //       productOptionTemplate = productOptionTemplate + template; 
+                  //     }); 
+                  // }
                   
                   console.log(product_contents); 
     
