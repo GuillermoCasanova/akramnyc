@@ -29,7 +29,7 @@
                   {%- if block.settings.image.width >= 990 -%}{{ block.settings.image | img_url: '990x' }} 990w,{%- endif -%}
                   {%- if block.settings.image.width >= 2080 -%}{{ block.settings.image | img_url: '2080x' }} 2080w{%- endif -%}"
                   src="{{ block.settings.image | img_url: '720x' }}"
-                  sizes="(min-width: 990px){% if section.blocks.size == 1 %} 990px{% else %} 730px{% endif %}, (min-width: 750px){% if section.blocks.size == 1 %} calc(100vw - 100px){% else%} 500px{% endif %}, calc(100vw - 30px)"
+                  sizes="(min-width: 975px){% if section.blocks.size == 1 %} 975px{% else %} 730px{% endif %}, (min-width: 750px){% if section.blocks.size == 1 %} calc(100vw - 100px){% else%} 500px{% endif %}, calc(100vw - 30px)"
                   alt="{{ block.settings.image.alt | escape }}"
                   loading="lazy"
                   width="{{ block.settings.image.width }}"
@@ -61,7 +61,7 @@
                       {%- if featured_media.width >= 990 -%}{{ featured_media | img_url: '990x' }} 990w,{%- endif -%}
                       {%- if featured_media.width >= 2080 -%}{{ featured_media | img_url: '2080x' }} 2080w{%- endif -%}"
                       src="{{ featured_media | img_url: '533x' }}"
-                      sizes="(min-width: 990px){% if section.blocks.size == 1 %} 990px{% else %} 730px{% endif %}, (min-width: 750px){% if section.blocks.size == 1 %} calc(100vw - 100px){% else %} 500px{% endif %}, calc(100vw - 30px)"
+                      sizes="(min-width: 975px){% if section.blocks.size == 1 %} 975px{% else %} 730px{% endif %}, (min-width: 750px){% if section.blocks.size == 1 %} calc(100vw - 100px){% else %} 500px{% endif %}, calc(100vw - 30px)"
                       alt="{{ featured_media.alt | escape }}"
                       loading="lazy"
                       width="{{ featured_media.width }}"
@@ -76,7 +76,7 @@
                         {%- if block.settings.product.media[1].width >= 990 -%}{{ block.settings.product.media[1] | img_url: '990x' }} 990w,{%- endif -%}
                         {%- if block.settings.product.media[1].width >= 2080 -%}{{ block.settings.product.media[1] | img_url: '2080x' }} 2080w{%- endif -%}"
                         src="{{ block.settings.product.media[1] | img_url: '533x' }}"
-                        sizes="(min-width: 990px){% if section.blocks.size == 1 %} 990px{% else %} 730px{% endif %}, (min-width: 750px){% if section.blocks.size == 1 %} calc(100vw - 100px){% else %} 500px{% endif %}, calc(100vw - 30px)"
+                        sizes="(min-width: 975px){% if section.blocks.size == 1 %} 975px{% else %} 730px{% endif %}, (min-width: 750px){% if section.blocks.size == 1 %} calc(100vw - 100px){% else %} 500px{% endif %}, calc(100vw - 30px)"
                         alt="{{ block.settings.product.media[1].alt | escape }}"
                         loading="lazy"
                         width="{{ block.settings.product.media[1].width }}"
@@ -145,7 +145,7 @@
                           {%- if block.settings.collection.featured_image.width >= 990 -%}{{ block.settings.collection.featured_image | img_url: '990x' }} 990w,{%- endif -%}
                           {%- if block.settings.collection.featured_image.width >= 2080 -%}{{ block.settings.collection.featured_image | img_url: '2080x' }} 2080w{%- endif -%}"
                           src="{{ block.settings.collection.featured_image | img_url: '533x' }}"
-                          sizes="(min-width: 990px){% if section.blocks.size == 1 %} 990px{% else %} 730px{% endif %}, (min-width: 750px){% if section.blocks.size == 1 %} calc(100vw - 100px){% else%} 500px{% endif %}, calc(100vw - 30px)"
+                          sizes="(min-width: 975px){% if section.blocks.size == 1 %} 975px{% else %} 730px{% endif %}, (min-width: 750px){% if section.blocks.size == 1 %} calc(100vw - 100px){% else%} 500px{% endif %}, calc(100vw - 30px)"
                           alt="{{ block.settings.collection.featured_image.alt | escape }}"
                           loading="lazy"
                           width="{{ block.settings.collection.featured_image.width }}"
@@ -204,7 +204,7 @@
                       {%- if block.settings.cover_image.width >= 990 -%}{{ block.settings.cover_image | img_url: '990x' }} 990w,{%- endif -%}
                       {%- if block.settings.cover_image.width >= 2080 -%}{{ block.settings.cover_image | img_url: '2080x' }} 2080w{%- endif -%}"
                       src="{{ block.settings.cover_image | img_url: '533x' }}"
-                      sizes="(min-width: 990px){% if section.blocks.size == 1 %} 990px{% else %} 730px{% endif %}, (min-width: 750px){% if section.blocks.size == 1 %} calc(100vw - 100px){% else%} 500px{% endif %}, calc(100vw - 30px)"
+                      sizes="(min-width: 975px){% if section.blocks.size == 1 %} 975px{% else %} 730px{% endif %}, (min-width: 750px){% if section.blocks.size == 1 %} calc(100vw - 100px){% else%} 500px{% endif %}, calc(100vw - 30px)"
                       alt="{{ block.settings.description | escape }}"
                       loading="lazy"
                       width="{{ block.settings.cover_image.width }}"
@@ -238,7 +238,7 @@
                       {%- if block.settings.cover_image.width >= 990 -%}{{ block.settings.cover_image | img_url: '990x' }} 990w,{%- endif -%}
                       {%- if block.settings.cover_image.width >= 2080 -%}{{ block.settings.cover_image | img_url: '2080x' }} 2080w{%- endif -%}"
                       src="{{ block.settings.cover_image | img_url: '533x' }}"
-                      sizes="(min-width: 990px){% if section.blocks.size == 1 %} 990px{% else %} 730px{% endif %}, (min-width: 750px){% if section.blocks.size == 1 %} calc(100vw - 100px){% else%} 500px{% endif %}, calc(100vw - 30px)"
+                      sizes="(min-width: 975px){% if section.blocks.size == 1 %} 975px{% else %} 730px{% endif %}, (min-width: 750px){% if section.blocks.size == 1 %} calc(100vw - 100px){% else%} 500px{% endif %}, calc(100vw - 30px)"
                       alt="{{ block.settings.description | escape }}"
                       loading="lazy"
                       width="{{ block.settings.cover_image.width }}"
@@ -281,7 +281,7 @@
                         {%- if block.settings.cover_image.width >= 990 -%}{{ block.settings.cover_image | img_url: '990x' }} 990w,{%- endif -%}
                         {%- if block.settings.cover_image.width >= 2080 -%}{{ block.settings.cover_image | img_url: '2080x' }} 2080w{%- endif -%}"
                         src="{{ block.settings.cover_image | img_url: '533x' }}"
-                        sizes="(min-width: 990px){% if section.blocks.size == 1 %} 990px{% else %} 730px{% endif %}, (min-width: 750px){% if section.blocks.size == 1 %} calc(100vw - 100px){% else%} 500px{% endif %}, calc(100vw - 30px)"
+                        sizes="(min-width: 975px){% if section.blocks.size == 1 %} 975px{% else %} 730px{% endif %}, (min-width: 750px){% if section.blocks.size == 1 %} calc(100vw - 100px){% else%} 500px{% endif %}, calc(100vw - 30px)"
                         alt="{{ block.settings.description | escape }}"
                         loading="lazy"
                         width="{{ block.settings.cover_image.width }}"

@@ -245,7 +245,7 @@
   background-color: rgba(var(--color-card-hover), 0.06);
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .card .media.media--hover-effect > img:only-child,
   .card-wrapper .media.media--hover-effect > img:only-child {
     transition: transform var(--duration-long) ease;

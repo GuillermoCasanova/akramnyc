@@ -166,7 +166,7 @@
   font-size: 1.6rem;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .footer-block__heading {
     font-size: 1.8rem;
   }

@@ -139,6 +139,7 @@ summary::before {
     --tertiary-font-family: 'telegrafbold',  'Space Mono', 'Courier New', Courier, monospace;
     --letter-spacing-1: 1.5px; 
     --letter-spacing-3: 3px; 
+    --letter-spacing-4: 5px; 
     --kilo: 3.002rem;
     --h1: 2.436rem;
     --h2: 1.903rem;
@@ -174,12 +175,20 @@ summary::before {
 /*SMALL-UP*/
 @media screen and (min-width: 370px) {
   :root {
-    font-size: .9rem;
+    font-size: .85rem;
   }
 }
 
 /*MEDIUM-UP*/
 @media screen and (min-width: 700px) {
+  :root {
+    font-size: .85rem;
+  }
+}
+
+
+/*LARGE-UP*/
+@media screen and (min-width: 975px) {
   :root {
     font-size: .8rem;
   }
@@ -196,7 +205,7 @@ summary::before {
 /*X-LARGE-UP*/
 @media screen and (min-width: 1300px) {
   :root {
-    font-size: .8rem;
+    font-size: .85rem;
   }
 }
 
@@ -327,4 +336,20 @@ p {
   cursor: pointer;
   background-color: #fff;
   color: black;
+}
+
+
+
+/*------------------------------------*\
+    #Sections
+\*------------------------------------*/
+
+section {
+  padding-bottom: var(--level7);
+}
+
+@media only screen and (min-width: 975px) {
+  section {
+    padding-bottom: calc(var(--level7) * 2);
+  }
 }

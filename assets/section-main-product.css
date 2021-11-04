@@ -11,7 +11,7 @@
   flex-direction: column; 
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .product {
     flex-direction: row; 
     margin-bottom: 10rem;
@@ -31,7 +31,7 @@
 }
 
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .product__media-wrapper {
     width: 60vw; 
   }
@@ -164,7 +164,7 @@
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .product__media-icon {
     opacity: 0;
   }
@@ -303,7 +303,7 @@
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .product-media-modal__content > * {
     max-width: 98%;
   }
@@ -348,7 +348,7 @@
   display: block;
 }
 
-@media only screen and (min-width:990px) {
+@media only screen and (min-width:975px) {
   .product-images--mobile {
     display: none;
   }
@@ -361,7 +361,7 @@
 }
 
 
-@media only screen and (min-width:990px) {
+@media only screen and (min-width:975px) {
   .product-images-slideshow__image-container {
      padding-bottom: 100vh;
   }
@@ -411,7 +411,7 @@
   display: none;
 }
 
-@media only screen and (min-width:990px) {
+@media only screen and (min-width:975px) {
   .product-images--desktop {
     display: block;
   }
@@ -467,7 +467,7 @@
 
 
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .product__info-wrapper {
     position: sticky;
     width: 44%;
@@ -492,7 +492,7 @@
 }
 
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .product__info-container {
     min-width: 22rem;
     width: 22vw; 
@@ -517,7 +517,7 @@
   margin-bottom: var(--level4);
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .product__info-container .product-form,
   .product__info-container .product__description,
   .product__info-container .share-button {
@@ -555,7 +555,7 @@
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .product .price {
     font-size: var(--h5);
   }
@@ -636,7 +636,7 @@
 }
 
 
-@media only screen and (min-width: 990px) {
+@media only screen and (min-width: 975px) {
   .product-form__input {
     padding-top: var(--level3);
     margin-bottom: var(--level5);
@@ -821,7 +821,7 @@ variant-selects {
 }
 
 
-@media only screen and (min-width: 990px) {
+@media only screen and (min-width: 975px) {
   .custom-color-picker {
     padding-top: var(--level3);
     margin-bottom: var(--level5);
@@ -831,7 +831,7 @@ variant-selects {
 
 
 
-@media only screen and (min-width: 990px) {
+@media only screen and (min-width: 975px) {
   .custom-color-picker {
 
   }

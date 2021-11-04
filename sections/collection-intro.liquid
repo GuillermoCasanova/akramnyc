@@ -1,0 +1,66 @@
+
+
+<link rel="stylesheet" href="{{ 'section-collection-intro.css' | asset_url }}">
+
+<div class="collection-intro__inner">
+    <div class="collection-intro__copy">
+        <span class="collection-intro__introducing-line">
+            Introducing
+        </span>
+        <h1 class="collection-intro__headline">
+            {{section.settings.title}}
+        </h1>
+
+        <div class="collection-intro__description">
+            {{section.settings.description}}
+        </div>
+
+        <div class="collection-intro__bg"> 
+            <div class="collection-intro__bg__right">
+                <svg aria-hidden="true" focusable="false" role="presentation">
+                    <use href="#akram-leaves">
+                </svg>
+            </div>
+            
+            <div class="collection-intro__bg__left">
+                <svg aria-hidden="true" focusable="false" role="presentation">
+                    <use href="#akram-leaves">
+                </svg>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% schema %}
+{
+  "name": "Collection Intro",
+  "tag": "section",
+  "class": "collection-intro",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Collection Name",
+      "label": "Collection  Name"
+    },
+    {
+        "type": "richtext",
+        "id": "description",
+        "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+        "label": "Collection  Description"
+    },
+    {
+        "type": "url", 
+        "id": "collection-url", 
+        "label": "Collection Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Intro"
+    }
+  ]
+}
+{% endschema %}

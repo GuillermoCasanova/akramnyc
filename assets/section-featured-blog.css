@@ -17,7 +17,7 @@
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .blog-placeholder {
     margin: 0;
   }
@@ -79,7 +79,7 @@
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .blog__posts.articles-wrapper {
     padding-bottom: 0;
   }

@@ -45,7 +45,7 @@
     transform: translateX(0); 
   }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
     .product-support {
         position: absolute;
         bottom: var(--level3); 
@@ -58,7 +58,7 @@
 
 
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .product-support details div  {
     position: fixed;
     top: 0; 

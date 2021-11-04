@@ -125,7 +125,7 @@ sticky-header {
   color: #fff;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .header {
     padding-top: 1rem;
     padding-bottom: 11rem;
@@ -188,7 +188,7 @@ sticky-header {
     filter: drop-shadow(2px 4px 10px rgba(0,0,0, .1));
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .header__logo {
     width: 2rem;
     height: 4.5rem;
@@ -238,7 +238,7 @@ sticky-header {
   width: 100%;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .header__heading-link {
     margin-left: -0.75rem;
   }
@@ -260,7 +260,7 @@ header-drawer {
   z-index: 0;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   header-drawer {
     display: none;
   }
@@ -493,7 +493,7 @@ animation: animateMenuOpen var(--duration-default) ease;
 }
 
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
 .header__inline-menu details[open] > .header__submenu {
   position: absolute;
   left: 0; 
@@ -525,7 +525,7 @@ animation: animateMenuOpen var(--duration-default) ease;
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .overflow-hidden-tablet {
     overflow: auto;
   }
@@ -555,7 +555,7 @@ animation: animateMenuOpen var(--duration-default) ease;
   flex-direction: row;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .header__inline-menu {
     display: flex;
     justify-self: flex-start;
@@ -722,7 +722,7 @@ details-disclosure > details {
 }
 
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .header.is-product-page .header__icon--cart {
     color:#fff;
   }
@@ -763,7 +763,7 @@ details-disclosure > details {
     line-height: 0;
   }
   
-  @media screen and (min-width: 990px) {
+  @media screen and (min-width: 975px) {
     .header:not(.header--top-center) * > .header__search,
     .header--top-center > .header__search {
       display: inline-flex;
@@ -822,7 +822,7 @@ details-disclosure > details {
     }
   }
   
-  @media screen and (min-width: 990px) {
+  @media screen and (min-width: 975px) {
     .search-modal__form {
       max-width: 47.8rem;
     }

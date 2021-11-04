@@ -29,7 +29,7 @@ cart-items.is-empty .title-wrapper-with-link,
   margin-top: 2.5rem;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .cart__warnings {
     padding: 10rem 0 15rem;
   }

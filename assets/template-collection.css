@@ -378,7 +378,7 @@ span.active-facets__button-inner {
   align-items: center;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 975px) {
   .active-facets__button {
     padding: 0;
     margin: 0 0 1rem 1rem;
@@ -423,7 +423,7 @@ a.active-facets__button:focus .active-facets__button-inner {
   top: 0.1rem;
 }
 
-@media all and (min-width: 990px) {
+@media all and (min-width: 975px) {
   .active-facets__button svg {
     width: 1.4rem;
     position: static;
