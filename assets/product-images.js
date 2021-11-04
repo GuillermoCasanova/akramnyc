@@ -123,15 +123,22 @@ class ProductImagesScroller extends HTMLElement {
             images: '[data-images-scroller-image]',
             container: '[data-images-scroller-thumbs]'
         }
+        this.mediaQueries = {
+            mediumDown: window.matchMedia('(max-width: 974px)'),
+            largeUp: window.matchMedia('(min-width: 975px)')
+        }
+        this.init(); 
+
+        console.log(this.selectors);
     }
         
     handleLargeUp(pEvent) {
 
         if(pEvent.matches) {
             let that = this; 
-            this.container = document.querySelector(this.selectors.container);
-            this.container.querySelectorAll(this.selectors.thumbnails).forEach(function(element) {
-            
+            this.querySelectorAll(this.selectors.thumbnails).forEach(function(element) {
+                
+                console.log(element); 
                 if(element.dataset.id === '1' ||  element.dataset.id === 1) {
                     element.classList.add('is-active');
                 }
@@ -146,7 +153,7 @@ class ProductImagesScroller extends HTMLElement {
 
                     let id = entry.target.dataset.id
 
-                    that.container.querySelectorAll(that.selectors.thumbnails).forEach(function(element) {
+                    that.querySelectorAll(that.selectors.thumbnails).forEach(function(element) {
                         element.classList.remove('is-active');
 
                         if(parseInt(element.dataset.id) === parseInt(id)) {
@@ -186,14 +193,14 @@ class ProductImagesScroller extends HTMLElement {
         let pImageId = pEvent.target.closest('[data-images-scroller-thumb]').dataset.id; 
         let scrollDistance = null; 
 
-        that.container.querySelectorAll(that.selectors.thumbnails).forEach(function(element) {
+        that.querySelectorAll(that.selectors.thumbnails).forEach(function(element) {
             element.classList.remove('is-active');
         });
 
-        document.querySelectorAll(that.selectors.images).forEach(function(element){
+        that.querySelectorAll(that.selectors.images).forEach(function(element){
             if(element.dataset.id === pImageId) {
-                scrollDistance =  element.offsetTop + (element.clientHeight / 2); 
-                scrollDistance -= (document.querySelector('.product-main-info').getBoundingClientRect().top  / 2); 
+                scrollDistance =  element.offsetTop 
+                //scrollDistance -= (document.querySelector('.product__info-wrapper').getBoundingClientRect().top  / 2); 
             }
         });
         

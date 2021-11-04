@@ -60,7 +60,19 @@
         </ul> 
       </div>
 
-      <div  data-product-images-scroller-pagination class="product-images-slideshow__pagination product-images-slideshow__pagination--mobile">
+      <div  data-product-images-scroller-pagination 
+            class="product-images-slideshow__pagination product-images-slideshow__pagination--desktop">
+            {% for image in product.images %}
+              {%unless image.alt contains 'swatch'%}
+              <li>
+                <button data-images-scroller-thumb data-id="{{ forloop.index }}">
+                 <span class="visually-hidden">
+                   Go To Image {{ forloop.index }}
+                  </span> 
+                </button>
+              </li>
+              {%endunless%}
+            {%endfor%}
       </div>
     </product-images-scroller>
 
