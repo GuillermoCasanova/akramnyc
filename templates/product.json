@@ -62,6 +62,20 @@
           "type": "share",
           "settings": {
           }
+        },
+        "903a5335-b6df-422f-82bb-680db359ea2b": {
+          "type": "product-support",
+          "settings": {
+            "headline": "Our Materials",
+            "body": "<p>Our Materials are the finest quality, etc. Visit our materials page for more info. <\/p>"
+          }
+        },
+        "42ded742-e5da-4bcc-b32b-a3b2b9e0b5ce": {
+          "type": "product-support",
+          "settings": {
+            "headline": "Text block",
+            "body": ""
+          }
         }
       },
       "block_order": [
@@ -74,7 +88,9 @@
         "quantity_selector",
         "buy_buttons",
         "description",
-        "share"
+        "share",
+        "903a5335-b6df-422f-82bb-680db359ea2b",
+        "42ded742-e5da-4bcc-b32b-a3b2b9e0b5ce"
       ],
       "settings": {
         "enable_sticky_info": true,
