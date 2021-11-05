@@ -454,26 +454,82 @@
   left: var(--level2);
   top: 0; 
   bottom: 0;
-  height: 30vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  margin-top: -30vh;
-  justify-content: flex-end;
+  margin-top: -100vh;
+  justify-content: center; 
+  padding-left: var(--level1);
+  align-items: center;
 }
 
-.product-images-slideshow__pagination--desktop  button {
-  margin-bottom: 1rem;
-  height: 2.5rem;
-  width: 2.5rem;
+.product-images-slideshow__pagination--desktop  .pagination-button  {
+  margin-bottom: var(--level3);
+  height: 1.5rem;
+  width: 2.25rem;
   border-radius: 100%;
   cursor: pointer;
+  outline: 0;
+  border: 0;
+  background: transparent;
+  position: relative;
+  transform: scale(.7);
+  transform-origin: center;
+  transition: all var(--duration-default) ease-in-out;
+
 }
 
 
-.product-images-slideshow__pagination--desktop  button span {
-  opacity: 0;
+
+.product-images-slideshow__pagination--desktop  .pagination-button .pagination-button__icon {
+  border: 2px solid black;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: block;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: all var(--duration-default) ease-in-out;
 }
 
+
+.product-images-slideshow__pagination--desktop  .pagination-button .pagination-button__icon:after {
+  content: " "; 
+  position: absolute;
+  width: 1rem; 
+  height: 1rem;
+  clip-path: circle(42%);
+  background-color:transparent;
+  transition: all var(--duration-default) ease-in-out;
+  transform: scale(0);
+}
+
+
+.product-images-slideshow__pagination--desktop  .pagination-button.is-active {
+  transform: scale(.9);
+}
+
+
+.product-images-slideshow__pagination--desktop  .pagination-button.is-active .pagination-button__icon:after {
+  background: black;
+  transform: scale(1);
+}
+
+
+
+.product-images-slideshow__pagination--desktop  .pagination-button:hover .pagination-button__icon:after,
+.product-images-slideshow__pagination--desktop  .pagination-button:focus .pagination-button__icon:after {
+  background: black;
+  transform: scale(1);
+}
+
+
+.product-images-slideshow__pagination--desktop  .pagination-button:hover,
+.product-images-slideshow__pagination--desktop  .pagination-button:focus {
+  transform: scale(.9);
+}
 
 
 

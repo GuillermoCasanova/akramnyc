@@ -180,7 +180,7 @@ class ProductImagesScroller extends HTMLElement {
             let options = {
                 root: document,
                 rootMargin: '0px',
-                threshold: .9
+                threshold: .5
             }
             
             this.observer = new IntersectionObserver(callback, options); 
@@ -216,6 +216,9 @@ class ProductImagesScroller extends HTMLElement {
         });
         
         window.scrollTo({ top: scrollDistance, behavior: 'smooth' })
+        setTimeout(function() {
+            document.activeElement.blur();
+        }, 1000); 
     }
 
     removeSlides() {
@@ -241,7 +244,9 @@ class ProductImagesScroller extends HTMLElement {
 
             let buttonTemplate = `
              <li>
-                <button data-images-scroller-thumb data-id="${index}">
+                <button class="pagination-button" data-images-scroller-thumb data-id="${index}">
+                  <span class="pagination-button__icon">
+                  </span>
                  <span class="visually-hidden">
                    Go To Image ${index}
                   </span> 
