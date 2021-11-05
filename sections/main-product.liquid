@@ -338,6 +338,7 @@
                 <div class="product-support__links">
                   {%- for block in section.blocks -%}
                     {%- case block.type -%}
+                    {%- when 'product-support' -%}
                     <button data-help-toggle  data-id="{{block.settings.headline | handleize}}">
                       {{block.settings.headline}}
                     </button>
@@ -348,6 +349,7 @@
                   <aside data-help-modal data-id="delivery-returns">
                   {%- for block in section.blocks -%}
                     {%- case block.type -%}
+                    {%- when 'product-support' -%}
                       <div class="product-support-modal__header">
                         <button data-help-close>
                           Close
