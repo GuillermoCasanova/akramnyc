@@ -38,7 +38,7 @@ class ProductImagesSlideshow extends HTMLElement {
                     element.classList.add('swiper-slide');
                 });
 
-                this.slideshow = new Swiper(this.selectors.slideshow, {
+                this.slideshow = new Swiper(this.querySelector(this.selectors.slideshow), {
                     direction: 'horizontal', 
                     loop: true,
                     loopedSlides: 6,
@@ -62,6 +62,9 @@ class ProductImagesSlideshow extends HTMLElement {
                         }
                     }
                 });
+
+                console.log(this.slideshow); 
+
             } else {
                 this.destroy(); 
                 return 
@@ -93,6 +96,19 @@ class ProductImagesSlideshow extends HTMLElement {
         // });
 
     }
+
+    appendSlide(pSlide) {
+        if(this.slideshow) {
+            this.slideshow.appendSlide(pSlide); 
+        }
+    }
+
+    removeSlides() {
+        if(this.slideshow) {
+            this.slideshow.removeAllSlides(); 
+        }
+    }
+    
     destroy() {
         if(this.slideshow) {
             document.querySelector(this.selectors.slideshow).classList.remove('swiper');
@@ -204,6 +220,8 @@ class ProductImagesScroller extends HTMLElement {
         
         window.scrollTo({ top: scrollDistance, behavior: 'smooth' })
     }
+
+  
 
     destroy() {
         let that = this; 

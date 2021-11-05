@@ -48,9 +48,6 @@ class ProductHelp extends HTMLElement {
         this.querySelector('aside').classList.remove('is-visible');
         this.querySelector(this.selectors.overlay).classList.remove('is-visible');
         document.activeElement.blur();
-        // this.querySelector(this.selectors.supportSectionsContainer).addEventListener('transitionend', () => {
-        //     removeTrapFocus(this.activeElement);
-        //   }, { once: true });
     }
 
     handleMediumDown(pEvent) {

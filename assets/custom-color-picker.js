@@ -75,7 +75,7 @@ class CustomColorPicker extends HTMLElement {
 
             imageTemplate = `
 
-            <li class="slide"  data-product-images-slideshow-slide data-images-scroller-image data-product-images-modal-open>
+            <li class="slide  swiper-slide"  data-product-images-slideshow-slide data-images-scroller-image data-product-images-modal-open>
                 <div class="product-images-slideshow__image-container">
                   <picture>
                       <source srcset="${newImage.src}"  media="(min-width: 975px)">
@@ -85,16 +85,12 @@ class CustomColorPicker extends HTMLElement {
               </li> 
             `; 
 
-            document.querySelectorAll('[data-product-images-slideshow-wrapper]').forEach((element) => {
-                element.insertAdjacentHTML("beforeend", imageTemplate);
-            });
+            document.querySelector('product-images-slideshow').appendSlide(imageTemplate); 
 
          }
                 
         function clearImages() {
-            document.querySelectorAll('[data-product-images-slideshow-wrapper]').forEach((element) => {
-                element.innerHTML = ''; 
-            }); 
+            document.querySelector('product-images-slideshow').removeSlides(); 
         }
 
         clearImages() 
@@ -118,7 +114,6 @@ class CustomColorPicker extends HTMLElement {
         
             this.querySelectorAll('[data-color-label]').forEach((element) => {
                 element.addEventListener('mouseenter', function(event) {
-                    console.log('hello');
                     let name = this.dataset.colorName; 
                     showColor(name)
                 })

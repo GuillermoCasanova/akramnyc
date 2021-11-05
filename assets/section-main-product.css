@@ -367,6 +367,25 @@
   }
 }
 
+.product-images-slideshow {
+  padding-bottom: 140% !important;
+  position: relative;
+
+}
+
+.product-images-slideshow__inner {
+  position: absolute !important;
+  top: 0; 
+  right: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover;
+}
+
+.product-images-slideshow__inner li {
+
+}
 
 .product-images-slideshow__image-container img {
   position: absolute;
