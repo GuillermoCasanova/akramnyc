@@ -591,13 +591,12 @@
 .product__description {
   font-family: var(--secondary-font-family);
   font-size: var(--h6);
-  margin-bottom: var(--level7);
+  margin-bottom: calc(var(--level5) * 2);
 }
 
 
 @media screen and (min-width: 700px) {
   .product__description {
-    margin-bottom: var(--level5);
   }
 }
 

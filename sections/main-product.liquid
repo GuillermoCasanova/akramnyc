@@ -335,33 +335,59 @@
           <product-help>
               <div class="product-support">
 
-                <div class="product-support__links">
+                <div class="product-support__links"  data-support-links>
+                  {%- assign linkIndex = 0 -%}
+
                   {%- for block in section.blocks -%}
                     {%- case block.type -%}
                     {%- when 'product-support' -%}
-                    <button data-help-toggle  data-id="{{block.settings.headline | handleize}}">
+                    <button class="product-support__links__link" data-support-link data-id="{{ linkIndex}}" data-link-name="{{block.settings.headline | handleize}}">
                       {{block.settings.headline}}
                     </button>
+                    {%- assign linkIndex = linkIndex | plus: 1 -%}
                     {%- endcase -%}
                   {%- endfor -%}
                 </div>
 
-                  <aside data-help-modal data-id="delivery-returns">
-                  {%- for block in section.blocks -%}
-                    {%- case block.type -%}
-                    {%- when 'product-support' -%}
-                      <div class="product-support-modal__header">
-                        <button data-help-close>
+                  <aside class="data-support-section" data-support-sections>
+                    <div class="product-support-section__header">
+                               
+                      <button  type="button"  class="product-support-section__header__close" data-help-close    aria-label="{{ 'accessibility.close' | t }}">
+                        <span class="icon-close" aria-hidden="true">
+                          
+                        </span>
+                        <span class="icon-ring">
+          
+                        </span>
+                        <span class="visually-hidden">
                           Close
-                        </button>
-                      </div>
-                        <p>
+                        </span>
+                      </button>
+                    </div>
 
-                          GOGOGO
-                        </p>
-                      {%- endcase -%}
-                    {%- endfor -%}
+                    <div data-support-sections-inner>
+
+                      {%- for block in section.blocks -%}
+                        {%- case block.type -%}
+                        {%- when 'product-support' -%}
+                          <div class="product-support-section__content-wrapper" data-support-section>
+                           
+                              <div class="product-support-section__content">
+                                <h1 class="visually-hidden">
+                                  {{block.settings.headline}}
+                                </h1>
+                                {{block.settings.body}}
+                              </div>
+                              
+                            </div>
+                          {%- endcase -%}
+                        {%- endfor -%}
+                      </div>
                   </aside>
+
+                  <div data-support-overlay class="product-support__overlay">
+                  
+                  </div>
               </div>
             </product-help>
 
@@ -392,7 +418,7 @@
 <script type="module" src="{{ 'product-images.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'custom-color-picker.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'product-help.js' | asset_url }}" defer="defer"></script>
+<script type="module"  src="{{ 'product-help.js' | asset_url }}" defer="defer"></script>
 
 
 {% schema %}

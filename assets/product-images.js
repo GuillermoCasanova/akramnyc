@@ -28,8 +28,6 @@ class ProductImagesSlideshow extends HTMLElement {
        
     handleMediumDown(pEvent) {
 
-        console.log(pEvent); 
-        
             if(pEvent.matches) {
                 
                 const slideshowElem = document.querySelector(this.selectors.slideshow); 

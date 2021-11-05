@@ -33,14 +33,14 @@
   margin-bottom: var(--level4);
 }
 
-
-.product-support div {
-    overflow: hidden;
-    overflow: clip; 
+@media screen and (min-width: 975px) {
+  .product-support__links {
+    border-bottom: 0; 
+    position: relative;
+  }
 }
 
-
-.product-support button {
+.product-support .product-support__links__link {
     transform: translateX(0);
     background-color: transparent;
     color: #fff;
@@ -48,23 +48,54 @@
     border: 0; 
     margin-bottom: var(--level3);
     text-transform: uppercase;
+}
+
+.product-support button {
+  cursor: pointer;
+}
+
+
+@media screen and (min-width: 975px) {
+
+  .product-support__overlay {
+      width: 55vw; 
+      height: 100vh;
+      top: 0; 
+      bottom: 0; 
+      left: 0; 
+      right :0; 
+      z-index: 1;
+      position: fixed;
+      background-color:black;
+      opacity: 0;
+      pointer-events: none;
+     transition: all var(--duration-long) ease .1s;
   }
 
-  .product-support button {
-    cursor: pointer;
+  .product-support__overlay.is-visible {
+    opacity: .6;
+    pointer-events: all;
   }
+}
 
+
+
+
+/*------------------------------------*\
+    #Product Support Aside Content
+\*------------------------------------*/
 
 
 @media screen and (min-width: 975px) {
   .product-support aside {
     height: 100vh;
-    width: 40vw;
+    width: 45vw;
     background-color: black;
     right: 0; 
     bottom: 0; 
-    position: fixed;
+    position: fixed  !important;
     transform: translateX(100%);
+    position: relative;
     transition: all var(--duration-long) ease;
   }
 
@@ -73,8 +104,6 @@
   }
 }
 
-
-
 @media screen and (min-width: 975px) {
     .product-support {
         position: absolute;
@@ -82,12 +111,152 @@
         padding-bottom: var(--level3); 
         right:  var(--level1); 
     }
+}
+
+
+.product-support-section {
+  position: relative;
+}
+
+
+@media screen and (min-width: 975px) {
+
+  .product-support-section__content-wrapper {
+    /* width: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+    -webkit-box-pack: start;
+    justify-content: start;
+    padding-top: 13.472vw;
+    padding-bottom: 6.25vw;
+    height: auto;
+    overflow: auto; */
+    position: relative;
+    display: flex;
+    justify-content: center;
   }
 
-
-.product-support-modal__header {
-  display: none;
 }
+@media screen and (min-width: 975px) {
+
+  .product-support-section__content {
+    min-width: 22rem;
+    width: 27vw;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 20vw;
+    font-size: var(--normal);
+  }
+}
+
+.product-support-section__header {
+    display: none;
+}
+
+@media screen and (min-width: 975px) {
+  .product-support-section__header {
+    display: flex;
+    position: relative;
+    z-index: 3;
+  }
+}
+
+
+
+
+
+/*------------------------------------*\
+    #Product Support Aside Close Button
+\*------------------------------------*/
+
+
+.product-support-section__header__close {
+  position: absolute;
+  top: 3.25rem;
+  right: 3rem;
+}
+
+
+.product-support-section__header__close  {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  width: 2.15rem;
+  height: 2.15rem;
+  top: 0;
+  right: 1rem;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 0;
+  right: 0; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all var(--duration-default) ease;
+}
+
+.product-support-section__header__close:hover, 
+.product-support-section__header__close:focus {
+  cursor: pointer;
+  transform: rotate(90deg);
+}
+
+.product-support-section__header__close  .icon-close {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+}
+
+.product-support-section__header__close  .icon-close:after,
+.product-support-section__header__close  .icon-close:before {
+  content: " "; 
+  height: 70%;  
+  width: 1px; 
+  display: block;
+  position: absolute;
+  top: 0; 
+  bottom: 0; 
+  right: 0; 
+  left: 0; 
+  background-color: #fff;
+  margin: auto;
+}
+
+.product-support-section__header__close  .icon-close:after {
+  transform: rotate(45deg);
+}
+
+.product-support-section__header__close  .icon-close:before {
+  transform: rotate(-45deg);
+}
+
+
+.product-support-section__header__close  .icon-ring:after {
+  content: " "; 
+  border-radius: 100%;
+  height: 100%; 
+  width: 100%; 
+  position: absolute;
+  border: 1.5px solid white; 
+  left: 0;
+  top: 0;
+}
+
+@media only screen and (min-width: 975px) {
+  .product-support-section__header__close  {
+    opacity: 1;
+    top: 3rem;
+    right: 4.25rem;
+    visibility: visible;
+  }
+}
+
+
+
 
 
 /* 
