@@ -37,10 +37,11 @@
   .product-support__links {
     border-bottom: 0; 
     position: relative;
+    z-index: 2;
   }
 }
 
-.product-support .product-support__links__link {
+.product-support__links__link {
     transform: translateX(0);
     background-color: transparent;
     color: #fff;
@@ -48,7 +49,28 @@
     border: 0; 
     margin-bottom: var(--level3);
     text-transform: uppercase;
+    position: relative;
 }
+
+@media screen and (min-width: 975px) {
+  .product-support__links__link .link-underline {
+    position: absolute;
+    height: 2px;
+    width: 0;
+    background-color: #fff;
+    left: 0; 
+    right:0;
+    margin: auto;
+    bottom: -.5rem;
+    transition: all var(--duration-default) ease-in-out; 
+  }
+
+  .product-support__links__link:hover .link-underline,
+  .product-support__links__link:focus .link-underline {
+    width: 96%; 
+  }
+}
+
 
 .product-support button {
   cursor: pointer;
@@ -89,7 +111,7 @@
 @media screen and (min-width: 975px) {
   .product-support aside {
     height: 100vh;
-    width: 45vw;
+    width: 44vw;
     background-color: black;
     right: 0; 
     bottom: 0; 

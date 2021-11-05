@@ -39,14 +39,18 @@ class ProductHelp extends HTMLElement {
         }
     }
 
-    openModal(pId) {
-        this.querySelector('aside').classList.toggle('is-visible');
+    open(pId) {
+        this.querySelector('aside').classList.add('is-visible');
         this.querySelector(this.selectors.overlay).classList.add('is-visible');
     }   
 
-    closeModal() {
+    close() {
         this.querySelector('aside').classList.remove('is-visible');
         this.querySelector(this.selectors.overlay).classList.remove('is-visible');
+        document.activeElement.blur();
+        // this.querySelector(this.selectors.supportSectionsContainer).addEventListener('transitionend', () => {
+        //     removeTrapFocus(this.activeElement);
+        //   }, { once: true });
     }
 
     handleMediumDown(pEvent) {
@@ -105,7 +109,8 @@ class ProductHelp extends HTMLElement {
                 loop: false,
                 allowTouchMove: false, 
                 navigation: false,
-                preventInteractionOnTransition: true
+                preventInteractionOnTransition: true,
+                fade: true
                 
             });
 
@@ -118,23 +123,25 @@ class ProductHelp extends HTMLElement {
             this.querySelectorAll(this.selectors.supportLink).forEach((elem) => {
                 elem.addEventListener('click', () =>  {
                     document.querySelector('.product__info-wrapper').style.zIndex = 100; 
-                    this.openModal(this.dataset.id);
+                    this.open(this.dataset.id);
                 }); 
             })
 
             this.querySelectorAll('[data-help-close]').forEach((elem) => {
                 elem.addEventListener('click', (event) =>  {
                     document.querySelector('.product__info-wrapper').style.zIndex = 0;
-                    this.closeModal(event);
+                    this.close(event);
                 }); 
             })
+
+            this.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
+
         } else {
 
         }
     }   
 
     setUpEvents() { 
-    
     }
 
 }

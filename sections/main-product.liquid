@@ -343,6 +343,9 @@
                     {%- when 'product-support' -%}
                     <button class="product-support__links__link" data-support-link data-id="{{ linkIndex}}" data-link-name="{{block.settings.headline | handleize}}">
                       {{block.settings.headline}}
+                      <span class="link-underline">
+                        
+                      </span>
                     </button>
                     {%- assign linkIndex = linkIndex | plus: 1 -%}
                     {%- endcase -%}
@@ -418,7 +421,7 @@
 <script type="module" src="{{ 'product-images.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'custom-color-picker.js' | asset_url }}" defer="defer"></script>
-<script type="module"  src="{{ 'product-help.js' | asset_url }}" defer="defer"></script>
+<script type="module"  src="{{ 'product-support.js' | asset_url }}" defer="defer"></script>
 
 
 {% schema %}
