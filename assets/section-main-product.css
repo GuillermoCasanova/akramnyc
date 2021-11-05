@@ -512,14 +512,12 @@
 
 
 .product__info-container .product-form,
-.product__info-container .product__description,
 .product__info-container .share-button {
   margin-bottom: var(--level4);
 }
 
 @media screen and (min-width: 975px) {
   .product__info-container .product-form,
-  .product__info-container .product__description,
   .product__info-container .share-button {
     margin-bottom: var(--level7);
   }
@@ -593,7 +591,23 @@
 .product__description {
   font-family: var(--secondary-font-family);
   font-size: var(--h6);
+  margin-bottom: var(--level7);
 }
+
+
+@media screen and (min-width: 700px) {
+  .product__description {
+    margin-bottom: var(--level5);
+  }
+}
+
+@media screen and (min-width: 975px) {
+  .product__description {
+  }
+}
+
+
+
 
 
 

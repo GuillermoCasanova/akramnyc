@@ -330,29 +330,40 @@
     
       </div>
 
-      <product-help>
-          <div class="product-support">
-              <button data-help-toggle  data-id="delivery-returns">
-                Our Materials
-              </button>
-              <button data-help-toggle  data-id="delivery-returns">
-                Delivery & Returns
-              </button>
-              <aside data-help-modal data-id="delivery-returns">
 
-                <div class="product-support-modal__header">
-                  <button data-help-close>
-                    Close
-                  </button>
+ 
+          <product-help>
+              <div class="product-support">
+
+                <div class="product-support__links">
+                  {%- for block in section.blocks -%}
+                    {%- case block.type -%}
+                    <button data-help-toggle  data-id="{{block.settings.headline | handleize}}">
+                      {{block.settings.headline}}
+                    </button>
+                    {%- endcase -%}
+                  {%- endfor -%}
                 </div>
-                  <p>
 
-                    GOGOGO
-                  </p>
+                  <aside data-help-modal data-id="delivery-returns">
+                  {%- for block in section.blocks -%}
+                    {%- case block.type -%}
+                      <div class="product-support-modal__header">
+                        <button data-help-close>
+                          Close
+                        </button>
+                      </div>
+                        <p>
 
-              </aside>
-          </div>
-        </product-help>
+                          GOGOGO
+                        </p>
+                      {%- endcase -%}
+                    {%- endfor -%}
+                  </aside>
+              </div>
+            </product-help>
+
+
       </div>
     </div>
   </div>
@@ -649,6 +660,23 @@
           "id": "page",
           "type": "page",
           "label": "t:sections.main-product.blocks.popup.settings.page.label"
+        }
+      ]
+    },
+    {
+      "type": "product-support",
+      "name": "Product Support",
+      "settings": [
+        {
+          "type": "text",
+          "id": "headline",
+          "default": "Text block",
+          "label": "Headline"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "Body"
         }
       ]
     }

@@ -1,13 +1,38 @@
+/*------------------------------------*\
+    #Product Support
+\*------------------------------------*/
 
 
 .product-support {
     position: relative;
     text-transform: uppercase;
-    display: flex;
-    flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
+    width: 100%;
+
 }
+
+
+@media screen and (min-width: 975px) {
+  .product-support {
+    flex-direction: column;
+  }
+}
+
+
+.product-support__links {
+  display: flex;
+  justify-content: space-around;
+  width: 100%; 
+  border-width: 0  0 13px 0;
+  border-style: dotted;
+  border-color: transparent;
+  border-image-source: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' xml:space='preserve' id='Layer_1' x='0' y='0' version='1.1' viewBox='0 0 23.1 23.1'%3E%3Cstyle%3E.st0,.st1%7Bfill:none;stroke:%23fff;stroke-width:.4858;stroke-linecap:round;stroke-linejoin:round%7D.st1%7Bstroke-dasharray:0,1.9766%7D%3C/style%3E%3Cpath d='M22.5 22.4h0' class='st0'/%3E%3Cpath d='M20.5 22.4H1.7' class='st1'/%3E%3Cpath d='M.7 22.4h0' class='st0'/%3E%3Cpath d='M.7 20.4V1.6' class='st1'/%3E%3Cpath d='M.7.6h0' class='st0'/%3E%3Cpath d='M2.7.6h18.8' class='st1'/%3E%3Cpath d='M22.5.6h0' class='st0'/%3E%3Cpath d='M22.5 2.6v18.8' class='st1'/%3E%3C/svg%3E");
+  border-image-slice: 12.5% 20%;
+  border-image-repeat: round;
+  margin-bottom: var(--level4);
+}
+
 
 .product-support div {
     overflow: hidden;
@@ -30,6 +55,8 @@
   }
 
 
+
+@media screen and (min-width: 975px) {
   .product-support aside {
     height: 100vh;
     width: 40vw;
@@ -44,6 +71,9 @@
   .product-support aside.is-visible {
     transform: translateX(0); 
   }
+}
+
+
 
 @media screen and (min-width: 975px) {
     .product-support {
@@ -53,6 +83,12 @@
         right:  var(--level1); 
     }
   }
+
+
+.product-support-modal__header {
+  display: none;
+}
+
 
 /* 
 
