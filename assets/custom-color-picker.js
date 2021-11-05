@@ -67,37 +67,39 @@ class CustomColorPicker extends HTMLElement {
         let imagesTemplate = ``;
 
         
-        function createImageObj(pSource, pAlt) {
+        function createImageObj(pSource, pAlt, pIndex) {
             let newImage = new Image(); 
             let imageTemplate = ``; 
+            let index = pIndex + 1;
             newImage.src = pSource;
             newImage.alt = pAlt;
 
             imageTemplate = `
-
-            <li class="slide  swiper-slide"  data-product-images-slideshow-slide data-images-scroller-image data-product-images-modal-open>
-                <div class="product-images-slideshow__image-container">
-                  <picture>
-                      <source srcset="${newImage.src}"  media="(min-width: 975px)">
-                      <img src="${newImage.src}" alt=""${newImage.alt}" width="100" height="500" loading="lazy">
-                    </picture>
-                </div>
+               <li class="slide  swiper-slide"  data-product-images-slideshow-slide data-images-scroller-image data-product-images-modal-open data-id="${index}">
+                    <div class="product-images-slideshow__image-container">
+                    <picture>
+                        <source srcset="${newImage.src}"  media="(min-width: 975px)">
+                        <img src="${newImage.src}" alt=""${newImage.alt}" width="100" height="500" loading="lazy">
+                        </picture>
+                    </div>
               </li> 
             `; 
 
             document.querySelector('product-images-slideshow').appendSlide(imageTemplate); 
+            document.querySelector('product-images-scroller').appendSlide(imageTemplate, index); 
 
          }
                 
         function clearImages() {
-            document.querySelector('product-images-slideshow').removeSlides(); 
+            document.querySelector('product-images-slideshow').removeSlides();
+            document.querySelector('product-images-scroller').removeSlides(); 
         }
 
         clearImages() 
 
-        images.forEach((image)=> {
+        images.forEach((image, index)=> {
             if(image.alt === null || image.alt.indexOf('swatch_') == -1) {
-                createImageObj(image.src, '');
+                createImageObj(image.src, '', index);
             }
         });
 

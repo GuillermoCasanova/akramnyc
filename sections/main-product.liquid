@@ -44,11 +44,11 @@
 
 
     <product-images-scroller class="product__media-wrapper large--one-half text-center  product-images product-images--desktop">
-      <div data-product-images-slideshow class="product-images-slideshow">
-        <ul class="slides  product-images-slideshow__inner"  data-product-images-slideshow-wrapper>
+      <div data-product-images-scroller class="product-images-slideshow">
+        <ul class="slides  product-images-slideshow__inner"  data-product-images-scroller-wrapper>
         {% for image in product.images %}
           {%unless image.alt contains 'swatch'%}
-          <li class="slide"  data-product-images-slideshow-slide data-images-scroller-image data-product-images-modal-open data-id="{{ forloop.index }}">
+          <li class="slide"  data-images-scroller-image data-product-images-modal-open data-id="{{ forloop.index }}">
             <div class="product-images-slideshow__image-container">
               <picture>
                   <source srcset="{{ image.src | img_url: '1024x1024' }}"  media="(min-width: 975px)">
@@ -61,7 +61,7 @@
         </ul> 
       </div>
 
-      <div  data-product-images-scroller-pagination 
+      <div  data-product-images-scroller-pagination-container
             class="product-images-slideshow__pagination product-images-slideshow__pagination--desktop">
             {% for image in product.images %}
               {%unless image.alt contains 'swatch'%}

@@ -373,6 +373,13 @@
 
 }
 
+@media only screen and (min-width:975px) {
+  .product-images-slideshow {
+    padding-bottom: 0 !important; 
+  }
+}
+
+
 .product-images-slideshow__inner {
   position: absolute !important;
   top: 0; 
@@ -383,9 +390,12 @@
   object-fit: cover;
 }
 
-.product-images-slideshow__inner li {
-
+@media only screen and (min-width:975px) {
+  .product-images-slideshow__inner {
+    position: relative !important;
+  }
 }
+
 
 .product-images-slideshow__image-container img {
   position: absolute;

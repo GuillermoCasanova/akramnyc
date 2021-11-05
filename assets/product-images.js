@@ -108,7 +108,7 @@ class ProductImagesSlideshow extends HTMLElement {
             this.slideshow.removeAllSlides(); 
         }
     }
-    
+
     destroy() {
         if(this.slideshow) {
             document.querySelector(this.selectors.slideshow).classList.remove('swiper');
@@ -134,8 +134,10 @@ class ProductImagesScroller extends HTMLElement {
         super(); 
         this.selectors = {
             thumbnails: '[data-images-scroller-thumb]',
+            paginationContainer: '[data-product-images-scroller-pagination-container]',
             images: '[data-images-scroller-image]',
-            container: '[data-images-scroller-thumbs]'
+            imagesContainer: '[data-product-images-scroller-wrapper]',
+            scroller: '[data-product-images-scroller]',
         }
         this.mediaQueries = {
             mediumDown: window.matchMedia('(max-width: 974px)'),
@@ -143,26 +145,22 @@ class ProductImagesScroller extends HTMLElement {
         }
         this.init(); 
 
-        console.log(this.selectors);
     }
         
     handleLargeUp(pEvent) {
 
         if(pEvent.matches) {
             let that = this; 
-            this.querySelectorAll(this.selectors.thumbnails).forEach(function(element) {
-                
-                console.log(element); 
+
+            this.querySelectorAll(this.selectors.thumbnails).forEach((element) => {
                 if(element.dataset.id === '1' ||  element.dataset.id === 1) {
                     element.classList.add('is-active');
                 }
-
-                element.addEventListener('click', that.goToImage.bind(this, [that])); 
+                element.addEventListener('click', this.goToImage.bind(this, [that])); 
             });
 
-
             function callback(entries, observer) {
-            entries.forEach(entry => {
+                entries.forEach(entry => {
                 if(entry.isIntersecting) {
 
                     let id = entry.target.dataset.id
@@ -214,14 +212,55 @@ class ProductImagesScroller extends HTMLElement {
         that.querySelectorAll(that.selectors.images).forEach(function(element){
             if(element.dataset.id === pImageId) {
                 scrollDistance =  element.offsetTop 
-                //scrollDistance -= (document.querySelector('.product__info-wrapper').getBoundingClientRect().top  / 2); 
             }
         });
         
         window.scrollTo({ top: scrollDistance, behavior: 'smooth' })
     }
 
-  
+    removeSlides() {
+        console.log(this.selectors.imagesContainer); 
+        this.querySelector(this.selectors.imagesContainer).innerHTML = ''; 
+        this.updatePagination(false) 
+    }
+
+    appendSlide(pSlide, pIndex) {
+        this.querySelector(this.selectors.imagesContainer).insertAdjacentHTML("beforeend", pSlide); 
+        this.updatePagination(true, pIndex) 
+    }   
+
+    updatePagination(pAddSlide, pIndex) {
+        let index = pIndex;
+        let that = this; 
+
+        if(!pAddSlide) {
+            this.querySelector(this.selectors.paginationContainer).querySelectorAll(this.selectors.thumbnails).forEach((elem) => {
+                elem.remove(); 
+            }); 
+        } else {
+
+            let buttonTemplate = `
+             <li>
+                <button data-images-scroller-thumb data-id="${index}">
+                 <span class="visually-hidden">
+                   Go To Image ${index}
+                  </span> 
+                </button>
+              </li>
+            `; 
+
+            this.querySelector(this.selectors.paginationContainer).insertAdjacentHTML("beforeend", buttonTemplate);
+
+            this.querySelectorAll(this.selectors.thumbnails).forEach((element) => {
+                // if(element.dataset.id === '1' ||  element.dataset.id === 1) {
+                //     element.classList.add('is-active');
+                // }
+                element.addEventListener('click', this.goToImage.bind(this, [that])); 
+            });
+
+        }
+     
+    }
 
     destroy() {
         let that = this; 
