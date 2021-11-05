@@ -83,7 +83,6 @@ class ProductHelp extends HTMLElement {
             }); 
 
         } else {
-            this.destroy(); 
             return 
         }
 
