@@ -43,9 +43,32 @@
                 width="{{ product_card_product.media[0].width }}"
                 height="{{ product_card_product.media[0].height }}"
                 >
+
             {%else%}
 
-                <img srcset="{%- if product_card_product.media[0].width >= 165 -%}{{ product_card_product.media[0] | img_url: '165x' }} 165w,{%- endif -%}
+
+            {% for image in product_card_product.images %}
+                {%unless image.alt contains 'swatch'%}
+                    <picture>
+                        <source srcset="{{ image.src | img_url: '1024x1024' }}"  media="(min-width: 975px)">
+                        {% comment %} <img src="{{ image.src | img_url: '900x900' }}" alt="{{ image.alt | escape }}" width="100" height="500" loading="lazy"> {% endcomment %}
+
+                      <img 
+                            src="{{ image.url | img_url: '533x' }}"
+                            sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                            alt="{{ image.url.alt | escape }}"
+                            loading="lazy"
+                            class="product-thumb__image product-thumb__image--primary"
+                        width="{{ image.url.width }}"
+                        height="{{ image.url.height }}"
+                        >
+                        </picture>
+
+                {%endunless%}
+              {% endfor %}
+
+
+                {% comment %} <img srcset="{%- if product_card_product.media[0].width >= 165 -%}{{ product_card_product.media[0] | img_url: '165x' }} 165w,{%- endif -%}
                 {%- if product_card_product.media[0].width >= 360 -%}{{ product_card_product.media[0] | img_url: '360x' }} 360w,{%- endif -%}
                 {%- if product_card_product.media[0].width >= 533 -%}{{ product_card_product.media[0] | img_url: '533x' }} 533w,{%- endif -%}
                 {%- if product_card_product.media[0].width >= 720 -%}{{ product_card_product.media[0] | img_url: '720x' }} 720w,{%- endif -%}
@@ -73,7 +96,7 @@
                 class="product-thumb__image product-thumb__image--secondary"
             width="{{ product_card_product.media[1].width }}"
             height="{{ product_card_product.media[1].height }}"
-            >
+            > {% endcomment %}
 
             {%endif%}
       </div>
