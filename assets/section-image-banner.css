@@ -23,13 +23,13 @@
 
 @media screen and (min-width: 768px) {
   .image-banner {
-    padding-bottom: 70.6%;
+    padding-bottom: 110%;
   }
 }
 
 @media screen and (min-width: 1000px) {
   .image-banner {
-    padding-bottom: 60%;
+    padding-bottom: 75%;
     margin-bottom: var(--level7);
   }
 }
@@ -37,7 +37,7 @@
 
 @media screen and (min-width: 1400px) {
   .image-banner {
-    padding-bottom: 60.5%;
+    padding-bottom:80%;
     margin-bottom: var(--level7);
   }
 }
@@ -46,7 +46,7 @@
 
 @media screen and (min-width: 1600px) {
   .image-banner {
-    padding-bottom: 57.5%;
+    padding-bottom: 65%;
     margin-bottom: var(--level7);
   }
 }

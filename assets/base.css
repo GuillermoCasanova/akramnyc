@@ -92,6 +92,16 @@ summary::before {
 }
 
 
+@media (prefers-reduced-motion) {
+  .motion-reduce {
+    transition: none !important;
+  }
+}
+
+
+
+
+
 
 /*------------------------------------*\
     #PaddingAndMarginsLevels
@@ -364,3 +374,28 @@ section {
     padding-bottom: calc(var(--level7) * 2);
   }
 }
+
+
+
+/*------------------------------------*\
+  #Overflows Hiding
+\*------------------------------------*/
+
+
+.overflow-hidden-mobile,
+.overflow-hidden-tablet {
+  overflow: hidden;
+}
+
+@media screen and (min-width: 750px) {
+  .overflow-hidden-mobile {
+    overflow: auto;
+  }
+}
+
+@media screen and (min-width: 975px) {
+  .overflow-hidden-tablet {
+    overflow: auto;
+  }
+}
+
