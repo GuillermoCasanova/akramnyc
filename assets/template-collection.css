@@ -1,11 +1,9 @@
-/* .collection */
 
 
 
-.featured-products {
-
-}
-
+/*------------------------------------*\
+    #Collection Template
+\*------------------------------------*/
 
 .collection-product-grid {
     display: flex; 
@@ -14,6 +12,7 @@
     width: 100%;
     padding-right: var(--level1);
     padding-left: var(--level1);
+    margin-top: calc((var(--level7) * 2) + var(--level5));
 }
 
 @media only screen and (min-width: 768px) {
@@ -40,6 +39,14 @@
         width: 33.3%;
     }
 }
+
+
+
+.featured-products {
+  
+
+}
+
 
 /* 
 

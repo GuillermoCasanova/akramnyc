@@ -4,6 +4,8 @@
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
 {{ 'component-featured-products.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-thumb.css' | asset_url | stylesheet_tag }}
+
 
 <link rel="preload" href="{{ 'component-badge.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="{{ 'component-rte.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -34,18 +36,15 @@
         </div>
       </div>
     {%- else -%}
-      <div class="collection page-width">
-        <div class="loading-overlay">
+      <section class="collection page-width">
+        {% comment %} <div class="loading-overlay">
           <div class="loading-overlay__spinner">
             <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
               <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
             </svg>
           </div>
-        </div>
+        </div> {% endcomment %}
 
-        <p class="collection-product-count light" role="status">
-          {{ 'sections.collection_template.product_count' | t: product_count: collection.products_count, count: collection.all_products_count }}
-        </p>
 
         <ul id="main-collection-product-grid" data-id="{{ section.id }}" class="collection-product-grid">
           {%- for product in collection.products -%}
@@ -61,7 +60,8 @@
         {% comment %} {%- if paginate.pages > 1 -%}
           {% render 'pagination', paginate: paginate, anchor: '' %}
         {%- endif -%}
-      </div> {% endcomment %}
+      {% endcomment %}
+    </section>
     {%- endif -%}
   {%- endpaginate -%}
 </div>

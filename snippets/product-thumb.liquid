@@ -9,7 +9,7 @@
     {% render 'product-card', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
 
-<div class="product-thumb">
+<div class="product-thumb  {% if product_card_product.images.size > 1 %}has-more-images {% endif %}">
     <a href="{{ product_card_product.url | default: '#' }}" class="product-thumb__inner">
 
         <div class="product-thumb__images">
@@ -48,22 +48,25 @@
 
 
             {% for image in product_card_product.images %}
+
+                {%- if forloop.index0 > 3%}
+                    {%break%}
+                {%endif%}
+                
                 {%unless image.alt contains 'swatch'%}
                     <picture>
                         <source srcset="{{ image.src | img_url: '1024x1024' }}"  media="(min-width: 975px)">
                         {% comment %} <img src="{{ image.src | img_url: '900x900' }}" alt="{{ image.alt | escape }}" width="100" height="500" loading="lazy"> {% endcomment %}
 
                       <img 
-                            src="{{ image.url | img_url: '533x' }}"
-                            sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
-                            alt="{{ image.url.alt | escape }}"
+                            src="{{ image.src | img_url: '450x' }}"
+                            alt="{{ image.alt | escape }}"
                             loading="lazy"
-                            class="product-thumb__image product-thumb__image--primary"
-                        width="{{ image.url.width }}"
-                        height="{{ image.url.height }}"
+                            class="product-thumb__image"
+                            width="{{ image.width }}"
+                            height="{{ image.height }}"
                         >
                         </picture>
-
                 {%endunless%}
               {% endfor %}
 
