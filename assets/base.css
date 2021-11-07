@@ -77,6 +77,10 @@ summary::before {
   visibility: hidden;
 }
 
+main {
+  min-height: calc(70vw - 300px);
+}
+
 
 
 

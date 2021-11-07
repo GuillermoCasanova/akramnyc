@@ -5,11 +5,21 @@
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 
 <style>
+  .main-page-section {
+    padding-bottom: var(--level2);
+  }
+
   .main-page {
     padding-right: var(--level6);
     padding-left: var(--level6);
     max-width: 60rem;
     padding-top: calc(var(--level7) * 3);
+  }
+
+  @media screen and (min-width: 950px) {
+    .main-page {
+      padding-top: calc(var(--level7) * 3.5);
+    }
   }
   
   @media screen and (min-width: 380px) {
@@ -45,6 +55,6 @@
 {
   "name": "t:sections.main-page.name",
   "tag": "section",
-  "class": "spaced-section"
+  "class": "spaced-section  main-page-section"
 }
 {% endschema %}
