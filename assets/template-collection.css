@@ -12,7 +12,7 @@
     width: 100%;
     padding-right: var(--level2);
     padding-left: var(--level2);
-    margin-top: calc((var(--level7) * 2) + var(--level6));
+    margin-top: calc((var(--level7) * 2.2) + var(--level7));
 }
 
 @media only screen and (min-width: 768px) {

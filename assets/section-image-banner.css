@@ -11,6 +11,11 @@
   padding-bottom: 150.6%;
 }
 
+.image-banner a:hover .image-banner__cta,
+.image-banner a:focus .image-banner__cta {
+   opacity: 1;
+}
+
 .image-banner:after {
   width: 100%; 
   position: absolute;
@@ -91,6 +96,21 @@
   }
 }
 
+@media screen and (min-width: 950px) {
+  .image-banner__cta {
+    opacity: 0;
+    transition: all var(--duration-default) ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-1);
+    /* text-align: center;
+    left: 0; 
+    right: 0; 
+    margin: auto; */
+  }
+}
+
+
+
 
 
 
@@ -112,7 +132,7 @@
   right: -.8rem;
   opacity: 0;
   transform: translateX(.5rem);
-  transition: all .2s ease-in-out;
+  transition: all var(--duration-default) ease-in-out;
 }
 
 .image-banner__cta a:before {
