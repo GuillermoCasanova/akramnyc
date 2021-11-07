@@ -25,10 +25,18 @@
               "heading": "Quick links",
               "menu": "footer"
             }
+          },
+          "dba372e8-e8c9-4b6d-b5a5-3295f22d1421": {
+            "type": "text",
+            "settings": {
+              "heading": "",
+              "subtext": "<p>Phone: (000) 000 - 0000 \/ Email: team@akram.nyc \/ Social: Instagram<\/p>"
+            }
           }
         },
         "block_order": [
-          "footer-0"
+          "footer-0",
+          "dba372e8-e8c9-4b6d-b5a5-3295f22d1421"
         ],
         "settings": {
           "color_scheme": "background-1",
