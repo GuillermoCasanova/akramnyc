@@ -7,8 +7,8 @@
         <div class="image-banner__media">
           {%- if section.settings.video != blank -%}
 
-          <video  width="100%" allowfullscreen="true" muted="muted" autoplay="autoplay" playsinline="playsinline" loop="loop"  class="image-banner__media__image">
-            <source src="{{section.settings.video }}" type="video/mp4" />
+          <video  id="hero-video"  width="100%" allowfullscreen="true" muted="muted" autoplay playsinline="playsinline" loop="loop"  class="image-banner__media__image">
+            <source src="{{section.settings.video }}#t=2.5,6.5" type="video/mp4" />
           </video>
 
           {%- else -%}
@@ -47,6 +47,24 @@
   </div>
 
 
+<script defer>
+
+  window.addEventListener('DOMContentLoaded', function() {
+    console.log('loaded!');
+
+    document.querySelector('#hero-video').addEventListener("pause", () => {
+      document.querySelector('#hero-video').currentTime = 2.5;
+      document.querySelector('#hero-video').play(); 
+      setTimeout(function() {
+        document.querySelector('#hero-video').pause(); 
+      }, 3500); 
+    });
+    
+  }); 
+
+  
+
+</script>
 
 {% schema %}
 {
@@ -67,7 +85,7 @@
     {
       "type": "url", 
       "id": "cta-url", 
-      "label": "CTA Url""
+      "label": "CTA Url"
     },
     {
       "type": "text", 
