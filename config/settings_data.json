@@ -26,17 +26,18 @@
               "menu": "footer"
             }
           },
-          "dba372e8-e8c9-4b6d-b5a5-3295f22d1421": {
-            "type": "text",
+          "cabb0f94-0870-4578-852b-99f3b549a8e4": {
+            "type": "contact",
             "settings": {
-              "heading": "",
-              "subtext": "<p>Phone: (000) 000 - 0000 \/ Email: team@akramnyc,com \/ Social: Instagram<\/p>"
+              "phone": "(000) 000 - 0000",
+              "email": "team@akramnyc.com",
+              "social-account": "akramnyc.com"
             }
           }
         },
         "block_order": [
           "footer-0",
-          "dba372e8-e8c9-4b6d-b5a5-3295f22d1421"
+          "cabb0f94-0870-4578-852b-99f3b549a8e4"
         ],
         "settings": {
           "color_scheme": "background-1",
