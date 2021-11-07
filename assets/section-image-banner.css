@@ -78,7 +78,7 @@
   margin-bottom: 3em;
   left: var(--level4); 
   font-size: 1rem;
-  z-index: 10;
+  z-index: 3;
   text-shadow: 1px 1px 18px rgba(0,0,0, .5);
 }
 
