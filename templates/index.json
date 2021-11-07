@@ -4,6 +4,7 @@
       "type": "image-banner",
       "settings": {
         "image": "shopify:\/\/shop_images\/header-image-1_copy.png",
+        "video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0591\/3352\/6213\/files\/Akram_3rd_Draft.mov?v=1636242272",
         "cta-url": "shopify:\/\/collections\/collection-one",
         "cta-url-text": "Shop Collection One"
       }
