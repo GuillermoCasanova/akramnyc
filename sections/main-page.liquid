@@ -4,8 +4,30 @@
 <noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 
-<div class="page-width page-width--narrow">
-  <h1 class="main-page-title page-title h0">
+<style>
+  .main-page {
+    padding-right: var(--level7);
+    padding-left: var(--level7);
+    max-width: 60rem;
+    padding-top: calc(var(--level7) * 3);
+    min-height: 70vh;
+  }
+  
+  @media screen and (min-width: 775px) {
+    .main-page {
+      padding-top: calc(var(--level6) * 4);
+      margin-right: auto;
+      margin-left: calc(var(--level7)  * 2);
+    }
+  }
+
+  .main-page .rte a {
+    color: #f1de4f;
+  }
+</style>
+
+<div class="main-page  ">
+  <h1 class="main-page-title page-title ">
     {{ page.title | escape }}
   </h1>
   <div class="rte">

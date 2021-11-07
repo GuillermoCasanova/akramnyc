@@ -1,3 +1,13 @@
+
+
+
+
+.main-page h1 {
+  font-family: var(--primary-font-family);
+  font-size: var(--h4); 
+  letter-spacing: var(--letter-spacing-1);
+  text-transform: uppercase;
+}
 .page-title {
   margin-top: 0;
 }
