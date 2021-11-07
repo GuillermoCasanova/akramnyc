@@ -11,7 +11,7 @@ class CustomColorPicker extends HTMLElement {
 
     onVariantChange() {
         
-        this.getSelectedColor(); 
+        this.updateActiveColorLabel(this.getSelectedColor().dataset.colorName); 
         this.updateURL(); 
         this.updateImages();
         this.updateProductId(); 
@@ -20,6 +20,20 @@ class CustomColorPicker extends HTMLElement {
     updateURL() {
         let url = this.currentColor.dataset.productUrl; 
         window.history.replaceState({ }, '', `${url}`);
+    }
+
+    updateActiveColorLabel(pColorName) {
+        this.querySelector("[data-color-container]").textContent = pColorName;
+        console.log(pColorName);
+    }
+
+    setCurrentColor() {
+        let currentColorName =  this.querySelector("[data-color-container]").textContent.toLocaleLowerCase().replace(/[\n\r]+|[\s]{2,}/g, '');
+        this.querySelectorAll('[data-color-option]').forEach((elem) => {
+            if(elem.dataset.colorName.toLocaleLowerCase() === currentColorName ) {
+                elem.checked = true; 
+            }
+        });  
     }
 
     getSelectedColor() { 
@@ -120,7 +134,7 @@ class CustomColorPicker extends HTMLElement {
                     showColor(name)
                 })
                 element.addEventListener('mouseleave', (event) => {
-                    showColor(currentColor)
+                    showColor(this.getSelectedColor().dataset.colorName)
                 })
             }); 
         
@@ -129,6 +143,7 @@ class CustomColorPicker extends HTMLElement {
 
     init() {
         this.setUpEvents(); 
+        this.setCurrentColor(); 
     }
 }
 
