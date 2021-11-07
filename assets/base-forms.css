@@ -154,6 +154,10 @@ body:not(:-moz-handler-blocked) fieldset {
   display: table-cell;
 }
 
+.input-required {
+  color: red;
+}
+
 
 /*------------------------------------*\
     #Input Sizes
@@ -240,3 +244,101 @@ select {
 margin-bottom: rem-calc($level7 + $level2);
 }
  */
+
+
+
+.field textarea {
+  border: 1px solid;
+  border-radius: 10px;
+}
+
+.field textarea:active {
+  background-color: transparent;
+}
+
+
+
+
+
+
+/*------------------------------------*\
+    #Custom Fields
+\*------------------------------------*/
+
+
+.custom-field {
+  position: relative;
+  display: block;
+}
+
+.custom-field label {
+  line-height: 1.5;
+  padding-bottom: 0;
+  pointer-events: none;
+  transition: all .4s cubic-bezier(0.22, 1, 0.36, 1); 
+  font-size: var(--h6);
+}
+
+.custom-field.is-active  label {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+.custom-field input {
+  font-size: 1.1rem ;
+  line-height: 1.5 ;
+}
+
+
+.custom-field  label {
+  font-family: var(--primary-font-family) ;
+  letter-spacing: 1px ;
+  color: #fff ; 
+}
+
+.custom-field input {
+  height: 3.25rem ;
+  padding-right: .75rem ;
+  padding-left: .75rem ;
+}
+
+.custom-field input:active,
+.custom-field input:focus{
+  border-color: #fff ;
+  background-color: transparent
+  }
+
+
+.custom-field input:hover, 
+.custom-field input:focus  {
+border-bottom: 2px dotted #fff ;
+border-color: #ffffff ;
+}
+
+.custom-field input:active + label ,
+.custom-field input:focus + label {
+  color: #fff 
+}
+
+.custom-field label {
+  position: absolute; 
+  left: 0; 
+  font-family: var(--primary-font-family);
+  color: #ffff;
+  top: 0; 
+  bottom: 0; 
+  display: flex;
+  align-items: center;
+  text-transform: capitalize; 
+
+}
+
+@media screen and (min-width: 768px) {
+  .custom-field label {
+    top: -12px; 
+  }
+}  
+
+.custom-field {
+  margin-bottom: .5rem;
+}

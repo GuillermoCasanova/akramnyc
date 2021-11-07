@@ -1,3 +1,20 @@
+
+
+
+  .contact {
+    padding-right: var(--level7);
+    padding-left: var(--level7);
+    max-width: 40rem;
+  }
+
+  @media screen and (min-width: 775px) {
+    .contact {
+      margin-right: auto;
+      margin-left: calc(var(--level7)  * 2);
+    }
+  }
+
+
 .contact img {
   max-width: 100%;
 }
@@ -32,9 +49,6 @@
 
 @media screen and (min-width: 750px) {
   .contact__fields {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 2rem;
   }
 }
 

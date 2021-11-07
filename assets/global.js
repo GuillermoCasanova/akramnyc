@@ -805,6 +805,3 @@ class CartRemoveButton extends HTMLElement {
 
 customElements.define('cart-remove-button', CartRemoveButton);
    
-
-
-
