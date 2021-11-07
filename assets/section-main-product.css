@@ -564,7 +564,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 6.639vw;
+    top: 5.639vw;
     margin-top: -5.361vw;
   }
 }
@@ -605,7 +605,7 @@
 @media screen and (min-width: 975px) {
   .product__info-container .product-form,
   .product__info-container .share-button {
-    margin-bottom: var(--level7);
+    margin-bottom: calc(var(--level7) + var(--level4));
   }
 }
 
@@ -856,7 +856,7 @@ variant-selects {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: var(--level5);
+  margin-top: var(--level3);
   margin-bottom: var(--level7);
 }
 

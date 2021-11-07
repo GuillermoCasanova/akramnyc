@@ -129,7 +129,7 @@
 @media screen and (min-width: 975px) {
     .product-support {
         position: absolute;
-        bottom: var(--level3); 
+        bottom: -2rem;
         padding-bottom: var(--level3); 
         right:  var(--level1); 
     }
