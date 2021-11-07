@@ -1,1 +1,19 @@
-{"sections":{"main":{"type":"main-404","settings":{}}},"order":["main"]}
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "settings": {
+      }
+    },
+    "16362587605be80c93": {
+      "type": "cs-loading-screen",
+      "settings": {
+        "about": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "16362587605be80c93"
+  ]
+}
