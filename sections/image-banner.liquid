@@ -5,11 +5,14 @@
     {%- if section.settings.image != blank -%}
       <a href="{{section.settings.cta-url}}">
         <div class="image-banner__media">
-        
-            <video autoplay muted loop src="https://cdn.shopify.com/s/files/1/0591/3352/6213/files/Akram_3rd_Draft.mov?v=1636242272"  class="image-banner__media__image">
-            
-            </video>
-          {% comment %} <img srcset="{%- if section.settings.image.width >= 375 -%}{{ section.settings.image | img_url: '375x' }} 375w,{%- endif -%}
+          {%if- section.settings.video -%}
+
+          <video  width="100%" allowfullscreen="true" muted="muted" autoplay="autoplay" playsinline="playsinline" loop="loop">
+            <source src="{{section.settings.video }}" type="video/mp4" />
+          </video>
+
+          {%- else -%}
+           <img srcset="{%- if section.settings.image.width >= 375 -%}{{ section.settings.image | img_url: '375x' }} 375w,{%- endif -%}
             {%- if section.settings.image.width >= 750 -%}{{ section.settings.image | img_url: '750x' }} 750w,{%- endif -%}
             {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | img_url: '1100x' }} 1100w,{%- endif -%}
             {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | img_url: '1500x' }} 1500w,{%- endif -%}
@@ -22,8 +25,8 @@
             alt="{{ section.settings.image.alt | escape }}"
             width="{{ section.settings.image.width }}"
             height="{{ section.settings.image.width | divided_by: section.settings.image.aspect_ratio }}"
-          
-          > {% endcomment %}
+          > 
+        {%- endif -%}
         </div>
       {%- elsif section.settings.image_2 == blank -%}
         <div class="image-banner__media ">
@@ -54,6 +57,11 @@
       "type": "image_picker",
       "id": "image",
       "label": "t:sections.image-banner.settings.image.label"
+    },
+    {
+      "type": "text",
+      "id": "video",
+      "label": "Background Video"
     },
     {
       "type": "url", 
