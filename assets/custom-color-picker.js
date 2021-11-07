@@ -24,7 +24,6 @@ class CustomColorPicker extends HTMLElement {
 
     updateActiveColorLabel(pColorName) {
         this.querySelector("[data-color-container]").textContent = pColorName;
-        console.log(pColorName);
     }
 
     setCurrentColor() {

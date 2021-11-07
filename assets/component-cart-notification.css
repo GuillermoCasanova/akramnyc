@@ -338,6 +338,7 @@
 .cart-notification__product__image-container {
   width: 100%;
   max-width: 5.5rem;
+  background-color: #fff;
   display: block;
 }
 
