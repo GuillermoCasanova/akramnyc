@@ -90,10 +90,7 @@ sticky-header {
   transition:  all .6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.header:hover:after {
-  height: 12rem;
 
-}
 
 .header:after {
   content: " "; 
@@ -111,6 +108,7 @@ sticky-header {
 
 .header.is-product-page:after {
   opacity: 0;
+  transform: translateY(-100%); 
 }
 
 
@@ -128,9 +126,13 @@ sticky-header {
 @media screen and (min-width: 975px) {
   .header {
     padding-top: 1rem;
-    padding-bottom: 11rem;
     padding-left: 3rem;
     padding-right: 3rem;
+  }
+
+  .header:hover:after {
+    height: 12rem;
+    background: linear-gradient(to top, transparent 3%, rgba(0, 0, 0, 0.898) 75%, rgb(0, 0, 0) 95%);
   }
 
   .header.is-product-page.menu-is-open .header__logo {
@@ -138,11 +140,22 @@ sticky-header {
     color: black;
   }
 
-  .header.is-product-page:hover, 
-  .header.is-product-page:focus {
+  .header.is-product-page:hover:after {
     opacity: 1;
+    transform: translateY(0); 
+  }
+  
+
+  .header.is-product-page:hover .header__logo {
+    fill: white;
+    color: white;
   }
 
+  .header.is-product-page:hover .header__menu-item {
+    fill: white;
+    color: white;
+  }
+  
   .header--has-menu:not(.header--middle-left) {
     padding-bottom: 0;
   }
@@ -182,17 +195,16 @@ sticky-header {
     color: #fff;
     fill: #fff;
     filter: drop-shadow(2px 4px 10px rgba(0,0,0, .1));
+    transition: all var(--duration-default) ease 0s;
 }
 
 @media screen and (min-width: 975px) {
   .header__logo {
     width: 2rem;
     height: 4.5rem;
+    margin-right: var(--level3);
   }
-
 }
-
-
 
 .header *[tabindex='-1']:focus {
   outline: none;
@@ -529,14 +541,12 @@ animation: animateMenuOpen var(--duration-default) ease;
     display: flex;
     justify-self: flex-start;
   }
-}
 
-@media screen and (min-width: 975px) {
   .header__menu > .list-menu {
     display: flex;
     align-items: center;
     position: relative;
-}
+  }
 }
 
 .header__menu  .header__menu-item {
@@ -544,13 +554,17 @@ animation: animateMenuOpen var(--duration-default) ease;
   text-decoration: none;
   list-style: none;;
   color: rgba(var(--color-foreground), 0.75);
+  transition: all var(--duration-default) ease 0s;
 }
 
 @media screen and (min-width: 975px) {
   .header__menu  .header__menu-item {
-    margin-right: var(--level7);
+    margin-right: calc(var(--level7) * 1.5);
   }
 
+  .header:hover .header__menu-item {
+    text-shadow: 0 0 15px hsla(0deg 0% 0% / 70%);
+  }
 }
 
 .header.is-product-page .header__menu-item {

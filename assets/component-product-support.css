@@ -52,6 +52,11 @@
     position: relative;
 }
 
+.product-support__links__link.is-active .link-underline {
+  width: 96%; 
+}
+
+
 @media screen and (min-width: 975px) {
   .product-support__links__link .link-underline {
     position: absolute;
@@ -69,6 +74,7 @@
   .product-support__links__link:focus .link-underline {
     width: 96%; 
   }
+
 }
 
 

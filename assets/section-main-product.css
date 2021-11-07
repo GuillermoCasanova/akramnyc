@@ -355,19 +355,6 @@
 }
 
 
-.product-images-slideshow__image-container {
-  position: relative;
-  padding-bottom: 150%;
-}
-
-
-@media only screen and (min-width:975px) {
-  .product-images-slideshow__image-container {
-     padding-bottom: 105vh;
-     background-color: white;
-  }
-}
-
 .product-images-slideshow {
   padding-bottom: 140% !important;
   position: relative;
@@ -395,6 +382,29 @@
   .product-images-slideshow__inner {
     position: relative !important;
   }
+}
+
+
+
+
+.product-images-slideshow__image-container {
+  position: relative;
+  padding-bottom: 150%;
+}
+
+
+@media only screen and (min-width:975px) {
+  .product-images-slideshow__image-container {
+     padding-bottom: 105vh;
+     background-color: white;
+  }
+}
+
+
+@media only screen and (min-width:1100px) {
+  .product-images-slideshow__image-container {
+    padding-bottom: 110vh;
+ }
 }
 
 

@@ -87,12 +87,22 @@ class CustomColorPicker extends HTMLElement {
             newImage.src = pSource;
             newImage.alt = pAlt;
 
+            function processImageSrc(pImageSrc, pSize) {
+                let imageSrc = '';
+                imageSrc = pImageSrc.replace(/(\.[^.]*)$/, `_${pSize}$1`)
+                .replace('http:', '');
+                return imageSrc;
+            }
+
             imageTemplate = `
                <li class="slide  swiper-slide"  data-product-images-slideshow-slide data-images-scroller-image data-product-images-modal-open data-id="${index}">
                     <div class="product-images-slideshow__image-container">
                     <picture>
-                        <source srcset="${newImage.src}"  media="(min-width: 975px)">
-                        <img src="${newImage.src}" alt=""${newImage.alt}" width="100" height="500" loading="lazy">
+                        <source srcset="${processImageSrc(newImage.src, '1200x')}"  media="(min-width: 1700px)">
+                        <source srcset="${processImageSrc(newImage.src, '1000x')}"  media="(min-width: 1300px)">
+                          <source srcset="${processImageSrc(newImage.src, '1000x')}"  media="(min-width: 975px)">
+                        <source srcset="${processImageSrc(newImage.src, '900x')}"  media="(min-width: 750px)">
+                        <img src="${processImageSrc(newImage.src, '300x')}" alt=""${newImage.alt}" width="100" height="500" loading="lazy">
                         </picture>
                     </div>
               </li> 
