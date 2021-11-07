@@ -8,25 +8,21 @@
         "cta-url-text": "Shop Collection One"
       }
     },
+    "1636062518ffd83f22": {
+      "type": "collection-intro",
+      "settings": {
+        "title": "Collection One",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>",
+        "collection-url": "shopify:\/\/collections\/collection-one"
+      }
+    },
     "1628891408499f670a": {
       "type": "featured-products",
       "blocks": {
-        "0307442d-23f2-4e02-999a-c836f736d25a": {
-          "type": "featured-product",
-          "settings": {
-            "information": "short-sleeve-t-shirt"
-          }
-        },
         "f36eb351-06fd-4fc6-a66e-b3fb407847dd": {
           "type": "featured-product",
           "settings": {
             "information": "leaves-hoodie-black"
-          }
-        },
-        "fbf47da1-5589-4d14-bd9a-83c6c853cc04": {
-          "type": "featured-product",
-          "settings": {
-            "information": "leaves-hoodie-pale-iris"
           }
         },
         "5211f07d-637a-4d77-aa76-8b3ce2721520": {
@@ -35,26 +31,38 @@
             "information": "leaves-short-sleeve-tee-1"
           }
         },
-        "2bd4cf7b-96d6-4d02-b204-7e19dcbdef06": {
+        "6cc47089-7935-49b0-90b6-36c9e5a16444": {
           "type": "featured-product",
           "settings": {
-            "information": "leaves-hoodie-white"
+            "information": "logo-hoodie-white"
           }
         },
-        "24d116ca-3d8b-4de5-b93c-4a7595dec641": {
+        "02b67bdc-171e-4f2b-9b3e-1e98b73efeee": {
           "type": "featured-product",
           "settings": {
-            "information": "leaves-short-sleeve-tee-2"
+            "information": "stars-bracelet"
+          }
+        },
+        "0ed67482-09a0-42de-97b3-3d9743234dd4": {
+          "type": "featured-product",
+          "settings": {
+            "information": "logo-short-sleeve-tee-black"
+          }
+        },
+        "d57a72c5-3329-4a35-8fa2-79bfdf3dcf00": {
+          "type": "featured-product",
+          "settings": {
+            "information": "logo-bracelet"
           }
         }
       },
       "block_order": [
-        "0307442d-23f2-4e02-999a-c836f736d25a",
         "f36eb351-06fd-4fc6-a66e-b3fb407847dd",
-        "fbf47da1-5589-4d14-bd9a-83c6c853cc04",
         "5211f07d-637a-4d77-aa76-8b3ce2721520",
-        "2bd4cf7b-96d6-4d02-b204-7e19dcbdef06",
-        "24d116ca-3d8b-4de5-b93c-4a7595dec641"
+        "6cc47089-7935-49b0-90b6-36c9e5a16444",
+        "02b67bdc-171e-4f2b-9b3e-1e98b73efeee",
+        "0ed67482-09a0-42de-97b3-3d9743234dd4",
+        "d57a72c5-3329-4a35-8fa2-79bfdf3dcf00"
       ],
       "settings": {
         "title": "Featured Products",
@@ -67,20 +75,12 @@
       "settings": {
         "about": ""
       }
-    },
-    "1636062518ffd83f22": {
-      "type": "collection-intro",
-      "settings": {
-        "title": "Collection One",
-        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>",
-        "collection-url": "shopify:\/\/collections\/collection-one"
-      }
     }
   },
   "order": [
     "image_banner",
+    "1636062518ffd83f22",
     "1628891408499f670a",
-    "16351940757553ce11",
-    "1636062518ffd83f22"
+    "16351940757553ce11"
   ]
 }
