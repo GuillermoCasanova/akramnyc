@@ -8,14 +8,6 @@
         "cta-url-text": "Shop Collection One"
       }
     },
-    "1636062518ffd83f22": {
-      "type": "collection-intro",
-      "settings": {
-        "title": "Collection One",
-        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>",
-        "collection-url": "shopify:\/\/collections\/collection-one"
-      }
-    },
     "1628891408499f670a": {
       "type": "featured-products",
       "blocks": {
@@ -69,6 +61,14 @@
         "art_shot_as_lead": true
       }
     },
+    "1636062518ffd83f22": {
+      "type": "collection-intro",
+      "settings": {
+        "title": "Collection One",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>",
+        "collection-url": "shopify:\/\/collections\/collection-one"
+      }
+    },
     "16351940757553ce11": {
       "type": "cs-loading-screen",
       "disabled": true,
@@ -79,8 +79,8 @@
   },
   "order": [
     "image_banner",
-    "1636062518ffd83f22",
     "1628891408499f670a",
+    "1636062518ffd83f22",
     "16351940757553ce11"
   ]
 }
