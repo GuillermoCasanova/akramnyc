@@ -300,8 +300,6 @@ header-drawer {
 }
 
 
-
-
 .header__icon:not(.header__icon--summary),
 .header__icon span {
   display: flex;
@@ -328,16 +326,19 @@ header-drawer {
 }
 
 .header__icon .icon {
-  height: 2rem;
-  width: 2rem;
   fill: none;
   vertical-align: middle;
 }
 
 .header__icon,
-.header__icon--cart .icon {
+.header__icon--cart {
   width: 3rem;
   height: 3rem;
+}
+
+.header__icon svg {
+  width: 100%; 
+  height: 100%;
 }
 
 
