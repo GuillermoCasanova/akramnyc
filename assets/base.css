@@ -88,6 +88,7 @@ summary::before {
 :root {
   --duration-short: 100ms;
   --duration-default: 200ms;
+  --duration-medium: 300ms;
   --duration-long: 500ms;
 }
 

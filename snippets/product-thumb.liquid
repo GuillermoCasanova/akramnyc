@@ -16,16 +16,29 @@
             {%if art_shot_as_lead %}
            
             {% for image in product_card_product.images %}
-
-                {%- if forloop.index0 > 3%}
+                {%- if forloop.index0 > 1%}
                     {%break%}
                 {%endif%}
                 
                 {%unless image.alt contains 'swatch'%}
+                 
+                {%- if forloop.index0 < 2%}
                     <picture>
-                        <source srcset="{{ image.src | img_url: '1024x1024' }}"  media="(min-width: 975px)">
-                        {% comment %} <img src="{{ image.src | img_url: '900x900' }}" alt="{{ image.alt | escape }}" width="100" height="500" loading="lazy"> {% endcomment %}
+                        <source srcset="{{ image.src | img_url: '850x' }}"  media="(min-width: 975px)">
+                        <source srcset="{{ image.src | img_url: '800x' }}"  media="(min-width:750px)">
+                      <img 
+                            src="{{ image.src | img_url: '450x' }}"
+                            alt="{{ image.alt | escape }}"
+                            class="product-thumb__image"
+                            width="500"
+                            height="{{ image.height }}"
+                        >
+                        </picture>
+                    {%else%}
 
+                    <picture>
+                        <source srcset="{{ image.src | img_url: '850x' }}"  media="(min-width: 975px)">
+                        <source srcset="{{ image.src | img_url: '800x' }}"  media="(min-width:750px)">
                       <img 
                             src="{{ image.src | img_url: '450x' }}"
                             alt="{{ image.alt | escape }}"
@@ -34,7 +47,8 @@
                             width="{{ image.width }}"
                             height="{{ image.height }}"
                         >
-                        </picture>
+                        </picture>                    
+                {%- endif -%}
                 {%endunless%}
               {% endfor %}
 
@@ -43,15 +57,29 @@
 
             {% for image in product_card_product.images %}
 
-                {%- if forloop.index0 > 3%}
+                {%- if forloop.index0 > 1%}
                     {%break%}
                 {%endif%}
                 
                 {%unless image.alt contains 'swatch'%}
+                 
+                {%- if forloop.index0 < 2%}
                     <picture>
-                        <source srcset="{{ image.src | img_url: '1024x1024' }}"  media="(min-width: 975px)">
-                        {% comment %} <img src="{{ image.src | img_url: '900x900' }}" alt="{{ image.alt | escape }}" width="100" height="500" loading="lazy"> {% endcomment %}
+                        <source srcset="{{ image.src | img_url: '850x' }}"  media="(min-width: 975px)">
+                        <source srcset="{{ image.src | img_url: '800x' }}"  media="(min-width:750px)">
+                      <img 
+                            src="{{ image.src | img_url: '450x' }}"
+                            alt="{{ image.alt | escape }}"
+                            class="product-thumb__image"
+                            width="500"
+                            height="{{ image.height }}"
+                        >
+                        </picture>
+                    {%else%}
 
+                    <picture>
+                        <source srcset="{{ image.src | img_url: '850x' }}"  media="(min-width: 975px)">
+                        <source srcset="{{ image.src | img_url: '800x' }}"  media="(min-width:750px)">
                       <img 
                             src="{{ image.src | img_url: '450x' }}"
                             alt="{{ image.alt | escape }}"
@@ -60,50 +88,22 @@
                             width="{{ image.width }}"
                             height="{{ image.height }}"
                         >
-                        </picture>
+                        </picture>                    
+                {%- endif -%}
                 {%endunless%}
               {% endfor %}
-
-
-                {% comment %} <img srcset="{%- if product_card_product.media[0].width >= 165 -%}{{ product_card_product.media[0] | img_url: '165x' }} 165w,{%- endif -%}
-                {%- if product_card_product.media[0].width >= 360 -%}{{ product_card_product.media[0] | img_url: '360x' }} 360w,{%- endif -%}
-                {%- if product_card_product.media[0].width >= 533 -%}{{ product_card_product.media[0] | img_url: '533x' }} 533w,{%- endif -%}
-                {%- if product_card_product.media[0].width >= 720 -%}{{ product_card_product.media[0] | img_url: '720x' }} 720w,{%- endif -%}
-                {%- if product_card_product.media[0].width >= 940 -%}{{ product_card_product.media[0] | img_url: '940x' }} 940w,{%- endif -%}
-                {%- if product_card_product.media[0].width >= 1066 -%}{{ product_card_product.media[0] | img_url: '1066x' }} 1066w{%- endif -%}"
-                src="{{ product_card_product.media[0] | img_url: '533x' }}"
-                sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
-                alt="{{ product_card_product.media[0].alt | escape }}"
-                loading="lazy"
-                class="product-thumb__image product-thumb__image--primary"
-            width="{{ product_card_product.media[0].width }}"
-            height="{{ product_card_product.media[0].height }}"
-            >
-
-                <img srcset="{%- if product_card_product.media[0].width >= 165 -%}{{ product_card_product.media[1] | img_url: '165x' }} 165w,{%- endif -%}
-                {%- if product_card_product.media[1].width >= 360 -%}{{ product_card_product.media[1] | img_url: '360x' }} 360w,{%- endif -%}
-                {%- if product_card_product.media[1].width >= 533 -%}{{ product_card_product.media[1] | img_url: '533x' }} 533w,{%- endif -%}
-                {%- if product_card_product.media[1].width >= 720 -%}{{ product_card_product.media[1] | img_url: '720x' }} 720w,{%- endif -%}
-                {%- if product_card_product.media[1].width >= 940 -%}{{ product_card_product.media[1] | img_url: '940x' }} 940w,{%- endif -%}
-                {%- if product_card_product.media[1].width >= 1066 -%}{{ product_card_product.media[1] | img_url: '1066x' }} 1066w{%- endif -%}"
-                src="{{ product_card_product.media[1] | img_url: '533x' }}"
-                sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
-                alt="{{ product_card_product.media[1].alt | escape }}"
-                loading="lazy"
-                class="product-thumb__image product-thumb__image--secondary"
-            width="{{ product_card_product.media[1].width }}"
-            height="{{ product_card_product.media[1].height }}"
-            > {% endcomment %}
 
             {%endif%}
       </div>
       <div class="product-thumb__information">
-        <span class="product-thumb__information__title">
-            {{product_card_product.title}}
-        </span>
-        <span class="product-thumb__information__pricing">
-            {% render 'price', product: product_card_product, price_class: '' %}
-        </span>
+        <div class="product-thumb__information__inner">
+            <span class="product-thumb__information__title">
+                {{product_card_product.title}}
+            </span>
+            <span class="product-thumb__information__pricing">
+                {% render 'price', product: product_card_product, price_class: '' %}
+            </span>
+        </div>
       </div>
 
     </a>
