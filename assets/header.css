@@ -332,8 +332,8 @@ header-drawer {
 
 .header__icon,
 .header__icon--cart {
-  width: 3rem;
-  height: 3rem;
+  width: 2rem;
+  height: 2rem;
 }
 
 .header__icon svg {
@@ -350,10 +350,15 @@ header-drawer {
 }
 
 
+.cart-toggle {
+  flex: auto; 
+}
+
 .header__icon--cart {
   position: relative;
-  font-size: .85rem;
   margin-right: 1rem;
+  flex: auto; 
+  padding: 0; 
 }
 
 
@@ -365,14 +370,15 @@ header-drawer {
 
 .cart-count-bubble {
   position: absolute;
-  top: .25rem;
+  top: .7rem;
   margin: auto; 
 }
 
 
 @media screen and (min-width: 975px) {
   .cart-count-bubble {
-    bottom: .35rem;
+    top: .65rem;
+    font-size: var(--micro);
   }
 }
 
