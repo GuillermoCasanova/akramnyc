@@ -188,6 +188,21 @@ sticky-header {
   }
 }
 
+.header__heading-link {
+  display: block;
+  position: relative;
+}
+
+@media screen and (min-width: 975px) {
+  .header__heading-link:hover .header__logo-flowers,
+  .header__heading-link:focus .header__logo-flowers{
+     display: flex;
+      opacity: 1;
+  }
+
+}
+
+
 
 .header__logo {
     width: 1.5rem;
@@ -196,13 +211,30 @@ sticky-header {
     fill: #fff;
     filter: drop-shadow(2px 4px 10px rgba(0,0,0, .1));
     transition: all var(--duration-default) ease 0s;
+    z-index: 0;
+}
+
+.header__logo.header__logo-flowers {
+  opacity: 0;
+  position: absolute;
+  left: -.25rem; 
+  right: 0; 
+  width: 100%; 
+  object-fit: cover;
+  z-index: 2;
+  transition:  all var(--duration-default) ease-out;
+}
+
+.header__logo symbol .flowers {
+  opacity: 0;
+  display: none;
 }
 
 @media screen and (min-width: 975px) {
   .header__logo {
-    width: 2rem;
-    height: 4.5rem;
-    margin-right: var(--level3);
+    width: 3rem;
+    height: 5.5rem;
+    margin-right: var(--level2);
   }
 }
 
