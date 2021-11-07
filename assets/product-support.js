@@ -86,7 +86,8 @@ class ProductHelp extends HTMLElement {
             return 
         }
 
-    }   
+    }       
+
 
     handleLargeUp(pEvent) {
 
@@ -117,9 +118,10 @@ class ProductHelp extends HTMLElement {
             }); 
 
             this.querySelectorAll(this.selectors.supportLink).forEach((elem) => {
-                elem.addEventListener('click', () =>  {
+                elem.addEventListener('click', (event) =>  {
                     document.querySelector('.product__info-wrapper').style.zIndex = 100; 
-                    this.open(this.dataset.id);
+                    this.open();
+                    this.setActive(event);
                 }); 
             })
 
@@ -127,6 +129,7 @@ class ProductHelp extends HTMLElement {
                 elem.addEventListener('click', (event) =>  {
                     document.querySelector('.product__info-wrapper').style.zIndex = 0;
                     this.close(event);
+                    this.setInactiveAll(); 
                 }); 
             })
 
@@ -137,9 +140,18 @@ class ProductHelp extends HTMLElement {
         }
     }   
 
-    setUpEvents() { 
+    setActive(pEvent) {
+        document.querySelectorAll(this.selectors.supportLink).forEach((elem) => {
+            elem.classList.remove('is-active');
+        }); 
+        pEvent.target.classList.add('is-active');
     }
 
+    setInactiveAll() {
+        document.querySelectorAll(this.selectors.supportLink).forEach((elem) => {
+            elem.classList.remove('is-active');
+        }); 
+    }
 }
 
 customElements.define('product-help', ProductHelp);
