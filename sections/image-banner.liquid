@@ -5,9 +5,9 @@
     {%- if section.settings.image != blank -%}
       <a href="{{section.settings.cta-url}}">
         <div class="image-banner__media">
-          {%if- section.settings.video -%}
+          {%- if section.settings.video != blank -%}
 
-          <video  width="100%" allowfullscreen="true" muted="muted" autoplay="autoplay" playsinline="playsinline" loop="loop">
+          <video  width="100%" allowfullscreen="true" muted="muted" autoplay="autoplay" playsinline="playsinline" loop="loop"  class="image-banner__media__image">
             <source src="{{section.settings.video }}" type="video/mp4" />
           </video>
 
@@ -21,10 +21,11 @@
             {%- if section.settings.image.width >= 2800 -%}{{ section.settings.image | img_url: '2800x' }} 2800w{%- endif -%}"
             sizes="{% if section.settings.image_2 != blank and section.settings.stack_images_on_mobile %}(min-width: 750px) 50vw, 100vw{% elsif section.settings.image_2 != blank %}50vw{% else %}100vw{% endif %}"
             src="{{ section.settings.image | img_url: '750x' }}"
-          loading="lazy"
+            loading="eager"
             alt="{{ section.settings.image.alt | escape }}"
             width="{{ section.settings.image.width }}"
             height="{{ section.settings.image.width | divided_by: section.settings.image.aspect_ratio }}"
+            class="image-banner__media__image"
           > 
         {%- endif -%}
         </div>
@@ -71,7 +72,7 @@
     {
       "type": "text", 
       "id": "cta-url-text", 
-      "label": "t:sections.image-banner.settings.cta-url-text.label"
+      "label": "CTA Text"
     }
   ],
   "blocks": [
