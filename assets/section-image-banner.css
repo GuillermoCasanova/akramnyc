@@ -7,8 +7,8 @@
 .image-banner {
   position: relative;
   width: 100%;
-  margin-bottom: var(--level5);
-  padding-bottom: 120.6%;
+  margin-bottom: var(--level2);
+  padding-bottom: 150.6%;
 }
 
 .image-banner:after {
@@ -30,7 +30,7 @@
 @media screen and (min-width: 1000px) {
   .image-banner {
     padding-bottom: 75%;
-    margin-bottom: var(--level7);
+    margin-bottom: var(--level3);
   }
 }
 
@@ -38,7 +38,7 @@
 @media screen and (min-width: 1400px) {
   .image-banner {
     padding-bottom:80%;
-    margin-bottom: var(--level7);
+    margin-bottom: var(--level3);
   }
 }
 
@@ -47,7 +47,6 @@
 @media screen and (min-width: 1600px) {
   .image-banner {
     padding-bottom: 65%;
-    margin-bottom: var(--level7);
   }
 }
 
