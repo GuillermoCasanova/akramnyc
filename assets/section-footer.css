@@ -10,7 +10,12 @@
 
 
 
-
+.footer__logo {
+  width: 11rem;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: var(--level3);
+}
 
 .footer__contact {
   display: flex;
