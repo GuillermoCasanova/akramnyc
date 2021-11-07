@@ -150,6 +150,7 @@ summary::before {
     --secondary-font-family: 'telegrafregular',  'Space Mono', 'Courier New', Courier, monospace;
     --tertiary-font-family: 'telegrafbold',  'Space Mono', 'Courier New', Courier, monospace;
     --letter-spacing-1: 1.5px; 
+    --letter-spacing-2: 1px; 
     --letter-spacing-3: 3px; 
     --letter-spacing-4: 5px; 
     --kilo: 3.002rem;

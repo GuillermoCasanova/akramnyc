@@ -10,9 +10,9 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
-    padding-right: var(--level1);
-    padding-left: var(--level1);
-    margin-top: calc((var(--level7) * 2) + var(--level5));
+    padding-right: var(--level2);
+    padding-left: var(--level2);
+    margin-top: calc((var(--level7) * 2) + var(--level6));
 }
 
 @media only screen and (min-width: 768px) {

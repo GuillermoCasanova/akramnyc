@@ -6,7 +6,10 @@ class CustomColorPicker extends HTMLElement {
     constructor() {
         super();
         this.addEventListener('change', this.onVariantChange);
-        this.init(); 
+
+        if(this.querySelector("[data-color-container]") !== null ) {
+            this.init(); 
+        }
     }
 
     onVariantChange() {
@@ -98,8 +101,7 @@ class CustomColorPicker extends HTMLElement {
                <li class="slide  swiper-slide"  data-product-images-slideshow-slide data-images-scroller-image data-product-images-modal-open data-id="${index}">
                     <div class="product-images-slideshow__image-container">
                     <picture>
-                        <source srcset="${processImageSrc(newImage.src, '1200x')}"  media="(min-width: 1700px)">
-                        <source srcset="${processImageSrc(newImage.src, '1000x')}"  media="(min-width: 1300px)">
+                        <source srcset="${processImageSrc(newImage.src, '1050x')}"  media="(min-width: 1300px)">
                           <source srcset="${processImageSrc(newImage.src, '1000x')}"  media="(min-width: 975px)">
                         <source srcset="${processImageSrc(newImage.src, '900x')}"  media="(min-width: 750px)">
                         <img src="${processImageSrc(newImage.src, '300x')}" alt=""${newImage.alt}" width="100" height="500" loading="lazy">

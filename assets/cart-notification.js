@@ -132,7 +132,6 @@ class CartNotification extends HTMLElement {
       requires_shipping: parsedState.requires_shipping
     };
 
-    console.log(cartContents); 
     
     document.querySelector('.cart-notification-product').innerHTML = ""; 
 
@@ -220,7 +219,7 @@ class CartNotification extends HTMLElement {
       </ul>
       `;
 
-      this.totals.querySelector('[data-cart-subtotal]').textContent = new Shopify.currency().formatMoney(parsedState.total_price) + parsedState.currency; 
+      this.totals.querySelector('[data-cart-subtotal]').textContent = new Shopify.currency().formatMoney(parsedState.total_price); 
 
       
 

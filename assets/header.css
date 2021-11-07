@@ -640,7 +640,7 @@ animation: animateMenuOpen var(--duration-default) ease;
     left: 0; 
     display: flex;
     flex-direction: row;
-    padding-top: var(--level3);
+    padding-top: var(--level2);
   }
 }
 
@@ -653,10 +653,10 @@ animation: animateMenuOpen var(--duration-default) ease;
 
 @media only screen and (min-width: 975px) {
   .header__submenu .header__menu-item {
-      margin-right: var(--level2);
+      margin-right: var(--level6);
       padding-right: var(--level1);
       font-size: var(--normal);
-      letter-spacing: var(--letter-spacing-1);
+      letter-spacing: var(--letter-spacing-2);
   }
 }
 
@@ -696,7 +696,6 @@ animation: animateMenuOpen var(--duration-default) ease;
 } */
 
 details-disclosure > details {
-  position: relative;
 }
 
 @keyframes animateMenuOpen {
