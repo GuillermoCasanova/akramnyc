@@ -84,11 +84,8 @@ class CustomColorPicker extends HTMLElement {
 
         
         function createImageObj(pSource, pAlt, pIndex) {
-            let newImage = new Image(); 
             let imageTemplate = ``; 
             let index = pIndex + 1;
-            newImage.src = pSource;
-            newImage.alt = pAlt;
 
             function processImageSrc(pImageSrc, pSize) {
                 let imageSrc = '';
@@ -97,14 +94,15 @@ class CustomColorPicker extends HTMLElement {
                 return imageSrc;
             }
 
+
             imageTemplate = `
                <li class="slide  swiper-slide"  data-product-images-slideshow-slide data-images-scroller-image data-product-images-modal-open data-id="${index}">
                     <div class="product-images-slideshow__image-container">
                     <picture>
-                        <source srcset="${processImageSrc(newImage.src, '1050x')}"  media="(min-width: 1300px)">
-                          <source srcset="${processImageSrc(newImage.src, '1000x')}"  media="(min-width: 975px)">
-                        <source srcset="${processImageSrc(newImage.src, '900x')}"  media="(min-width: 750px)">
-                        <img src="${processImageSrc(newImage.src, '300x')}" alt=""${newImage.alt}" width="100" height="500" loading="lazy">
+                        <source srcset="${processImageSrc(pSource, '1050x')}"  media="(min-width: 1300px)">
+                          <source srcset="${processImageSrc(pSource, '1000x')}"  media="(min-width: 975px)">
+                        <source srcset="${processImageSrc(pSource, '900x')}"  media="(min-width: 750px)">
+                        <img src="${processImageSrc(pSource, '300x')}" alt=""${pAlt}" height="700" loading="lazy">
                         </picture>
                     </div>
               </li> 
