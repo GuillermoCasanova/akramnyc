@@ -2,8 +2,8 @@
 
 
   .contact {
-    padding-right: var(--level7);
-    padding-left: var(--level7);
+    padding-right: var(--level6);
+    padding-left: var(--level6);
     max-width: 40rem;
   }
 
@@ -37,14 +37,9 @@
   }
 }
 
-.contact__button {
-  margin-top: 3rem;
-}
 
 @media screen and (min-width: 750px) {
-  .contact__button {
-    margin-top: 4rem;
-  }
+
 }
 
 @media screen and (min-width: 750px) {

@@ -247,15 +247,29 @@ margin-bottom: rem-calc($level7 + $level2);
 
 
 
+
+
+
+/*------------------------------------*\
+    #Default Fields
+\*------------------------------------*/
+
 .field textarea {
   border: 1px solid;
   border-radius: 10px;
 }
 
-.field textarea:active {
+.field textarea:active,
+.field textarea:focus {
   background-color: transparent;
 }
 
+
+.field label {
+  margin-bottom: var(--level3);
+  display: flex;
+  font-size: var(--h5);
+}
 
 
 
@@ -276,7 +290,8 @@ margin-bottom: rem-calc($level7 + $level2);
   padding-bottom: 0;
   pointer-events: none;
   transition: all .4s cubic-bezier(0.22, 1, 0.36, 1); 
-  font-size: var(--h6);
+  font-size: var(--h5);
+  margin-bottom: 0;
 }
 
 .custom-field.is-active  label {
