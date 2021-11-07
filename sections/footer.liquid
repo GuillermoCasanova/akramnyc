@@ -89,7 +89,43 @@
                       {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
                     {%- endif -%}
                   </div>
+                {%when 'contact'%}
+                  <div class="footer__contact">
+
+                    <ul>
+                      <li>
+                        <span class="contact-label">
+                          Phone: 
+                          </span>
+                         <a href="tel:{{block.settings.phone}}">
+                          {{block.settings.phone}}
+                         </a>
+                      </li>
+                      <li>
+                        <span class="contact-label">
+                          Email: 
+                         </span>
+                        <a href="mailto: {{block.settings.email}}">
+                          
+                          {{block.settings.email}}
+                         </a>
+                      </li>
+                      <li>
+                        <span class="contact-label">
+                          Social: 
+                         </span>
+
+                        <a title="Akram Instagram" href="{{block.settings.social-account}}" target="_blank">
+                          Instagram
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  
+
                 {%- endcase -%}
+
+
             </div>
           {%- endfor -%}
         </div>
@@ -223,6 +259,9 @@
       </div>
     </div>
   {%- endif -%}
+
+
+
 
   <div class="footer__content-bottom">
     <div class="footer__content-bottom-wrapper page-width">
@@ -388,6 +427,30 @@
 {
   "name": "t:sections.footer.name",
   "blocks": [
+    {
+      "type": "contact", 
+      "name": "Footer Contact", 
+      "settings": [
+        {
+          "type": "text", 
+          "id": "phone", 
+          "default":  "(000) 000 - 0000",
+          "label": "Phone Number"
+        },
+        {
+          "type": "text", 
+          "id": "email", 
+          "default":  "example@email.com",
+          "label": "Contact Email"
+        },
+        {
+          "type": "text", 
+          "id": "social-account", 
+          "default":  "akramnyc.com",
+          "label": "Social Account"
+        }
+      ]
+    },  
     {
       "type": "link_list",
       "name": "t:sections.footer.blocks.link_list.name",
