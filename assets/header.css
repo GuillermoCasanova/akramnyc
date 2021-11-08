@@ -388,7 +388,7 @@ header-drawer {
 
 .header__icon--cart {
   position: relative;
-  margin-right: var(--level4);
+  margin-right: var(--level7);
   flex: auto; 
   padding: 0; 
 }
@@ -439,8 +439,8 @@ header-drawer {
   border-radius: 100%; 
   border: 1px solid white; 
   background: transparent;
-  width: 2.15rem; 
-  height: 2.15rem;
+  width: 2.5rem; 
+  height: 2.5rem;
   position: relative;
   top: -1rem;
 }
