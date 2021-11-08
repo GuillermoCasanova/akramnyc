@@ -64,6 +64,7 @@
     },
     "1636062518ffd83f22": {
       "type": "collection-intro",
+      "disabled": true,
       "settings": {
         "title": "Collection One",
         "description": "<p>Our Hoodies, Tees, and Bracelets def9j<\/p>",
