@@ -112,6 +112,7 @@
     height: 100%;
     position: relative;
     display: flex;
+    pointer-events: none;
   }
   
   .size-charts-modal__close  .icon-close:after,
@@ -147,6 +148,7 @@
     border: 1.5px solid white; 
     left: 0;
     top: 0;
+    pointer-events: none;
   }
   
   @media only screen and (min-width: 975px) {
@@ -179,14 +181,20 @@
     transition: all var(--duration-long) ease;
 } 
 
-
 @media only screen  and (min-width: 750px) {
     .size-charts-modal__content {
         overflow: hidden;
+    }
+}
+    
+@media only screen  and (min-width: 950px) {
+    .size-charts-modal__content {
         align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
+        justify-content: center;
+        display: flex;
+        max-width: none;
+        width: 49vw;
+        flex-direction: column;
     }
 }
 
@@ -195,6 +203,7 @@
     width: 100%;
     overflow: auto;
     font-size: var(--micro);
+    max-width: 43rem;
 }
 
 
@@ -226,7 +235,7 @@
 
 @media only screen  and (min-width: 750px) {
     .size-chart {
-        font-size: var(--normal);
+        font-size: var(--mini);
     }
 }
 

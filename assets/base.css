@@ -166,6 +166,7 @@ main {
     --h6: 1rem;
     --normal: .95em;
     --micro: .85rem;
+    --mini: .78rem;
     --line-height: 1;
     --line-height-double: 1.5;
 }

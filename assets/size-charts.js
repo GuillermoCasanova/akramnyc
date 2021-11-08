@@ -47,7 +47,8 @@ class SizeChartModal  extends HTMLElement {
           this.closeModal(); 
         }
       });
-    
+
+      document.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.closeModal());
     }
 }
 
