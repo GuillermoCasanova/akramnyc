@@ -795,6 +795,8 @@ variant-selects {
   width: 1px;
 }
 
+
+
 .product-form__input input[type='radio'] + label {
   border-radius: 4rem;
   display: inline-block;
@@ -808,6 +810,14 @@ variant-selects {
   cursor: pointer;
   position: relative;
 }
+
+
+[data-url="/products/logo-bracelet"] input[type='radio'] + label {
+  font-size: var(--h4);
+  margin-top: var(--level3);
+  letter-spacing: var(--letter-spacing-2);
+  }
+  
 
 .product-form__input input[type='radio'] + label:after {
   content: " "; 
