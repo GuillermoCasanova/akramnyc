@@ -147,6 +147,28 @@
 }
 
 
+.product-support-section__content p {
+  text-transform: none;
+  font-family: var(--secondary-font-family);
+  letter-spacing: var(--letter-spacing-1);
+  font-size: var(--normal);
+}
+/* 
+@media screen and (min-width: 768px) {
+
+  .product-support-section__content p {
+    font-size: var(--h5);
+  }
+} */
+
+@media screen and (min-width: 975px) {
+
+  .product-support-section__content p {
+    font-size: var(--h5);
+  }
+}
+
+
 @media screen and (min-width: 975px) {
 
   .product-support-section__content-wrapper {
