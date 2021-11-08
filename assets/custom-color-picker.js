@@ -102,7 +102,7 @@ class CustomColorPicker extends HTMLElement {
                         <source srcset="${processImageSrc(pSource, '1050x')}"  media="(min-width: 1300px)">
                           <source srcset="${processImageSrc(pSource, '1000x')}"  media="(min-width: 975px)">
                         <source srcset="${processImageSrc(pSource, '900x')}"  media="(min-width: 750px)">
-                        <img src="${processImageSrc(pSource, '300x')}" alt=""${pAlt}" height="700" loading="lazy">
+                        <img src="${processImageSrc(pSource, '800x')}" alt=""${pAlt}" height="1000" loading="lazy">
                         </picture>
                     </div>
               </li> 
