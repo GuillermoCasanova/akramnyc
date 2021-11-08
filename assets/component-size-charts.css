@@ -99,6 +99,10 @@
     justify-content: center;
     opacity: 0;
     transition: all var(--duration-default) ease;
+    visibility: visible;
+    opacity: 1;
+    right: 2rem;
+    top: 2rem;
   }
   
   .size-charts-modal__close:hover, 
@@ -153,10 +157,9 @@
   
   @media only screen and (min-width: 975px) {
     .size-charts-modal__close  {
-      opacity: 1;
       top: 3rem;
       right: 4.25rem;
-      visibility: visible;
+
     }
   }
   
@@ -169,20 +172,22 @@
     position: relative;
     max-width: 50rem;
     padding: 2rem;
-    padding-top: 2.5rem;
     width: 100%;
     background-color: black;
     color: rgba(var(--color-text-foreground),1)!important;
     overflow-y: auto;
+    overflow-x: hidden;
     height: 100vh;
     top: 0; 
     transform: translateX(100%);
     position: relative;
     transition: all var(--duration-long) ease;
+    padding-top: calc(var(--level7)  * 2);
 } 
 
 @media only screen  and (min-width: 750px) {
     .size-charts-modal__content {
+        overflow: hidden;
     }
 }
     
