@@ -7,8 +7,23 @@
         <div class="image-banner__media">
           {%- if section.settings.video != blank -%}
 
-          <video  id="hero-video"  width="100%" allowfullscreen="true" muted="muted" autoplay playsinline="playsinline" loop="loop"  class="image-banner__media__image">
-            <source src="{{section.settings.video }}#t=2.5,6.5" type="video/mp4" />
+            <img srcset="{%- if section.settings.image.width >= 375 -%}{{ section.settings.image | img_url: '375x' }} 375w,{%- endif -%}
+            {%- if section.settings.image.width >= 750 -%}{{ section.settings.image | img_url: '750x' }} 750w,{%- endif -%}
+            {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | img_url: '1100x' }} 1100w,{%- endif -%}
+            {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | img_url: '1500x' }} 1500w,{%- endif -%}
+            {%- if section.settings.image.width >= 1780 -%}{{ section.settings.image | img_url: '1780x' }} 1780w,{%- endif -%}
+            {%- if section.settings.image.width >= 2000 -%}{{ section.settings.image | img_url: '2000x' }} 2000w,{%- endif -%}
+            {%- if section.settings.image.width >= 2800 -%}{{ section.settings.image | img_url: '2800x' }} 2800w{%- endif -%}"
+            sizes="{% if section.settings.image_2 != blank and section.settings.stack_images_on_mobile %}(min-width: 750px) 50vw, 100vw{% elsif section.settings.image_2 != blank %}50vw{% else %}100vw{% endif %}"
+            src="{{ section.settings.image | img_url: '750x' }}"
+            loading="eager"
+            alt="{{ section.settings.image.alt | escape }}"
+            width="{{ section.settings.image.width }}"
+            height="{{ section.settings.image.width | divided_by: section.settings.image.aspect_ratio }}"
+            class="image-banner__media__image  image-banner__media__image--mobile"
+          > 
+          <video  data-src="{{section.settings.video }}#t=2.5,6.5" id="hero-video"  width="100%" allowfullscreen="true" muted="muted"  autoplay loop muted playsinline playsinline="playsinline" loop="loop"  class="image-banner__media__image">
+            <source src="" type="video/mp4" />
           </video>
 
           {%- else -%}
@@ -50,15 +65,29 @@
 <script defer>
 
   window.addEventListener('DOMContentLoaded', function() {
-    console.log('loaded!');
 
-    document.querySelector('#hero-video').addEventListener("pause", () => {
-      document.querySelector('#hero-video').currentTime = 2.5;
-      document.querySelector('#hero-video').play(); 
-      setTimeout(function() {
-        document.querySelector('#hero-video').pause(); 
-      }, 3500); 
-    });
+      let mediaQueries = {
+        mediumDown: window.matchMedia('(max-width: 974px)'),
+        largeUp: window.matchMedia('(min-width: 975px)')
+    }
+
+     mediaQueries.largeUp.addEventListener("change", startVideo()); 
+
+    function startVideo() {
+      let vidUrl = document.querySelector('video').dataset.src;
+      document.querySelector('video').src = vidUrl;
+      document.querySelector('#hero-video').addEventListener("pause", () => {
+        document.querySelector('#hero-video').currentTime = 2.5;
+        document.querySelector('#hero-video').play(); 
+        setTimeout(function() {
+          document.querySelector('#hero-video').pause(); 
+        }, 3500); 
+      });
+    }
+
+    if(mediaQueries.largeUp.matches = true) {
+      startVideo() 
+    }
     
   }); 
 

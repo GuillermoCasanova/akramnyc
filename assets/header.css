@@ -599,6 +599,7 @@ animation: animateMenuOpen var(--duration-default) ease;
   transition: all var(--duration-default) ease 0s;
 }
 
+
 @media screen and (min-width: 975px) {
   .header__menu  .header__menu-item {
     margin-right: calc(var(--level7) * 1.5);
@@ -607,6 +608,20 @@ animation: animateMenuOpen var(--duration-default) ease;
   .header:hover .header__menu-item {
     text-shadow: 0 0 15px hsla(0deg 0% 0% / 70%);
   }
+
+  .header__menu  .header__menu-item {
+    position: relative;
+  }
+
+  .header__menu  .header__menu-item span {
+    width: 100%; 
+     content: " "; 
+     background-color: #fff;
+     position: absolute;
+     height: 2px; 
+     bottom: -1rem;
+  }
+  
 }
 
 .header.is-product-page .header__menu-item {
