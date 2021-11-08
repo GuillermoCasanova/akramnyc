@@ -200,6 +200,10 @@
 }
 
 
+.cart-notification__inner {
+  height: 100% 
+}
+
 @media screen and (min-width: 975px) {
   .cart-notification__inner {
     max-width: 34em;
@@ -559,7 +563,14 @@
 .cart-notification-product {
   height: 100%; 
   position: relative;
+  height: 70%
+}
 
+
+@media screen and (min-width: 975px) {
+  .cart-notification-product {
+    height: 78%
+  }
 }
 
 
@@ -570,7 +581,9 @@
   flex-wrap: nowrap;
   height: 100%;
   overflow-x: auto;
-  padding-bottom: 15rem;
+  padding-bottom: 5rem;
+  overflow-y: auto;
+  height: 100%;
 }
 
 .cart-notification-product ul::-webkit-scrollbar {
