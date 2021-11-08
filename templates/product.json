@@ -80,8 +80,8 @@
         "821aaf87-9aec-41fd-ac0e-eef2f89ffe2a": {
           "type": "size-chart",
           "settings": {
-            "name": "",
-            "size-chart": ""
+            "name": "Tees",
+            "size-chart": "size-chart-tees"
           }
         },
         "1667c5a8-1b17-4024-a538-2d35e3d18a96": {
