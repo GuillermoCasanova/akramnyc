@@ -820,6 +820,12 @@ variant-selects {
   }
   
 
+  [data-url="/products/stars-bracelet"] input[type='radio'] + label {
+    font-size: var(--h4);
+    margin-top: var(--level3);
+    letter-spacing: var(--letter-spacing-2);
+    }
+
 .product-form__input input[type='radio'] + label:after {
   content: " "; 
   position: absolute;
