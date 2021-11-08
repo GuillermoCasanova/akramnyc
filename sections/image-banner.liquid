@@ -22,7 +22,7 @@
             height="{{ section.settings.image.width | divided_by: section.settings.image.aspect_ratio }}"
             class="image-banner__media__image  image-banner__media__image--mobile"
           > 
-          <video  data-src="{{section.settings.video }}#t=2.5,6.5" id="hero-video"  width="100%" allowfullscreen="true" muted="muted"  autoplay loop muted playsinline playsinline="playsinline" loop="loop"  class="image-banner__media__image">
+          <video  data-lazy-src="{{section.settings.video }}#t=2.5,6.5" id="hero-video"  width="100%" allowfullscreen="true" muted="muted"  autoplay loop muted playsinline playsinline="playsinline" loop="loop"  class="image-banner__media__image">
             <source src="" type="video/mp4" />
           </video>
 
@@ -71,23 +71,32 @@
         largeUp: window.matchMedia('(min-width: 975px)')
     }
 
-     mediaQueries.largeUp.addEventListener("change", startVideo()); 
+    let vidSrc = document.querySelector('#hero-video').dataset.lazySrc; 
 
-    function startVideo() {
-      let vidUrl = document.querySelector('video').dataset.src;
-      document.querySelector('video').src = vidUrl;
-      document.querySelector('#hero-video').addEventListener("pause", () => {
-        document.querySelector('#hero-video').currentTime = 2.5;
-        document.querySelector('#hero-video').play(); 
-        setTimeout(function() {
-          document.querySelector('#hero-video').pause(); 
-        }, 3500); 
-      });
+     mediaQueries.largeUp.addEventListener("change", startVideo(mediaQueries.largeUp)); 
+
+    function startVideo(pEvent) {
+
+      if(pEvent.matches) {
+      
+        document.querySelector('#hero-video').src = vidSrc;
+
+        console.log(vidSrc); 
+
+        
+        document.querySelector('#hero-video').addEventListener("pause", () => {
+          document.querySelector('#hero-video').currentTime = 2.5;
+          document.querySelector('#hero-video').play(); 
+          setTimeout(function() {
+            document.querySelector('#hero-video').pause(); 
+          }, 3500); 
+        });
+
+      }
+
     }
 
-    if(mediaQueries.largeUp.matches = true) {
-      startVideo() 
-    }
+
     
   }); 
 
