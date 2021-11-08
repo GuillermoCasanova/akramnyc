@@ -734,6 +734,7 @@
   border-image-repeat: round;
   padding-top: var(--level2);
   margin-bottom: var(--level4);
+  position: relative;
 }
 
 .product-form__input fieldset {
@@ -1046,6 +1047,24 @@ variant-selects {
 
 
 
+
+.size-chart-button {
+  position: absolute;
+  right: 0; 
+  position: absolute;
+  right: 0;
+  background: transparent;
+  outline: 0;
+  border: 0;
+  color: #fff;
+  text-decoration: underline;
+}
+
+.size-chart-button:hover,
+.size-chart-button:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
 
 /* Product Text Component CSS */
 

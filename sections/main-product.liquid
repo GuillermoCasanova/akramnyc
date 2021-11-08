@@ -6,6 +6,7 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'vendor-swiper.css' | asset_url | stylesheet_tag }}
 {{ 'component-product-support.css' | asset_url | stylesheet_tag }}
+{{ 'component-size-charts.css' | asset_url | stylesheet_tag }}
 
 
 <link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -180,6 +181,11 @@
                 <variant-radios class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
                   {%- for option in product.options_with_values -%}
                     <div class="js product-form__input">
+                      {%if option.name == 'Size'%}
+                      <button  tabindex="0" aria-label="Open Size Guide Modal"  size-chart-modal-open class="size-chart-button">
+                        Size Guide
+                      </button>
+                      {%endif%}
                       <fieldset >
                         <legend class="form__label">
                           <span class="form__label__text">
@@ -421,6 +427,38 @@
   {%- render 'cart-notification' -%}
 
 
+
+  <size-chart-modal class="size-charts-modal" role="dialoge"  hidden  aria-modal="true" aria-label="Size Guide Modal"> 
+    <div class="size-charts-modal__overlay">
+    </div>
+    <div class="size-charts-modal__content" >
+        <button aria-label="Close Size Guide Modal"  class="size-charts-modal__close" size-chart-modal-close>
+            <span class="visually-hidden">
+                Close
+            </span>
+            <span class="size-charts-modal__close__icon">
+            </span> 
+        </button>
+
+        {%for block in section.blocks%}
+          {%case block.type%}
+            {%when 'size-chart'%}
+              <div class="size-chart">
+                <div class="size-chart__header">
+                    {{block.settings.name}}
+                </div>
+                <div class="size-chart__data"  aria-label="{{block.settings.size-chart.name}}">
+                    {{block.settings.size-chart.content}}
+                </div>
+            </div>
+
+          {%endcase%}
+        {%endfor%}
+    </div>
+  </size-chart-modal>
+
+
+
   {% assign popups = section.blocks | where: "type", "popup" %}
   {%- for block in popups -%}
     <modal-dialog id="PopupModal-{{ block.id }}" class="product-popup-modal" {{ block.shopify_attributes }}>
@@ -440,8 +478,8 @@
 <script type="module" src="{{ 'product-images.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'custom-color-picker.js' | asset_url }}" defer="defer"></script>
-<script type="module"  src="{{ 'product-support.js' | asset_url }}" defer="defer"></script>
-
+<script type="module"  src="{{ 'product-support.js' | asset_url }}" defer="defer"></script> 
+<script  src="{{ 'size-charts.js' | asset_url }}" defer="defer"></script> 
 
 {% schema %}
 {
@@ -729,7 +767,24 @@
           "label": "Body"
         }
       ]
-    }
+    },
+    {   
+      "name": "Size Chart", 
+      "type": "size-chart",
+      "settings": [
+          {
+              "type": "text", 
+              "id": "name", 
+              "label": "Chart Name"
+          },
+          {
+              "type": "page", 
+              "id": "size-chart", 
+              "label":  "Size Chart"
+          }
+      ]
+  }
+
   ],
   "settings": [
     {
