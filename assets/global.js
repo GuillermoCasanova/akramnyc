@@ -639,12 +639,17 @@ class VariantSelects extends HTMLElement {
     }
   }
 
+
   updateOptions() {
     this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
   }
 
   updateCurrentOption() {
     this.querySelector('[data-current-option]').textContent = this.currentVariant.title;
+  }
+
+  getCurrentVariant() {
+    return this.currentVariant; 
   }
 
   updateMasterId() {
@@ -745,6 +750,8 @@ class VariantRadios extends VariantSelects {
     super();
   }
 
+
+
   setUpEvents() {
 
         let currentOption = this.querySelector("[data-current-option").textContent; 
@@ -752,25 +759,82 @@ class VariantRadios extends VariantSelects {
 
         function showOption(pColor) {
             let colorContainer = document.querySelector('[data-current-option]'); 
-            colorContainer.textContent = pColor; 
+            colorContainer.textContent = pColor.replace(/[\n\r]+|[\s]{2,}/g, '') 
         }
     
-        this.querySelectorAll('[data-option-label]').forEach(function(element) {
-            element.addEventListener('mouseenter', function(event) {
-                let name = this.dataset.optionName; 
+        this.querySelectorAll('[data-option-label]').forEach((element) => {
+            element.addEventListener('mouseenter', (event)  =>{
+                let name = event.target.dataset.optionName; 
+                console.log(name); 
                 showOption(name)
             })
-            element.addEventListener('click', function(event) {
-              let name = this.dataset.optionName; 
+            
+            element.addEventListener('click', (event)  =>{
+              let name = event.target.dataset.optionName; 
               currentOption = name;
-              console.log(name); 
               showOption(name)
-           })
-            element.addEventListener('mouseleave', function(event) {
+            })
+
+            element.addEventListener('mouseleave', (event)  =>{
+              console.log(currentOption); 
                 showOption(currentOption)
             })
         }); 
+
+        this.onVariantChange();
+        this.setSoldOutOptions(); 
   }
+
+
+
+  setSoldOutOptions() {
+   
+    let data = {
+       productVariants: JSON.parse(this.querySelector('[type="application/json"]').innerHTML),
+       selectedVariant: this.getCurrentVariant()
+     }; 
+
+     console.log(data); 
+ 
+     let selectors = {
+       primaryOptions: '[data-primary-option]',
+       secondaryOptions: '[data-secondary-option]'
+     };
+ 
+     var allProductVariants = data.productVariants;
+     var selectedVariant = data.selectedVariant; 
+ 
+     console.log(allProductVariants); 
+     console.log(selectedVariant)
+ 
+      //var selectedColor = selectedVariant.options[0]; 
+      var sizeOptions = [];
+
+      this.querySelectorAll('input').forEach(function(elem) {
+        sizeOptions.push(elem); 
+        elem.classList.remove('is-sold-out'); 
+        elem.disabled = false;
+        elem.setAttribute('aria-disabled', false);
+      }); 
+
+      for(var i = 0; i < allProductVariants.length; i++) {
+
+        if(allProductVariants[i].available == false) {
+
+          sizeOptions.forEach((elem) => {
+            
+            if(allProductVariants[i].option1 == elem.value || allProductVariants[i].option1 == elem.value) {
+              elem.classList.add('is-sold-out'); 
+              elem.disabled = true;
+              elem.setAttribute('aria-disabled', true);
+            }
+          })
+        }
+      }
+   }
+
+
+
 
   updateOptions() {
     const fieldsets = Array.from(this.querySelectorAll('fieldset'));
@@ -781,6 +845,8 @@ class VariantRadios extends VariantSelects {
 }
 
 customElements.define('variant-radios', VariantRadios);
+
+
 window.addEventListener('DOMContentLoaded', function() {
   document.querySelector('variant-radios').setUpEvents(); 
 }); 

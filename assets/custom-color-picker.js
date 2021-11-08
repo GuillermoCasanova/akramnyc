@@ -59,20 +59,20 @@ class CustomColorPicker extends HTMLElement {
         document.querySelector('[data-active-product-id]').value = JSON.parse(this.currentColor.dataset.product).variants[0].id; 
 
         document.querySelectorAll('variant-radios').forEach((elem) => {
-        elem.dataset.url = this.getSelectedColor().dataset.productUrl;
+             elem.dataset.url = this.getSelectedColor().dataset.productUrl;
 
-        if( elem.querySelector('[type="application/json"]')) {
-            let e = elem.querySelector('[type="application/json"]');
-            e.parentElement.removeChild(e); 
-        }
+                if( elem.querySelector('[type="application/json"]')) {
+                    let e = elem.querySelector('[type="application/json"]');
+                    e.parentElement.removeChild(e); 
+                }
 
-
-        let newScript = document.createElement('script');
-        newScript.innerHTML  = ` ` + JSON.stringify(JSON.parse(this.currentColor.dataset.product).variants);  
-        newScript.type = "application/json";
-        elem.appendChild(newScript); 
-        elem.onVariantChange();
-    }); 
+            let newScript = document.createElement('script');
+            newScript.innerHTML  = ` ` + JSON.stringify(JSON.parse(this.currentColor.dataset.product).variants);  
+            newScript.type = "application/json";
+            elem.appendChild(newScript); 
+            elem.onVariantChange();
+            elem.setSoldOutOptions(); 
+        }); 
 
 
     }

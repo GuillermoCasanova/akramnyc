@@ -813,6 +813,8 @@ variant-selects {
 }
 
 
+
+
 [data-url="/products/logo-bracelet"] input[type='radio'] + label {
   font-size: var(--h4);
   margin-top: var(--level3);
@@ -850,11 +852,15 @@ variant-selects {
   width: 100%; 
 }
 
-.product-form__input input[type='radio']:disabled + label {
-  border-color: rgba(var(--color-foreground), 0.1);
-  color: rgba(var(--color-foreground), 0.4);
-  text-decoration: line-through;
+.product-form__input input[type='radio']:disabled  {
+  pointer-events: none;
 }
+
+.product-form__input input[type='radio']:disabled + label {
+  opacity: .5;
+  pointer-events: none;
+}
+
 .product-form__input input[type='radio']:focus-visible + label {
   box-shadow: 0 0 0 0.3rem rgb(var(--color-background)),
     0 0 0 0.5rem rgba(var(--color-foreground), 0.55);
