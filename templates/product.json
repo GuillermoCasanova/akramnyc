@@ -76,6 +76,20 @@
             "headline": "Delivery & Returns",
             "body": "<p>You can return the item you purchased within 30 days from when the order arrived to you to get a full refund or exchange.<br\/><br\/>For more information visit our <a href=\"\/pages\/contact\" title=\"Contact\">Return Policy<\/a> page. <\/p>"
           }
+        },
+        "821aaf87-9aec-41fd-ac0e-eef2f89ffe2a": {
+          "type": "size-chart",
+          "settings": {
+            "name": "",
+            "size-chart": ""
+          }
+        },
+        "1667c5a8-1b17-4024-a538-2d35e3d18a96": {
+          "type": "size-chart",
+          "settings": {
+            "name": "Hoodies",
+            "size-chart": "size-chart-bottoms"
+          }
         }
       },
       "block_order": [
@@ -90,7 +104,9 @@
         "description",
         "share",
         "903a5335-b6df-422f-82bb-680db359ea2b",
-        "42ded742-e5da-4bcc-b32b-a3b2b9e0b5ce"
+        "42ded742-e5da-4bcc-b32b-a3b2b9e0b5ce",
+        "821aaf87-9aec-41fd-ac0e-eef2f89ffe2a",
+        "1667c5a8-1b17-4024-a538-2d35e3d18a96"
       ],
       "settings": {
         "enable_sticky_info": true,
