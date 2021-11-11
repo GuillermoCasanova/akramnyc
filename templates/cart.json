@@ -27,17 +27,10 @@
       "settings": {
         "show_cart_note": false
       }
-    },
-    "163660632518c61a84": {
-      "type": "cs-loading-screen",
-      "settings": {
-        "about": ""
-      }
     }
   },
   "order": [
     "cart-items",
-    "cart-footer",
-    "163660632518c61a84"
+    "cart-footer"
   ]
 }
