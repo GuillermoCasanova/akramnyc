@@ -109,7 +109,7 @@
 
 
       [data-transition-screen].is-visible {
-        animation: fade-away-from-bottom 700ms ease forwards; 
+        animation: fade-away-from-bottom 700ms ease forwards !important; 
       }
 
 
@@ -129,9 +129,14 @@
       <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
     {%- endunless -%}
 
-    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    
+
+  
+    </script>
 
     <script type="text/javascript" defer>
+      
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
   
       window.theme = {
@@ -154,10 +159,10 @@
 
   </head>
 
-  <body>
+  <body >
 
 {% comment %} 
-    <div class="transition-screen" data-transition-screen>
+    <div class="transition-screen" >
 
     </div> {% endcomment %}
 
@@ -183,10 +188,24 @@
 
     <script>
 
-          
+
+      function eventHandler(e) {
+        console.dir(e.target.localName == 'main');
+        if(e.target.localName == 'main') {
+          e.target.style.animation = 0;
+        } 
+      }
+
+      ['webkitAnimationEnd', 'animationend'].forEach(function(e) { 
+        document.querySelector('[data-transition-screen]').addEventListener(e, eventHandler, false); 
+      }); 
+
+      
       function internalLink(myLink) {
         return (myLink.host == window.location.host);
       }
+
+
 
       document.querySelectorAll('a').forEach(function(link) {
         if(internalLink(link) && link.getAttribute("href").indexOf("#") === -1) {
@@ -203,6 +222,7 @@
 
           }); 
         }
+
 
       }); 
 

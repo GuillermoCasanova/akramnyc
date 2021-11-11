@@ -75,7 +75,7 @@
   height: 100%; 
 }
 
-.image-banner {
+.image-banner video {
   animation: fade-in-from-bottom 1000ms ease forwards 200ms; 
 }
 
