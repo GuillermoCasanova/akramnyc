@@ -2,17 +2,22 @@
     "sections": {
         "cart-items": {
             "type": "main-cart-items",
-            "settings": {}
+            "disabled": true,
+            "settings": {
+                "show_vendor": false
+            }
         },
         "cart-footer": {
             "type": "main-cart-footer",
             "blocks": {
                 "subtotal": {
                     "type": "subtotal",
+                    "disabled": true,
                     "settings": {}
                 },
                 "buttons": {
                     "type": "buttons",
+                    "disabled": true,
                     "settings": {}
                 }
             },
@@ -20,7 +25,9 @@
                 "subtotal",
                 "buttons"
             ],
-            "settings": {}
+            "settings": {
+                "show_cart_note": false
+            }
         }
     },
     "order": [
