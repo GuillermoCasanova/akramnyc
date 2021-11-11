@@ -30,8 +30,6 @@
 \*------------------------------------*/
 
 .product__media-wrapper {
-  opacity: 0;
-  animation: hover-up var(--duration-long) ease forwards .1s;
 }
 
 

@@ -66,7 +66,7 @@
       }
 
 
-      .fade-out {
+      .transition-screen {
         position: fixed;
         width: 100vw; 
         height: 100vh;
@@ -74,17 +74,42 @@
         z-index: 10;
         pointer-events: none;
         opacity: 1;
-        animation: fade-away var(--duration-long) ease forwards; 
       }
 
-      @keyframes fade-away {
+
+      @keyframes fade-away-from-bottom {
         0% {
           opacity: 1;
         }
 
         100% {
           opacity: 0;
+          transform: translateY(-25px); 
         }
+      }
+
+
+      @keyframes fade-in-from-bottom {
+        0% {
+          opacity: 0;
+          transform: translateY(15px); 
+        }
+
+        100% {
+          transform: translateY(0); 
+          opacity: 1;
+        }
+      }
+
+      [data-transition-screen] {
+        overflow-y: hidden;
+        position: relative; 
+        animation: fade-in-from-bottom 900ms ease forwards; 
+      }
+
+
+      [data-transition-screen].is-visible {
+        animation: fade-away-from-bottom 700ms ease forwards; 
       }
 
 
@@ -124,9 +149,10 @@
 
   <body>
 
-    <div class="fade-out">
+{% comment %} 
+    <div class="transition-screen" data-transition-screen>
 
-    </div>
+    </div> {% endcomment %}
 
     <script  src="{{ 'global.js' | asset_url }}"></script>
 
@@ -134,20 +160,45 @@
       {{ "accessibility.skip_to_text" | t }}
     </a>
 
-    {% comment %} {% section 'announcement-bar' %} {% endcomment %}
-    {% section 'header' %}   
+    
+      {% comment %} {% section 'announcement-bar' %} {% endcomment %}
+      {% section 'header' %}   
 
-    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
-      {{ content_for_layout }}
-    </main>
+      <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1" data-transition-screen>
+        {{ content_for_layout }}
+      </main>
 
-    {% section 'footer' %}   
+      {% section 'footer' %}   
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
     </ul>
 
     <script>
+
+          
+      function internalLink(myLink) {
+        return (myLink.host == window.location.host);
+      }
+
+      document.querySelectorAll('a').forEach(function(link) {
+        if(internalLink(link) && link.getAttribute("href").indexOf("#") === -1) {
+
+          link.addEventListener('click', function(event) {
+            
+            console.log('PREVENT!');
+              event.preventDefault(); 
+              let moduleURL =  event.currentTarget.getAttribute("href");
+              document.querySelector('[data-transition-screen]').classList.add('is-visible');
+              setTimeout(function(){ window.location = moduleURL }, 100); 
+              // pageTransition.style.pointerEvents = 'all'; 
+
+
+          }); 
+        }
+
+      }); 
+
       window.routes = {
         cart_add_url: '/cart/add.js',
         cart_change_url: '/cart/change.js',

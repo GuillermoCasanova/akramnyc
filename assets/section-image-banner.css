@@ -57,10 +57,28 @@
 
 
 
+@keyframes fade-in-from-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(10px); 
+  }
+
+  100% {
+    transform: translateY(0); 
+    opacity: 1;
+  }
+}
+
+
 .image-banner__media {
   width: 100%;
   height: 100%; 
 }
+
+.image-banner {
+  animation: fade-in-from-bottom 1000ms ease forwards 200ms; 
+}
+
 
 .image-banner__media video {
   display: none;
