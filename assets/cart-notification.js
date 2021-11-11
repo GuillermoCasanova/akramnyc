@@ -28,12 +28,17 @@ class CartNotification extends HTMLElement {
 
     this.addEventListener('change', this.debouncedOnChange.bind(this));
 
+    if(window.location.hash === '#cart') {
+      this.open(); 
+      this.showLatestCart();
+      this.overlay.classList.add('is-visible');
+    }
   }
 
   open() {
     this.notification.classList.remove('is-hidden');
     this.notification.classList.add('is-active');
-    this.headerDrawer.switchToCartToggle(); 
+
 
     this.notification.addEventListener('transitionend', () => {
       this.notification.focus();
