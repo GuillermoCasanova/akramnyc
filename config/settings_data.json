@@ -2,6 +2,8 @@
   "current": {
     "favicon": "shopify:\/\/shop_images\/favicon-32x32.png",
     "currency_code_enabled": false,
+    "checkout_logo_image": "shopify:\/\/shop_images\/AKRAM-logo-02.png",
+    "checkout_logo_size": "large",
     "checkout_body_background_color": "#000000",
     "checkout_sidebar_background_color": "#000000",
     "sections": {
