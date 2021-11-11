@@ -143,6 +143,13 @@
           cartSavings: 'discounts'
         }
       };
+
+      window.addEventListener('load', function(event) {
+        if(window.location.pathname == '/cart') {
+          window.location = '/#cart'
+        }
+      });
+      
     </script>
 
   </head>
