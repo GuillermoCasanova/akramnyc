@@ -146,6 +146,7 @@ class HeaderDrawer  extends HTMLElement {
     toggleHeaderMenus() {
         if(this.offCanvasCart.querySelector('[data-cart]').classList.contains('is-active')) {
             this.offCanvasCart.close();
+            document.querySelector('[data-cart-toggle]').classList.remove('is-open');
             return
         }
 
@@ -188,15 +189,11 @@ class CartToggle extends HTMLElement {
   }
 
   setUpEvents() {
-    let that = this; 
-    this.querySelector('[data-cart-toggle]').addEventListener('click', function(event) {
+    this.querySelector('[data-cart-toggle]').addEventListener('click', (event) => {
       event.preventDefault();
-
-      if(event.currentTarget.classList.contains('is-open')) {
-        event.currentTarget.classList.remove('is-open'); 
-        
-      } else  {
-        that.cartNotification.open(); 
+      event.currentTarget.classList.add('is-open');
+        this.cartNotification.open(); 
+        document.querySelector('header-drawer').switchToCartToggle(); 
     
         fetch('/cart.js', { 
           method: 'GET',
@@ -206,14 +203,11 @@ class CartToggle extends HTMLElement {
           })
           .then((response) => response.json())
           .then((parsedState) => {
-            console.log(parsedState);
-            that.cartNotification.renderContents(parsedState);
-         
+            this.cartNotification.renderContents(parsedState);
           })
           .catch((e) => {
             console.error(e);
           });
-      }
 
     })
   }

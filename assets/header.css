@@ -417,7 +417,13 @@ header-drawer {
   margin-right: var(--level2);
   flex: auto; 
   padding: 0; 
+  transition: all var(--duration-default) ease-in-out; 
 }
+
+.header__icon--cart.is-open {
+  opacity: .5;
+}
+
 
 .header__icon--cart .icon {
   width: 2.1rem;
