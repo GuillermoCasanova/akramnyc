@@ -424,6 +424,12 @@ header-drawer {
   opacity: .5;
 }
 
+@media screen and (min-width: 975px) {
+  .header__icon--cart.is-open {
+    opacity: 1;
+  }
+}
+
 
 .header__icon--cart .icon {
   width: 2.1rem;
