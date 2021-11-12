@@ -364,6 +364,8 @@ header-drawer {
 
 
 
+
+
 /*------------------------------------*\
     #Header Icons - Cart Toggle
 \*------------------------------------*/
@@ -389,13 +391,30 @@ header-drawer {
 }
 
 
-.cart-toggle {
-  flex: auto; 
+.header.is-product-page .header__icon--cart {
+  color: black;
+}
+
+.header.menu-is-open .header__icon--cart {
+  color:#fff;
+}
+
+
+@media screen and (min-width: 975px) {
+  .header.is-product-page .header__icon--cart {
+    color:#fff;
+    fill: #fff;
+  }
 }
 
 .header__icon--cart {
   position: relative;
-  margin-right: var(--level3);
+  color: #fff;
+  border: 0; 
+  outline: 0; 
+  background-color: transparent;
+  position: relative;
+  margin-right: var(--level2);
   flex: auto; 
   padding: 0; 
 }
@@ -448,13 +467,13 @@ header-drawer {
 
 
 .header__icon--menu {
-  border-radius: 100%; 
-  border: 1px solid white; 
   background: transparent;
-  width: 2.5rem; 
-  height: 2.5rem;
+  width: 2.75rem; 
+  height: 2.75rem;
   position: relative;
   top: -1rem;
+  border: none; 
+  outline: 0; 
 }
 
 
@@ -464,7 +483,7 @@ header-drawer {
 }
 
 .header__icon--menu.is-close {
-  border: 1px solid white  !important;  
+  outline: none;
 }
 
 .header__icon--menu.is-active {
@@ -484,6 +503,10 @@ header-drawer {
   opacity: 1;
   width: 45%;
   transform: scale(1);
+  border: 1px solid white; 
+  height: 2.5rem; 
+  width: 2.5rem; 
+  border-radius: 100%; 
   transition: transform 150ms ease, opacity 150ms ease;
 }
 
@@ -782,29 +805,6 @@ details-disclosure > details {
     cursor: pointer;
 }
 
-.header.is-product-page .header__icon--cart {
-  color: black;
-}
-
-.header.menu-is-open .header__icon--cart {
-  color:#fff;
-}
-
-
-@media screen and (min-width: 975px) {
-  .header.is-product-page .header__icon--cart {
-    color:#fff;
-    fill: #fff;
-  }
-}
-
-.header__icon--cart {
- position: relative;
-  color: #fff;
-  border: 0; 
-  outline: 0; 
-  background-color: transparent;
-}
 
 
 
