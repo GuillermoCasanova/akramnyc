@@ -663,8 +663,8 @@ animation: animateMenuOpen var(--duration-default) ease;
   .header__menu  .header__menu-item span {
     width: 100%; 
      content: " "; 
-     background-color: #fff;
-     position: absolute;
+     /* background-color: #fff;
+     position: absolute; */
      height: 2px; 
      bottom: -1rem;
   }
