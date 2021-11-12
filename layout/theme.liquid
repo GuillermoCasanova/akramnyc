@@ -102,7 +102,6 @@
       }
 
       [data-transition-screen] {
-        overflow-x: hidden;
         position: relative; 
         animation: fade-in-from-bottom 900ms ease forwards; 
       }
@@ -110,6 +109,10 @@
 
       [data-transition-screen].is-visible {
         animation: fade-away-from-bottom 700ms ease forwards !important; 
+      }
+
+      body {
+        overflow-x: hidden;
       }
 
 
@@ -195,6 +198,7 @@
           e.target.style.animation = 0;
         } 
       }
+
 
       ['webkitAnimationEnd', 'animationend'].forEach(function(e) { 
         document.querySelector('[data-transition-screen]').addEventListener(e, eventHandler, false); 
