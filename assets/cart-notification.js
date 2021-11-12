@@ -330,7 +330,6 @@ class CartNotification extends HTMLElement {
         let product_contents = pItem; 
         let template = ''; 
 
-
           if(product_contents.originalObject.product_has_only_default_variant == false) {
             
             
@@ -339,8 +338,6 @@ class CartNotification extends HTMLElement {
     
                   let productOptionTemplate ='';
                   
-                  console.log(product_contents);
-
                   product_contents.originalObject.options_with_values.forEach(function(element) {
                     let template = `
                       <div class="product-option">
@@ -377,8 +374,6 @@ class CartNotification extends HTMLElement {
                   //       productOptionTemplate = productOptionTemplate + template; 
                   //     }); 
                   // }
-                  
-                  console.log(product_contents); 
     
                   if(product_contents.discounts.length > 0 ) {
     

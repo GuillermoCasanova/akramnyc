@@ -358,14 +358,21 @@ header-drawer {
 }
 
 .header__icon .icon {
-  fill: none;
+  fill: white;
   vertical-align: middle;
 }
 
+
+
+/*------------------------------------*\
+    #Header Icons - Cart Toggle
+\*------------------------------------*/
+
+
 .header__icon,
 .header__icon--cart {
-  width: 1.9rem;
-  height: 1.9rem;
+  width: 3.25rem;
+  height: 3rem;
 }
 
 .header__icon svg {
@@ -388,9 +395,14 @@ header-drawer {
 
 .header__icon--cart {
   position: relative;
-  margin-right: var(--level7);
+  margin-right: var(--level3);
   flex: auto; 
   padding: 0; 
+}
+
+.header__icon--cart .icon {
+  width: 2.1rem;
+  height: 2.1rem;
 }
 
 
@@ -782,6 +794,7 @@ details-disclosure > details {
 @media screen and (min-width: 975px) {
   .header.is-product-page .header__icon--cart {
     color:#fff;
+    fill: #fff;
   }
 }
 

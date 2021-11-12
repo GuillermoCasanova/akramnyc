@@ -30,7 +30,6 @@ class ProductHelp extends HTMLElement {
 
         
         if(this.mediaQueries.mediumDown.matches) {
-            console.log('so this goes?');
             this.handleMediumDown(this.mediaQueries.mediumDown); 
         }
 
