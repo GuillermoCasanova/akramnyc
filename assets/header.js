@@ -185,7 +185,14 @@ class CartToggle extends HTMLElement {
   constructor() {
     super(); 
     this.cartNotification = document.querySelector('cart-notification');
+    this.cartCount = this.querySelector('[data-cart-count]');
+    this.cartCountAria = this.querySelector('[data-cart-count-aria]');
     this.setUpEvents(); 
+  }
+  
+  updateToggleQty(pCart) {
+   this.cartCount.textContent = pCart.item_count; 
+   this.cartCountAria.textContent = pCart.item_count > 1 ? `${pCart.item_count} Items` : `${pCart.item_count} Item`;
   }
 
   setUpEvents() {

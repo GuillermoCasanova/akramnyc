@@ -13,6 +13,7 @@ class CartNotification extends HTMLElement {
     this.productsContainer = this.querySelector('.cart-notification-product');
     this.totals = this.querySelector('[data-cart-notification-totals]');
     this.overlay = this.querySelector('[data-cart-nofication-overlay]');
+    this.cartToggle = document.querySelector('cart-toggle'); 
     this.notification.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
     this.querySelectorAll('button[type="button"]').forEach((closeButton) =>
       closeButton.addEventListener('click', this.close.bind(this))
@@ -80,6 +81,7 @@ class CartNotification extends HTMLElement {
     })
     .then((state) => {
       const parsedState = JSON.parse(state);
+      this.cartToggle.updateToggleQty(parsedState); 
       this.renderContents(parsedState);
     })
     .catch((err) => {
@@ -105,9 +107,8 @@ class CartNotification extends HTMLElement {
           const parsedState = JSON.parse(state);
           // this.classList.toggle('is-empty', parsedState.item_count === 0);
           // document.getElementById('main-cart-footer')?.classList.toggle('is-empty', parsedState.item_count === 0);
-     
           this.renderContents(parsedState);
-          document.querySelector('cart-toggle').updateToggleTotal(parsedState); 
+          this.cartToggle.updateToggleQty(parsedState); 
           //this.disableLoading();
 
       }).catch((err) => {

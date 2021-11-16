@@ -765,7 +765,6 @@ class VariantRadios extends VariantSelects {
         this.querySelectorAll('[data-option-label]').forEach((element) => {
             element.addEventListener('mouseenter', (event)  =>{
                 let name = event.target.dataset.optionName; 
-                console.log(name); 
                 showOption(name)
             })
             
@@ -776,7 +775,6 @@ class VariantRadios extends VariantSelects {
             })
 
             element.addEventListener('mouseleave', (event)  =>{
-              console.log(currentOption); 
                 showOption(currentOption)
             })
         }); 
@@ -794,7 +792,6 @@ class VariantRadios extends VariantSelects {
        selectedVariant: this.getCurrentVariant()
      }; 
 
-     console.log(data); 
  
      let selectors = {
        primaryOptions: '[data-primary-option]',
@@ -803,9 +800,6 @@ class VariantRadios extends VariantSelects {
  
      var allProductVariants = data.productVariants;
      var selectedVariant = data.selectedVariant; 
- 
-     console.log(allProductVariants); 
-     console.log(selectedVariant)
  
       //var selectedColor = selectedVariant.options[0]; 
       var sizeOptions = [];

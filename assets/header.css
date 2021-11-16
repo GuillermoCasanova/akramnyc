@@ -447,7 +447,6 @@ header-drawer {
 .cart-count-bubble {
   position: absolute;
   top: .7rem;
-  opacity: 0;
   margin: auto; 
 }
 
