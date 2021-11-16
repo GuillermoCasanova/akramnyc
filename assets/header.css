@@ -384,9 +384,9 @@ header-drawer {
 
 
 @media screen and (min-width: 975px) {
-  .header__icon,
   .header__icon--cart .icon {
-    width: 3rem;
+    width: 2rem;
+    height: 2rem;
   }
 }
 
@@ -446,15 +446,17 @@ header-drawer {
 
 .cart-count-bubble {
   position: absolute;
-  top: .7rem;
+  top: .5rem;
   margin: auto; 
+  height: .7rem; 
+  margin: auto; 
+  bottom: 0; 
 }
 
 
 @media screen and (min-width: 975px) {
   .cart-count-bubble {
-    top: .65rem;
-    font-size: var(--micro);
+    top: .5rem;
   }
 }
 
