@@ -284,6 +284,10 @@ class ProductImagesScroller extends HTMLElement {
     init() {  
         this.mediaQueries.largeUp.addEventListener("change", this.handleLargeUp.bind(this)); 
         this.handleLargeUp(this.mediaQueries.largeUp); 
+        document.addEventListener("images-updated", () => {
+            this.destroy(); 
+            this.handleLargeUp(this.mediaQueries.largeUp); 
+        }); 
     }
 }
 

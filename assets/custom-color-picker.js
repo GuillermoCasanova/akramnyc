@@ -126,6 +126,12 @@ class CustomColorPicker extends HTMLElement {
             }
         });
 
+        let updateEvent = new Event("images-updated", {
+            bubbles: true
+        }); 
+
+        document.dispatchEvent(updateEvent); 
+
     }
 
     setUpEvents() {
