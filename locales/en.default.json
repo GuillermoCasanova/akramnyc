@@ -169,7 +169,7 @@
       }
     },
     "404": {
-      "title": "Page not found",
+      "title": "You might be lost...",
       "subtext": "404"
     }
   },
