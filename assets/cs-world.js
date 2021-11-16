@@ -13,7 +13,7 @@ class World extends HTMLElement {
     }
 
 
-    createWorld(pThree, pFirstPersonControls) {
+    createWorld(pThree, pFirstPersonControls, pSkipZoom) {
         let WorldClass = this; 
         let THREE = pThree; 
         const {default: FirstPersonControls  }= pFirstPersonControls;
@@ -26,7 +26,7 @@ class World extends HTMLElement {
         WorldClass.scene.fog = new THREE.FogExp2(0xcccccc, 0.0002);
 
 
-        let numberOfStars = 2000; 
+        let numberOfStars = 1000; 
         let numberOfClusters = 6; 
         let spaceBetweenStars = 200; 
         let clock = new THREE.Clock(); 
@@ -254,7 +254,18 @@ class World extends HTMLElement {
           return Math.floor(Math.random() * (max - min + 1) + min);
         }
 
-        document.dispatchEvent(new CustomEvent('world-created',  {"detail": WorldClass}))
+        if(pSkipZoom) {
+          let animation = gsap.timeline({onComplete: function() {
+          }}); 
+
+          animation
+          .to(this.getControls().object.position, {z: 100, duration: 0,   ease: 'power2.inOut', onComplete: function() {
+              this.getControls().enableDrag(); 
+          }});
+
+        } else {
+          document.dispatchEvent(new CustomEvent('world-created',  {"detail": WorldClass}))
+        }
         
     }
 
@@ -272,12 +283,11 @@ class World extends HTMLElement {
           that.loadingAnimDone = true; 
         }); 
 
-
         import('./three.module.js')
         .then(function(pThree) {      
           import('./cs-first-person-controls-custom.js')
           .then(function(pFirstPersonControls) {
-            that.createWorld(pThree, pFirstPersonControls);
+            that.createWorld(pThree, pFirstPersonControls, true);
           })
         })
     }

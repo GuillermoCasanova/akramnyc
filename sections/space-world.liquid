@@ -1,0 +1,78 @@
+
+
+
+
+<world-scene class="scene" data-starsprite="{{'glow_small.png' | asset_url}}" 
+            data-starmap="{{'stars.png' | asset_url}}" data-glow="{{'glow.png' | asset_url}}" 
+            style="z-index: -1;"></world-scene>
+
+
+<script type="module" src="{{ 'cs-world.js' | asset_url }}" defer></script>
+
+
+
+{%javascript%}
+
+setTimeout(function() {
+
+    function loadGSAP(src, async = true, type="text/javascript") {
+        return new Promise((resolve, reject) => {
+            try {
+                const el = document.createElement("script");
+                const container = document.head || document.body;
+    
+                el.type = type;
+                el.async = async;
+                el.src = src;
+    
+                el.addEventListener("load", () => {
+                    resolve({ status: true });
+                });
+    
+                el.addEventListener("error", () => {
+                    reject({
+                        status: false,
+                        message: `Failed to load the script ${src}`
+                    });
+                });
+    
+                container.appendChild(el);
+            } catch (err) {
+                reject(err);
+            }
+        });
+    }
+
+    loadGSAP("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js")
+        .then((data) => {
+            document.querySelector('world-scene').init();
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+   }, 250);
+
+{%endjavascript%}
+
+{% schema %}
+{
+  "name": "space-world",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Coming Soon Loading Screen"
+    },
+    {
+      "type": "html",
+      "id": "about",
+      "label": "about"
+    }
+  ],
+  "presets": [
+    {
+      "name": "space-world"
+    }
+  ]
+}
+{% endschema %}
