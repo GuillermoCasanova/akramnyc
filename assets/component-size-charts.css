@@ -244,9 +244,16 @@
 }
 
 
-.size-chart__data p {
-    margin-bottom: 0; 
+.size-chart__data  p {
+    margin-bottom: .5rem;
 }
+
+
+
+.size-chart__data table p {
+    margin-bottom: 0;
+}
+
 
 
 .size-chart__data table {

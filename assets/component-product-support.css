@@ -147,6 +147,20 @@
 }
 
 
+.product-support-section__headline {
+  display: none;
+}
+
+
+
+@media screen and (min-width: 975px) {
+  .product-support-section__headline {
+    display: block;
+  }
+}
+
+
+
 .product-support-section__content p {
   text-transform: none;
   font-family: var(--secondary-font-family);
