@@ -689,7 +689,7 @@ animation: animateMenuOpen var(--duration-default) ease;
 .header__menu-item span {
   text-underline-offset: 0.3rem;
   position: relative;
-  display: block;
+  display: inline-block;
 }
 
 @media screen and (min-width: 975px) {

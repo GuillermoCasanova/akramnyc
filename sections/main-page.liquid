@@ -1,7 +1,6 @@
-<link rel="stylesheet" href="{{ 'section-main-page.css' | asset_url }}" media="print" onload="this.media='all'">
+
 <link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" media="print" onload="this.media='all'">
 
-<noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 
 <style>
@@ -40,6 +39,38 @@
   .main-page .rte a {
     color: #f1de4f;
   }
+
+
+  .main-page h1 {
+    font-family: var(--primary-font-family);
+    font-size: var(--h4); 
+    letter-spacing: var(--letter-spacing-1);
+    text-transform: uppercase;
+  }
+  .page-title {
+    margin-top: 0;
+  }
+  
+  .main-page-title {
+    margin-bottom: var(--level3);
+  }
+  
+  @media screen and (min-width: 750px) {
+    .main-page-title {
+      margin-bottom: var(--level5);
+    }
+  }
+  
+  .page-placeholder-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .page-placeholder {
+    width: 52.5rem;
+    height: 52.5rem;
+  }
+  
 </style>
 
 <div class="main-page  ">

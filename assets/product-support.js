@@ -76,12 +76,23 @@ class ProductHelp extends HTMLElement {
             });
 
             this.querySelectorAll(this.selectors.supportLink).forEach((element, index) => {
+
+                if(index === 0) {
+                    element.classList.add('is-active');
+                    this.slideshow.slideTo(0); 
+                }
+
                 element.addEventListener('click', () => {
+                    this.querySelectorAll(this.selectors.supportLink).forEach((element) => {
+                        element.classList.remove('is-active');
+                    }); 
+                    element.classList.add('is-active');
                     this.slideshow.slideTo(element.dataset.id); 
                 }); 
             }); 
 
         } else {
+            
             return 
         }
 
