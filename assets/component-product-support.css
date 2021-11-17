@@ -156,6 +156,10 @@
 @media screen and (min-width: 975px) {
   .product-support-section__headline {
     display: block;
+    font-family: var(--secondary-font-family);
+    font-size: var(--h4);
+    letter-spacing: var(--level1);
+    margin-bottom: var(--level7);
   }
 }
 

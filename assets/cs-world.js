@@ -277,7 +277,7 @@ class World extends HTMLElement {
       return this.controls;
     }
 
-    init() {
+    init(pSkipZoom) {
        let that = this; 
         document.addEventListener('loading-animation-done', function() {
           that.loadingAnimDone = true; 
@@ -287,7 +287,7 @@ class World extends HTMLElement {
         .then(function(pThree) {      
           import('./cs-first-person-controls-custom.js')
           .then(function(pFirstPersonControls) {
-            that.createWorld(pThree, pFirstPersonControls, true);
+            that.createWorld(pThree, pFirstPersonControls, pSkipZoom);
           })
         })
     }

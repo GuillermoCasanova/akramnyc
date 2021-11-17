@@ -45,7 +45,7 @@ setTimeout(function() {
 
     loadGSAP("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js")
         .then((data) => {
-            document.querySelector('world-scene').init();
+            document.querySelector('world-scene').init(true);
         })
         .catch((err) => {
             console.error(err);
