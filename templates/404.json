@@ -5,8 +5,8 @@
       "settings": {
       }
     },
-    "16362587605be80c93": {
-      "type": "cs-loading-screen",
+    "1637161679408065a7": {
+      "type": "space-world",
       "settings": {
         "about": ""
       }
@@ -14,6 +14,6 @@
   },
   "order": [
     "main",
-    "16362587605be80c93"
+    "1637161679408065a7"
   ]
 }
