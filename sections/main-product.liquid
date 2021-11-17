@@ -126,11 +126,13 @@
             </div>
           {%- when 'description' -%}
             {%- if product.description != blank -%}
-              <h2 class="product__description-headline">
-                Details
-              </h2>
-              <div class="product__description rte">
-                {{ product.description }}
+              <div class="show-for-large-up">
+                <h2 class="product__description-headline">
+                  Details
+                </h2>
+                <div class="product__description rte">
+                  {{ product.description }}
+                </div>
               </div>
             {%- endif -%}
           {%- when 'collapsible_tab' -%}
@@ -364,7 +366,7 @@
               
                   {%- if product.description != blank -%}
                    
-                    <button class="product-support__links__link" data-support-link data-id="0" data-link-name="{{block.settings.headline | handleize}}">
+                    <button class="product-support__links__link  hide-for-large-up" data-support-link data-id="0" data-link-name="{{block.settings.headline | handleize}}">
                       Details
                       <span class="link-underline">
                         
@@ -404,9 +406,9 @@
                     </div>
 
                     <div data-support-sections-inner>
+
                       {%- if product.description != blank -%}
-                    
-                      <div class="product-support-section__content-wrapper" data-support-section>
+                      <div class="product-support-section__content-wrapper  hide-for-large-up" data-support-section>
                            
                         <div class="product-support-section__content">
                           <h2 class="product-support-section__headline">

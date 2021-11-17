@@ -407,3 +407,30 @@ section {
   }
 }
 
+
+
+/*------------------------------------*\
+    #Visibility
+\*------------------------------------*/
+
+
+.show-for-large-up {
+  display: none; 
+}
+
+@media only screen and (min-width: 975px) {
+  .show-for-large-up {
+    display: block; 
+  }
+}
+
+
+.hide-for-large-up {
+  display: block; 
+}
+
+@media only screen and (min-width: 975px) {
+  .hide-for-large-up {
+    display: none; 
+  }
+}
