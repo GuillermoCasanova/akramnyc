@@ -65,7 +65,6 @@
         },
         "42ded742-e5da-4bcc-b32b-a3b2b9e0b5ce": {
           "type": "product-support",
-          "disabled": true,
           "settings": {
             "headline": "Delivery & Returns",
             "body": "<p>You can return the item you purchased within 30 days from when the order arrived to you to get a full refund or exchange.<br\/><br\/>For more information visit our <a href=\"\/pages\/contact\" title=\"Contact\">Return Policy<\/a> page. <\/p>"
@@ -73,7 +72,6 @@
         },
         "903a5335-b6df-422f-82bb-680db359ea2b": {
           "type": "product-support",
-          "disabled": true,
           "settings": {
             "headline": "Our Materials",
             "body": "<p>100% Certified Pima, sourced via licensed Supima manufacturer.<\/p><p><\/p><p>100% certified Giza Egyptian Cotton, sourced via licensed Cotton Egypt Association manufacturer.<\/p><p><br\/>For any additional materials inquiries contact us via email at team@akramnyc.com<\/p>"
