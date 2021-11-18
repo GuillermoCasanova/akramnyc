@@ -18,6 +18,7 @@ class CustomColorPicker extends HTMLElement {
         this.updateURL(); 
         this.updateImages();
         this.updateProductId(); 
+        this.updateDescription() 
     }
 
     updateURL() {
@@ -131,6 +132,16 @@ class CustomColorPicker extends HTMLElement {
         }); 
 
         document.dispatchEvent(updateEvent); 
+
+    }
+    
+    updateDescription() {
+        let productObj = JSON.parse(this.currentColor.dataset.product); 
+        let descriptionContainer = document.querySelector('[data-product-description-container]'); 
+
+        console.log(descriptionContainer); 
+        console.log(productObj.description); 
+        descriptionContainer.innerHTML = productObj.description; 
 
     }
 
