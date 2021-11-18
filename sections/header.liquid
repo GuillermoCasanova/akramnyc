@@ -1622,7 +1622,6 @@ details[open].menu-opening > .menu-drawer__submenu {
         <button  class="header__icon header__icon--cart  focus-inset" id="cart-icon-bubble" data-cart-toggle aria-label="Open Cart">
           {%- render 'icon-cart' -%}
           <span class="visually-hidden">Open Cart</span>
-          {%- if cart != empty -%}
             <div class="cart-count-bubble">
               {%- if cart.item_count < 100 -%}
                 <span aria-hidden="true" data-cart-count>{{ cart.item_count }}</span>
@@ -1631,7 +1630,6 @@ details[open].menu-opening > .menu-drawer__submenu {
                 {{ 'sections.header.cart_count' | t: count: cart.item_count }}
               </span>
             </div>
-          {%- endif -%}
         </button>
       </cart-toggle>
     </div>
