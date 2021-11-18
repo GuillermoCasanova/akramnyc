@@ -3,25 +3,9 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "vendor": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "{{ product.vendor }}",
-            "text_style": "uppercase"
-          }
-        },
         "title": {
           "type": "title",
           "settings": {
-          }
-        },
-        "subtitle": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "{{ product.metafields.descriptors.subtitle.value }}",
-            "text_style": "subtitle"
           }
         },
         "price": {
@@ -41,12 +25,6 @@
             "picker_type": "button"
           }
         },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "disabled": true,
-          "settings": {
-          }
-        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -58,16 +36,11 @@
           "settings": {
           }
         },
-        "share": {
-          "type": "share",
-          "settings": {
-          }
-        },
         "42ded742-e5da-4bcc-b32b-a3b2b9e0b5ce": {
           "type": "product-support",
           "settings": {
             "headline": "Delivery & Returns",
-            "body": "<p>You can return the item you purchased within 30 days from when the order arrived to you to get a full refund or exchange.<br\/><br\/>For more information visit our <a href=\"\/pages\/contact\" title=\"Contact\">Return Policy<\/a> page. <\/p>"
+            "body": "<p>You can return the item you purchased within 30 days from when the order arrived to you to get a full refund or exchange.<br\/><br\/>For more information visit our <a href=\"\/pages\/return-policy\" title=\"Return Policy\">Return Policy<\/a> and <a href=\"\/pages\/shipping-policy\" title=\"Shipping Policy\">Shipping Policy<\/a> pages. <\/p>"
           }
         },
         "903a5335-b6df-422f-82bb-680db359ea2b": {
@@ -93,16 +66,12 @@
         }
       },
       "block_order": [
-        "vendor",
         "title",
-        "subtitle",
         "price",
         "b0afa45d-f94a-44fe-b573-a5afe96eaf7b",
         "variant_picker",
-        "quantity_selector",
         "buy_buttons",
         "description",
-        "share",
         "42ded742-e5da-4bcc-b32b-a3b2b9e0b5ce",
         "903a5335-b6df-422f-82bb-680db359ea2b",
         "821aaf87-9aec-41fd-ac0e-eef2f89ffe2a",
