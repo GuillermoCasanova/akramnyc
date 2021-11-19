@@ -244,7 +244,7 @@ class ProductImagesScroller extends HTMLElement {
 
             let buttonTemplate = `
              <li>
-                <button class="pagination-button" data-images-scroller-thumb data-id="${index}">
+                <button class="pagination-button" data-images-scroller-thumb data-id="${index}" aria-label="Slide to product image ${index + 1}">
                   <span class="pagination-button__icon">
                   </span>
                  <span class="visually-hidden">

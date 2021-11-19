@@ -413,6 +413,8 @@ class CartNotification extends HTMLElement {
 
         let productIndex =  pProduct.line; 
         let prod_contents = pProduct; 
+
+        console.log(prod_contents); 
         
         return  `
         <li>
@@ -421,7 +423,7 @@ class CartNotification extends HTMLElement {
               <div class="cart-notification__product__inner">
                 <div class="cart-notification__product__image-container">
                   <a  href="${pProduct.url}" title="Go to ${pProduct.name}" class="cart-notification__product__image">
-                    <img src="${pProduct.img}" />
+                    <img src="${pProduct.img}" role="presentation" aria-hidden="true"/>
                   </a>
                 </div>
   
@@ -449,8 +451,8 @@ class CartNotification extends HTMLElement {
                       name="updates[]"
                       data-quantity-update
                       value="${prod_contents.itemQty}"
-                      aria-label="Quantity: ${prod_contents.title}"   
-                      id="Quantity-${productIndex}" tabindex="-1"   data-index="${productIndex}">
+                      aria-label="Quantity: ${prod_contents.itemQty}"   
+                      id="Quantity-${productIndex}"  data-index="${productIndex}">
                         <option value="0" ${prod_contents.itemQty === 0 ? 'selected' : '' }>
                             0
                         </option>
@@ -489,7 +491,7 @@ class CartNotification extends HTMLElement {
 
                 <div class="cart-notification__remove-btn"> 
                   <cart-remove-button id="Remove-${productIndex}" data-index="${productIndex}">
-                    <a href="${pProduct.url}" class="button button--tertiary" aria-label="Remove ${prod_contents.title}">
+                    <a href="${pProduct.url}" class="button button--tertiary" aria-label="Remove ${prod_contents.name}">
                       Remove
                     </a>
                   </cart-remove-button>

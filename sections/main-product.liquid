@@ -85,7 +85,7 @@
             {% for image in product.images %}
               {%unless image.alt contains 'swatch'%}
               <li>
-                <button class="pagination-button" data-images-scroller-thumb data-id="{{ forloop.index }}">
+                <button class="pagination-button" data-images-scroller-thumb data-id="{{ forloop.index }}" aria-label="Slide to product image {{forloop.index}}">
                   <span class="pagination-button__icon">
                   </span>
                  <span class="visually-hidden">
@@ -184,7 +184,7 @@
                   {%- for option in product.options_with_values -%}
                     <div class="js product-form__input">
                       {%if option.name == 'Size'%}
-                      <button  tabindex="0" aria-label="Open Size Guide Modal"  size-chart-modal-open class="size-chart-button">
+                      <button  tabindex="1" aria-label="Open Size Guide Modal"  size-chart-modal-open class="size-chart-button">
                         Size Guide
                       </button>
                       {%endif%}
@@ -272,7 +272,7 @@
                                    id="{{image.alt | remove: 'swatch_' | replace: '-', ' ' | capitalize}}"
                                   name="color" 
                                   value="{{ value | escape }}"
-                                  title="View: {{product.title}}" 
+                                  title="View: {{product.title}} {{image.alt | remove: 'swatch_' | replace: '-', ' ' | capitalize}}" 
                                   data-color-option
                                   data-product="{{product  | json   | escape }}"
                                   data-color-name="{{image.alt | remove: 'swatch_' | replace: '-', ' ' | capitalize}}" 
