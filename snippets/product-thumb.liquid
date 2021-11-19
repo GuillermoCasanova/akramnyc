@@ -33,6 +33,7 @@
                             width="500"
                             height="{{ image.height }}"
                             loading="lazy"
+                            role="presentation"
                         >
                         </picture>
                     {%else%}
@@ -48,6 +49,7 @@
                             width="{{ image.width }}"
                             height="{{ image.height }}"
                             loading="lazy"
+                            role="presentation"
                         >
                         </picture>                    
                 {%- endif -%}
@@ -71,10 +73,10 @@
                         <source srcset="{{ image.src | img_url: '800x' }}"  media="(min-width:750px)">
                       <img 
                             src="{{ image.src | img_url: '450x' }}"
-                            alt="{{ image.alt | escape }}"
                             class="product-thumb__image"
                             width="500"
                             height="{{ image.height }}"
+                            role="presentation"
                         >
                         </picture>
                     {%else%}
@@ -89,6 +91,7 @@
                             class="product-thumb__image"
                             width="{{ image.width }}"
                             height="{{ image.height }}"
+                            role="presentation"
                         >
                         </picture>                    
                 {%- endif -%}
