@@ -20,9 +20,9 @@
   assign compare_at_price = target.compare_at_price
   assign price = target.price | default: 1999
   assign available = target.available | default: false
-  assign money_price = price | money
+  assign money_price = price | money_without_trailing_zeros 
   if settings.currency_code_enabled
-    assign money_price = price | money_with_currency
+    assign money_price = price | money_without_trailing_zeros 
   endif
 
   if target == product and product.price_varies
@@ -45,7 +45,7 @@
     <div class="price__regular">
       <dd {% if show_badges == false %}class="price__last"{% endif %}>
         <span class="price-item price-item--regular">
-          {{ money_price }}
+          {{ money_price  }}  
         </span>
       </dd>
     </div>
@@ -54,9 +54,9 @@
       <dd class="price__compare">
         <s class="price-item price-item--regular">
           {% if settings.currency_code_enabled %}
-            {{ compare_at_price | money_with_currency }}
+            {{ compare_at_price | money_without_trailing_zeros }} 
           {% else %}
-            {{ compare_at_price | money }}
+            {{ compare_at_price | money_without_trailing_zeros }}
           {% endif %}
         </s>
       </dd>
