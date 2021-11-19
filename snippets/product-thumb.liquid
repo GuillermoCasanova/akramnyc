@@ -9,7 +9,7 @@
     {% render 'product-card', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
 
-<div class="product-thumb  {% if product_card_product.images.size > 1 %}has-more-images {% endif %}">
+<div class="product-thumb {% unless product_card_product.available == true %} product-thumb--sold-out {% endunless %} {% if product_card_product.images.size > 1 %}has-more-images {% endif %}">
     <a href="{{ product_card_product.url | default: '#' }}" class="product-thumb__inner">
 
         <div class="product-thumb__images">
@@ -107,6 +107,14 @@
             </span>
         </div>
       </div>
-
+      {% unless product_card_product.available %} 
+      <div class="product-thumb__sold-out">
+        <div  class="product-thumb__sold-out__inner">
+            <span  class="product-thumb__sold-out__title">
+                {{'products.product.sold_out'  | t }}
+            </span>
+        </div>
+      </div>
+     {% endunless %}
     </a>
 </div>
