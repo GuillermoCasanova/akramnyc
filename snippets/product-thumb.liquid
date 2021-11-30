@@ -13,6 +13,17 @@
     <a href="{{ product_card_product.url | default: '#' }}" class="product-thumb__inner">
 
         <div class="product-thumb__images">
+        
+            {% unless product_card_product.available %} 
+            <div class="product-thumb__sold-out">
+              <div  class="product-thumb__sold-out__inner">
+                  <span  class="product-thumb__sold-out__title">
+                      {{'products.product.sold_out'  | t }}
+                  </span>
+              </div>
+            </div>
+           {% endunless %}
+           
             {%if art_shot_as_lead %}
            
             {% for image in product_card_product.images %}
@@ -110,14 +121,6 @@
             </span>
         </div>
       </div>
-      {% unless product_card_product.available %} 
-      <div class="product-thumb__sold-out">
-        <div  class="product-thumb__sold-out__inner">
-            <span  class="product-thumb__sold-out__title">
-                {{'products.product.sold_out'  | t }}
-            </span>
-        </div>
-      </div>
-     {% endunless %}
+    
     </a>
 </div>
