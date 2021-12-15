@@ -38,7 +38,49 @@
 
 @media only screen and (min-width: 1100px) {
     .featured-products__list__item {    
-        width: 33.3%;
+        width: 25%;
+    }
+}
+
+
+.featured-art-shots {
+    padding-bottom: 0;
+    margin-bottom: 0; 
+}
+
+
+.featured-art-shots__list {
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-right: var(--level1);
+    padding-left: var(--level1);
+}
+
+@media only screen and (min-width: 768px) {
+    .featured-art-shots__list {
+        padding-right: var(--level3);
+        padding-left: var(--level3);
+    }
+}
+
+@media only screen and (min-width: 1100px) {
+    .featured-art-shots__list {
+        padding-right: var(--level4);
+        padding-left: var(--level4);
+    }
+}
+
+
+
+.featured-art-shots__list__item {
+    width: 100%;
+}
+ 
+    
+@media only screen and (min-width: 870px) {
+.featured-art-shots__list__item {
+        width: 50%;
     }
 }
 

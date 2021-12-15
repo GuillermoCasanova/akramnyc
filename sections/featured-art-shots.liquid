@@ -1,0 +1,60 @@
+
+{{ 'component-featured-products.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-thumb.css' | asset_url | stylesheet_tag }}
+
+
+<div class="featured-products-container">
+    <h2 class="screen-readers-only">
+    {{section.settings.title}}
+    </h2>
+
+    <ul class="featured-art-shots__list">
+        {%- for product in section.blocks -%}
+        <li class="featured-art-shots__list__item">
+            {% render 'product-thumb',
+                product_card_product: product.settings.information,
+                art_shot_as_lead: section.settings.art_shot_as_lead
+            %}
+        </li>
+        {%-endfor-%}
+    </ul>
+</div>
+
+{% schema %}
+{
+  "name": "Featured Art Shots",
+  "tag": "section",
+  "class": "spaced-section  featured-art-shots",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Featured Art Shots",
+      "label": "List Title (For screen readers)"
+    },
+    {
+        "type": "checkbox",
+        "id": "art_shot_as_lead",
+        "default": false,
+        "label": "Leads With Art Shot"
+      }
+  ],
+  "blocks": [
+    {
+      "type": "featured-product",
+      "name": "product",
+      "settings": [{
+        "label": "Product", 
+        "id": "information",
+        "type": "product",
+        "label": "Product"
+      }]
+    }
+  ], 
+  "presets": [
+    {
+      "name": "Featured Art Shots"
+    }
+  ]
+}
+{% endschema %}

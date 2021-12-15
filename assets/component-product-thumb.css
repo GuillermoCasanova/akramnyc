@@ -84,9 +84,22 @@
 .product-thumb__sold-out__title {
     text-transform: uppercase;
     font-family: var(--secondary-font-family); 
-    letter-spacing: 2px;
+    letter-spacing: 2px;    
     font-size: var(--h5);
 }
+
+.product-thumb--art-shot .product-thumb__inner .product-thumb__images picture:nth-child(1) {
+    opacity: 1 !important;
+}
+
+.product-thumb--art-shot .product-thumb__inner .product-thumb__images picture:nth-child(2) {
+    opacity: 1 !important;
+}
+
+.product-thumb--art-shot .product-thumb__information {
+    opacity: 0 !important;
+}
+
 
 
 

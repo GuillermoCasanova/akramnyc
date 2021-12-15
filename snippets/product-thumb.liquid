@@ -9,7 +9,9 @@
     {% render 'product-card', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
 
-<div class="product-thumb {% unless product_card_product.available == true %} product-thumb--sold-out {% endunless %} {% if product_card_product.images.size > 1 %}has-more-images {% endif %}">
+<div class="product-thumb  {% if art_shot_as_lead == true %} product-thumb--art-shot {% endif %}   
+        {% unless product_card_product.available == true %} product-thumb--sold-out {% endunless %} 
+         {% if product_card_product.images.size > 1 %}has-more-images {% endif %}">
     <a href="{{ product_card_product.url | default: '#' }}" class="product-thumb__inner">
 
         <div class="product-thumb__images">
@@ -25,47 +27,36 @@
            {% endunless %}
            
             {%if art_shot_as_lead %}
-           
-            {% for image in product_card_product.images %}
-                {%- if forloop.index0 > 1%}
-                    {%break%}
-                {%endif%}
+             <picture>
+                <source srcset="{{ product_card_product.metafields.my_fields.art_shot | img_url: '850x' }}"  media="(min-width: 975px)">
+                <source srcset="{{ product_card_product.metafields.my_fields.art_shot | img_url: '800x' }}"  media="(min-width:750px)">
+              <img 
+                    src="{{ product_card_product.metafields.my_fields.art_shot | img_url: '450x' }}"
+                    alt="{{product_card_product.title}}"
+                    role="presentation"
+                    class="product-thumb__image"
+                    width="500"
+                    height="{{ product_card_product.metafields.my_fields.art_shot.height }}"
+                    loading="lazy"
+                    role="presentation"
+                >
+                </picture>
+            
+                <picture>
+                    <source srcset="{{ product_card_product.metafields.my_fields.art_shot | img_url: '850x' }}"  media="(min-width: 975px)">
+                    <source srcset="{{ product_card_product.metafields.my_fields.art_shot | img_url: '800x' }}"  media="(min-width:750px)">
+                  <img 
+                        src="{{ product_card_product.metafields.my_fields.art_shot | img_url: '450x' }}"
+                        alt="{{product_card_product.title}}"
+                        role="presentation"
+                        class="product-thumb__image"
+                        width="500"
+                        height="{{ product_card_product.metafields.my_fields.art_shot.height }}"
+                        loading="lazy"
+                        role="presentation"
+                    >
+                    </picture>
                 
-                {%unless image.alt contains 'swatch'%}
-                 
-                {%- if forloop.index0 < 2%}
-                    <picture>
-                        <source srcset="{{ image.src | img_url: '850x' }}"  media="(min-width: 975px)">
-                        <source srcset="{{ image.src | img_url: '800x' }}"  media="(min-width:750px)">
-                      <img 
-                            src="{{ image.src | img_url: '450x' }}"
-                            alt="{{ image.alt | escape }}"
-                            class="product-thumb__image"
-                            width="500"
-                            height="{{ image.height }}"
-                            loading="lazy"
-                            role="presentation"
-                        >
-                        </picture>
-                    {%else%}
-
-                    <picture>
-                        <source srcset="{{ image.src | img_url: '850x' }}"  media="(min-width: 975px)">
-                        <source srcset="{{ image.src | img_url: '800x' }}"  media="(min-width:750px)">
-                      <img 
-                            src="{{ image.src | img_url: '450x' }}"
-                            alt="{{ image.alt | escape }}"
-                            loading="lazy"
-                            class="product-thumb__image"
-                            width="{{ image.width }}"
-                            height="{{ image.height }}"
-                            loading="lazy"
-                            role="presentation"
-                        >
-                        </picture>                    
-                {%- endif -%}
-                {%endunless%}
-              {% endfor %}
 
             {%else%}
 
@@ -90,6 +81,7 @@
                             role="presentation"
                         >
                         </picture>
+
                     {%else%}
 
                     <picture>
@@ -104,7 +96,8 @@
                             height="{{ image.height }}"
                             role="presentation"
                         >
-                        </picture>                    
+                        </picture>        
+                                    
                 {%- endif -%}
                 {%endunless%}
               {% endfor %}
