@@ -4,6 +4,10 @@
 \*------------------------------------*/
 
 
+.image-banner-container {
+  padding-bottom: calc(var(--level7)); 
+}
+
 .image-banner {
   position: relative;
   width: 100%;
@@ -42,8 +46,8 @@
 
 @media screen and (min-width: 1400px) {
   .image-banner {
-    padding-bottom:80%;
-    margin-bottom: var(--level3);
+    padding-bottom: 80%;
+    margin-bottom: 0;
   }
 }
 

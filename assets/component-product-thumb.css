@@ -180,7 +180,7 @@
 }
 
 
-@media only screen and (min-width: 750px) {
+@media only screen and (min-width: 768px) {
     .product-thumb__information {
         position: absolute;
         padding-bottom: inherit; 
