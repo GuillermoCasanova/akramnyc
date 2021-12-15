@@ -45,9 +45,14 @@
 
 .featured-art-shots {
     padding-bottom: 0;
-    margin-bottom: 0; 
+    margin-bottom: calc(var(--level7)  + var(--level3));
 }
 
+@media only screen and (min-width: 1100px) {
+    .featured-art-shots {
+        margin-bottom: 0; 
+    }
+}
 
 .featured-art-shots__list {
     display: flex; 
