@@ -98,6 +98,8 @@
 
 .product-thumb--art-shot .product-thumb__information {
     opacity: 0 !important;
+    position: fixed;
+    z-index: 0; 
 }
 
 
