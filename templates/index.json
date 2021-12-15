@@ -57,6 +57,12 @@
             "information": "leaves-hoodie-black"
           }
         },
+        "d57a72c5-3329-4a35-8fa2-79bfdf3dcf00": {
+          "type": "featured-product",
+          "settings": {
+            "information": "leaves-hoodie-pale-iris"
+          }
+        },
         "6cc47089-7935-49b0-90b6-36c9e5a16444": {
           "type": "featured-product",
           "settings": {
@@ -75,20 +81,14 @@
           "settings": {
             "information": "logo-hoodie-pale-iris"
           }
-        },
-        "d57a72c5-3329-4a35-8fa2-79bfdf3dcf00": {
-          "type": "featured-product",
-          "settings": {
-            "information": "logo-bracelet"
-          }
         }
       },
       "block_order": [
         "f36eb351-06fd-4fc6-a66e-b3fb407847dd",
+        "d57a72c5-3329-4a35-8fa2-79bfdf3dcf00",
         "6cc47089-7935-49b0-90b6-36c9e5a16444",
         "02b67bdc-171e-4f2b-9b3e-1e98b73efeee",
-        "0ed67482-09a0-42de-97b3-3d9743234dd4",
-        "d57a72c5-3329-4a35-8fa2-79bfdf3dcf00"
+        "0ed67482-09a0-42de-97b3-3d9743234dd4"
       ],
       "settings": {
         "title": "Featured Products",
