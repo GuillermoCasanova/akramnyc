@@ -71,13 +71,13 @@
         },
         "0ed67482-09a0-42de-97b3-3d9743234dd4": {
           "type": "featured-product",
+          "disabled": true,
           "settings": {
             "information": "logo-hoodie-pale-iris"
           }
         },
         "d57a72c5-3329-4a35-8fa2-79bfdf3dcf00": {
           "type": "featured-product",
-          "disabled": true,
           "settings": {
             "information": "logo-bracelet"
           }
