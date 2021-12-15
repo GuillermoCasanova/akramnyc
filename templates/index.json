@@ -98,7 +98,7 @@
       ],
       "settings": {
         "title": "Featured Products",
-        "art_shot_as_lead": true
+        "art_shot_as_lead": false
       }
     },
     "1636062518ffd83f22": {
