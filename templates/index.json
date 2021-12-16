@@ -18,16 +18,16 @@
             "information": "leaves-short-sleeve-tee-2"
           }
         },
-        "db4142f8-5568-452b-983f-6efee693bd74": {
-          "type": "featured-product",
-          "settings": {
-            "information": "leaves-hoodie-black"
-          }
-        },
         "0c226d57-efcc-433d-95d0-95ec0470c084": {
           "type": "featured-product",
           "settings": {
             "information": "logo-hoodie-white"
+          }
+        },
+        "db4142f8-5568-452b-983f-6efee693bd74": {
+          "type": "featured-product",
+          "settings": {
+            "information": "leaves-hoodie-black"
           }
         },
         "74b37fed-09db-4afe-b0a4-6166a2bd1d01": {
@@ -39,8 +39,8 @@
       },
       "block_order": [
         "36741ad6-1bdb-475b-835a-889ec4388563",
-        "db4142f8-5568-452b-983f-6efee693bd74",
         "0c226d57-efcc-433d-95d0-95ec0470c084",
+        "db4142f8-5568-452b-983f-6efee693bd74",
         "74b37fed-09db-4afe-b0a4-6166a2bd1d01"
       ],
       "settings": {
