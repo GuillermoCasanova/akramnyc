@@ -184,7 +184,7 @@
                   {%- for option in product.options_with_values -%}
                     <div class="js product-form__input">
                       {%if option.name == 'Size'%}
-                      <button  tabindex="1" aria-label="Open Size Guide Modal"  size-chart-modal-open class="size-chart-button">
+                      <button  tabindex="1" aria-label="Open Size Guide Modal" aria-expanded="false" size-chart-modal-open class="size-chart-button">
                         Size Guide
                       </button>
                       {%endif%}
@@ -457,7 +457,7 @@
 
 
 
-  <size-chart-modal class="size-charts-modal" role="dialoge"  hidden  aria-modal="true" aria-label="Size Guide Modal"> 
+  <size-chart-modal class="size-charts-modal  is-hidden" role="dialog"  aria-label="Size Guide Modal"> 
     <div class="size-charts-modal__overlay">
     </div>
     <div class="size-charts-modal__content" >

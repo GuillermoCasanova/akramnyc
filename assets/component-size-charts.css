@@ -181,7 +181,6 @@
     top: 0; 
     transform: translateX(100%);
     position: relative;
-    transition: all var(--duration-long) ease;
     padding-top: calc(var(--level7)  * 2);
 } 
 

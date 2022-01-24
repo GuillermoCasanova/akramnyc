@@ -24,12 +24,22 @@ class SizeChartModal  extends HTMLElement {
       this.modal.classList.remove('is-hidden'); 
       this.modal.classList.add('is-visible'); 
       this.modal.removeAttribute('hidden');
+
+      this.modal.addEventListener('animationend', () => {
+        console.log('hELLO');
+       this.modal.querySelector('[size-chart-modal-close]').focus(); 
+     }, { once: true });
+
+
+       trapFocus(this);
     }
 
     closeModal() {
       this.modal.classList.remove('is-visible'); 
       this.modal.classList.add('is-hidden'); 
-      this.modal.setAttribute('hidden', true);
+      //this.modal.setAttribute('hidden', true);
+      removeTrapFocus(this); 
+      document.querySelector('[size-chart-modal-open]').focus(); 
     }
 
     setUpEvents() {
