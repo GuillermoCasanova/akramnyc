@@ -49,11 +49,13 @@ class SizeChartModal  extends HTMLElement {
         if(e.target && e.target.hasAttribute('size-chart-modal-open')) {
           console.log('prevent'); 
            e.preventDefault(); 
+           e.target.setAttribute('aria-expanded', true);
           this.openModal(); 
         }
 
         if(e.target && e.target.hasAttribute('size-chart-modal-close')) {
           e.preventDefault(); 
+          document.querySelector('[size-chart-modal-open]').setAttribute('aria-expanded', false); 
           this.closeModal(); 
         }
       });
