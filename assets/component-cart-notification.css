@@ -38,8 +38,15 @@
 }
 
 
+.cart-notification__footer  {
+  /* opacity: 0;
+  display: none; */
+}
+
 .cart-notification.is-empty .cart-notification__footer  {
     opacity: 0;
+    /* display: none;
+    visibility: hidden; */
 }
 
 .cart-notification__empty-state {
@@ -58,6 +65,7 @@
   opacity: 0;
   margin: auto;
   pointer-events: none;
+  display: none;
 }
 
 
@@ -66,6 +74,7 @@
   z-index: 10;
   pointer-events: all;
   font-size: var(--h5);
+  display: block;
 }
 
 

@@ -27,7 +27,6 @@ class ProductForm extends HTMLElement {
       .then((response) => response.json())
       .then((parsedState) => {
         this.cartNotification.open();
-        this.cartNotification.showLatestCart();
       })
       .catch((e) => {
         console.error(e);

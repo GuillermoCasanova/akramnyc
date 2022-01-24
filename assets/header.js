@@ -198,26 +198,100 @@ class CartToggle extends HTMLElement {
   setUpEvents() {
     this.querySelector('[data-cart-toggle]').addEventListener('click', (event) => {
       event.preventDefault();
+
+      if(this.getAttribute('aria-expanded') == 'false') {
+        this.setAttribute('aria-expanded', true); 
+      } else {
+        this.setAttribute('aria-expanded', false); 
+      }
+
       event.currentTarget.classList.add('is-open');
+      
         this.cartNotification.open(); 
         document.querySelector('header-drawer').switchToCartToggle(); 
     
-        fetch('/cart.js', { 
-          method: 'GET',
-          headers: {
-          'Content-Type': 'application/json'
-          }
-          })
-          .then((response) => response.json())
-          .then((parsedState) => {
-            this.cartNotification.renderContents(parsedState);
-          })
-          .catch((e) => {
-            console.error(e);
-          });
+        // fetch('/cart.js', { 
+        //   method: 'GET',
+        //   headers: {
+        //   'Content-Type': 'application/json'
+        //   }
+        //   })
+        //   .then((response) => response.json())
+        //   .then((parsedState) => {
+        //     this.cartNotification.renderContents(parsedState);
+        //   })
+        //   .catch((e) => {
+        //     console.error(e);
+        //   });
 
     })
   }
 }
 
 customElements.define('cart-toggle', CartToggle);
+
+
+
+class MenuDropdown extends HTMLElement {
+  constructor() {
+    super(); 
+  
+    this.dropDownToggle = this.querySelector('button');
+    this.dropDownContent = this.querySelector('.header__submenu');
+
+    this.addEventListener('keyup', this.onKeyUp);
+    this.addEventListener('focusout', this.onFocusOut.bind(this));  
+    this.addEventListener('click', (e) => {
+      if(e.target.hasAttribute('href')) {
+        this.close(); 
+      }
+    }); 
+
+    this.setUpEvents(); 
+  }
+
+  onKeyUp(event) {
+    if(event.code.toUpperCase() !== 'ESCAPE') return;
+
+
+    const toggleElement = this.querySelector("button[aria-expanded='true']");
+    if (!toggleElement) return;
+
+    // const summaryElement = toggleElement.querySelector('summary');
+    // toggleElement.removeAttribute('open');
+
+    this.close(); 
+    toggleElement.focus();
+  }
+
+  onFocusOut() {
+    setTimeout(() => {
+      if (!this.contains(document.activeElement)) this.close();
+    })
+  }
+
+  close() {
+    this.dropDownContent.setAttribute('aria-hidden', true); 
+    this.dropDownToggle.setAttribute('aria-expanded', false); 
+  }
+
+  setUpEvents() {
+    if(this.dropDownToggle) {
+      this.dropDownToggle.addEventListener('click', () => {
+    
+          console.log(this.dropDownContent.getAttribute('aria-hidden')); 
+
+          if(this.dropDownContent.getAttribute('aria-hidden') == 'false') {
+            this.dropDownContent.setAttribute('aria-hidden', true); 
+            this.dropDownToggle.setAttribute('aria-expanded', false); 
+          } else {
+            this.dropDownContent.setAttribute('aria-hidden', false); 
+            this.dropDownToggle.setAttribute('aria-expanded', true); 
+          }
+      }); 
+    }
+  }
+}
+
+customElements.define('menu-dropdown', MenuDropdown);
+

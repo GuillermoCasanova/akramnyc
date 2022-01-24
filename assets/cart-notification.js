@@ -14,7 +14,10 @@ class CartNotification extends HTMLElement {
     this.totals = this.querySelector('[data-cart-notification-totals]');
     this.overlay = this.querySelector('[data-cart-nofication-overlay]');
     this.cartToggle = document.querySelector('cart-toggle'); 
-    this.notification.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
+    this.cartFooter = this.querySelector('[data-cart-footer]'); 
+    
+    this.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
+
     this.querySelectorAll('button[type="button"]').forEach((closeButton) =>
       closeButton.addEventListener('click', this.close.bind(this))
     );
@@ -40,10 +43,8 @@ class CartNotification extends HTMLElement {
     this.notification.classList.remove('is-hidden');
     this.notification.classList.add('is-active');
 
-
     this.notification.addEventListener('transitionend', () => {
-      this.notification.focus();
-      trapFocus(this.notification);
+      this.notification.querySelector('button').focus();
     }, { once: true });
 
     document.body.addEventListener('click', this.onBodyClick);
@@ -56,9 +57,11 @@ class CartNotification extends HTMLElement {
   close() {
     this.notification.classList.remove('is-active');
     this.notification.classList.add('is-hidden');
+    console.log('close!!!');
 
     this.notification.addEventListener('transitionend', () => {
-      removeTrapFocus(this.activeElement);
+      removeTrapFocus(this.notification);
+      document.querySelector('cart-toggle').querySelector('button').focus(); 
     }, { once: true });
   
     document.body.removeEventListener('click', this.onBodyClick);
@@ -70,7 +73,7 @@ class CartNotification extends HTMLElement {
 
   onChange(event) {
     this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
-
+    this.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
   }
 
   showLatestCart() {
@@ -115,17 +118,21 @@ class CartNotification extends HTMLElement {
         console.log(err); 
         // this.querySelectorAll('.loading-overlay').forEach((overlay) => overlay.classList.add('hidden'));
         // document.getElementById('cart-errors').textContent = window.cartStrings.error;
-        // this.disableLoading();
+        //this.disableLoading();
       });
   }
 
   showEmptyCartState() {
+    this.productsContainer.innerHTML = ""; 
+    this.cartFooter.innerHTML = ""; 
     this.querySelector('[data-cart]').classList.add('is-empty'); 
+
   }
 
 
   resetCartState() {
     this.querySelector('[data-cart]').classList.remove('is-empty'); 
+
   }
 
 
@@ -138,6 +145,7 @@ class CartNotification extends HTMLElement {
       requires_shipping: parsedState.requires_shipping
     };
 
+    console.log('render contents');
     
     document.querySelector('.cart-notification-product').innerHTML = ""; 
 
@@ -225,105 +233,39 @@ class CartNotification extends HTMLElement {
       </ul>
       `;
 
-      this.totals.querySelector('[data-cart-subtotal]').textContent = new Shopify.currency().formatMoney(parsedState.total_price); 
+      let total = new Shopify.currency().formatMoney(parsedState.total_price);
+      let formAction = this.querySelector('[data-cart-footer]').dataset.formAction; 
+      let checkoutText = this.querySelector('[data-cart-footer]').dataset.checkoutText; 
 
+
+      let cartFooterTemplate = `
+      <div data-cart-notification-totals class="cart-nofication__totals">
+          <h3 class="cart-nofication__totals__subtotal">Subtotal</h3>
+          <p class="cart-nofication__totals__subtotal-value" data-cart-subtotal>
+          ${total}
+          </p>
+      </div>
+      <div class="cart-notification__links">
+        <form action="${formAction}" method="post" id="cart">
+          <button class="button button--primary button--full-width" name="checkout" form="cart">
+            ${checkoutText}
+          </button>
+        </form>
+      </div>`;
       
 
       if(products.length <= 0) {
         this.showEmptyCartState();
       } else {
-
-        this.resetCartState();
         this.productsContainer.innerHTML = productList; 
+        this.cartFooter.innerHTML = cartFooterTemplate; 
+        this.resetCartState(); 
       }
 
-      this.header?.reveal();
+      trapFocus(this);
+      this.notification.querySelector('button').focus();
 
-
-
-      function variantTemplate(pItem) {
-
-        let product_contents = pItem; 
-        let template = ''; 
-    
-          if(product_contents.originalObject.has_only_default_variant == false || product_contents.originalObject.properties.size != 0 || pItem.originalObject.selling_plan_allocation !== nil ) {
-    
-            function getOptionHtml() {
-               if(pItem.originalObject.product_has_only_default_variant == false) {
-    
-                 let productOptionTemplate ='';
-                  pItem.originalObject.options_with_values.forEach(function(element) {
-                    let template = `
-                      <div class="product-option">
-                        <dt>${element.name}: </dt>
-                        <dd>${element.value}</dd>
-                      </div>
-                    `;
-                    productOptionTemplate =  productOptionTemplate + template; 
-                  }); 
-    
-                  if( Object.keys(pItem.originalObject.properties).legth > 0) {
-                      pItem.originalObject.properties.forEach(function(element) {
-                        let property_first_char = element.first.slide(0, 1); 
-                        if(element.last !== '' && property_first_char !== "_") {
-                          let template = `
-                          <div class="product-option">
-                          <dt>${element.first}: </dt>
-                          <dd>
-    
-                                {%- if property.last contains '/uploads/' -%}
-                                <a href="{{ property.last }}" target="_blank">
-                                  {{ property.last | split: '/' | last }}
-                                </a>
-                              {%- else -%}
-                                {{ property.last }}
-                              {%- endif -%}
-                              
-                              ${element.last}
-                          </dd>
-                        </div>
-                          
-                          `;
-                        }
-                        productOptionTemplate = productOptionTemplate + template; 
-                      }); 
-                  }
-                  
-                  console.log(product_contents); 
-    
-                  if(product_contents.discounts.length > 0 ) {
-    
-                    let discounts = `
-                      <ul class="discounts list-unstyled" role="list" aria-label="Discount">
-                        ${(() => {
-                          
-                            let discounts = ''; 
-    
-                            product_contents.discounts.forEach(function(discount) {
-                              discounts = discounts + `<li>${discount.title}</li>`; 
-                              console.log(discounts); 
-                            }); 
-                            
-                            return discounts;
-                          })()}
-                      </ul>
-                    `;
-                    productOptionTemplate = productOptionTemplate + discounts; 
-                  }
-    
-                  return productOptionTemplate; 
-                  
-                } else {
-                  return ' '
-                }
-            }
-    
-            return getOptionHtml(); 
-    
-          } else {
-            return ""
-          }
-        }
+      this.header.reveal();
 
       
       function variantTemplate(pItem) {
@@ -413,8 +355,6 @@ class CartNotification extends HTMLElement {
 
         let productIndex =  pProduct.line; 
         let prod_contents = pProduct; 
-
-        console.log(prod_contents); 
         
         return  `
         <li>
