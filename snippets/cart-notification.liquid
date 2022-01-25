@@ -10,8 +10,11 @@
               <span  aria-hidden="true">
                 Your Bag
               </span>
-              <span class="visually-hidden">
+              <span class="visually-hidden"  data-open-cart-message>
                 Your Cart
+              </span>
+              <span class="visually-hidden"  data-added-item-message hidden aria-hidden="true">
+                {{ 'general.cart.item_added' | t }}
               </span>
             </h2>
             <button type="button" class="cart-notification__close modal__close-button link link--text focus-inset">

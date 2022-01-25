@@ -15,6 +15,10 @@ class CartNotification extends HTMLElement {
     this.overlay = this.querySelector('[data-cart-nofication-overlay]');
     this.cartToggle = document.querySelector('cart-toggle'); 
     this.cartFooter = this.querySelector('[data-cart-footer]'); 
+
+    this.openCartMessage = this.querySelector('[data-open-cart-message]');
+    this.addedItemMessage = this.querySelector('[data-added-item-message]');
+
     
     this.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
 
@@ -38,8 +42,29 @@ class CartNotification extends HTMLElement {
       this.overlay.classList.add('is-visible');
     }
   }
+  
+  showAddedItemMessage() {
+    this.openCartMessage.setAttribute('aria-hidden', true); 
+    this.openCartMessage.setAttribute('hidden', true); 
+    this.addedItemMessage.setAttribute('aria-hidden', false); 
+    this.addedItemMessage.removeAttribute('hidden'); 
+  }
 
-  open() {
+  showNormalCartTitle() {
+    this.addedItemMessage.setAttribute('aria-hidden', true); 
+    this.addedItemMessage.setAttribute('hidden', true); 
+    this.openCartMessage.setAttribute('aria-hidden', false); 
+    this.openCartMessage.removeAttribute('hidden'); 
+  }
+
+  open(addedItemToCart = false) {
+
+    if(addedItemToCart) {
+      this.showAddedItemMessage(); 
+    }  else {
+      this.showNormalCartTitle();
+    }
+
     this.notification.classList.remove('is-hidden');
     this.notification.classList.add('is-active');
 
@@ -380,18 +405,25 @@ class CartNotification extends HTMLElement {
 
                     <p class="cart-notification__product__info__quantity-select">
                     <quantity-select data-index="${productIndex}">
-                    <span class="option-name">
-                    Qty: 
-                    </span>
-                    <label class="option-name">
-                      ${prod_contents.itemQty}
+                  
+                    <label class="option-name" for="Quantity-${productIndex}"> 
+                    
+                      <span class="visually-hidden">
+                      Quantity
+                      </span>
+
+                      <span aria-hidden="true">
+                        Qty:
+                      </span>
                     </label>
+                    <span class="option-name">
+                    ${prod_contents.itemQty}
+                    </span>
                     <select  
                       class="quantity__input"
                       name="updates[]"
                       data-quantity-update
                       value="${prod_contents.itemQty}"
-                      aria-label="Quantity: ${prod_contents.itemQty}"   
                       id="Quantity-${productIndex}"  data-index="${productIndex}">
                         <option value="0" ${prod_contents.itemQty === 0 ? 'selected' : '' }>
                             0
@@ -431,8 +463,14 @@ class CartNotification extends HTMLElement {
 
                 <div class="cart-notification__remove-btn"> 
                   <cart-remove-button id="Remove-${productIndex}" data-index="${productIndex}">
-                    <a href="${pProduct.url}" class="button button--tertiary" aria-label="Remove ${prod_contents.name}">
+                    <a href="${pProduct.url}" class="button button--tertiary">
+                    
                       Remove
+
+                      <span class="visually-hidden">
+                      ${prod_contents.name}
+                      ${variantTemplate(prod_contents)}
+                      </span>
                     </a>
                   </cart-remove-button>
                 </div>

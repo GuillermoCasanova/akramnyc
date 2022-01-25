@@ -719,14 +719,22 @@ class VariantSelects extends HTMLElement {
   toggleAddButton(disable = true, text, modifyClass = true) {
     const addButton = document.getElementById(`product-form-${this.dataset.section}`)?.querySelector('[name="add"]');
 
+    const availText = document.querySelector('[data-available-text]');
+    const soldOutText = document.querySelector('[data-soldout-text]'); 
+    const buttonIcon = document.querySelector('[data-add-cart-button-icon]'); 
+
     if (!addButton) return;
 
     if (disable) {
       addButton.setAttribute('disabled', true);
-      if (text) addButton.textContent = text;
+      soldOutText.removeAttribute('hidden');
+      availText.setAttribute('hidden', true);
+      buttonIcon.setAttribute('hidden', true);
     } else {
       addButton.removeAttribute('disabled');
-      addButton.textContent = window.variantStrings.addToCart;
+      availText.removeAttribute('hidden');
+      soldOutText.setAttribute('hidden', true);
+      buttonIcon.removeAttribute('hidden');
     }
 
     if (!modifyClass) return;
