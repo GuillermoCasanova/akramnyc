@@ -20,12 +20,14 @@
         },
         "db4142f8-5568-452b-983f-6efee693bd74": {
           "type": "featured-product",
+          "disabled": true,
           "settings": {
             "information": "leaves-hoodie-black"
           }
         },
         "0c226d57-efcc-433d-95d0-95ec0470c084": {
           "type": "featured-product",
+          "disabled": true,
           "settings": {
             "information": "logo-hoodie-white"
           }
