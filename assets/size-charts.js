@@ -26,7 +26,6 @@ class SizeChartModal  extends HTMLElement {
       this.modal.removeAttribute('hidden');
 
       this.modal.addEventListener('animationend', () => {
-        console.log('hELLO');
        this.modal.querySelector('[size-chart-modal-close]').focus(); 
      }, { once: true });
 
