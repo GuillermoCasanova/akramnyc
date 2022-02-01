@@ -623,7 +623,10 @@ class VariantSelects extends HTMLElement {
     this.addEventListener('change', this.onVariantChange);
   }
 
-  onVariantChange() {
+  onVariantChange(event) {
+
+    console.log(event); 
+
     this.setSoldOutOptions(); 
     this.updateOptions();
     this.updateMasterId();
@@ -813,7 +816,7 @@ class VariantRadios extends VariantSelects {
 
 
 
-  setSoldOutOptions() {
+  setSoldOutOptions(resetOptions = false) {
    
     let data = {
        productVariants: JSON.parse(this.querySelector('[type="application/json"]').innerHTML),
@@ -841,20 +844,17 @@ class VariantRadios extends VariantSelects {
         if(allProductVariants[i].available == false) {
 
           sizeOptions.forEach((elem) => {
-            if(allProductVariants[i].option1 == elem.value || allProductVariants[i].option1 == elem.value) {
+            if(allProductVariants[i].option1 == elem.value || allProductVariants[i].option2 == elem.value) {
               elem.classList.add('is-sold-out'); 
               elem.disabled = true;
+              elem.checked = false; 
               elem.setAttribute('aria-disabled', true);
             }
           })
-        }
-      }
 
-      sizeOptions.forEach((elem) => {
-        if(elem.getAttribute('aria-disabled') == 'false') {
-            elem.checked = true; 
         }
-      });
+
+      }
    }
 
 
@@ -862,9 +862,30 @@ class VariantRadios extends VariantSelects {
 
   updateOptions() {
     const fieldsets = Array.from(this.querySelectorAll('fieldset'));
+
     this.options = fieldsets.map((fieldset) => {
-      return Array.from(fieldset.querySelectorAll('input')).find((radio) => radio.checked).value;
+      
+      let array = Array.from(fieldset.querySelectorAll('input'));
+      let checkedValue = null; 
+
+      //
+      // Checks to see if there is a valid checked radio, if not, it checks the first valid one it can find and returns that option
+      //
+      if(array.find((radio) => radio.checked) !== undefined) {
+        checkedValue = array.find((radio) => radio.checked).value
+      } else {
+        array.some((radio) => {
+          if(radio.disabled == false) {
+            radio.checked = true; 
+            checkedValue = radio.value; 
+            return true
+          }
+        });
+       }
+
+       return checkedValue; 
     });
+
   }
 }
 

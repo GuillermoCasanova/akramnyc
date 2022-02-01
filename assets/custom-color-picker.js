@@ -71,8 +71,7 @@ class CustomColorPicker extends HTMLElement {
             newScript.innerHTML  = ` ` + JSON.stringify(JSON.parse(this.currentColor.dataset.product).variants);  
             newScript.type = "application/json";
             elem.appendChild(newScript); 
-            elem.onVariantChange();
-            elem.setSoldOutOptions(); 
+            elem.onVariantChange(true);
         }); 
 
 
@@ -138,11 +137,7 @@ class CustomColorPicker extends HTMLElement {
     updateDescription() {
         let productObj = JSON.parse(this.currentColor.dataset.product); 
         let descriptionContainer = document.querySelector('[data-product-description-container]'); 
-
-        console.log(descriptionContainer); 
-        console.log(productObj.description); 
         descriptionContainer.innerHTML = productObj.description; 
-
     }
 
     setUpEvents() {

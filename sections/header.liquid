@@ -1638,9 +1638,7 @@ details[open].menu-opening > .menu-drawer__submenu {
             <div class="cart-count-bubble">
               {%- if cart.item_count < 100 -%}
                 <span aria-hidden="true" data-cart-count>
-                {%- if cart.item_count > 0 -%}
                   {{ cart.item_count }}
-                {%- endif-%}
                 </span>
               {%- endif -%}
               <span class="visually-hidden" data-cart-count-aria>
