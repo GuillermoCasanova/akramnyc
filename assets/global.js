@@ -772,20 +772,41 @@ class VariantRadios extends VariantSelects {
         }
     
         this.querySelectorAll('[data-option-label]').forEach((element) => {
-            element.addEventListener('mouseenter', (event)  =>{
-                let name = event.target.dataset.optionName; 
-                showOption(name)
-            })
-            
+     
             element.addEventListener('click', (event)  =>{
               let name = event.target.dataset.optionName; 
               currentOption = name;
               showOption(name)
             })
 
+            element.addEventListener('mouseenter', (event)  =>{
+              let name = event.target.dataset.optionName; 
+              showOption(name)
+          })
+          
+
             element.addEventListener('mouseleave', (event)  =>{
                 showOption(currentOption)
             })
+        
+         
+            
+        }); 
+
+
+        this.querySelectorAll('input[type="radio"]').forEach((element) => {
+
+
+          element.addEventListener('focus', (event)  =>{
+              let name = event.target.value; 
+              showOption(name)
+              console.log(name); 
+          });
+          
+        
+          element.addEventListener('blur', (event)  =>{
+              showOption(currentOption)
+          });
         }); 
 
         this.onVariantChange();
