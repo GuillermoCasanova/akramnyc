@@ -624,13 +624,15 @@ class VariantSelects extends HTMLElement {
   }
 
   onVariantChange() {
+    this.setSoldOutOptions(); 
     this.updateOptions();
     this.updateMasterId();
     this.updateCurrentOption();
+    
     //this.toggleAddButton(true, '', false);
      // this.updatePickupAvailability();
 
-    if (!this.currentVariant) {
+    if (!this.getCurrentVariant()) {
       this.toggleAddButton(true, '', true);
       this.setUnavailable();
     } else {
@@ -788,9 +790,6 @@ class VariantRadios extends VariantSelects {
             element.addEventListener('mouseleave', (event)  =>{
                 showOption(currentOption)
             })
-        
-         
-            
         }); 
 
 
@@ -810,7 +809,6 @@ class VariantRadios extends VariantSelects {
         }); 
 
         this.onVariantChange();
-        this.setSoldOutOptions(); 
   }
 
 
@@ -828,11 +826,8 @@ class VariantRadios extends VariantSelects {
        secondaryOptions: '[data-secondary-option]'
      };
  
-     var allProductVariants = data.productVariants;
-     var selectedVariant = data.selectedVariant; 
- 
-      //var selectedColor = selectedVariant.options[0]; 
-      var sizeOptions = [];
+     let allProductVariants = data.productVariants;
+     let sizeOptions = [];
 
       this.querySelectorAll('input').forEach(function(elem) {
         sizeOptions.push(elem); 
@@ -846,7 +841,6 @@ class VariantRadios extends VariantSelects {
         if(allProductVariants[i].available == false) {
 
           sizeOptions.forEach((elem) => {
-            
             if(allProductVariants[i].option1 == elem.value || allProductVariants[i].option1 == elem.value) {
               elem.classList.add('is-sold-out'); 
               elem.disabled = true;
@@ -855,6 +849,12 @@ class VariantRadios extends VariantSelects {
           })
         }
       }
+
+      sizeOptions.forEach((elem) => {
+        if(elem.getAttribute('aria-disabled') == 'false') {
+            elem.checked = true; 
+        }
+      });
    }
 
 
