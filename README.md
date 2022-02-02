@@ -3,8 +3,9 @@
 
 ## Development Setup
 
-Akram NYC Shopify theme is built using Shopify's CLI and using their starter them DAWN. For development reference, visit: https://github.com/Shopify/dawn
+Akram NYC Custom Shopify Theme is built using Shopify's CLI and using their starter theme Dawn. For development reference, visit: https://github.com/Shopify/dawn
 
+To view live site, visit: https://akramnyc.com/
 
 ## License
 
