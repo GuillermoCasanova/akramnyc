@@ -76,6 +76,10 @@ summary::before {
   position: fixed;
 }
 
+[aria-hidden="true"] {
+  pointer-events: none;
+}
+
 main {
   min-height: calc(70vw - 300px);
 }

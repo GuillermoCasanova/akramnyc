@@ -9,6 +9,7 @@ class ProductHelp extends HTMLElement {
         this.selectors = {
             supportLinksContainer: '[data-support-links]',
             supportLink: '[data-support-link]',
+            supportModal: '[data-support-sections]',
             supportSection: '[data-support-section]',
             supportSectionsContainer: '[data-support-sections]',
             supportSectionsWrapper: '[data-support-sections-inner]',
@@ -20,6 +21,8 @@ class ProductHelp extends HTMLElement {
             mediumDown: window.matchMedia('(max-width: 974px)'),
             largeUp: window.matchMedia('(min-width: 975px)')
         }
+
+        this.currentLink = null; 
         
         this.init(); 
     }
@@ -39,14 +42,27 @@ class ProductHelp extends HTMLElement {
     }
 
     open(pId) {
-        this.querySelector('aside').classList.add('is-visible');
+        this.querySelector(this.selectors.supportModal).setAttribute('aria-hidden', false);
         this.querySelector(this.selectors.overlay).classList.add('is-visible');
+
+         this.querySelector(this.selectors.supportModal).addEventListener('transitionend', () => {
+            this.querySelector(this.selectors.supportModal).querySelector('[data-help-close]').focus(); 
+          }, { once: true });
+     
+        trapFocus(this.querySelector(this.selectors.supportModal));
     }   
 
     close() {
-        this.querySelector('aside').classList.remove('is-visible');
+        this.querySelector(this.selectors.supportModal).setAttribute('aria-hidden', true);
         this.querySelector(this.selectors.overlay).classList.remove('is-visible');
-        document.activeElement.blur();
+
+
+        this.querySelector(this.selectors.supportModal).addEventListener('transitionend', () => {
+            console.log(this.currentLink); 
+            this.currentLink.focus();
+          }, { once: true });
+          
+        removeTrapFocus(this.querySelector(this.selectors.supportModal)); 
     }
 
     handleMediumDown(pEvent) {
@@ -92,7 +108,6 @@ class ProductHelp extends HTMLElement {
             }); 
 
         } else {
-            
             return 
         }
 
@@ -129,6 +144,13 @@ class ProductHelp extends HTMLElement {
 
             this.querySelectorAll(this.selectors.supportLink).forEach((elem) => {
                 elem.addEventListener('click', (event) =>  {
+
+                    this.querySelectorAll(this.selectors.supportLink).forEach((elem) => {
+                        elem.setAttribute('aria-expanded', false);
+                    }); 
+                    
+                    this.currentLink = elem; 
+                    elem.setAttribute('aria-expanded', true);
                     document.querySelector('.product__info-wrapper').style.zIndex = 100; 
                     this.open();
                     this.setActive(event);
@@ -145,9 +167,7 @@ class ProductHelp extends HTMLElement {
 
             this.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
 
-        } else {
-
-        }
+        } 
     }   
 
     setActive(pEvent) {

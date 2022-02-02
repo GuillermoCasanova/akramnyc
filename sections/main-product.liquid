@@ -358,13 +358,12 @@
 
 
  
-          <product-help>
+          <product-help >
               <div class="product-support">
 
                 <div class="product-support__links"  data-support-links>
               
                   {%- if product.description != blank -%}
-                   
                     <button class="product-support__links__link  hide-for-large-up" data-support-link data-id="0" data-link-name="{{block.settings.headline | handleize}}">
                       Details
                       <span class="link-underline">
@@ -377,7 +376,7 @@
                   {%- for block in section.blocks -%}
                     {%- case block.type -%}
                     {%- when 'product-support' -%}
-                    <button class="product-support__links__link" data-support-link data-id="{{ linkIndex}}" data-link-name="{{block.settings.headline | handleize}}">
+                    <button class="product-support__links__link"  aria-expanded="false"  data-support-link data-id="{{ linkIndex}}" data-link-name="{{block.settings.headline | handleize}}">
                       {{block.settings.headline}}
                       <span class="link-underline">
                         
@@ -388,10 +387,10 @@
                   {%- endfor -%}
                 </div>
 
-                  <aside class="data-support-section" data-support-sections>
+                  <aside class="data-support-section" data-support-sections role="dialog" aria-label="Product Support" tabindex="-1" aria-hidden="true">
                     <div class="product-support-section__header">
                                
-                      <button  type="button"  class="product-support-section__header__close" data-help-close    aria-label="{{ 'accessibility.close' | t }}">
+                      <button  type="button"  class="product-support-section__header__close" data-help-close  aria-label="{{ 'accessibility.close' | t }} Size Guide Modal">
                         <span class="icon-close" aria-hidden="true">
                           
                         </span>

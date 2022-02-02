@@ -279,8 +279,6 @@ class MenuDropdown extends HTMLElement {
     if(this.dropDownToggle) {
       this.dropDownToggle.addEventListener('click', () => {
     
-          console.log(this.dropDownContent.getAttribute('aria-hidden')); 
-
           if(this.dropDownContent.getAttribute('aria-hidden') == 'false') {
             this.dropDownContent.setAttribute('aria-hidden', true); 
             this.dropDownToggle.setAttribute('aria-expanded', false); 

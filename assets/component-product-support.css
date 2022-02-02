@@ -151,7 +151,7 @@
     transition: all var(--duration-long) ease;
   }
 
-  .product-support aside.is-visible {
+  .product-support aside[aria-hidden="false"] {
     transform: translateX(0); 
   }
 }
