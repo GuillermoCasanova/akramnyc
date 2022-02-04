@@ -80,9 +80,6 @@
       if(pEvent.matches) {
       
         document.querySelector('#hero-video').src = vidSrc;
-
-        console.log(vidSrc); 
-
         
         document.querySelector('#hero-video').addEventListener("pause", () => {
           document.querySelector('#hero-video').currentTime = 2.5;

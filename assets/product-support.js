@@ -56,14 +56,23 @@ class ProductHelp extends HTMLElement {
         this.querySelector(this.selectors.supportModal).setAttribute('aria-hidden', true);
         this.querySelector(this.selectors.overlay).classList.remove('is-visible');
 
-
+        this.querySelectorAll(this.selectors.supportLink).forEach((elem) => {
+            elem.setAttribute('aria-expanded', false);
+        }); 
+        
         this.querySelector(this.selectors.supportModal).addEventListener('transitionend', () => {
-            console.log(this.currentLink); 
             this.currentLink.focus();
           }, { once: true });
           
         removeTrapFocus(this.querySelector(this.selectors.supportModal)); 
     }
+
+    updateModalName() { 
+        let activeModalName = this.currentLink.innerText.toLowerCase(); 
+        this.querySelector(this.selectors.supportModal).setAttribute('aria-label', activeModalName); 
+        this.querySelector(this.selectors.supportModal).querySelector('[data-help-close]').setAttribute('aria-label', "Close " +  activeModalName + " Modal"); 
+    }
+
 
     handleMediumDown(pEvent) {
 
@@ -150,9 +159,10 @@ class ProductHelp extends HTMLElement {
                     }); 
                     
                     this.currentLink = elem; 
+                    this.updateModalName();
+                    this.open();
                     elem.setAttribute('aria-expanded', true);
                     document.querySelector('.product__info-wrapper').style.zIndex = 100; 
-                    this.open();
                     this.setActive(event);
                 }); 
             })
