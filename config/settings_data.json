@@ -27,7 +27,7 @@
             "type": "link_list",
             "settings": {
               "heading": "Footer Navigation",
-              "menu": "footer"
+              "menu": "secondary-footer-menu"
             }
           },
           "cabb0f94-0870-4578-852b-99f3b549a8e4": {
