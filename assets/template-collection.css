@@ -1,51 +1,33 @@
-
-
-
 /*------------------------------------*\
     #Collection Template
 \*------------------------------------*/
 
 .collection-product-grid {
-    display: flex; 
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    padding-right: var(--level2);
-    padding-left: var(--level2);
-    margin-top: calc((var(--level7) * 2.2) + var(--level7));
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: #fff;
 }
 
-@media only screen and (min-width: 768px) {
-    .collection-product-grid {
-        padding-right: var(--level3);
-        padding-left: var(--level3);
-    }
-}
+@media only screen and (min-width: 768px) {}
 
-@media only screen and (min-width: 1100px) {
-    .collection-product-grid {
-        padding-right: var(--level4);
-        padding-left: var(--level4);
-    }
-}
+@media only screen and (min-width: 1100px) {}
 
 
-.collection-product-grid__item {    
-    width: 50%;
+.collection-product-grid__item {
+  width: 50%;
 }
 
 @media only screen and (min-width: 1100px) {
-    .collection-product-grid__item {    
-        width: 33.3%;
-    }
+  .collection-product-grid__item {
+    width: 33.3%;
+  }
 }
 
 
 
-.featured-products {
-  
-
-}
+.featured-products {}
 
 
 /* 

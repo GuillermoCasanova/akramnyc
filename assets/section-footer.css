@@ -1,7 +1,19 @@
 .footer {
   border-top: 0.1rem solid rgba(var(--color-foreground), 0.2);
   margin-top: var(--level7);
+  position: relative;
 }
+
+.footer:after {
+  width: 100%;
+  position: absolute;
+  top: -5rem;
+  left: 0;
+  height: 8rem;
+  content: " ";
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.98) 95%, rgb(0, 0, 0) 95%);
+}
+
 
 .footer.is-homepage {
   position: absolute;
