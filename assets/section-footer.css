@@ -3,6 +3,12 @@
   margin-top: var(--level7);
 }
 
+.footer.is-homepage {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
 .footer:not(.color-background-1) {
   border-top: none;
 }
@@ -20,10 +26,10 @@
 .footer__contact {
   display: flex;
   flex-direction: flex-start;
-  padding-left: var(--level5); 
+  padding-left: var(--level5);
   text-align: left;
   margin-bottom: var(--level3);
-  font-size: var(--normal); 
+  font-size: var(--normal);
 }
 
 @media screen and (min-width: 750px) {
@@ -31,7 +37,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: var(--micro); 
+    font-size: var(--micro);
   }
 }
 
@@ -63,14 +69,14 @@
 
 
   .footer__contact li:after {
-    content: "/"; 
+    content: "/";
     position: absolute;
-    right: -.8rem; 
+    right: -.8rem;
     color: white;
   }
 
   .footer__contact li:last-child:after {
-    content: ""; 
+    content: "";
   }
 
 }
@@ -97,8 +103,7 @@
 }
 
 @media screen and (min-width: 750px) {
-  .footer__content-top {
-  }
+  .footer__content-top {}
 
   .footer__content-top .grid {
     margin-left: -3rem;
@@ -140,15 +145,16 @@
   }
 }
 
-.footer__localization:empty + .footer__column--info {
+.footer__localization:empty+.footer__column--info {
   align-items: center;
 }
 
 @media screen and (max-width: 749px) {
-  .footer__localization:empty + .footer__column {
+  .footer__localization:empty+.footer__column {
     padding-top: 1.5rem;
   }
 }
+
 .footer__column {
   width: 100%;
   align-items: flex-end;
@@ -172,13 +178,13 @@
 }
 
 .footer-block:only-child:last-child,
-.accordion:first-child + .footer-block:last-child {
+.accordion:first-child+.footer-block:last-child {
   text-align: center;
   max-width: 76rem;
   margin: 0 auto;
 }
 
-.accordion:empty + .footer-block {
+.accordion:empty+.footer-block {
   margin-top: 0;
 }
 
@@ -186,7 +192,7 @@
   margin-top: 0;
 }
 
-.footer .small-hide + .accordion {
+.footer .small-hide+.accordion {
   border-top: none;
 }
 
@@ -213,7 +219,7 @@
   margin-top: 0;
 }
 
-.footer-block--newsletter > * {
+.footer-block--newsletter>* {
   flex: 1 1 100%;
 }
 
@@ -279,7 +285,7 @@
   }
 }
 
-.footer-block__newsletter + .footer__list-social {
+.footer-block__newsletter+.footer__list-social {
   margin-top: 5rem;
 }
 
@@ -290,7 +296,7 @@
 }
 
 @media screen and (min-width: 750px) {
-  .footer-block__newsletter + .footer__list-social {
+  .footer-block__newsletter+.footer__list-social {
     margin-top: 0;
   }
 }
@@ -368,6 +374,7 @@
 }
 
 @media screen and (max-width: 989px) {
+
   noscript .localization-form:only-child,
   .footer__localization noscript {
     width: 100%;
@@ -439,7 +446,7 @@ noscript .localization-selector.link {
   color: #000000;
 }
 
-.localization-selector + .disclosure__list {
+.localization-selector+.disclosure__list {
   margin-left: 1rem;
   opacity: 1;
   animation: animateLocalization var(--duration-default) ease;
@@ -471,13 +478,14 @@ noscript .localization-selector.link {
     opacity: 0;
     margin-top: -1rem;
   }
+
   100% {
     opacity: 1;
     margin-top: 0;
   }
 }
 
-footer details[open] summary ~ * {
+footer details[open] summary~* {
   animation: appear-down var(--duration-default) ease;
 }
 
@@ -502,17 +510,17 @@ footer details[open] summary ~ * {
     padding-top: 0;
   }
 
-  .footer-block__details-content > p,
-  .footer-block__details-content > li {
+  .footer-block__details-content>p,
+  .footer-block__details-content>li {
     padding: 0;
   }
 
-  .accordion:first-child + .footer-block:last-child li,
+  .accordion:first-child+.footer-block:last-child li,
   .footer-block:only-child li {
     display: inline;
   }
 
-  .footer-block__details-content > li:not(:last-child) {
+  .footer-block__details-content>li:not(:last-child) {
     margin-right: 1.5rem;
   }
 }
@@ -528,6 +536,7 @@ footer details[open] summary ~ * {
 }
 
 @media screen and (min-width: 750px) {
+
   .footer-block__details-content .list-menu__item--link:hover,
   .copyright__content a:hover {
     color: rgb(var(--color-foreground));
@@ -554,7 +563,7 @@ footer details[open] summary ~ * {
     font-size: 1.4rem;
   }
 
-  .footer-block__details-content > :first-child .list-menu__item--link {
+  .footer-block__details-content> :first-child .list-menu__item--link {
     padding-top: 0;
     margin-top: 0;
   }
@@ -566,7 +575,7 @@ footer details[open] summary ~ * {
   }
 }
 
-.footer-block-image > img {
+.footer-block-image>img {
   height: auto;
 }
 

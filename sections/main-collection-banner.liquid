@@ -1,6 +1,6 @@
 {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
 
-<div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %}">
+<div class="collection-hero visually-hidden {% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %}">
   <div class="collection-hero__inner page-width">
     <div class="collection-hero__text-wrapper">
       <h1 class="collection-hero__title">
@@ -15,13 +15,13 @@
 
     {%- if section.settings.show_collection_image and collection.image -%}
       <div class="collection-hero__image-container media">
-        <img srcset="{%- if collection.image.width >= 165 -%}{{ collection.image | img_url: '165x' }} 165w,{%- endif -%}
-          {%- if collection.image.width >= 360 -%}{{ collection.image | img_url: '360x' }} 360w,{%- endif -%}
-          {%- if collection.image.width >= 535 -%}{{ collection.image | img_url: '535x' }} 535w,{%- endif -%}
-          {%- if collection.image.width >= 720 -%}{{ collection.image | img_url: '720x' }} 720w,{%- endif -%}
-          {%- if collection.image.width >= 940 -%}{{ collection.image | img_url: '940x' }} 940w,{%- endif -%}
-          {%- if collection.image.width >= 1070 -%}{{ collection.image | img_url: '1070x' }} 1070w{%- endif -%}"
-          src="{{ collection.image | img_url: '533x' }}"
+        <img srcset="{%- if collection.image.width >= 165 -%}{{ collection.image | image_url: width: 165 }} 165w,{%- endif -%}
+          {%- if collection.image.width >= 360 -%}{{ collection.image | image_url: width: 360 }} 360w,{%- endif -%}
+          {%- if collection.image.width >= 535 -%}{{ collection.image | image_url: width: 535 }} 535w,{%- endif -%}
+          {%- if collection.image.width >= 720 -%}{{ collection.image | image_url: width: 720 }} 720w,{%- endif -%}
+          {%- if collection.image.width >= 940 -%}{{ collection.image | image_url: width: 940 }} 940w,{%- endif -%}
+          {%- if collection.image.width >= 1070 -%}{{ collection.image | image_url: width: 1070 }} 1070w{%- endif -%}"
+          src="{{ collection.image | image_url: width: 533 }}"
           sizes="(min-width: 1100px) 535px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
           alt="{{ collection.title | escape }}"
           loading="lazy"

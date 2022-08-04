@@ -1,59 +1,88 @@
+@import './normalize.css';
 
 
-@import './normalize.css'; 
-
-  
 
 
 /*------------------------------------*\
     #Reset
 \*------------------------------------*/
 
-  
-dl, dt, dd, ul, ol, li,
-h1, h2, h3, h4, h5, h6,
-pre, form, p, blockquote, th, td { 
+
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+p,
+blockquote,
+th,
+td {
   margin: 0;
   padding: 0;
 }
 
-li, 
+li,
 ul {
-  list-style: none; 
+  list-style: none;
 }
 
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-fieldset, img {
+
+fieldset,
+img {
   border: 0;
 }
-address, caption, cite, dfn, th, var {
+
+address,
+caption,
+cite,
+dfn,
+th,
+var {
   font-style: normal;
   font-weight: normal;
 }
-caption, th {
-  text-align: left; 
+
+caption,
+th {
+  text-align: left;
 }
 
-q:before, q:after {
+q:before,
+q:after {
   content: '';
 }
-abbr, acronym {
+
+abbr,
+acronym {
   border: 0;
 }
 
-*, :after, :before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+*,
+:after,
+:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 summary::-webkit-details-marker {
   display: none;
   list-style-type: none;
 }
+
 summary::before {
   display: none;
 }
@@ -63,6 +92,7 @@ summary::-webkit-details-marker {
   display: none;
   list-style-type: none;
 }
+
 summary::before {
   display: none;
 
@@ -80,11 +110,9 @@ summary::before {
   pointer-events: none;
 }
 
-main {
-  min-height: calc(70vw - 300px);
+body.is-homepage {
+  overflow: hidden;
 }
-
-
 
 
 
@@ -116,13 +144,13 @@ main {
 \*------------------------------------*/
 
 :root {
-  --level1: .20rem; 
-  --level2: .45rem; 
-  --level3: .95rem; 
-  --level4: 1.45rem; 
-  --level5: 1.95rem; 
-  --level6: 2.45rem; 
-  --level7: 2.95rem; 
+  --level1: .20rem;
+  --level2: .45rem;
+  --level3: .95rem;
+  --level4: 1.45rem;
+  --level5: 1.95rem;
+  --level6: 2.45rem;
+  --level7: 2.95rem;
 }
 
 
@@ -136,7 +164,7 @@ main {
 @font-face {
   font-family: 'telegrafregular';
   src: url('./telegraf-regular-webfont.woff2') format('woff2'),
-        url('./telegraf-regular-webfont.woff') format('woff');
+    url('./telegraf-regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -145,7 +173,7 @@ main {
 @font-face {
   font-family: 'telegrafbold';
   src: url('./telegraf-bold.woff2') format('woff2'),
-        url('./telegraf-bold.woff') format('woff');
+    url('./telegraf-bold.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -153,28 +181,28 @@ main {
 
 
 :root {
-    --primary-font-family: 'Space Mono', 'Courier New', Courier, monospace;
-    --secondary-font-family: 'telegrafregular',  'Space Mono', 'Courier New', Courier, monospace;
-    --tertiary-font-family: 'telegrafbold',  'Space Mono', 'Courier New', Courier, monospace;
-    --letter-spacing-1: 1.5px; 
-    --letter-spacing-2: 1px; 
-    --letter-spacing-3: 3px; 
-    --letter-spacing-4: 5px; 
-    --kilo: 3.002rem;
-    --h1: 2.436rem;
-    --h2: 1.903rem;
-    --h3: 1.513rem;
-    --h4: 1.20rem;
-    --h5: 1.10rem;
-    --h6: 1rem;
-    --normal: .95em;
-    --micro: .85rem;
-    --mini: .78rem;
-    --line-height: 1;
-    --line-height-double: 1.5;
+  --primary-font-family: 'Space Mono', 'Courier New', Courier, monospace;
+  --secondary-font-family: 'telegrafregular', 'Space Mono', 'Courier New', Courier, monospace;
+  --tertiary-font-family: 'telegrafbold', 'Space Mono', 'Courier New', Courier, monospace;
+  --letter-spacing-1: 1.5px;
+  --letter-spacing-2: 1px;
+  --letter-spacing-3: 3px;
+  --letter-spacing-4: 5px;
+  --kilo: 3.002rem;
+  --h1: 2.436rem;
+  --h2: 1.903rem;
+  --h3: 1.513rem;
+  --h4: 1.20rem;
+  --h5: 1.10rem;
+  --h6: 1rem;
+  --normal: .95em;
+  --micro: .85rem;
+  --mini: .78rem;
+  --line-height: 1;
+  --line-height-double: 1.5;
 }
-  
-  
+
+
 
 
 /*------------------------------------*\
@@ -256,14 +284,14 @@ main {
 
 
 ::selection {
-  background-color: white; 
-  color: black; 
+  background-color: white;
+  color: black;
 }
 
 ::-moz-selection {
 
-    background-color: white; 
-    color: black; 
+  background-color: white;
+  color: black;
 }
 
 
@@ -275,9 +303,9 @@ main {
 
 h1,
 h2,
-h3, 
-h4, 
-h5, 
+h3,
+h4,
+h5,
 h6 {
   margin-bottom: 1rem;
   letter-spacing: -.05px;
@@ -286,10 +314,10 @@ h6 {
 body {
   font-family: var(--primary-font-family);
   font-size: 1rem;
-  line-height: 1.5; 
+  line-height: 1.5;
   font-display: fallback;
-  background:black;
-  color: #fff; 
+  background: black;
+  color: #fff;
 }
 
 
@@ -301,9 +329,9 @@ body {
 
 
 .headline-accent {
-  font-weight: 600; 
-  color: var(--secondary-color); 
-  display: block; 
+  font-weight: 600;
+  color: var(--secondary-color);
+  display: block;
   letter-spacing: .2px;
 }
 
@@ -311,7 +339,7 @@ a {
   color: #fff;
 }
 
-a:hover, 
+a:hover,
 a:focus {
   text-decoration: none;
 }
@@ -418,22 +446,22 @@ section {
 
 
 .show-for-large-up {
-  display: none; 
+  display: none;
 }
 
 @media only screen and (min-width: 975px) {
   .show-for-large-up {
-    display: block; 
+    display: block;
   }
 }
 
 
 .hide-for-large-up {
-  display: block; 
+  display: block;
 }
 
 @media only screen and (min-width: 975px) {
   .hide-for-large-up {
-    display: none; 
+    display: none;
   }
 }

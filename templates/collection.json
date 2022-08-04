@@ -5,7 +5,7 @@
             "settings": {}
         },
         "product-grid": {
-            "type": "main-collection-product-grid",
+            "type": "main-collection-product-grid-simple",
             "settings": {}
         }
     },
