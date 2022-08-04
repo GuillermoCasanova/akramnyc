@@ -1,13 +1,48 @@
+.main-page-section {
+  padding-bottom: var(--level2);
+}
+
+.main-page {
+  padding-right: var(--level6);
+  padding-left: var(--level6);
+  max-width: 75ch;
+  width: 100%;
+  padding-top: calc(var(--level7) * 3);
+  padding-bottom: calc(var(--level7) * 2);
+}
+
+@media screen and (min-width: 380px) {
+
+  .main-page {
+    padding-right: var(--level7);
+    padding-left: var(--level7);
+  }
+}
+
+@media screen and (min-width: 775px) {
+  .main-page {
+    margin-right: auto;
+    margin-left: calc(var(--level7) * 2);
+  }
+}
+
+@media screen and (min-width: 975px) {
+  .main-page {}
+}
 
 
+.main-page .rte a {
+  color: #f1de4f;
+}
 
 
 .main-page h1 {
   font-family: var(--primary-font-family);
-  font-size: var(--h4); 
+  font-size: var(--h4);
   letter-spacing: var(--letter-spacing-1);
   text-transform: uppercase;
 }
+
 .page-title {
   margin-top: 0;
 }

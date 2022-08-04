@@ -17,7 +17,8 @@
 <noscript>{{ 'disclosure.css' | asset_url | stylesheet_tag }}</noscript>
 
 {% unless template.name == 'cart' %}
-  <footer class="footer color-{{ section.settings.color_scheme }} {% if template == 'index' %}is-homepage{% endif %}" >
+ 
+  <footer class="footer {% unless template == 'index' or template == 'collection' %}is-text-page{% endunless %} {% if template == 'index' %}is-homepage{% endif %}" >
     {%- if section.blocks.size > 0 or section.settings.newsletter_enable or section.settings.show_social -%}
       <div class="footer__content-top page-width">
     
@@ -26,47 +27,13 @@
             if section.blocks.size == 9
               assign footer_grid_class = 'grid--3-col-tablet'
             elsif section.blocks.size > 6
-              assign footer_grid_class = 'grid--4-col-desktop'
             elsif section.blocks.size > 4
             endif
           -%}
 
-          <div class="footer__blocks-wrapper">
+          <div class="footer__top">
             {%- for block in section.blocks -%}
               {%- case block.type -%}
-              {%- when 'text' -%}
-                <div class="footer-block__details-content rte">
-                  {{ block.settings.subtext }}
-                </div>
-              {%- when 'link_list' -%}
-                {%- if block.settings.menu != blank and block.settings.heading != blank -%}
-                  <ul class="footer-block__details-content list-unstyled">
-                    {%- for link in block.settings.menu.links -%}
-                      <li>
-                        <a href="{{ link.url }}" class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}">
-                          {{ link.title }}
-                        </a>
-                      </li>
-                    {%- endfor -%}
-                  </ul>
-                {%- endif -%}
-              {%- when 'image' -%}
-                <div class="footer-block__details-content footer-block-image {{ block.settings.alignment }}">
-                  {%- if block.settings.image != blank -%}
-                    {%- assign image_size = block.settings.image_width | append: 'x' -%}
-                    <img
-                      srcset= "{{ block.settings.image | img_url: image_size }}, {{ block.settings.image | img_url: image_size, scale: 2 }} 2x"
-                      src="{{ block.settings.image | image_url: width: 400 }}"
-                      alt="{{ block.settings.image.alt | escape }}"
-                      loading="lazy"
-                      width="{{ block.settings.image.width }}"
-                      height="{{ block.settings.image.height }}"
-                      style="max-width: min(100%, {{ block.settings.image_width }}px);"
-                    >
-                  {%- else -%}
-                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
-                  {%- endif -%}
-                </div>
               {%when 'contact'%}
               <div class="footer__contact">
 
@@ -99,7 +66,55 @@
                   </li>
                 </ul>
               </div>
+              {%when 'social'%}
+              <div class="footer__social">
+                <div>
+                  <a href="{{ block.settings.instagram }}" class="social-icon" target="_blank" title="Akram NYC | Instagram">
+                      <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" id="Layer_1" x="0" y="0" version="1.1" viewBox="0 0 1724 1722.9"><g id="UM93QO_00000041988494547093780010000002819337868970777484_"><path d="M1722.3 862.2c0 80.3.7 160.5-.3 240.7-.6 48.9-2.7 97.8-6 146.6-4.9 73.3-20.3 144.5-53 210.8-48.8 98.9-124.3 170.1-226.1 213-48.8 20.6-99.9 32.5-152.4 38.9-41 5-82.3 6.7-123.5 7.7-186.1 4.6-372.2 2.5-558.4 1.4-43.6-.3-87.2-2.8-130.7-5.9-65.2-4.6-128.4-18-188.9-43.4-62.9-26.4-115.8-66.4-160.7-117.4C65.7 1490.2 34.5 1414 17.9 1331c-7-35.3-11.1-71-12.3-107-1.5-43.6-3.2-87.2-4.2-130.7-.9-40.9-1.4-81.9-1.4-122.8 0-106.8-.1-213.7.5-320.6.3-43.6 2-87.2 3.8-130.8 2.3-57 8-113.6 23.4-168.8 17.1-61.3 42.7-118.3 83.1-168 52.4-64.5 117-112 195.5-140.3 48.6-17.5 98.5-28.5 149.8-32.6 36.1-2.9 72.4-5.2 108.6-6C633.4 1.9 702 1.6 770.6.9 818.9.4 867.1-.2 915.4 0c71.9.3 143.8.4 215.7 2.1 47.2 1.1 94.5 3.6 141.5 7.8 68.6 6.1 134.7 22.9 196 54.8 95.5 49.6 164.4 124.2 205.8 223.8 20.2 48.6 32 99.4 38.3 151.5 4.9 40.7 6.9 81.6 7.6 122.5 1.6 99.9 2.5 199.8 3.6 299.6-.5.1-1 .1-1.6.1zm-156-.9h.6V736.4c0-83.6-.5-167.1-6.4-250.5-3-42.4-10.4-83.9-24.8-124-23.4-64.9-64.7-115.3-123.7-150.4-45.7-27.2-96.3-40.8-148.8-45.6-45-4.1-90.3-6.6-135.5-7.8-65.9-1.7-131.8-1.9-197.8-2.1-67.9-.2-135.8.6-203.8.8-81.2.2-162.5.5-243.5 6.6-40.3 3-79.9 9.9-118.1 23.6-83.9 30-142.4 86.4-174.7 169.6-17 43.6-24.8 89.2-27.3 135.6-3 53.8-5.6 107.8-5.7 161.7-.5 147.2.4 294.3.8 441.5.2 50.9 2 101.8 6.3 152.6 3.8 44.7 12.6 88.3 30.3 129.8 30.1 70.3 80.4 120.6 150.6 150.9 42.3 18.3 87 27.3 132.7 30.8 39.1 3 78.4 4.9 117.7 5.9 56.2 1.4 112.5 1.9 168.8 2 77.2.1 154.5-.7 231.7-.8 80.9-.2 161.8-.5 242.6-6.4 42.4-3.1 83.9-10.3 123.9-24.9 77.6-28.3 133.2-80.4 166.4-155.9 19-43.1 28.2-88.9 31.3-135.6 3.2-48.8 5.5-97.7 6.2-146.6.9-78.7.2-157.3.2-235.9z"/><path d="M419.2 861.7C418 622.1 612.7 419.4 861.4 419.2c244.1-.2 443.2 196.4 443 443-.2 245.5-198.5 442.2-442.9 442-249.2-.1-443.5-203.2-442.3-442.5zm156 0c0 158 127.9 286.3 285.5 286.6 156.7.3 287.7-125.2 287.6-286.6-.1-163.3-132.8-286.7-286.6-286.5-158.5.1-286.5 128-286.5 286.5zM1321.1 298.8c54.1-1.6 104 43.7 104 102.8 0 58.1-45.6 103.5-103.9 104.1-49.5.6-103.5-38.2-103.5-103.5 0-67.2 56.2-105.3 103.4-103.4z"/></g></svg>
+                  </a>
+                </div>
+              </div>
           {%- endcase -%}
+          {%- endfor -%}
+          </div>
+
+          <div class="footer__bottom">
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+              {%- when 'text' -%}
+                <div class="footer-block__details-content rte">
+                  {{ block.settings.subtext }}
+                </div>
+              {%- when 'link_list' -%}
+                {%- if block.settings.menu != blank and block.settings.heading != blank -%}
+                  <ul class="footer-block__details-content list-unstyled">
+                    {%- for link in block.settings.menu.links -%}
+                      <li>
+                        <a href="{{ link.url }}" class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}">
+                          {{ link.title }}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              {%- when 'image' -%}
+              <div class="footer-block__details-content footer-block-image {{ block.settings.alignment }}">
+                {%- if block.settings.image != blank -%}
+                  {%- assign image_size = block.settings.image_width | append: 'x' -%}
+                  <img
+                    srcset= "{{ block.settings.image | img_url: image_size }}, {{ block.settings.image | img_url: image_size, scale: 2 }} 2x"
+                    src="{{ block.settings.image | image_url: width: 400 }}"
+                    alt="{{ block.settings.image.alt | escape }}"
+                    loading="lazy"
+                    width="{{ block.settings.image.width }}"
+                    height="{{ block.settings.image.height }}"
+                    style="max-width: min(100%, {{ block.settings.image_width }}px);"
+                  >
+                {%- else -%}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                {%- endif -%}
+              </div>
+        {%- endcase -%}
           {%- endfor -%}
           </div>
         {%- endif -%}
@@ -238,7 +253,11 @@
 
     <div class="footer__content-bottom">
       <div class="footer__content-bottom-wrapper page-width">
-        <div class="footer__column footer__localization">
+        <div class="footer__copyright">
+          <small class="copyright__content">&copy;{{ 'now' | date: "%Y" }} {{ shop.name }} All Rights Reserved</small>
+        </div>
+
+        {% comment %} <div class="footer__column footer__localization">
           {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
             <noscript>
               {%- form 'localization', id: 'FooterCountryFormNoScript', class: 'localization-form' -%}
@@ -323,24 +342,7 @@
               {%- endform -%}
             </localization-form>
           {%- endif -%}
-        </div>
-        <div class="footer__column footer__column--info">
-          <div class="footer__copyright">
-            <small class="copyright__content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</small>
-          </div>
-          {%- if section.settings.payment_enable -%}
-            <div class="footer__payment">
-              <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
-              <ul class="list list-payment" role="list">
-                {%- for type in shop.enabled_payment_types -%}
-                  <li class="list-payment__item">
-                    {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
-                  </li>
-                {%- endfor -%}
-              </ul>
-            </div>
-          {%- endif -%}
-        </div>
+        </div> {% endcomment %}
       </div>
     </div>
   </footer>
