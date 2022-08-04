@@ -1,16 +1,18 @@
 {
-    "sections": {
-        "banner": {
-            "type": "main-collection-banner",
-            "settings": {}
-        },
-        "product-grid": {
-            "type": "main-collection-product-grid-simple",
-            "settings": {}
-        }
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+      }
     },
-    "order": [
-        "banner",
-        "product-grid"
-    ]
+    "product-grid": {
+      "type": "main-collection-product-grid-simple",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid"
+  ]
 }
