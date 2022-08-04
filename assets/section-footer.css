@@ -63,6 +63,11 @@
   padding-right: 1rem;
 }
 
+
+.footer__top {
+  margin-bottom: -2.75rem;
+}
+
 @media screen and (min-width: 750px) {
 
   .footer__bottom,
@@ -131,8 +136,8 @@
 .footer__copyright {
   text-align: center;
   text-transform: uppercase;
-  padding-bottom: var(--level4);
-  text-align: left;
+  padding-bottom: var(--level3);
+  text-align: center;
   width: 100%;
 }
 
