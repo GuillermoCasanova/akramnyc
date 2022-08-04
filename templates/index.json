@@ -9,94 +9,6 @@
         "cta-url-text": "Shop Collection One"
       }
     },
-    "1639603224fb2995f8": {
-      "type": "featured-art-shots",
-      "blocks": {
-        "74b37fed-09db-4afe-b0a4-6166a2bd1d01": {
-          "type": "featured-product",
-          "settings": {
-            "information": "logo-hoodie-pale-iris"
-          }
-        },
-        "db4142f8-5568-452b-983f-6efee693bd74": {
-          "type": "featured-product",
-          "disabled": true,
-          "settings": {
-            "information": "leaves-hoodie-black"
-          }
-        },
-        "0c226d57-efcc-433d-95d0-95ec0470c084": {
-          "type": "featured-product",
-          "disabled": true,
-          "settings": {
-            "information": "logo-hoodie-white"
-          }
-        },
-        "36741ad6-1bdb-475b-835a-889ec4388563": {
-          "type": "featured-product",
-          "settings": {
-            "information": "leaves-short-sleeve-tee-2"
-          }
-        }
-      },
-      "block_order": [
-        "74b37fed-09db-4afe-b0a4-6166a2bd1d01",
-        "db4142f8-5568-452b-983f-6efee693bd74",
-        "0c226d57-efcc-433d-95d0-95ec0470c084",
-        "36741ad6-1bdb-475b-835a-889ec4388563"
-      ],
-      "settings": {
-        "title": "Featured Art Shots",
-        "art_shot_as_lead": true
-      }
-    },
-    "1628891408499f670a": {
-      "type": "featured-products",
-      "blocks": {
-        "f36eb351-06fd-4fc6-a66e-b3fb407847dd": {
-          "type": "featured-product",
-          "settings": {
-            "information": "leaves-hoodie-black"
-          }
-        },
-        "d57a72c5-3329-4a35-8fa2-79bfdf3dcf00": {
-          "type": "featured-product",
-          "settings": {
-            "information": "leaves-hoodie-pale-iris"
-          }
-        },
-        "6cc47089-7935-49b0-90b6-36c9e5a16444": {
-          "type": "featured-product",
-          "settings": {
-            "information": "logo-hoodie-white"
-          }
-        },
-        "02b67bdc-171e-4f2b-9b3e-1e98b73efeee": {
-          "type": "featured-product",
-          "settings": {
-            "information": "stars-bracelet"
-          }
-        },
-        "0ed67482-09a0-42de-97b3-3d9743234dd4": {
-          "type": "featured-product",
-          "disabled": true,
-          "settings": {
-            "information": "logo-hoodie-pale-iris"
-          }
-        }
-      },
-      "block_order": [
-        "f36eb351-06fd-4fc6-a66e-b3fb407847dd",
-        "d57a72c5-3329-4a35-8fa2-79bfdf3dcf00",
-        "6cc47089-7935-49b0-90b6-36c9e5a16444",
-        "02b67bdc-171e-4f2b-9b3e-1e98b73efeee",
-        "0ed67482-09a0-42de-97b3-3d9743234dd4"
-      ],
-      "settings": {
-        "title": "Featured Products",
-        "art_shot_as_lead": false
-      }
-    },
     "1636062518ffd83f22": {
       "type": "collection-intro",
       "disabled": true,
@@ -116,8 +28,6 @@
   },
   "order": [
     "image_banner",
-    "1639603224fb2995f8",
-    "1628891408499f670a",
     "1636062518ffd83f22",
     "16351940757553ce11"
   ]
