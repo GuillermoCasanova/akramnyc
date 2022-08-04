@@ -18,7 +18,7 @@
 
 {% unless template.name == 'cart' %}
  
-  <footer class="footer {% unless template == 'index' or template == 'collection' %}is-text-page{% endunless %} {% if template == 'index' %}is-homepage{% endif %}" >
+  <footer class="footer {% unless template == 'index' or template == 'collection' or template == 'collection.simple' %}is-text-page{% endunless %} {% if template == 'index' %}is-homepage{% endif %}" >
     {%- if section.blocks.size > 0 or section.settings.newsletter_enable or section.settings.show_social -%}
       <div class="footer__content-top page-width">
     

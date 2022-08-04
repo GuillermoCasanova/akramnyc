@@ -1,4 +1,4 @@
-{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{% comment %} {{ 'template-collection.css' | asset_url | stylesheet_tag }} {% endcomment %}
 {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
@@ -14,7 +14,38 @@
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 
 
-{%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+{% style %}
+/*------------------------------------*\
+    #Collection Template
+\*------------------------------------*/
+
+.collection-product-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: #fff;
+  border-left: 1px solid black;
+}
+
+
+.collection-product-grid__item {
+  width: 50%;
+}
+
+@media only screen and (min-width: 1100px) {
+  .collection-product-grid__item {
+    width: 33.3%;
+  }
+}
+
+.collection {
+  padding-bottom: var(--level5)
+}
+
+{% endstyle %}
+
+
 
 <div id="CollectionProductGrid">
   {%- paginate collection.products by section.settings.products_per_page -%}

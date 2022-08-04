@@ -1,13 +1,12 @@
 .footer {
   border-top: 0.1rem solid rgba(var(--color-foreground), 0.2);
-  margin-top: var(--level7);
   position: relative;
 }
 
 .footer:after {
   width: 102%;
   position: absolute;
-  top: -15rem;
+  top: -11rem;
   left: -.25rem;
   height: 10rem;
   content: " ";
@@ -18,7 +17,7 @@
 
 @media screen and (min-width: 750px) {
   .footer:after {
-    top: -18rem;
+    top: -11rem;
     left: -.5rem;
   }
 }
@@ -29,11 +28,18 @@
   width: 100%;
 }
 
+.footer.is-homepage:after {
+  top: -2rem;
+  bottom: 0;
+}
+
 .footer.is-text-page:after {
   content: none;
 }
 
-
+.footer * {
+  z-index: 4;
+}
 
 .footer__social {
   text-align: center;
@@ -139,6 +145,8 @@
   padding-bottom: var(--level3);
   text-align: center;
   width: 100%;
+  display: block;
+  position: relative;
 }
 
 @media screen and (min-width: 750px) {
