@@ -32,17 +32,24 @@
           },
           "cabb0f94-0870-4578-852b-99f3b549a8e4": {
             "type": "contact",
-            "disabled": true,
             "settings": {
               "phone": "401-764-2124",
               "email": "team@akramnyc.com",
               "social-account": "https:\/\/www.instagram.com\/akram_nyc\/"
             }
+          },
+          "1242bf0d-48c0-4b50-a5ed-8dd11906aca3": {
+            "type": "link_list",
+            "settings": {
+              "heading": "Secondary Footer Links",
+              "menu": "footer"
+            }
           }
         },
         "block_order": [
           "footer-0",
-          "cabb0f94-0870-4578-852b-99f3b549a8e4"
+          "cabb0f94-0870-4578-852b-99f3b549a8e4",
+          "1242bf0d-48c0-4b50-a5ed-8dd11906aca3"
         ],
         "settings": {
           "color_scheme": "background-1",
