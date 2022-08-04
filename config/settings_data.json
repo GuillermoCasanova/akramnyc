@@ -25,7 +25,6 @@
         "blocks": {
           "footer-0": {
             "type": "link_list",
-            "disabled": true,
             "settings": {
               "heading": "Quick links",
               "menu": "footer"
@@ -33,6 +32,7 @@
           },
           "cabb0f94-0870-4578-852b-99f3b549a8e4": {
             "type": "contact",
+            "disabled": true,
             "settings": {
               "phone": "401-764-2124",
               "email": "team@akramnyc.com",
