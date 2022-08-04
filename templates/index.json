@@ -8,27 +8,9 @@
         "cta-url": "shopify:\/\/collections\/collection-one",
         "cta-url-text": "Shop Collection One"
       }
-    },
-    "1636062518ffd83f22": {
-      "type": "collection-intro",
-      "disabled": true,
-      "settings": {
-        "title": "Collection One",
-        "description": "<p>Our Hoodies, Tees, and Bracelets def9j<\/p>",
-        "collection-url": "shopify:\/\/collections\/collection-one"
-      }
-    },
-    "16351940757553ce11": {
-      "type": "cs-loading-screen",
-      "disabled": true,
-      "settings": {
-        "about": ""
-      }
     }
   },
   "order": [
-    "image_banner",
-    "1636062518ffd83f22",
-    "16351940757553ce11"
+    "image_banner"
   ]
 }
