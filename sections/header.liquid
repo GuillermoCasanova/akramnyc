@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-loading-overlay.css' | asset_url }}" media="print" onload="this.media='all'">
-{% comment %} <link rel="stylesheet" href="{{ 'header.css' | asset_url }}" media="print" onload="this.media='all'"> {% endcomment %}
+ {% comment %} <link rel="stylesheet" href="{{ 'header.css' | asset_url }}" media="print" onload="this.media='all'"> {% endcomment %}
 
 
 <noscript>{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}</noscript>
@@ -11,8 +11,8 @@
 <noscript>{{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}</noscript>
 {% comment %} <noscript>{{ 'header.css' | asset_url | stylesheet_tag }}</noscript> {% endcomment %}
 
-{% style %}
 
+{% style %}
 .hidden {
   display: none;
 }
@@ -1015,11 +1015,6 @@ menu-drawer>details[open]>summary::before {
   pointer-events: all;
 }
 
-
-.menu-drawer.is-open .menu-drawer__menu {
-  opacity: 1;
-}
-
 /* .js .menu-drawer {
   height: calc(100vh - 100%);
   height: calc(
@@ -1035,25 +1030,6 @@ menu-drawer>details[open]>summary::before {
 
 @media screen and (min-width: 750px) {}
 
-
-
-/* 
-.js details[open] > .menu-drawer,
-.js details[open] > .menu-drawer__submenu {
-  transition: transform var(--duration-default) ease,
-    visibility var(--duration-default) ease;
-}
-
-.no-js details[open] > .menu-drawer,
-.js details[open].menu-opening > .menu-drawer,
-details[open].menu-opening > .menu-drawer__submenu {
-  transform: translateX(0);
-  visibility: visible;
-}
-
-details[open].menu-opening > .menu-drawer__submenu {
-  position: relative;
-} */
 
 
 .menu-drawer__inner-container {
@@ -1103,16 +1079,10 @@ details[open].menu-opening > .menu-drawer__submenu {
   display: block;
 }
 
-
-.js .menu-drawer__menu {
-  opacity: 0; 
-  transition: opacity .2s ease .2s;
-}
-
 .menu-drawer__menu-item {
   padding: 1rem 2.5rem;
   text-decoration: none;
-  font-size: 1.15em;
+  font-size: 1.25em;
   margin-bottom: 1rem;
   letter-spacing: 2px;
   list-style: none;
@@ -1122,7 +1092,7 @@ details[open].menu-opening > .menu-drawer__submenu {
 
 @media screen and (min-width: 750px) {
   .menu-drawer__menu-item {
-    font-size: 1rem;
+    font-size: 1em;
     letter-spacing: 1px;
   }
 }
@@ -1136,6 +1106,17 @@ details[open].menu-opening > .menu-drawer__submenu {
   color: #fff;
 }
 
+.menu-drawer__menu-item.is-locked {
+  pointer-events: none;
+  opacity: .7;
+}
+
+.menu-drawer__menu-item.is-locked svg {
+  fill: white;
+  width: .85rem;
+  height: .85rem;
+  ;
+}
 
 .no-js .menu-drawer__menu-item {
   font-size: 1.3rem;
@@ -1300,12 +1281,18 @@ details[open].menu-opening > .menu-drawer__submenu {
             <div class="menu-drawer__inner-container">
               <div class="menu-drawer__navigation-container">
                 <nav class="menu-drawer__navigation">
+                  {% assign locked_links = section.settings.locked_links %}
+                  
                   <ul class="menu-drawer__menu list-menu" role="list">
                     {%- for link in section.settings.menu.links -%}
+                      {% assign linkName = link.title | downcase | escape %}
+
                       <li>
                         {%- if link.links != blank -%}
                           <details class="menu-opening" open>
-                            <summary class="menu-drawer__menu-item list-menu__item  focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}">
+                            <summary class="menu-drawer__menu-item list-menu__item  focus-inset
+                                {% if locked_links contains linkName %} is-locked{% endif %}
+                                {% if link.child_active %} menu-drawer__menu-item--active{% endif %}">
                               {{ link.title | escape }}
                             </summary>
                             <div id="link-{{ link.title | escape }}" class="menu-drawer__submenu motion-reduce" tabindex="-1">
@@ -1351,8 +1338,18 @@ details[open].menu-opening > .menu-drawer__submenu {
                             </div>
                           </details>
                         {%- else -%}
-                          <a href="{{ link.url }}" class="menu-drawer__menu-item list-menu__item  focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"{% if link.current %} aria-current="page"{% endif %}>
+                          <a href="{{ link.url }}" class="menu-drawer__menu-item list-menu__item  focus-inset
+                            {% if locked_links contains linkName %} is-locked{% endif %}
+                            {% if link.current %} menu-drawer__menu-item--active{% endif %}"{% if link.current %} aria-current="page"{% endif %}>
                             {{ link.title | escape }}
+                            {% if locked_links contains linkName %} 
+                              <svg class="menu-drawer__menu-item__lock-icon" focusable="false" >
+                                <title>
+                                  Page is currently locked. 
+                                </title>
+                                <use href="#icon-lock">
+                              </svg>
+                            {% endif %}
                           </a>
                         {%- endif -%}
                       </li>
@@ -1717,17 +1714,10 @@ details[open].menu-opening > .menu-drawer__submenu {
       "label": "t:sections.header.settings.menu.label"
     },
     {
-      "type": "checkbox",
-      "id": "show_line_separator",
-      "default": true,
-      "label": "t:sections.header.settings.show_line_separator.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_sticky_header",
-      "default": true,
-      "label": "t:sections.header.settings.enable_sticky_header.label",
-      "info": "t:sections.header.settings.enable_sticky_header.info"
+      "type": "text",
+      "id": "locked_links",
+      "label": "Locked Links",
+      "info": "A list of locked page urls divided by commas that will get a locked state"
     }
   ]
 }

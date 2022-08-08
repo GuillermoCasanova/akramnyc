@@ -1091,6 +1091,17 @@ menu-drawer>details[open]>summary::before {
   color: #fff;
 }
 
+.menu-drawer__menu-item.is-locked {
+  pointer-events: none;
+  opacity: .7;
+}
+
+.menu-drawer__menu-item.is-locked svg {
+  fill: white;
+  width: .85rem;
+  height: .85rem;
+  ;
+}
 
 .no-js .menu-drawer__menu-item {
   font-size: 1.3rem;
