@@ -3,11 +3,20 @@
     "banner": {
       "type": "main-collection-banner",
       "settings": {
+        "show_collection_description": false,
+        "show_collection_image": false
       }
     },
     "product-grid": {
       "type": "main-collection-product-grid-simple",
       "settings": {
+        "products_per_page": 16,
+        "image_ratio": "adapt",
+        "show_secondary_image": false,
+        "add_image_padding": false,
+        "show_vendor": false,
+        "enable_filtering": false,
+        "enable_sorting": false
       }
     }
   },
