@@ -45,6 +45,7 @@
         },
         "903a5335-b6df-422f-82bb-680db359ea2b": {
           "type": "product-support",
+          "disabled": true,
           "settings": {
             "headline": "Our Materials",
             "body": "<p>100% Certified Pima, sourced via licensed Supima manufacturer.<\/p><p><\/p><p>100% certified Giza Egyptian Cotton, sourced via licensed Cotton Egypt Association manufacturer.<\/p><p><br\/>For any additional materials inquiries contact us via email at team@akramnyc.com<\/p>"
